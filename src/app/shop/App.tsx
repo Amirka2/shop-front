@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Route, BrowserRouter, Routes, Link} from 'react-router-dom';
+import {paths} from "@/shared/constants";
 
 const Test = function() {
     return (
@@ -12,13 +13,13 @@ export function App() {
     <BrowserRouter>
         <div className="App">
             <div>
-                <Link to='/'>main</Link>
+                <Link to={paths.main}>main</Link>
                 <br/>
-                <Link to='/test'>test</Link>
+                <Link to={paths.aboutUs}>about us</Link>
             </div>
             <Routes>
-                <Route path='/test' Component={Test}></Route>
-                <Route path='/'/>
+                <Route path={paths.aboutUs} Component={Test}></Route>
+                <Route path={paths.main}/>
             </Routes>
         </div>
     </BrowserRouter>
