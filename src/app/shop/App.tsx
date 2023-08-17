@@ -1,27 +1,24 @@
 import React from 'react';
-import './App.css';
-import {Route, BrowserRouter, Routes, Link} from 'react-router-dom';
+import './app.styles';
+import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import {paths} from "@/shared/constants";
 
-const Test = function() {
-    return (
-        <div>test component</div>
-    )
-}
+import {NavBar} from "@/shared/navbar";
+import {Footer} from "@/shared/footer";
+
+import {MainWrapper} from "@/app/shop/app.styles";
+
 export function App() {
   return (
     <BrowserRouter>
-        <div className="App">
-            <div>
-                <Link to={paths.main}>main</Link>
-                <br/>
-                <Link to={paths.aboutUs}>about us</Link>
-            </div>
+        <MainWrapper>
+            <NavBar paths={paths}/>
+            <div>Main Content</div>
             <Routes>
-                <Route path={paths.aboutUs} Component={Test}></Route>
                 <Route path={paths.main}/>
             </Routes>
-        </div>
+            <Footer/>
+        </MainWrapper>
     </BrowserRouter>
   );
 }
