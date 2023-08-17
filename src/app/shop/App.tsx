@@ -6,6 +6,8 @@ import {paths} from "@/shared/constants";
 import {NavBar} from "@/shared/navbar";
 import {Footer} from "@/shared/footer";
 
+import {NotFoundPage, MainPage, ShippingPage, PaymentPage, CartPage, CatalogPage, AboutUsPage} from "@/pages";
+
 import {MainWrapper} from "@/app/shop/app.styles";
 
 export function App() {
@@ -13,9 +15,14 @@ export function App() {
     <BrowserRouter>
         <MainWrapper>
             <NavBar paths={paths}/>
-            <div>Main Content</div>
             <Routes>
-                <Route path={paths.main}/>
+                <Route path='*' Component={NotFoundPage}/>
+                <Route path={paths.main} Component={MainPage}/>
+                <Route path={paths.aboutUs} Component={AboutUsPage}/>
+                <Route path={paths.catalog} Component={CatalogPage}/>
+                <Route path={paths.cart} Component={CartPage}/>
+                <Route path={paths.payment} Component={PaymentPage}/>
+                <Route path={paths.shipping} Component={ShippingPage}/>
             </Routes>
             <Footer/>
         </MainWrapper>

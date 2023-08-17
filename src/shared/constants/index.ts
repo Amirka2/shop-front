@@ -6,4 +6,6 @@ export const paths: IPaths = {
     aboutUs: '/about-us',
     shipping: '/shipping',
     payment: '/payment',
+    cart: '/cart',
+    notFound: '/not-found',
 }

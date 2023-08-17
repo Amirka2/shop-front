@@ -4,4 +4,6 @@ export interface IPaths {
     aboutUs: string;
     shipping: string;
     payment: string;
+    cart: string;
+    notFound: string;
 }
