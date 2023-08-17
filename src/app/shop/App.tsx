@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.styles';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {paths} from "@/shared/constants";
+import {Paths} from "@/shared/constants";
 
 import {NavBar} from "@/shared/navbar";
 import {Footer} from "@/shared/footer";
@@ -16,15 +16,15 @@ export function App() {
     <BrowserRouter>
         <MainWrapper>
             <TopBar/>
-            <NavBar paths={paths}/>
+            <NavBar paths={Paths}/>
             <Routes>
                 <Route path='*' Component={NotFoundPage}/>
-                <Route path={paths.main} Component={MainPage}/>
-                <Route path={paths.aboutUs} Component={AboutUsPage}/>
-                <Route path={paths.catalog} Component={CatalogPage}/>
-                <Route path={paths.cart} Component={CartPage}/>
-                <Route path={paths.payment} Component={PaymentPage}/>
-                <Route path={paths.shipping} Component={ShippingPage}/>
+                <Route path={Paths.main} Component={MainPage}/>
+                <Route path={Paths.aboutUs} Component={AboutUsPage}/>
+                <Route path={Paths.catalog} Component={CatalogPage}/>
+                <Route path={Paths.cart} Component={CartPage}/>
+                <Route path={Paths.payment} Component={PaymentPage}/>
+                <Route path={Paths.shipping} Component={ShippingPage}/>
             </Routes>
             <Footer/>
         </MainWrapper>

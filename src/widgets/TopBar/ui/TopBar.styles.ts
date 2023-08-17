@@ -1,4 +1,5 @@
 import {styled} from "styled-components";
+import {Colors} from "@/shared/constants";
 
 export const Wrapper = styled.div`
   width: 1330px;
@@ -9,6 +10,6 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #5180F9;
+  background-color: ${Colors.blue};
   border-radius: 20px;
 `;

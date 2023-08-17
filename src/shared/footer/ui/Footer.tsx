@@ -4,7 +4,7 @@ import {Wrapper} from "./Footer.styles";
 export const Footer = () => {
     return (
         <Wrapper>
-            Footer
+            <h1>Footer</h1>
         </Wrapper>
     );
 };

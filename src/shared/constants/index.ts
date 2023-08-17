@@ -1,6 +1,6 @@
 import {IPaths} from "@/shared/interfaces";
 
-export const paths: IPaths = {
+export const Paths: IPaths = {
     main: '/',
     catalog: '/catalog',
     aboutUs: '/about-us',
@@ -8,4 +8,11 @@ export const paths: IPaths = {
     payment: '/payment',
     cart: '/cart',
     notFound: '/not-found',
+}
+
+export const Colors = {
+    blue: '#5180F9',
+    white: '#fff',
+    black: '#000',
+    gray: '#f0f0f0',
 }
