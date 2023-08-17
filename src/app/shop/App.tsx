@@ -7,6 +7,7 @@ import {NavBar} from "@/shared/navbar";
 import {Footer} from "@/shared/footer";
 
 import {NotFoundPage, MainPage, ShippingPage, PaymentPage, CartPage, CatalogPage, AboutUsPage} from "@/pages";
+import {TopBar} from "@/widgets/TopBar";
 
 import {MainWrapper} from "@/app/shop/app.styles";
 
@@ -14,6 +15,7 @@ export function App() {
   return (
     <BrowserRouter>
         <MainWrapper>
+            <TopBar/>
             <NavBar paths={paths}/>
             <Routes>
                 <Route path='*' Component={NotFoundPage}/>
