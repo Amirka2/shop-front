@@ -28,7 +28,7 @@ export function App() {
                 <Route path={Paths.payment} Component={PaymentPage}/>
                 <Route path={Paths.shipping} Component={ShippingPage}/>
             </Routes>
-            <Footer/>
+            <Footer isMobile={isMobile}/>
         </MainWrapper>
     </BrowserRouter>
   );

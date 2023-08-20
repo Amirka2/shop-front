@@ -1,9 +1,12 @@
 import React from 'react';
 import {Wrapper} from "./Footer.styles";
 
-export const Footer = () => {
+interface FooterProps {
+    isMobile: boolean;
+}
+export const Footer = (props: FooterProps) => {
     return (
-        <Wrapper>
+        <Wrapper $isMobile={props.isMobile}>
             <h1>Footer</h1>
         </Wrapper>
     );
