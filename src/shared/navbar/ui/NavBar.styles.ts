@@ -22,19 +22,27 @@ export const Link = styled(NavLink)<{
     $isMobile: boolean;
     $isTop?: boolean;
     $isBottom?: boolean;
+    $isLeft?: boolean;
+    $isRight?: boolean;
 }>`
-  width: ${props => props.$isMobile ? '100%' : ''};
-  text-align: ${props => props.$isMobile ? 'center' : ''};
+  width: ${props => props.$isMobile ? '100%' : '20%'};
+  height: ${props => props.$isMobile ? '' : '100%'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: ${Colors.black};
   text-decoration: none;
   font-size: 24px;
+
   &:hover {
     background-color: ${Colors.blue};
     color: ${Colors.white};
     ${props => props.$isMobile && props.$isTop ? (
-        `border-radius: ${borderRadius + ' ' + borderRadius} 0 0;`) : ('')}
-  }
-  ${props => props.$isMobile && props.$isBottom ? (
-          `border-radius: 0 0 ${borderRadius + ' ' + borderRadius};`) : ('')}
-}
-`;
+            `border-radius: ${borderRadius + ' ' + borderRadius} 0 0;`) : ('')}
+    ${props => props.$isMobile && props.$isBottom ? (
+            `border-radius: 0 0 ${borderRadius + ' ' + borderRadius};`) : ('')}
+    ${props => !props.$isMobile && props.$isLeft ? (
+            `border-radius: ${borderRadius} 0 0 ${borderRadius};`) : ('')}
+    ${props => !props.$isMobile && props.$isRight ? (
+            `border-radius: 0 ${borderRadius + ' ' + borderRadius} 0;`) : ('')}
+  }}`;
