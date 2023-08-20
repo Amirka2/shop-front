@@ -9,11 +9,11 @@ interface NavBarProps {
 export const NavBar = ({paths, isMobile}: NavBarProps) => {
     return (
         <Wrapper $isMobile={isMobile}>
-            <Link to={paths.catalog} $isMobile={isMobile}>Каталог</Link>
+            <Link to={paths.catalog} $isMobile={isMobile} $isTop={true}>Каталог</Link>
             <Link to={paths.aboutUs} $isMobile={isMobile}>О нас</Link>
             <Link to={paths.main} $isMobile={isMobile}>Главная</Link>
             <Link to={paths.payment} $isMobile={isMobile}>Оплата</Link>
-            <Link to={paths.shipping} $isMobile={isMobile}>Доставка</Link>
+            <Link to={paths.shipping} $isMobile={isMobile} $isBottom={true}>Доставка</Link>
         </Wrapper>
     );
 };

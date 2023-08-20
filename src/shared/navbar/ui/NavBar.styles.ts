@@ -2,6 +2,7 @@ import {styled} from "styled-components";
 import {NavLink} from "react-router-dom";
 import {Colors} from "@/shared/constants";
 
+const borderRadius = '10px';
 export const Wrapper = styled.div<{
     $isMobile: boolean;
 }>`
@@ -14,11 +15,13 @@ export const Wrapper = styled.div<{
   justify-content: space-evenly;
   align-items: center;
   background-color: ${Colors.gray};
-  border-radius: 10px;
+  border-radius: ${borderRadius};
 `;
 
 export const Link = styled(NavLink)<{
     $isMobile: boolean;
+    $isTop?: boolean;
+    $isBottom?: boolean;
 }>`
   width: ${props => props.$isMobile ? '100%' : ''};
   text-align: ${props => props.$isMobile ? 'center' : ''};
@@ -28,5 +31,10 @@ export const Link = styled(NavLink)<{
   &:hover {
     background-color: ${Colors.blue};
     color: ${Colors.white};
+    ${props => props.$isMobile && props.$isTop ? (
+        `border-radius: ${borderRadius + ' ' + borderRadius} 0 0;`) : ('')}
   }
+  ${props => props.$isMobile && props.$isBottom ? (
+          `border-radius: 0 0 ${borderRadius + ' ' + borderRadius};`) : ('')}
+}
 `;
