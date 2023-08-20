@@ -1,9 +1,12 @@
 import React from 'react';
 import {Wrapper} from "./TopBar.styles";
 
-export const TopBar = () => {
+interface TopBarProps {
+    isMobile: boolean;
+}
+export const TopBar = (props: TopBarProps) => {
     return (
-        <Wrapper>
+        <Wrapper $isMobile={props.isMobile}>
             <h1>TopBar</h1>
         </Wrapper>
     );
