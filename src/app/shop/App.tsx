@@ -23,7 +23,7 @@ export function App() {
                 <Route path='*' Component={NotFoundPage}/>
                 <Route path={Paths.main} Component={MainPage}/>
                 <Route path={Paths.aboutUs} Component={AboutUsPage}/>
-                <Route path={Paths.catalog} Component={CatalogPage}/>
+                <Route path={Paths.catalog} element={<CatalogPage isMobile={isMobile} itemsValue={12} />}/>
                 <Route path={Paths.cart} Component={CartPage}/>
                 <Route path={Paths.payment} Component={PaymentPage}/>
                 <Route path={Paths.shipping} Component={ShippingPage}/>
