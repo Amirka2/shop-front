@@ -4,10 +4,10 @@ export const GridWrapper = styled.div<{
     $height: number;
     $width: number;
 }>`
-  height: ${props => props.$height + 'px'};
+  min-height: ${props => props.$height + 'px'};
   width: ${props => props.$width + 'px'};
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   align-items: flex-start;
   flex-wrap: wrap;
   border: 1px solid black;
