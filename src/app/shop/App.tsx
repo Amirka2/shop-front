@@ -10,7 +10,7 @@ import {NotFoundPage, MainPage, ShippingPage, PaymentPage, CartPage, CatalogPage
 import {TopBar} from "@/widgets/TopBar";
 
 import {MainWrapper} from "@/app/shop/app.styles";
-import {useMobileOrDesktop} from "@/shared/libs/hooks/useMobileOrDesktop";
+import {useMobileOrDesktop} from "@/shared/libs/hooks";
 
 export function App() {
     let isMobile = useMobileOrDesktop();

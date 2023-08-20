@@ -2,7 +2,7 @@ import React from 'react';
 import {Wrapper} from "./CatalogPage.styles";
 import {ItemsGrid, Product} from "@/shared/components";
 import {items} from '../mock';
-import {useMobileOrDesktop} from "@/shared/libs/hooks/useMobileOrDesktop";
+import {useMobileOrDesktop} from "@/shared/libs/hooks";
 
 interface ICatalogProps {
     itemsValue: number;
