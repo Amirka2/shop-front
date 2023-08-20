@@ -4,15 +4,16 @@ import {IPaths} from "@/shared/interfaces";
 
 interface NavBarProps {
     paths: IPaths;
+    isMobile: boolean;
 }
-export const NavBar = ({paths}: NavBarProps) => {
+export const NavBar = ({paths, isMobile}: NavBarProps) => {
     return (
-        <Wrapper>
-            <Link to={paths.catalog}>Каталог</Link>
-            <Link to={paths.aboutUs}>О нас</Link>
-            <Link to={paths.main}>Главная</Link>
-            <Link to={paths.payment}>Оплата</Link>
-            <Link to={paths.shipping}>Доставка</Link>
+        <Wrapper $isMobile={isMobile}>
+            <Link to={paths.catalog} $isMobile={isMobile}>Каталог</Link>
+            <Link to={paths.aboutUs} $isMobile={isMobile}>О нас</Link>
+            <Link to={paths.main} $isMobile={isMobile}>Главная</Link>
+            <Link to={paths.payment} $isMobile={isMobile}>Оплата</Link>
+            <Link to={paths.shipping} $isMobile={isMobile}>Доставка</Link>
         </Wrapper>
     );
 };
