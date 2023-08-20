@@ -6,6 +6,5 @@ export const MainWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 500px;
   margin: 0 0 20px 0;
 `;

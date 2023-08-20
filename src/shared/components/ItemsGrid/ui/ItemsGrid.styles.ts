@@ -4,8 +4,8 @@ export const GridWrapper = styled.div<{
     $height: number;
     $width: number;
 }>`
-  min-height: ${props => props.$height + 'px'};
-  width: ${props => props.$width + 'px'};
+  max-height: ${props => props.$height + 'px'};
+  max-width: ${props => props.$width + 'px'};
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;
