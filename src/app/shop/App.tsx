@@ -16,8 +16,8 @@ export function App() {
     let isMobile = useMobileOrDesktop();
   return (
     <BrowserRouter>
-        <MainWrapper>
-            <TopBar/>
+        <MainWrapper $isMobile={isMobile}>
+            <TopBar isMobile={isMobile}/>
             <NavBar paths={Paths} isMobile={isMobile}/>
             <Routes>
                 <Route path='*' Component={NotFoundPage}/>
