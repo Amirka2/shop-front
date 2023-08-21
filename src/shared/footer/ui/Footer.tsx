@@ -5,18 +5,18 @@ import {FooterContacts} from "@/shared/footer/ui/FooterContacts";
 import {Contacts as IContacts} from './FooterContacts';
 import {FooterInfo} from "@/shared/footer/ui/FooterInfo";
 interface FooterProps extends IContacts{
-    isMobile: boolean;
 }
 export const Footer = (props: FooterProps) => {
     return (
         <MainWrapper $isMobile={props.isMobile}>
-            <Wrapper>
+            <Wrapper $isMobile={props.isMobile}>
                 <FooterNav/>
-                <FooterInfo></FooterInfo>
+                <FooterInfo isMobile={props.isMobile}></FooterInfo>
                 <FooterContacts {...props}/>
             </Wrapper>
+            <br/>
             <div>
-                <span>Компания/магазин</span>
+                <span>© Компания/магазин</span>
             </div>
         </MainWrapper>
     );

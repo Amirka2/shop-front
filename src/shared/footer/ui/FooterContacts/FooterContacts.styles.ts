@@ -1,9 +1,10 @@
 import {styled} from "styled-components";
 import {Colors} from "@/shared/constants";
 
-export const Wrapper = styled.div`
-  width: 25%;
-  max-width: 250px;
+export const Wrapper = styled.div<{
+    $isMobile: boolean;
+}>`
+  width: ${props => props.$isMobile ? '100%' : '25%'};
   height: 200px;
   display: flex;
   flex-direction: column;

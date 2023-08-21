@@ -1,23 +1,30 @@
 import {styled} from "styled-components";
 
-export const Wrapper = styled.div`
-  width: 45%;
-  max-width: 600px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-`;
-
-export const Item = styled.div`
-  width: 45%;
+export const Item = styled.div<{
+    $isMobile: boolean;
+}>`
+  width: ${props => props.$isMobile ? '100%' : '45%'};
   height: 80px;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${props => props.$isMobile ? 'flex-start' : 'space-between'};
   align-items: center;
   font-size: 20px;
   & img {
-    max-width: 60px;
+    width: 50px;
     max-height: 60px;
     margin-right: 15px;
   }
 `;
+
+export const Wrapper = styled.div<{
+    $isMobile: boolean;
+}>`
+  width: ${props => props.$isMobile ? '100%' : '45%'};
+  max-width: 600px;
+  display: flex;
+  justify-content: ${props => props.$isMobile ? 'flex-start' : 'space-between'};
+  flex-wrap: wrap;
+  margin: 15px 0;
+`;
+
+
