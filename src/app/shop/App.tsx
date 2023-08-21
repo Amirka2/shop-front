@@ -1,7 +1,7 @@
 import React from 'react';
 import './app.styles';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {Paths} from "@/shared/constants";
+import {Paths, Contacts} from "@/shared/constants";
 
 import {NavBar} from "@/shared/navbar";
 import {Footer} from "@/shared/footer";
@@ -28,7 +28,7 @@ export function App() {
                 <Route path={Paths.payment} Component={PaymentPage}/>
                 <Route path={Paths.shipping} Component={ShippingPage}/>
             </Routes>
-            <Footer isMobile={isMobile}/>
+            <Footer isMobile={isMobile} {...Contacts}/>
         </MainWrapper>
     </BrowserRouter>
   );

@@ -16,3 +16,11 @@ export const Colors = {
     black: '#000',
     gray: '#f0f0f0',
 }
+
+export const Contacts = {
+    whatsApp: '',
+    telegram: 'https://t.me/koprofeeling',
+    viber: '',
+    email: 'shop@mail.ru',
+    phone: '89951053436',
+}

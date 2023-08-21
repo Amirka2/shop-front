@@ -4,7 +4,7 @@ import {Colors} from "@/shared/constants";
 export const MainWrapper = styled.div<{
     $isMobile: boolean;
 }>`
-  width: ${props => props.$isMobile ? '100vw' : '1400px'};
+  width: ${props => props.$isMobile ? '100vw' : '100%'};
   height: 100vh;
   margin: 20px auto 0;
   display: flex;
