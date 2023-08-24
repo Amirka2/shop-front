@@ -1,1 +1,1 @@
-export {TopBar} from './ui';
+export {TopBar} from './TopBar';
