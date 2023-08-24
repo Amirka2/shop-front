@@ -15,3 +15,31 @@ export const Wrapper = styled.div<{
   background-color: ${Colors.blue};
   border-radius: 10px;
 `;
+
+export const Textarea = styled.textarea`
+  position: absolute;
+  resize: none;
+  width: 620px;
+  height: 48px;
+  font-size: 16px;
+  padding: 13px;
+  border-radius: 10px;
+  background-color: ${Colors.gray};
+  &:focus (SearchModal){
+    display: block;
+  }
+  &+img {
+    position: relative;
+    left: 285px;
+    cursor: pointer;
+  }
+`;
+
+export const SearchModal = styled.div`
+  position: absolute;
+  top: 200px;
+  display: none;
+  width: 620px;
+  min-height: 300px;
+  background-color: ${Colors.white};
+`;
