@@ -1,10 +1,9 @@
 import React from 'react';
 import {MainWrapper, Wrapper} from "./Footer.styles";
 import {FooterNav} from "./FooterNav";
-import {FooterContacts} from "@/shared/footer/ui/FooterContacts";
-import {Contacts as IContacts} from './FooterContacts';
+import {Contacts, ContactsProps} from "@/shared/components";
 import {FooterInfo} from "@/shared/footer/ui/FooterInfo";
-interface FooterProps extends IContacts{
+interface FooterProps extends ContactsProps{
 }
 export const Footer = (props: FooterProps) => {
     return (
@@ -12,7 +11,7 @@ export const Footer = (props: FooterProps) => {
             <Wrapper $isMobile={props.isMobile}>
                 <FooterNav/>
                 <FooterInfo isMobile={props.isMobile}></FooterInfo>
-                <FooterContacts {...props}/>
+                <Contacts {...props}/>
             </Wrapper>
             <br/>
             <div>

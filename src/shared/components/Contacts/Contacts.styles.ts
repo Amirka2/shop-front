@@ -4,8 +4,7 @@ import {Colors} from "@/shared/constants";
 export const Wrapper = styled.div<{
     $isMobile: boolean;
 }>`
-  width: ${props => props.$isMobile ? '100%' : '25%'};
-  height: 200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -1,5 +1,6 @@
 import {styled} from "styled-components";
 import {MainWrapper} from "@/shared/components";
+import { Colors } from "@/shared/constants";
 
 export const Wrapper = styled(MainWrapper)<{
     $isMobile: boolean;
@@ -8,4 +9,16 @@ export const Wrapper = styled(MainWrapper)<{
   justify-content: ${props => props.$isMobile ? 'flex-start' : 'space-between'};
   align-items: ${props => props.$isMobile ? 'center' : 'flex-start'};
   flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+`;
+
+export const ContactsWrapper = styled.div`
+  background-color: ${Colors.gray};
+  width: 250px;
+  height: 300px;
+  padding: 28px;
+  border-radius: 20px;
+  
+  & a {
+    font-size: 20px;
+  }
 `;

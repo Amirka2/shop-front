@@ -21,7 +21,7 @@ export function App() {
             <NavBar paths={Paths} isMobile={isMobile}/>
             <Routes>
                 <Route path='*' Component={NotFoundPage}/>
-                <Route path={Paths.main} element={<MainPage isMobile={isMobile} itemsValue={12} />}/>
+                <Route path={Paths.main} element={<MainPage isMobile={isMobile} itemsValue={12} {...Contacts} />}/>
                 <Route path={Paths.aboutUs} Component={AboutUsPage}/>
                 <Route path={Paths.catalog} element={<CatalogPage isMobile={isMobile} itemsValue={12} />}/>
                 <Route path={Paths.cart} Component={CartPage}/>

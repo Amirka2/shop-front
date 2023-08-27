@@ -5,3 +5,5 @@ export {City} from './City';
 export {Logo} from './Logo';
 export {AddToCartBtn} from './AddToCartBtn';
 export {PhotoSlider} from './PhotoSlider';
+export {Contacts} from './Contacts';
+export type {ContactsProps} from './Contacts';

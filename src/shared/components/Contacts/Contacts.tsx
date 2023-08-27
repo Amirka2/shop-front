@@ -1,7 +1,7 @@
 import React from 'react';
-import {Icon, IconsWrapper, Wrapper} from "./FooterContacts.styles";
+import {Icon, IconsWrapper, Wrapper} from "./Contacts.styles";
 
-export interface Contacts {
+export interface ContactsProps {
     isMobile: boolean;
     whatsApp: string;
     telegram: string;
@@ -9,7 +9,8 @@ export interface Contacts {
     email: string;
     phone: string;
 }
-export const FooterContacts = (props: Contacts) => {
+
+export const Contacts = (props: ContactsProps) => {
     return (
         <Wrapper $isMobile={props.isMobile}>
             <h4>Наши контакты</h4>
