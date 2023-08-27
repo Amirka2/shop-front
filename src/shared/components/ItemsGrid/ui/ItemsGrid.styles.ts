@@ -10,7 +10,5 @@ export const GridWrapper = styled.div<{
   justify-content: space-evenly;
   align-items: flex-start;
   flex-wrap: wrap;
-  border: 1px solid black;
-  border-radius: 20px;
   padding: 10px;
 `;
