@@ -15,6 +15,7 @@ export const Colors = {
     white: '#fff',
     black: '#000',
     gray: '#f0f0f0',
+    darkGray: '#8C8C8C',
 }
 
 export const Contacts = {

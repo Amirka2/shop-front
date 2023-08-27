@@ -21,3 +21,10 @@ export const Li = styled.li`
   font-size: 20px;
   color: ${Colors.black};
 `;
+
+export const Button = styled.button`
+  font-size: 24px;
+  background-color: transparent;
+  color: ${Colors.darkGray};
+  margin-top: 20px;
+`;

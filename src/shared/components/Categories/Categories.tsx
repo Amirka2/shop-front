@@ -1,15 +1,26 @@
-import React from 'react';
-import {Wrapper, Ul, Li} from "./Categories.styles";
+import React, {useState} from 'react';
+import {Wrapper, Ul, Li, Button} from "./Categories.styles";
 
 export interface CategoriesProps {
     categories: string[];
 }
 export const Categories = ({categories}: CategoriesProps) => {
-    const liElements = categories.map((category) => {
+    let count = 10;
+    const [more, setMore] = useState(false);
+    const [categoriesState, setCategories] = useState(categories.slice(0, count))
+
+    let liElements = categoriesState.map((category) => {
         return (
             <Li>{category}</Li>
         );
     })
+    const handleMoreClick = function() {
+        setMore(prev => !prev);
+        more
+            ? (count = 10)
+            : (count = categories.length);
+        setCategories(categories.slice(0, count));
+    }
 
     return (
         <Wrapper>
@@ -19,6 +30,11 @@ export const Categories = ({categories}: CategoriesProps) => {
             <Ul>
                 {liElements}
             </Ul>
+            <Button
+                onClick={handleMoreClick}
+            >
+                {more ? 'Меньше' : 'Больше'}
+            </Button>
         </Wrapper>
     );
 };
