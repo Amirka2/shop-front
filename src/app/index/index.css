@@ -16,8 +16,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-a {
+a, button {
   color: black;
   text-decoration: none;
+  font-family: Inter, sans-serif;
+  border: none;
+
 }
 

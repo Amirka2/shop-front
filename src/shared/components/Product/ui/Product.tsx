@@ -1,17 +1,24 @@
 import React from 'react';
-import {Wrapper} from "./Product.styles";
+import {ProductInfo, Wrapper} from "./Product.styles";
+import {PhotoSlider, AddToCartBtn} from "@/shared/components";
 
 interface IProduct {
     id: number;
     price: number;
+    name: string;
     inStock: boolean;
+    photos: Array<string>;
 }
 export const Product = (props: IProduct) => {
     return (
         <Wrapper>
-            product
-            <h4>{props.price}</h4>
-            <h5>In Stock: {props.inStock ? 'Yes' : 'No'}</h5>
+            <PhotoSlider photos={props.photos} width={200} height={150}/>
+            <ProductInfo>
+                <h3>{props.name}</h3>
+                <span>In Stock: {props.inStock ? 'Yes' : 'No'}</span>
+                <span>Цена: {props.price } руб.</span>
+                <AddToCartBtn/>
+            </ProductInfo>
         </Wrapper>
     );
 };
