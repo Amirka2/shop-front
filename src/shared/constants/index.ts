@@ -11,7 +11,7 @@ export const Paths: IPaths = {
 }
 
 export const Colors = {
-    blue: '#5180F9',
+    blue: '#225479',
     white: '#fff',
     black: '#000',
     gray: '#f0f0f0',
