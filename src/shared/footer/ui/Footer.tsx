@@ -4,6 +4,7 @@ import {FooterNav} from "./FooterNav";
 import {Contacts, ContactsProps} from "@/shared/components";
 import {FooterInfo} from "@/shared/footer/ui/FooterInfo";
 interface FooterProps extends ContactsProps{
+    isMobile: boolean;
 }
 export const Footer = (props: FooterProps) => {
     return (

@@ -9,6 +9,13 @@ export const Wrapper = styled(MainWrapper)<{
   justify-content: ${props => props.$isMobile ? 'flex-start' : 'space-between'};
   align-items: ${props => props.$isMobile ? 'center' : 'flex-start'};
   flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+  
+  & aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    gap: 30px;
+  }
 `;
 
 export const ContactsWrapper = styled.div`

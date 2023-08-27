@@ -2,7 +2,6 @@ import React from 'react';
 import {Icon, IconsWrapper, Wrapper} from "./Contacts.styles";
 
 export interface ContactsProps {
-    isMobile: boolean;
     whatsApp: string;
     telegram: string;
     viber: string;
@@ -12,7 +11,7 @@ export interface ContactsProps {
 
 export const Contacts = (props: ContactsProps) => {
     return (
-        <Wrapper $isMobile={props.isMobile}>
+        <Wrapper>
             <h4>Наши контакты</h4>
             <IconsWrapper>
                 <Icon $src={'/icons/whatsapp.png'}><a href={props.whatsApp}/></Icon>

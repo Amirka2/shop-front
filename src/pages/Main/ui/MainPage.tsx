@@ -1,24 +1,31 @@
 import React from 'react';
 import {ContactsWrapper, Wrapper} from "./MainPage.styles";
-import {useMobileOrDesktop} from "@/shared/libs/hooks";
 import {items} from "@/pages/Catalog/mock";
-import {Contacts, ContactsProps, ItemsGrid, Product} from "@/shared/components";
+import {Categories, CategoriesProps, Contacts, ContactsProps, ItemsGrid, Product} from "@/shared/components";
 
-interface MainPageProps extends ContactsProps {
+interface MainPageProps extends ContactsProps, CategoriesProps {
     itemsValue: number;
     isMobile: boolean;
 }
 
 export const MainPage = (props: MainPageProps) => {
-    let isMobile = useMobileOrDesktop();
+    const {
+        isMobile,
+        itemsValue,
+        categories,
+        ...contacts
+    } = props;
     let width = isMobile ? 600 : 1000;
-    const itemsComponents = items.slice(0, props.itemsValue).map(i => <Product {...i}/>);
+    const itemsComponents = items
+        .slice(0, itemsValue).map(i =>
+            <Product {...i}/>
+        );
     return (
-        <Wrapper $isMobile={props.isMobile}>
+        <Wrapper $isMobile={isMobile}>
             <aside>
-                <h1>Main Page</h1>
+                <Categories categories={categories}/>
                 <ContactsWrapper>
-                    <Contacts {...props}/>
+                    <Contacts {...contacts}/>
                 </ContactsWrapper>
             </aside>
             <ItemsGrid height={3000} width={width}>
