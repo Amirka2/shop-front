@@ -15,7 +15,7 @@ export const Product = (props: IProduct) => {
             <PhotoSlider photos={props.photos} width={200} height={150}/>
             <ProductInfo>
                 <h3>{props.name}</h3>
-                <span>In Stock: {props.inStock ? 'Yes' : 'No'}</span>
+                <span>В наличии: {props.inStock ? 'Да' : 'Нет'}</span>
                 <span>Цена: {props.price } руб.</span>
                 <AddToCartBtn/>
             </ProductInfo>
