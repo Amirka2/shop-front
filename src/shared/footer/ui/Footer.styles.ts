@@ -10,7 +10,7 @@ export const Wrapper = styled.div<{
   flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
 `;
 
-export const MainWrapper = styled.div<{
+export const MainWrapper = styled.footer<{
     $isMobile: boolean;
 }>`
   width: ${props => props.$isMobile ? '100vw' : '100%'};

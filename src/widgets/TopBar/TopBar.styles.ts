@@ -1,7 +1,7 @@
 import {styled} from "styled-components";
 import {Colors} from "@/shared/constants";
 
-export const Wrapper = styled.div<{
+export const Wrapper = styled.header<{
     $isMobile: boolean;
 }>`
   width: ${props => props.$isMobile ? '90vw' : '1330px'};
