@@ -8,6 +8,7 @@ export const Paths: IPaths = {
     payment: '/payment',
     cart: '/cart',
     notFound: '/not-found',
+    product: '/product/:id',
 }
 
 export const Colors = {

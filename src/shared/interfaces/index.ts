@@ -6,4 +6,5 @@ export interface IPaths {
     payment: string;
     cart: string;
     notFound: string;
+    product: string;
 }

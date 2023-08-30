@@ -5,3 +5,4 @@ export {CatalogPage} from './Catalog';
 export {AboutUsPage} from './AboutUs';
 export {ShippingPage} from './Shipping';
 export {PaymentPage} from './Payment';
+export {ProductPage} from './Product';

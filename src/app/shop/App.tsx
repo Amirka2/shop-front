@@ -6,11 +6,29 @@ import {Paths, Contacts} from "@/shared/constants";
 import {NavBar} from "@/shared/navbar";
 import {Footer} from "@/shared/footer";
 
-import {NotFoundPage, MainPage, ShippingPage, PaymentPage, CartPage, CatalogPage, AboutUsPage} from "@/pages";
+import {
+    NotFoundPage,
+    MainPage,
+    ShippingPage,
+    PaymentPage,
+    CartPage,
+    CatalogPage,
+    AboutUsPage,
+    ProductPage
+} from "@/pages";
 import {TopBar} from "@/widgets/TopBar";
 
 import {MainWrapper} from "@/app/shop/app.styles";
 import {useMobileOrDesktop} from "@/shared/libs/hooks";
+import {IProduct} from "@/shared/components";
+
+const product : IProduct = {
+    id: 0,
+    price: 0,
+    name: '',
+    inStock: false,
+    photos: [''],
+}
 
 export function App() {
     let isMobile = useMobileOrDesktop();
@@ -83,6 +101,7 @@ export function App() {
                     <Route path={Paths.cart} Component={CartPage}/>
                     <Route path={Paths.payment} Component={PaymentPage}/>
                     <Route path={Paths.shipping} Component={ShippingPage}/>
+                    <Route path={Paths.product} element={<ProductPage {...product}/> }/>
                 </Routes>
                 <Footer isMobile={isMobile} {...Contacts}/>
             </MainWrapper>

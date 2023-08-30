@@ -10,3 +10,4 @@ export {Categories} from './Categories';
 
 export type {ContactsProps} from './Contacts';
 export type {CategoriesProps} from './Categories';
+export type {IProduct} from './Product';
