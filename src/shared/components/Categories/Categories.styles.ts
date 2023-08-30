@@ -11,15 +11,17 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Ul = styled.ul`
+export const CategoryList = styled.ul`
   list-style: none;
   width: 100%;
   height: 100%;
 `;
 
-export const Li = styled.li`
+export const CategoryItem = styled.li`
   font-size: 20px;
-  color: ${Colors.black};
+  & a:hover {
+    color: ${Colors.blue};
+  }
 `;
 
 export const Button = styled.button`

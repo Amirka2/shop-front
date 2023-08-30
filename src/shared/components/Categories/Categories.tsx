@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
-import {Wrapper, Ul, Li, Button} from "./Categories.styles";
+import {Wrapper, CategoryList, CategoryItem, Button} from "./Categories.styles";
+import {Link} from "react-router-dom";
 
+interface Category {
+    name: string;
+    url: string;
+}
 export interface CategoriesProps {
-    categories: string[];
+    categories: Category[];
 }
 export const Categories = ({categories}: CategoriesProps) => {
     let count = 10;
@@ -11,7 +16,7 @@ export const Categories = ({categories}: CategoriesProps) => {
 
     let liElements = categoriesState.map((category) => {
         return (
-            <Li>{category}</Li>
+            <CategoryItem><Link to={category.url}>{category.name}</Link></CategoryItem>
         );
     })
     const handleMoreClick = function() {
@@ -27,9 +32,9 @@ export const Categories = ({categories}: CategoriesProps) => {
             <h2>
                 <span>Категории</span>
             </h2>
-            <Ul>
+            <CategoryList>
                 {liElements}
-            </Ul>
+            </CategoryList>
             <Button
                 onClick={handleMoreClick}
             >
