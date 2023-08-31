@@ -21,8 +21,7 @@ export class CartStore {
     };
 
     public deleteProductToCart = (id: number) => {
-        const updatedCartProductsList = this.cartProductsList.filter(p => p.id !== id);
-        this.cartProductsList = updatedCartProductsList;
+        this.cartProductsList = this.cartProductsList.filter(p => p.id !== id);
         toast.info("Product deleted from cart", {
             position: toast.POSITION.BOTTOM_CENTER
         });

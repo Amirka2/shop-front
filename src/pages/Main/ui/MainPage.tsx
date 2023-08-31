@@ -15,7 +15,6 @@ export const MainPage = (props: MainPageProps) => {
     const {
         itemsValue,
         categories,
-        ...contacts
     } = props;
     let width = isMobile ? 600 : 1000;
     const itemsComponents = products

@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Wrapper, LogoCityWrapper, SearchWrapper, Textarea, CartButtonWrapper} from "./TopBar.styles";
+import {Wrapper, LogoCityWrapper, SearchWrapper, Textarea, CartButtonWrapper, SearchModal} from "./TopBar.styles";
 import { Logo } from '@/shared/components';
 import { City } from '@/entities'
 import { CartButton } from './CartButton';
@@ -24,7 +24,7 @@ export const TopBar = () => {
             <CartButtonWrapper>
                 <CartButton/>
             </CartButtonWrapper>
-            {/*<SearchModal open={open} setOpen={setOpen}/>*/}
+            {open ? (<SearchModal />) : null}
         </Wrapper>
     );
 };
