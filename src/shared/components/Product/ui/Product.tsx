@@ -18,7 +18,7 @@ export const Product = (props: IProduct) => {
                 <h3><Link to={'/product/' + props.id}>{props.name}</Link></h3>
                 <span>В наличии: {props.inStock ? 'Да' : 'Нет'}</span>
                 <span>Цена: {props.price } руб.</span>
-                <AddToCartBtn/>
+                <AddToCartBtn {...props}/>
             </ProductInfo>
         </Wrapper>
     );
