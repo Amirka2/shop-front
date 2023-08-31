@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 
 import {Wrapper} from './CartPage.styles';
 import {useStores} from "@/shared/libs/hooks";
-import {Product} from "@/shared/components";
+import {ItemsGrid, Product} from "@/shared/components";
 
 export const CartPage = observer(() => {
     const cartStore = useStores();
@@ -19,9 +19,9 @@ export const CartPage = observer(() => {
     return (
         <Wrapper>
             <h1>Cart Page</h1>
-            <div>
+            <ItemsGrid height={500} width={600}>
                 {productsElements}
-            </div>
+            </ItemsGrid>
         </Wrapper>
     );
 });
