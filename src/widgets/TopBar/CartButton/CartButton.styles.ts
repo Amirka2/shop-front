@@ -32,6 +32,7 @@ export const Button = styled.button<{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    
   }
   
   // & a:after {
