@@ -11,7 +11,10 @@ export class CartStore {
     }
 
     public addProductToCart = (product: IProduct) => {
-        this.cartProductsList.push(product);
+        if (!this.cartProductsList.find(p => p.id === product.id)) {
+            console.log('success' + {product})
+            this.cartProductsList.push(product);
+        }
         toast.success("New Product added to cart", {
             position: toast.POSITION.BOTTOM_CENTER
         });
