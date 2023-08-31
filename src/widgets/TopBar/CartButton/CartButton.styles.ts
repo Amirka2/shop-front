@@ -1,5 +1,5 @@
 import {styled} from "styled-components";
-import {Colors} from "@/shared/constants";
+import {Color} from "@/shared/constants";
 
 export const Wrapper = styled.div`
   width: 156px;
@@ -38,8 +38,8 @@ export const Button = styled.button<{
   // & a:after {
   //   content: '';
   //   content: ${props => props.value.toString()};
-  //   background-color: ${Colors.blue};
-  //   color: ${Colors.white};
+  //   background-color: ${Color.blue};
+  //   color: ${Color.white};
   //   width: 33px;
   //   height: 33px;
   //   border-radius: 50%;
@@ -52,8 +52,8 @@ export const Button = styled.button<{
 export const CounterWrapper = styled.div<{
     value: number;
 }>`
-  background-color: ${Colors.blue};
-  color: ${Colors.white};
+  background-color: ${Color.blue};
+  color: ${Color.white};
   width: 33px;
   height: 33px;
   border-radius: 50%;

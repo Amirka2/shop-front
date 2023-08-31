@@ -1,4 +1,4 @@
-import {IPaths} from "@/shared/interfaces";
+import {IPaths} from "@/entities/interfaces";
 
 export const Paths: IPaths = {
     main: '/',
@@ -11,7 +11,7 @@ export const Paths: IPaths = {
     product: '/product/:id',
 }
 
-export const Colors = {
+export const Color = {
     blue: '#225479',
     white: '#fff',
     black: '#000',
@@ -19,10 +19,3 @@ export const Colors = {
     darkGray: '#8C8C8C',
 }
 
-export const Contacts = {
-    whatsApp: '',
-    telegram: 'https://t.me/koprofeeling',
-    viber: '',
-    email: 'shop@mail.ru',
-    phone: '89951053436',
-}

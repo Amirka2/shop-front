@@ -1,5 +1,5 @@
 import {styled} from 'styled-components';
-import {Colors} from "@/shared/constants";
+import {Color} from "@/shared/constants";
 
 export const MainWrapper = styled.div<{
     $isMobile: boolean;
@@ -11,6 +11,6 @@ export const MainWrapper = styled.div<{
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
-  color: ${Colors.black};
-  background-color: ${Colors.white};
+  color: ${Color.black};
+  background-color: ${Color.white};
 `;

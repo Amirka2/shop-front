@@ -1,6 +1,6 @@
 import React from 'react';
 import {Wrapper} from './ProductPage.styles';
-import {IProduct} from "@/shared/components";
+import {IProduct} from "@/entities";
 
 export const ProductPage = (props: IProduct) => {
     const {

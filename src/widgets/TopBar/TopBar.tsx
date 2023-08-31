@@ -1,19 +1,18 @@
 import React, {useState} from 'react';
 import {Wrapper, LogoCityWrapper, SearchWrapper, Textarea, CartButtonWrapper} from "./TopBar.styles";
-import {SearchModal} from './Modal';
-import {City, Logo} from '@/shared/components';
+import { Logo } from '@/shared/components';
+import { City } from '@/entities'
 import { CartButton } from './CartButton';
+import {useMobileOrDesktop} from "@/shared/hooks";
 
-interface TopBarProps {
-    isMobile: boolean;
-}
-export const TopBar = (props: TopBarProps) => {
+export const TopBar = () => {
     const [open, setOpen] = useState(false);
+    const isMobile = useMobileOrDesktop();
     const handleSearch = function () {
 
     }
     return (
-        <Wrapper $isMobile={props.isMobile}>
+        <Wrapper $isMobile={isMobile}>
             <LogoCityWrapper>
                 <Logo/>
                 <City/>

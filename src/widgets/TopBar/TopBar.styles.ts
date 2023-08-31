@@ -1,5 +1,5 @@
 import {styled} from "styled-components";
-import {Colors} from "@/shared/constants";
+import {Color} from "@/shared/constants";
 
 export const Wrapper = styled.header<{
     $isMobile: boolean;
@@ -13,7 +13,7 @@ export const Wrapper = styled.header<{
   flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
   justify-content: space-between;
   align-items: center;
-  background-color: ${Colors.blue};
+  background-color: ${Color.blue};
   border-radius: 10px;
 `;
 
@@ -36,7 +36,7 @@ export const Textarea = styled.textarea`
   font-size: 16px;
   padding: 13px;
   border-radius: 10px;
-  background-color: ${Colors.gray};
+  background-color: ${Color.gray};
   &:focus {
     outline: none;
   }
@@ -63,5 +63,5 @@ export const SearchModal = styled.div`
   display: none;
   width: 620px;
   min-height: 300px;
-  background-color: ${Colors.white};
+  background-color: ${Color.white};
 `;

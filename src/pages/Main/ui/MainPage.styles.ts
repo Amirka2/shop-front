@@ -1,6 +1,6 @@
 import {styled} from "styled-components";
 import {MainWrapper} from "@/shared/components";
-import { Colors } from "@/shared/constants";
+import { Color } from "@/shared/constants";
 
 export const Wrapper = styled(MainWrapper)<{
     $isMobile: boolean;
@@ -19,7 +19,7 @@ export const Wrapper = styled(MainWrapper)<{
 `;
 
 export const ContactsWrapper = styled.div`
-  background-color: ${Colors.gray};
+  background-color: ${Color.gray};
   width: 250px;
   height: 300px;
   padding: 28px;

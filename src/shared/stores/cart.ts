@@ -1,6 +1,6 @@
 import { makeAutoObservable} from "mobx";
 import { toast } from "react-toastify";
-import {IProduct} from "@/shared/components";
+import {IProduct} from "@/entities";
 
 
 export class CartStore {

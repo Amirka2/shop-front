@@ -2,8 +2,9 @@ import React from 'react';
 import { observer } from "mobx-react";
 
 import {Wrapper} from './CartPage.styles';
-import {useStores} from "@/shared/libs/hooks";
-import {ItemsGrid, Product} from "@/shared/components";
+import {useStores} from "@/shared/hooks";
+import {ItemsGrid} from "@/shared/components";
+import {Product} from '@/entities';
 
 export const CartPage = observer(() => {
     const cartStore = useStores();

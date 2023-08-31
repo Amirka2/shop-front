@@ -1,4 +1,4 @@
-import { Colors } from "@/shared/constants";
+import { Color } from "@/shared/constants";
 import {styled} from "styled-components";
 
 export const Wrapper = styled.div`
@@ -20,14 +20,14 @@ export const CategoryList = styled.ul`
 export const CategoryItem = styled.li`
   font-size: 20px;
   & a:hover {
-    color: ${Colors.blue};
+    color: ${Color.blue};
   }
 `;
 
 export const Button = styled.button`
   font-size: 24px;
   background-color: transparent;
-  color: ${Colors.darkGray};
+  color: ${Color.darkGray};
   margin-top: 20px;
   cursor: pointer;
 `;
