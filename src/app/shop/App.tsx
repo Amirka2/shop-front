@@ -27,7 +27,10 @@ const product : IProduct = {
     price: 0,
     name: '',
     inStock: false,
-    photos: [''],
+    photos: ['https://avatars.mds.yandex.net/i?id=e6eb37ed9a9038339a646ded771b478604a95906-9882590-images-thumbs&n=13',
+             'https://avatars.mds.yandex.net/i?id=4480f1b6dc39779541ed076e04586d008d78f0c7-9043236-images-thumbs&n=13',
+             'https://avatars.mds.yandex.net/i?id=d6ab298e0cff6a88d995d26f0bb75608dc19f29e-8448606-images-thumbs&n=13',
+             'https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666374456_1-mykaleidoscope-ru-p-priroda-ozero-oboi-1.jpg'],
 }
 
 export function App() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Wrapper} from './ProductPage.styles';
 import {IProduct} from "@/shared/components";
+import { Slider } from './Slider';
 
 export const ProductPage = (props: IProduct) => {
     const {
@@ -13,15 +14,7 @@ export const ProductPage = (props: IProduct) => {
 
     return (
         <Wrapper>
-            id: {id}
-            <br/>
-            Price: {price}
-            <br/>
-            Name: {name}
-            <br/>
-            inStock: {inStock}
-            <br/>
-            photos: {photos}
+            <Slider images={photos} />
         </Wrapper>
     );
 };
