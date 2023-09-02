@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {observer} from "mobx-react";
 
 import {
@@ -22,10 +22,6 @@ import { ProductCounter } from '@/entities';
 export const CartPage = observer(() => {
     const cartStore = useStores();
     const products = cartStore.cartStore.getProductsList;
-    const [productsAndCounts, setProductsAndCounts] = useState({
-        products: products,
-        counts: [],
-    });
 
     const productsElements = products.map(p => {
         return (
