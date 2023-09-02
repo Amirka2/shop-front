@@ -3,7 +3,7 @@ import {Wrapper} from './ShippingPage.styles';
 export const ShippingPage = () => {
     return (
         <Wrapper>
-            <h1>Shipping Page</h1>
+            <h1>Страница находится в разработке</h1>
         </Wrapper>
     );
 };

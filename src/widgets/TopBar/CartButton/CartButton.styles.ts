@@ -32,11 +32,9 @@ export const Button = styled.button<{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
-    
   }
   
   // & a:after {
-  //   content: '';
   //   content: ${props => props.value.toString()};
   //   background-color: ${Color.blue};
   //   color: ${Color.white};

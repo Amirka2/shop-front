@@ -43,7 +43,7 @@ export const Textarea = styled.textarea`
   &:focus (SearchModal){
     display: block;
   }
-  &+img {
+  &+svg {
     position: relative;
     left: 580px;
     top: 3px;

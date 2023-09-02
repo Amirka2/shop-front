@@ -3,7 +3,7 @@ import {Wrapper} from './AboutUsPage.styles';
 export const AboutUsPage = () => {
     return (
         <Wrapper>
-            <h1>About Us Page</h1>
+            <h1>Страница находится в разработке</h1>
         </Wrapper>
     );
 };

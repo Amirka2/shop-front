@@ -15,7 +15,7 @@ export const CatalogPage = (props: CatalogProps) => {
     const itemsComponents = products.slice(0, props.itemsValue).map(i => <Product {...i}/>);
     return (
         <Wrapper $isMobile={isMobile}>
-            <h1>Catalog Page</h1>
+            <h1>Каталог</h1>
             <ItemsGrid width={width.toString()}>
                 {itemsComponents}
             </ItemsGrid>
