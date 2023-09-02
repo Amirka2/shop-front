@@ -5,6 +5,6 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 1330px;
   margin: 0 0 20px 0;
 `;

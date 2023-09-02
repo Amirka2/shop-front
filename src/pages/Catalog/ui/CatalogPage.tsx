@@ -16,7 +16,7 @@ export const CatalogPage = (props: CatalogProps) => {
     return (
         <Wrapper $isMobile={isMobile}>
             <h1>Catalog Page</h1>
-            <ItemsGrid height={3000} width={width}>
+            <ItemsGrid width={width.toString()}>
                 {itemsComponents}
             </ItemsGrid>
         </Wrapper>

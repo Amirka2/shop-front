@@ -1,11 +1,15 @@
 import {styled} from "styled-components";
 
 export const GridWrapper = styled.div<{
-    $height: number;
-    $width: number;
+    height?: string;
+    width?: string;
+    maxHeight?: number;
+    maxWidth?: number;
 }>`
-  max-height: ${props => props.$height + 'px'};
-  max-width: ${props => props.$width + 'px'};
+  max-height: ${props => props?.maxHeight + 'px'};
+  max-width: ${props => props?.maxWidth + 'px'};
+  height: ${props => props?.height};
+  width: ${props => props?.width};
   display: flex;
   justify-content: space-evenly;
   align-items: flex-start;

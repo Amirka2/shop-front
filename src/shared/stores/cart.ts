@@ -20,7 +20,7 @@ export class CartStore {
         });
     };
 
-    public deleteProductToCart = (id: number) => {
+    public deleteProductFromCart = (id: number) => {
         this.cartProductsList = this.cartProductsList.filter(p => p.id !== id);
         toast.info("Product deleted from cart", {
             position: toast.POSITION.BOTTOM_CENTER

@@ -29,7 +29,7 @@ export const MainPage = (props: MainPageProps) => {
                     <Contacts/>
                 </ContactsWrapper>
             </aside>
-            <ItemsGrid height={3000} width={width}>
+            <ItemsGrid width={width.toString()}>
                 {itemsComponents}
             </ItemsGrid>
         </Wrapper>
