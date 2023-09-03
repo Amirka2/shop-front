@@ -23,12 +23,14 @@ export const MainPage = (props: MainPageProps) => {
         );
     return (
         <Wrapper $isMobile={isMobile}>
-            <aside>
-                <Categories categories={categories}/>
-                <ContactsWrapper>
-                    <Contacts/>
-                </ContactsWrapper>
-            </aside>
+            {isMobile ? null : (
+                <aside>
+                    <Categories categories={categories}/>
+                    <ContactsWrapper>
+                        <Contacts/>
+                    </ContactsWrapper>
+                </aside>
+            )}
             <ItemsGrid width={width.toString()}>
                 {itemsComponents}
             </ItemsGrid>

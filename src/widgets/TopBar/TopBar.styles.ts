@@ -8,9 +8,9 @@ export const Wrapper = styled.header<{
   min-height: ${props => props.$isMobile ? '70px' : '150px'};
   height: ${props => props.$isMobile ? '70px' : '150px'};
   margin: 0 0 20px 0;
-  padding: 33px;
+  padding: ${props => props.$isMobile ? '0 10px' : '33px'};
   display: flex;
-  flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   background-color: ${Color.blue};

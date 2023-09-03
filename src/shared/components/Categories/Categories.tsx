@@ -6,9 +6,11 @@ interface Category {
     name: string;
     url: string;
 }
+
 export interface CategoriesProps {
     categories: Category[];
 }
+
 export const Categories = ({categories}: CategoriesProps) => {
     let count = 10;
     const [more, setMore] = useState(false);
