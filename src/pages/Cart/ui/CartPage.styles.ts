@@ -2,10 +2,12 @@ import {styled} from "styled-components";
 import {NavLink} from "react-router-dom";
 import {Color} from "@/shared/constants";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{
+    isMobile?: boolean;
+}>`
   display: flex;
   flex-direction: column;
-  width: 1330px;
+  width: ${props => props.isMobile ? '90vw' : '1330px'};
   margin-bottom: 40px;
 `;
 
@@ -35,11 +37,13 @@ export const Link = styled(NavLink)`
   text-decoration-line: underline;
 `;
 
-export const Flex = styled.div`
+export const Flex = styled.div<{
+    isMobile?: boolean;
+}>`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: ${props => props.isMobile ? 'column' : 'row'};
+  justify-content: ${props => props.isMobile ? 'flex-start' : 'space-between'};
+  align-items: center;
 `;
 
 export const ProductWrapper = styled.div`
@@ -64,7 +68,9 @@ export const Line = styled.div`
   margin-bottom: 40px;
 `;
 
-export const CartInfoMenu = styled.div`
+export const CartInfoMenu = styled.div<{
+    isMobile?: boolean;
+}>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -72,7 +78,7 @@ export const CartInfoMenu = styled.div`
   background-color: ${Color.gray};
   padding: 40px;
   border-radius: 20px;
-  width: 40%;
+  width: ${props => props.isMobile ? '100%' : '40%'};
   max-width: 444px;
   min-height: 387px;
 `;
@@ -132,4 +138,5 @@ export const Input = styled.input`
   height: 30px;
   border-radius: 20px;
   padding: 3px;
+  margin-bottom: 20px;
 `;

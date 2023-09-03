@@ -1,7 +1,9 @@
 import {styled} from "styled-components";
 import {Color} from "@/shared/constants";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{
+    isMobile?: boolean;
+}>`
   display: flex;
   flex-direction: row;
   width: 100%;

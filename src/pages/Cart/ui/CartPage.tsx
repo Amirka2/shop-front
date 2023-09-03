@@ -18,13 +18,14 @@ import {
 } from './CartPage.styles';
 // import {processOrder} from "@/pages/Cart/api";
 
-import {useStores} from "@/shared/hooks";
+import {useMobileOrDesktop, useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
 import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
 import {ProductCounter} from '@/entities';
 
 export const CartPage = observer(() => {
     const stores = useStores();
+    const isMobile = useMobileOrDesktop();
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
 
@@ -62,18 +63,18 @@ export const CartPage = observer(() => {
     })
 
     return (
-        <Wrapper>
+        <Wrapper isMobile={isMobile}>
             <CaptionWrapper right>
                 <Link to={'/'}>Вернуться к покупкам</Link>
             </CaptionWrapper>
             <CaptionWrapper>
                 <h1>Корзина</h1>
             </CaptionWrapper>
-            <Flex>
-                <ItemsGrid width={'65%'}>
+            <Flex isMobile={isMobile}>
+                <ItemsGrid width={isMobile ? '100%' : '65%'}>
                     {productsElements}
                 </ItemsGrid>
-                <CartInfoMenu>
+                <CartInfoMenu isMobile={isMobile}>
                     <CartCaption>Ваш заказ</CartCaption>
                     <OrderFieldsList>
                         {products.map(p => {

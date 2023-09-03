@@ -1,6 +1,7 @@
 import React from 'react';
 import {IProduct} from "@/entities";
 import {Info, Name, Wrapper} from './CartProductCard.styles';
+import {useMobileOrDesktop} from "@/shared/hooks";
 
 interface CartProductCardProps {
     product: IProduct
