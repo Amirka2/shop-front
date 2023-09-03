@@ -25,7 +25,7 @@ import {IProduct} from "@/shared/components";
 const product : IProduct = {
     id: 0,
     price: 0,
-    name: '',
+    name: '123',
     inStock: false,
     photos: ['https://avatars.mds.yandex.net/i?id=e6eb37ed9a9038339a646ded771b478604a95906-9882590-images-thumbs&n=13',
              'https://avatars.mds.yandex.net/i?id=4480f1b6dc39779541ed076e04586d008d78f0c7-9043236-images-thumbs&n=13',
