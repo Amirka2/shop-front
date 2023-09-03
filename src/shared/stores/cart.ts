@@ -1,34 +1,45 @@
 import { makeAutoObservable} from "mobx";
-import { toast } from "react-toastify";
 import {IProduct} from "@/entities";
 
 
 export class CartStore {
-    public cartProductsList: IProduct[] = [];
+    public cartProductsCounts: Map<IProduct, number> = new Map();
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    public addProductToCart = (product: IProduct) => {
-        if (!this.cartProductsList.find(p => p.id === product.id)) {
-            console.log('success' + {product})
-            this.cartProductsList.push(product);
+    public increaseProductsCount = (product: IProduct) => {
+        let prevCount = this.cartProductsCounts.get(product);
+
+        if (this.cartProductsCounts.has(product) && prevCount) {
+            this.cartProductsCounts.set(product, ++prevCount);
+        } else {
+            this.cartProductsCounts.set(product, 1);
         }
-        toast.success("New Product added to cart", {
-            position: toast.POSITION.BOTTOM_CENTER
-        });
-    };
-
-    public deleteProductFromCart = (id: number) => {
-        this.cartProductsList = this.cartProductsList.filter(p => p.id !== id);
-        toast.info("Product deleted from cart", {
-            position: toast.POSITION.BOTTOM_CENTER
-        });
-    };
-
-    get getProductsList() {
-        return this.cartProductsList;
     }
 
+    public decreaseProductsCount = (product: IProduct) => {
+        let prevCount = this.cartProductsCounts.get(product);
+
+        if (prevCount && prevCount < 2) {
+            this.deleteProductFromCart(product);
+        }
+
+        if (this.cartProductsCounts.has(product) && prevCount) {
+            this.cartProductsCounts.set(product, --prevCount);
+        }
+    }
+
+    public deleteProductFromCart = (product: IProduct) => {
+        this.cartProductsCounts.delete(product);
+    };
+
+    get getProductsCounts() {
+        return this.cartProductsCounts;
+    }
+
+    public getProductCount(product: IProduct): number {
+        return this.cartProductsCounts.get(product) || 0;
+    }
 }

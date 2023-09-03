@@ -24,3 +24,9 @@ export interface IContacts {
     email: string;
     phone: string;
 }
+
+export interface IOrder {
+    name: string;
+    phoneNumber: string;
+    productsAndCounts: Map<IProduct, number>;
+}

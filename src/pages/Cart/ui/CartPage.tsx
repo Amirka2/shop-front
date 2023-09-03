@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {observer} from "mobx-react";
 
 import {
@@ -12,23 +12,49 @@ import {
     CartCaption,
     Line,
     ProductWrapper,
-    ModifyValue
+    ModifyValue,
+    OrderFieldsList,
+    OrderFieldsListItem, Input
 } from './CartPage.styles';
+import {processOrder} from "@/pages/Cart/api";
+
 import {useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
 import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
-import { ProductCounter } from '@/entities';
+import {ProductCounter} from '@/entities';
 
 export const CartPage = observer(() => {
-    const cartStore = useStores();
-    const products = cartStore.cartStore.getProductsList;
+    const stores = useStores();
+    const [name, setName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+
+    const products = Array.from(stores.cartStore.getProductsCounts.keys());
+    const productsCounts = Array.from(stores.cartStore.getProductsCounts.values());
+    let totalSum = 0;
+    for (let i = 0; i < products.length; i++) {
+        totalSum += products[i].price * productsCounts[i];
+    }
+    const handleSubmit = function () {
+        if (name.length < 2
+            || phoneNumber.length < 10
+            || products.length < 1)
+        {
+            alert("Введите корректные данные, пожалуйста!");
+        }
+        let orderInfo = {
+            productsAndCounts: {...stores.cartStore.getProductsCounts},
+            name: name,
+            phoneNumber: phoneNumber,
+        }
+        processOrder(orderInfo);
+    }
 
     const productsElements = products.map(p => {
         return (
             <>
                 <ProductWrapper>
-                    <CartProductCard product={p}/>
-                    <ProductCounter productId={p.id} price={p.price}/>
+                    <CartProductCard product={p} key={p.id}/>
+                    <ProductCounter product={p} />
                 </ProductWrapper>
                 <Line/>
             </>
@@ -48,10 +74,24 @@ export const CartPage = observer(() => {
                     {productsElements}
                 </ItemsGrid>
                 <CartInfoMenu>
-                    <CartCaption>your order</CartCaption>
-                    <p>info</p>
-                    <Summary></Summary>
-                    <SubmitButton>Submit</SubmitButton>
+                    <CartCaption>Ваш заказ</CartCaption>
+                    <OrderFieldsList>
+                        {products.map(p => {
+                            return (
+                                <OrderFieldsListItem>
+                                    {p.name}
+                                    <span>{p.price * stores.cartStore.getProductCount(p)} ₽</span>
+                                </OrderFieldsListItem>
+                            );
+                        })}
+                    </OrderFieldsList>
+                    <Summary>
+                        {'Итого:'}
+                        <span>{totalSum} ₽</span>
+                    </Summary>
+                    <Input type='text' onChange={(e) => setName(e.target.value)} placeholder={'Имя'}/>
+                    <Input type='text' onChange={(e) => setPhoneNumber(e.target.value)} placeholder={'Номер телефона'}/>
+                    <SubmitButton onClick={handleSubmit}>Оформить</SubmitButton>
                 </CartInfoMenu>
             </Flex>
         </Wrapper>

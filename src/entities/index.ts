@@ -6,3 +6,4 @@ export {ProductCounter} from './ProductCounter';
 export type {IContacts} from './interfaces';
 export type {IProduct} from './interfaces';
 export type {IPaths} from './interfaces';
+export type {IOrder} from './interfaces';

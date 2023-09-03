@@ -67,14 +67,14 @@ export const Line = styled.div`
 export const CartInfoMenu = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background-color: ${Color.gray};
-  padding: 20px;
+  padding: 40px;
   border-radius: 20px;
   width: 40%;
   max-width: 444px;
-  height: 387px;
+  min-height: 387px;
 `;
 
 export const CartCaption = styled.h4`
@@ -86,7 +86,29 @@ export const CartCaption = styled.h4`
   line-height: normal;
 `;
 export const Summary = styled.div`
-  
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 20px 0;
+`;
+
+export const OrderFieldsList = styled.ul`
+  width: 100%;
+  list-style-type: none;
+`;
+
+export const OrderFieldsListItem = styled.li`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const SubmitButton = styled.button`
@@ -102,4 +124,12 @@ export const SubmitButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+export const Input = styled.input`
+  all: unset;
+  width: 100%;
+  height: 30px;
+  border-radius: 20px;
+  padding: 3px;
 `;

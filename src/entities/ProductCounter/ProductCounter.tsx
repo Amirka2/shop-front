@@ -2,25 +2,26 @@ import { useStores } from '@/shared/hooks';
 import React, {useState} from 'react';
 
 import {Button, CounterWithButtons, InteractionPanel, SumInfo} from './ProductCounter.styles';
+import {IProduct} from "@/entities";
 
 interface ProductCounterProps {
-    price: number;
-    productId: number;
+    product: IProduct;
 }
 
-export const ProductCounter = ({price, productId}: ProductCounterProps) => {
+export const ProductCounter = ({product}: ProductCounterProps) => {
     const stores = useStores();
-    const [counter, setCounter] = useState(1);
-    let sum = price * counter;
+    let [counter, setCounter] = useState((stores.cartStore.getProductCount(product)));
+
+    let sum = product.price * counter;
 
     const handleMinus = function () {
-        setCounter(prev => prev - 1);
-        if (counter === 0) {
-            stores.cartStore.deleteProductFromCart(productId);
-        }
+        stores.cartStore.decreaseProductsCount(product);
+        setCounter(prevState => prevState - 1);
     }
+
     const handlePlus = function () {
-        setCounter(prev => prev + 1);
+        stores.cartStore.increaseProductsCount(product);
+        setCounter(prevState => prevState + 1);
     }
 
     return (

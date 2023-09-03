@@ -27,24 +27,22 @@ export const Button = styled.button<{
   align-items: center;
 
   & a {
-    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
   }
-  
-  // & a:after {
-  //   content: ${props => props.value.toString()};
-  //   background-color: ${Color.blue};
-  //   color: ${Color.white};
-  //   width: 33px;
-  //   height: 33px;
-  //   border-radius: 50%;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
+`;
+
+export const Counter = styled.span`
+    background-color: ${Color.blue};
+    color: ${Color.white};
+    width: 33px;
+    height: 33px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const CounterWrapper = styled.div<{
