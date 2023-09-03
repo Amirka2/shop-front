@@ -17,5 +17,8 @@ export const useProduct = function(id: number): IProduct {
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
         ],
         name: 'Product name',
+        description: '',
+        shortDescription: '',
+        specifications: [],
     }
 }

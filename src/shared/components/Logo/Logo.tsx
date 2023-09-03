@@ -10,7 +10,7 @@ interface LogoProps {
 export const Logo = ({isMobile}: LogoProps) => {
     return (
         <Link to={Paths.main}>
-            <LogoIcon isMobile={isMobile} src={'icons/logo.png'} alt='mitcad doo logo'/>
+            <LogoIcon isMobile={isMobile}/>
         </Link>
     );
 };

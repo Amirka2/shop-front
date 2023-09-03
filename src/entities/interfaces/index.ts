@@ -14,6 +14,9 @@ export interface IProduct {
     price: number;
     name: string;
     inStock: boolean;
+    description: string;
+    shortDescription: string;
+    specifications: Array<string>;
     photos: Array<string>;
 }
 

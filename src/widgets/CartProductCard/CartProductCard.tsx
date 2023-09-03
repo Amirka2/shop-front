@@ -1,7 +1,8 @@
 import React from 'react';
 import {IProduct} from "@/entities";
 import {Info, Name, Wrapper} from './CartProductCard.styles';
-import {useMobileOrDesktop} from "@/shared/hooks";
+import {Paths} from '@/shared/constants';
+import {Link} from "react-router-dom";
 
 interface CartProductCardProps {
     product: IProduct
@@ -10,9 +11,11 @@ interface CartProductCardProps {
 export const CartProductCard = ({product}: CartProductCardProps) => {
     return (
         <Wrapper>
-            <img src={'icons/logo.png'} alt={'product photo'}/>
+            <img src={product.photos[0]} alt={'product photo'}/>
             <Info>
-                <Name>{product.name}</Name>
+                <Link to={'/product/' + product.id}>
+                    <Name>{product.name}</Name>
+                </Link>
                 <p>description</p>
             </Info>
         </Wrapper>

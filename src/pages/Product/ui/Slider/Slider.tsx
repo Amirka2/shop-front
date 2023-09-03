@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import * as Styled from './Slider.styles';
 import {useMobileOrDesktop} from "@/shared/hooks";
 
@@ -6,7 +6,7 @@ interface SliderProps {
     images: string[];
 }
 
-export const Slider: React.FC<SliderProps> = ({ images }) => {
+export const Slider: React.FC<SliderProps> = ({images}) => {
     const isMobile = useMobileOrDesktop();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [thumbnailIndex, setThumbnailIndex] = useState(0);
@@ -37,12 +37,12 @@ export const Slider: React.FC<SliderProps> = ({ images }) => {
             thumbnails.push(
                 <Styled.ThumbnailImage
                     key={index}
-            src={images[index]}
-            alt={`Thumbnail ${index + 1}`}
-            onClick={() => handleThumbnailClick(index)}
-            className={index === currentIndex ? 'active' : ''}
-            />
-        );
+                    src={images[index]}
+                    alt={`Thumbnail ${index + 1}`}
+                    onClick={() => handleThumbnailClick(index)}
+                    className={index === currentIndex ? 'active' : ''}
+                />
+            );
         }
 
         return thumbnails;
@@ -50,14 +50,16 @@ export const Slider: React.FC<SliderProps> = ({ images }) => {
 
     return (
         <Styled.SliderContainer isMobile={isMobile}>
-        <Styled.Thumbnails>{renderThumbnails()}</Styled.Thumbnails>
-        <Styled.MainSlide>
-        <Styled.MainImage
-            src={images[currentIndex]}
-    alt={`Slide ${currentIndex + 1}`}
-    id="main-image"
-        />
-        </Styled.MainSlide>
+            <Styled.Thumbnails isMobile={isMobile}>
+                {renderThumbnails()}
+            </Styled.Thumbnails>
+            <Styled.MainSlide>
+                <Styled.MainImage
+                    src={images[currentIndex]}
+                    alt={`Slide ${currentIndex + 1}`}
+                    id="main-image"
+                />
+            </Styled.MainSlide>
         </Styled.SliderContainer>
-);
+    );
 };

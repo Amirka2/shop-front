@@ -6,11 +6,14 @@ export const SliderContainer = styled.div<{
   display: flex;
   align-items: center;
   width: ${props => props.isMobile ? '100%' : '60%'};
+  flex-direction: ${props => props.isMobile ? 'column-reverse' : 'row'};
 `;
 
-export const Thumbnails = styled.div`
+export const Thumbnails = styled.div<{
+    isMobile?: boolean;
+}>`
   display: flex;
-  flex-direction: column;
+  flex-direction: ${props => props.isMobile ? 'row' : 'column'};
   align-items: center;
   max-height: 600px; /* Максимальная высота для миниатюр */
   overflow-y: auto; /* Добавьте прокрутку, если миниатюры не помещаются */
@@ -40,11 +43,4 @@ export const MainSlide = styled.div`
 `;
 
 export const MainImage = styled.img`
-  max-width: 400px; /* Максимальная ширина для главной фотографии */
-  max-height: 300px; /* Максимальная высота для главной фотографии */
-  width: auto;
-  height: auto;
-
-  min-width: 400px; /* Минимальная ширина для главной фотографии */
-  min-height: 300px; /* Минимальная высота для главной фотографии */
 `;

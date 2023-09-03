@@ -25,7 +25,7 @@ export const MainPage = (props: MainPageProps) => {
         <Wrapper $isMobile={isMobile}>
             {isMobile ? null : (
                 <aside>
-                    <Categories categories={categories}/>
+                    {/*<Categories categories={categories}/>*/}
                     <ContactsWrapper>
                         <Contacts/>
                     </ContactsWrapper>
