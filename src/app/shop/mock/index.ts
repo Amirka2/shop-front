@@ -1,3 +1,5 @@
+import {IProduct} from "@/entities";
+
 export const contacts = {
     whatsApp: '',
     telegram: 'https://t.me',
@@ -6,12 +8,13 @@ export const contacts = {
     phone: '88005553535',
 }
 
-export const products = [
+export const products: IProduct[] = [
     {
         id: 0,
         price: 28,
         inStock: true,
         photos: [
+            'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
             'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
         ],

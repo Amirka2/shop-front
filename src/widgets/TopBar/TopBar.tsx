@@ -12,6 +12,7 @@ export const TopBar = () => {
     const handleSearch = function () {
 
     }
+
     return (
         <Wrapper $isMobile={isMobile}>
             <LogoCityWrapper>

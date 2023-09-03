@@ -1,0 +1,60 @@
+import styled from 'styled-components';
+import {Color} from '@/shared/constants';
+
+export const Wrapper = styled.div<{
+    isMobile?: boolean;
+}>`
+  width: ${props => props.isMobile ? '100%' : '370px'};
+`;
+export const ProductName = styled.h4`
+  color: ${Color.blue};
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+`;
+
+export const ProductAvailability = styled.div`
+  color: #C5C5C5;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 10px 0;
+`;
+
+export const ProductPrice = styled.span`
+    color: ${Color.blue};
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 300;
+    white-space: pre-wrap;
+    line-height: normal;
+  
+  & span {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+`;
+
+export const YesText = styled.span`
+    color: ${Color.blue}; // Зеленый цвет для "Да"
+`;
+
+export const NoText = styled.span`
+    color: ${Color.gray}; // Красный цвет для "Нет"
+`;
+
+export const AddToCartButton = styled.button`
+  height: 72px;
+  width: 100%;
+  background-color: ${Color.blue};
+  color: ${Color.white};
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 20px 0;
+`;

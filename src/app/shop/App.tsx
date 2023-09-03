@@ -40,7 +40,7 @@ export function App() {
                     <Route path={Paths.cart} Component={CartPage}/>
                     <Route path={Paths.payment} Component={PaymentPage}/>
                     <Route path={Paths.shipping} Component={ShippingPage}/>
-                    <Route path={Paths.product} element={<ProductPage {...products[0]}/> }/>
+                    <Route path={Paths.product} element={<ProductPage/> }/>
                 </Routes>
                 <Footer />
             </MainWrapper>
