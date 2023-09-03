@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import {Button, Counter, Wrapper} from './CartButton.styles';
+import {Button, Counter, Wrapper, Link} from './CartButton.styles';
 import {Paths} from "@/shared/constants";
 import {useStores} from "@/shared/hooks";
 import {observer} from "mobx-react";
@@ -11,8 +10,10 @@ export const CartButton = observer(() => {
     return (
         <Wrapper>
             <Button value={1}>
-                <Link to={Paths.cart}>Корзина</Link>
-                <Counter>{stores.cartStore.cartProductsCounts.size}</Counter>
+                <Link to={Paths.cart}>
+                    <span>Корзина</span>
+                    <Counter>{stores.cartStore.cartProductsCounts.size}</Counter>
+                </Link>
             </Button>
         </Wrapper>
     );

@@ -1,5 +1,6 @@
 import {styled} from "styled-components";
 import {Color} from "@/shared/constants";
+import {NavLink} from "react-router-dom";
 
 export const Wrapper = styled.div`
   width: 156px;
@@ -13,6 +14,7 @@ export const Wrapper = styled.div`
     z-index: 1;
   }
 `;
+
 export const Button = styled.button<{
     value: number;
 }>`
@@ -25,13 +27,14 @@ export const Button = styled.button<{
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+`;
 
-  & a {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+export const Link = styled(NavLink)`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 `;
 
 export const Counter = styled.span`

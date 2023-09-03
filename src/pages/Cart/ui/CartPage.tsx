@@ -16,7 +16,7 @@ import {
     OrderFieldsList,
     OrderFieldsListItem, Input
 } from './CartPage.styles';
-import {processOrder} from "@/pages/Cart/api";
+// import {processOrder} from "@/pages/Cart/api";
 
 import {useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
@@ -46,7 +46,7 @@ export const CartPage = observer(() => {
             name: name,
             phoneNumber: phoneNumber,
         }
-        processOrder(orderInfo);
+        // processOrder(orderInfo);
     }
 
     const productsElements = products.map(p => {
