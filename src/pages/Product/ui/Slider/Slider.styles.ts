@@ -43,4 +43,6 @@ export const MainSlide = styled.div`
 `;
 
 export const MainImage = styled.img`
+  max-width: 400px; /* Минимальная ширина для миниатюры */
+  max-height: 400px;
 `;
