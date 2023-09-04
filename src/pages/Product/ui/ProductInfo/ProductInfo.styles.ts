@@ -15,12 +15,20 @@ export const ProductName = styled.h4`
 `;
 
 export const ProductAvailability = styled.div`
-  color: #C5C5C5;
+  color: ${Color.black};
   font-size: 21px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin: 10px 0;
+`;
+
+export const ProductDescription = styled.p`
+  color: ${Color.black};
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const ProductPrice = styled.span`
