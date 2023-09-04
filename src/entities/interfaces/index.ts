@@ -16,8 +16,14 @@ export interface IProduct {
     inStock: boolean;
     description: string;
     shortDescription: string;
-    specifications: Array<string>;
+    specifications: ISpecifications;
     photos: Array<string>;
+}
+
+export interface ISpecifications{
+    type: string;
+    manufacturer: string;
+    manufactureCountry: string;
 }
 
 export interface IContacts {

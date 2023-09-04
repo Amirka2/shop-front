@@ -12,13 +12,19 @@ export const useProduct = function(id: number): IProduct {
         price: 28,
         inStock: true,
         photos: [
-            'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
-            'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
+            '/photos/1.jpg',
+            '/photos/2.jpg',
+            '/photos/3.jpg',
+            '/photos/4.jpg',
+            '/photos/5.jpg',
         ],
-        name: 'Product name',
-        description: '',
+        name: 'Agfa Structurix G 328',
+        description: 'Agfa Structurix G 328 - однокомпонентный, жидкий фиксаж для ручной обработки промышленных рентгеновских пленок. Фиксаж G328 не содержит отвердитель.Фиксаж Agfa Structurix G328 поставляется в удобной канистре, изготовленной из полиэтилена, содержащей 5 л концентрата для приготовления 25 л готового раствора.',
         shortDescription: '',
-        specifications: [],
+        specifications: {
+            type: "Фиксаж",
+            manufacturer: "AGFA NDT",
+            manufactureCountry: "Бельгия"
+        },
     }
 }
