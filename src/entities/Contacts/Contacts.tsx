@@ -9,8 +9,8 @@ export const Contacts = () => {
             <h4>Наши контакты</h4>
             <IconsWrapper>
                 <Icon $src={'/icons/whatsapp.png'}><a href={contacts.whatsApp}/></Icon>
-                <Icon $src={'/icons/telegram.png'}><a href={contacts.telegram}/></Icon>
-                <Icon $src={'/icons/viber.png'}><a href={contacts.viber}/></Icon>
+                {/*<Icon $src={'/icons/telegram.png'}><a href={contacts.telegram}/></Icon>*/}
+                {/*<Icon $src={'/icons/viber.png'}><a href={contacts.viber}/></Icon>*/}
             </IconsWrapper>
             <a href={'mailto:' + contacts.email}>{contacts.email}</a>
             <a href={'tel:' + contacts.phone}>{contacts.phone}</a>

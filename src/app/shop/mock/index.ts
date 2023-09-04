@@ -1,11 +1,11 @@
 import {IProduct} from "@/entities";
 
 export const contacts = {
-    whatsApp: '',
+    whatsApp: 'https://wa.me/79260845222',
     telegram: 'https://t.me',
     viber: '',
-    email: 'mitcad@mail.ru',
-    phone: '88005553535',
+    email: 'info@constrspb.ru',
+    phone: '+7(499)938-87-67',
 }
 
 export const products: IProduct[] = [
