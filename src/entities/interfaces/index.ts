@@ -20,7 +20,7 @@ export interface IProduct {
     photos: Array<string>;
 }
 
-export interface ISpecifications{
+export interface ISpecifications {
     type: string;
     manufacturer: string;
     manufactureCountry: string;

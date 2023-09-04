@@ -19,7 +19,7 @@ export const Title = styled.div`
 
 export const DescriptionList = styled.ul`
   list-style-type: none;
-  max-width: 600px;
+  max-width: 700px;
 `;
 
 export const DescriptionListItem = styled.li`

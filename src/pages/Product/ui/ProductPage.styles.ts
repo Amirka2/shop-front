@@ -13,6 +13,6 @@ export const Flex = styled.div<{
 }>`
   display: flex;
   flex-direction: ${props => props.isMobile ? 'column' : 'row'};
-  justify-content: flex-start;
+  justify-content: ${props => props.isMobile ? 'flex-start' : 'space-between'};
   align-items: center;
 `;
