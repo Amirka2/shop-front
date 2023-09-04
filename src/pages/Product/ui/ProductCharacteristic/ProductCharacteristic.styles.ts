@@ -19,6 +19,7 @@ export const Title = styled.div`
 
 export const DescriptionList = styled.ul`
   list-style-type: none;
+  max-width: 600px;
 `;
 
 export const DescriptionListItem = styled.li`
@@ -27,7 +28,7 @@ export const DescriptionListItem = styled.li`
   justify-content: space-between;
   border-bottom: 3px dotted ${Color.darkGray};
   color: ${Color.darkGray};
-  font-size: 24px;
+  font-size: 1rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

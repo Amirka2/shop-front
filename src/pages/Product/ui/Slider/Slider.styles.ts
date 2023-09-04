@@ -6,7 +6,7 @@ export const SliderContainer = styled.div<{
   display: flex;
   align-items: center;
   width: ${props => props.isMobile ? '100%' : '60%'};
-  height: 500px;
+  height: 700px;
   flex-direction: ${props => props.isMobile ? 'column-reverse' : 'row'};
 `;
 
