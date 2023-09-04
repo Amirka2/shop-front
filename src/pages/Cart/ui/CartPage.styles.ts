@@ -111,7 +111,7 @@ export const OrderFieldsListItem = styled.li`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
