@@ -20,11 +20,11 @@ export const ProductInfo = (product: IProduct) => {
                 <Styled.NoText>Нет</Styled.NoText>
             )}
             </Styled.ProductAvailability>
+            <Styled.ProductPrice>{product.price + ' ₽'}</Styled.ProductPrice>
+            <Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>
             <Styled.ProductDescription>
                 {product.description}
             </Styled.ProductDescription>
-            <Styled.ProductPrice>{product.price + ' ₽'}</Styled.ProductPrice>
-            <Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>
         </Styled.Wrapper>
     );
 }
