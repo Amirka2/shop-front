@@ -10,6 +10,10 @@ export const Wrapper = styled.div<{
   height: 200px;
 `;
 
+export const ProductPhoto = styled.img`
+  max-width: 130px;
+`;
+
 export const Info = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,7 +26,7 @@ export const Info = styled.div`
 export const Name = styled.h4`
   color: ${Color.blue};
   font-family: Inter, sans-serif;
-  font-size: 32px;
+  font-size: 1.2rem;
   font-style: normal;
   font-weight: 900;
   line-height: 28px;

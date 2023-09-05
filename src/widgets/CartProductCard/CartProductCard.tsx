@@ -1,6 +1,6 @@
 import React from 'react';
 import {IProduct} from "@/entities";
-import {Info, Name, Wrapper} from './CartProductCard.styles';
+import {Info, Name, ProductPhoto, Wrapper} from './CartProductCard.styles';
 import {Paths} from '@/shared/constants';
 import {Link} from "react-router-dom";
 
@@ -11,7 +11,7 @@ interface CartProductCardProps {
 export const CartProductCard = ({product}: CartProductCardProps) => {
     return (
         <Wrapper>
-            <img src={product.photos[0]} alt={'product photo'}/>
+            <ProductPhoto src={product.photos[0]} alt={'product photo'}/>
             <Info>
                 <Link to={'/product/' + product.id}>
                     <Name>{product.name}</Name>
