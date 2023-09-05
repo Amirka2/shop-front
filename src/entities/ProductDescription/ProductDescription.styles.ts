@@ -7,9 +7,9 @@ export const Wrapper = styled.div`
   width: 100%;
   padding: 20px;
   margin: 30px 0;
-  -webkit-box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.25);
-  -moz-box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.25);
-  box-shadow: 0px 0px 19px 5px rgba(0, 0, 0, 0.25);
+  -webkit-box-shadow: 0 0 19px 5px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 0 19px 5px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 19px 5px rgba(0, 0, 0, 0.25);
   font-size: 1.5rem;
   font-family: Inter, sans-serif;
 `;

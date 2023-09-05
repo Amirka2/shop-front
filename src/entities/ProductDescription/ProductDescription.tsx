@@ -24,7 +24,7 @@ export const ProductDescription = (product: IProduct) => {
 
     const headerLinkElements = descriptionParts.map(l => {
         return (
-            <Styles.DescriptionHeaderLink href={'#' + l.id}>{l.name}</Styles.DescriptionHeaderLink>
+            <Styles.DescriptionHeaderLink href={'#' + l.id} key={l.id}>{l.name}</Styles.DescriptionHeaderLink>
         );
     })
 

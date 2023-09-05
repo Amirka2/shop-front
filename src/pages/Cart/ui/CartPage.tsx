@@ -64,7 +64,7 @@ export const CartPage = observer(() => {
 
     return (
         <Wrapper isMobile={isMobile}>
-            <CaptionWrapper right>
+            <CaptionWrapper right={true}>
                 <Link to={'/'}>Вернуться к покупкам</Link>
             </CaptionWrapper>
             <CaptionWrapper>
