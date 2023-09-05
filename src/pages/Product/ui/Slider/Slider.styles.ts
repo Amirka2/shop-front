@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const SliderContainer = styled.div<{
-    isMobile?: boolean;
-}>`
+export const SliderContainer = styled.div.withConfig({
+    shouldForwardProp: (prop) => !['isMobile'].includes(prop)
+})<{ isMobile?: boolean; }>`
   display: flex;
   align-items: center;
   width: ${props => props.isMobile ? '100%' : '60%'};
@@ -10,9 +10,9 @@ export const SliderContainer = styled.div<{
   flex-direction: ${props => props.isMobile ? 'column-reverse' : 'row'};
 `;
 
-export const Thumbnails = styled.div<{
-    isMobile?: boolean;
-}>`
+export const Thumbnails = styled.div.withConfig({
+    shouldForwardProp: (prop) => !['isMobile'].includes(prop)
+})<{ isMobile?: boolean; }>`
   display: flex;
   flex-direction: ${props => props.isMobile ? 'row' : 'column'};
   align-items: center;
