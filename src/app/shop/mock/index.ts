@@ -21,15 +21,16 @@ export const products: IProduct[] = [
             '/photos/5.jpg',
         ],
         name: 'Agfa Structurix G 328',
-        description: 'Agfa Structurix G 328 - однокомпонентный, жидкий фиксаж для ручной обработки промышленных рентгеновских пленок. Фиксаж G328 не содержит отвердитель.Фиксаж Agfa Structurix G328 поставляется в удобной канистре, изготовленной из полиэтилена, содержащей 5 л концентрата для приготовления 25 л готового раствора.',
+        description: {
+            text: 'dfsdf',
+        },
         shortDescription: '',
         specifications: {
-            type: "Фиксаж",
-            manufacturer: "AGFA NDT",
-            manufactureCountry: "Бельгия"
-        },
-        usage: '',
-        examples: '',
+            type: 'type',
+            manufactureCountry: 'Russia',
+            manufacturer: 'Russia',
+        }
+
     },
     {
         id: 1,
@@ -43,15 +44,29 @@ export const products: IProduct[] = [
             '/photos/10.jpg',
         ],
         name: 'Agfa Structurix G 128',
-        description: 'Agfa Structurix G 128 - однокомпонентный, жидкий проявитель для ручной обработки промышленных рентгеновских пленок. Agfa Structurix G128 поставляется в удобной канистре, изготовленной из полиэтилена, содержащей 5 л концентрата для приготовления 25 л готового раствора.',
+        description: {
+            text: 'dfsdf',
+        },
         shortDescription: '',
         specifications: {
             type: "Фиксаж",
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
-        usage: '',
-        examples: '',
+        usage: {
+            text: '',
+            tableText: [
+                '',
+                '',
+            ],
+        },
+        examples: {
+            text: '',
+            tableText: [
+                '',
+                '',
+            ],
+        },
     },
     {
         id: 2,
@@ -65,15 +80,29 @@ export const products: IProduct[] = [
             '/photos/15.jpg',
         ],
         name: 'Agfa Structurix D7 70mmX90m',
-        description: 'Рентгеновская пленка Agfa Structurix D7 - плёнка с мелкозернистой структурой, высоким контрастом, обладающая очень высокой чувствительностью. Пленка AGFA Structurix D7 может использоваться со свинцовыми экранами или без них. При экспонировании со свинцовым экраном необходимо использовать рентгеновское или γ-излучение. Рентгеновская пленка Agfa Structurix D7 применяется для контроля композиционных материалов, литых деталей и сварных швов. Рекомендована к применению в оборонной, аэрокосмической и авиационной промышленности.',
+        description: {
+            text: 'dfsdf',
+        },
         shortDescription: '',
         specifications: {
             type: "Рентгеновская пленка",
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
-        usage: '',
-        examples: '',
+        usage: {
+            text: '',
+            tableText: [
+                '',
+                '',
+            ],
+        },
+        examples: {
+            text: '',
+            tableText: [
+                '',
+                '',
+            ],
+        },
     },
     {
         id: 3,
@@ -87,15 +116,41 @@ export const products: IProduct[] = [
             '/photos/20.jpg',
         ],
         name: 'Agfa Structurix D7 100mmX90m',
-        description: 'Рентгеновская пленка Agfa Structurix D7 - плёнка с мелкозернистой структурой, высоким контрастом, обладающая очень высокой чувствительностью. Пленка AGFA Structurix D7 может использоваться со свинцовыми экранами или без них. При экспонировании со свинцовым экраном необходимо использовать рентгеновское или γ-излучение. Рентгеновская пленка Agfa Structurix D7 применяется для контроля композиционных материалов, литых деталей и сварных швов. Рекомендована к применению в оборонной, аэрокосмической и авиационной промышленности.',
+        description: {
+            text: 'dfsdf',
+        },
         shortDescription: '',
         specifications: {
             type: "Рентгеновская пленка",
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
-        usage: '',
-        examples: '',
+        usage: {
+            text: 'gfdehbsdfbsdfbaefdgverafgvsdfvregf',
+            tableText: [
+                'feadgrag',
+                'fdsafsadfsd',
+                'feadgrag',
+                'fdsafsadfsd',
+                'feadgrag',
+                'fdsafsadfsd',
+                'feadgrag',
+                'fdsafsadfsd',
+            ],
+        },
+        examples: {
+            text: 'gfdehbsdfbsdfbaefdgverafgvsdfvregf',
+            tableText: [
+                'feadgrag',
+                'fdsafsadfsd',
+                'feadgrag',
+                'fdsafsadfsd',
+                'feadgrag',
+                'fdsafsadfsd',
+                'feadgrag',
+                'fdsafsadfsd',
+            ]
+        },
     },
     // },
     // {

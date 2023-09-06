@@ -33,18 +33,3 @@ export const DescriptionHeaderLink = styled.a`
     color: ${Color.black};
   }
 `;
-
-export const DescriptionPart = styled.div`
-  margin: 50px 0;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-export const DescriptionPartTitle = styled.h5`
-  margin: 20px 0;
-`;
-
-export const DescriptionPartContent = styled.p`
-  
-`;

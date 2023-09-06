@@ -14,12 +14,17 @@ export interface IProduct {
     price: number;
     name: string;
     inStock: boolean;
-    description: string;
+    description: IDescriptionData;
     shortDescription: string;
-    specifications: ISpecifications;
     photos: Array<string>;
-    examples: string;
-    usage: string;
+    specifications?: ISpecifications;
+    examples?: IDescriptionData;
+    usage?: IDescriptionData;
+}
+
+export interface IDescriptionData {
+    text: string;
+    tableText?: string[];
 }
 
 export interface ISpecifications {
