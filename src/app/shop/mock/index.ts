@@ -28,6 +28,8 @@ export const products: IProduct[] = [
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
+        usage: '',
+        examples: '',
     },
     {
         id: 1,
@@ -48,6 +50,8 @@ export const products: IProduct[] = [
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
+        usage: '',
+        examples: '',
     },
     {
         id: 2,
@@ -68,6 +72,8 @@ export const products: IProduct[] = [
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
+        usage: '',
+        examples: '',
     },
     {
         id: 3,
@@ -88,6 +94,8 @@ export const products: IProduct[] = [
             manufacturer: "AGFA NDT",
             manufactureCountry: "Бельгия"
         },
+        usage: '',
+        examples: '',
     },
     // },
     // {

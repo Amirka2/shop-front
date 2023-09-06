@@ -18,6 +18,8 @@ export interface IProduct {
     shortDescription: string;
     specifications: ISpecifications;
     photos: Array<string>;
+    examples: string;
+    usage: string;
 }
 
 export interface ISpecifications {
