@@ -23,7 +23,7 @@ export const ProductInfo = (product: IProduct) => {
             <Styled.ProductPrice>{product.price + ' ₽'}</Styled.ProductPrice>
             <Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>
             <Styled.ProductDescription>
-                {product.description.text}
+                {product.shortDescription}
             </Styled.ProductDescription>
         </Styled.Wrapper>
     );

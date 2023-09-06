@@ -11,7 +11,7 @@ export const contacts = {
 export const products: IProduct[] = [
     {
         id: 0,
-        price: 28,
+        price: 13308,
         inStock: true,
         photos: [
             '/photos/1.jpg',
@@ -34,7 +34,7 @@ export const products: IProduct[] = [
     },
     {
         id: 1,
-        price: 28,
+        price: 11181,
         inStock: true,
         photos: [
             '/photos/6.jpg',
@@ -70,7 +70,7 @@ export const products: IProduct[] = [
     },
     {
         id: 2,
-        price: 28,
+        price: 83357,
         inStock: true,
         photos: [
             '/photos/11.jpg',
@@ -106,7 +106,7 @@ export const products: IProduct[] = [
     },
     {
         id: 3,
-        price: 28,
+        price: 100211,
         inStock: true,
         photos: [
             '/photos/16.jpg',
