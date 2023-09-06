@@ -19,6 +19,7 @@ export const MainWrapper = styled.footer<{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 40px;
   background-color: ${Color.blue};
   color: ${Color.white};
   font-size: 1.3rem;
@@ -28,6 +29,16 @@ export const MainWrapper = styled.footer<{
   & a:hover {
     color: ${Color.black};
   }
+`;
+
+export const CopyRightWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const CopyRight = styled.span`
+  
 `;
 
 

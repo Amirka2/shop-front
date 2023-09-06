@@ -2,12 +2,10 @@ import React from 'react';
 import {LogoIcon} from './Logo.styles';
 import {Link} from "react-router-dom";
 import {Paths} from "@/shared/constants";
+import {useMobileOrDesktop} from "@/shared/hooks";
 
-interface LogoProps {
-    isMobile?: boolean;
-}
-
-export const Logo = ({isMobile}: LogoProps) => {
+export const Logo = () => {
+    const isMobile = useMobileOrDesktop();
     return (
         <Link to={Paths.main}>
             <LogoIcon isMobile={isMobile}/>

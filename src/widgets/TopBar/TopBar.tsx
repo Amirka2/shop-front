@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {Wrapper, LogoCityWrapper, SearchWrapper, Textarea, CartButtonWrapper, SearchModal} from "./TopBar.styles";
+import {Wrapper, LogoContactsWrapper, SearchWrapper, Textarea, CartButtonWrapper, SearchModal} from "./TopBar.styles";
 import {Logo} from '@/shared/components';
-import {City} from '@/entities'
 import {CartButton} from './CartButton';
 import {useMobileOrDesktop} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
+import {MiniContacts} from "@/entities/Contacts";
 
 export const TopBar = () => {
-    const [open, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const isMobile = useMobileOrDesktop();
     const handleSearch = function () {
 
@@ -15,14 +15,14 @@ export const TopBar = () => {
 
     return (
         <Wrapper $isMobile={isMobile}>
-            <LogoCityWrapper>
-                <Logo isMobile={isMobile}/>
-                {/*<City/>*/}
-            </LogoCityWrapper>
+            <LogoContactsWrapper>
+                <Logo/>
+                {isMobile ? null : (<MiniContacts/>)}
+            </LogoContactsWrapper>
             {
                 isMobile ? null : (
                     <SearchWrapper>
-                        <Textarea onClick={() => setOpen(true)}/>
+                        <Textarea onClick={() => setIsOpen(true)}/>
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill={Color.blue}>
                             <g id="search">
                                 <path id="Vector"
@@ -39,7 +39,7 @@ export const TopBar = () => {
             <CartButtonWrapper>
                 <CartButton/>
             </CartButtonWrapper>
-            {open ? (<SearchModal/>) : null}
+            {isOpen ? (<SearchModal/>) : null}
         </Wrapper>
     );
 };

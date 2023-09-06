@@ -17,21 +17,21 @@ export const Wrapper = styled.header<{
   border-radius: 10px;
 `;
 
-export const LogoCityWrapper = styled.div`
+export const LogoContactsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 270px;
+  gap: 50px;
 `;
 export const SearchWrapper = styled.div`
-  width: 620px;
+  width: 470px;
 `;
 
 export const Textarea = styled.textarea`
   position: absolute;
   top: 72px;
   resize: none;
-  width: 620px;
+  width: 470px;
   height: 48px;
   font-size: 16px;
   padding: 13px;
@@ -45,7 +45,7 @@ export const Textarea = styled.textarea`
   }
   &+svg {
     position: relative;
-    left: 580px;
+    left: 430px;
     top: 3px;
     cursor: pointer;
   }
@@ -54,7 +54,6 @@ export const Textarea = styled.textarea`
 export const CartButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 270px;
 `;
 
 export const SearchModal = styled.div`

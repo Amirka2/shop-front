@@ -1,5 +1,5 @@
 import React from 'react';
-import {MainWrapper, Wrapper} from "./Footer.styles";
+import * as Styles from "./Footer.styles";
 import {FooterNav} from "./FooterNav";
 import {Contacts} from "@/entities";
 import {FooterInfo} from "../ui/FooterInfo";
@@ -9,16 +9,15 @@ export const Footer = () => {
     const isMobile = useMobileOrDesktop();
 
     return (
-        <MainWrapper $isMobile={isMobile}>
-            <Wrapper $isMobile={isMobile}>
+        <Styles.MainWrapper $isMobile={isMobile}>
+            <Styles.Wrapper $isMobile={isMobile}>
                 <FooterNav/>
                 <FooterInfo/>
                 <Contacts/>
-            </Wrapper>
-            <br/>
-            <div>
-                <span>© Компания/магазин</span>
-            </div>
-        </MainWrapper>
+            </Styles.Wrapper>
+            <Styles.CopyRightWrapper>
+                <Styles.CopyRight>{new Date().getFullYear()} © constrspb</Styles.CopyRight>
+            </Styles.CopyRightWrapper>
+        </Styles.MainWrapper>
     );
 };
