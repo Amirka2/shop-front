@@ -47,20 +47,14 @@ export const ProductDescription = (product: IProduct) => {
             </Styles.DescriptionPart>
             <Styles.DescriptionPart id={descriptionParts[2].id}>
                 <Styles.DescriptionPartTitle>{descriptionParts[2].name}</Styles.DescriptionPartTitle>
-                <Styles.DescriptionPartContent>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Dicta minima natus non officiis quia quidem repellat sed totam unde veniam. Ad aut hic
-                    laboriosam molestias perferendis repudiandae unde velit vero.
+                <Styles.DescriptionPartContent dangerouslySetInnerHTML={{__html: product.usage}}>
+                    {/*{product.usage}*/}
                 </Styles.DescriptionPartContent>
-                {/*{product.usage}*/}
             </Styles.DescriptionPart>
             <Styles.DescriptionPart id={descriptionParts[3].id}>
                 <Styles.DescriptionPartTitle>{descriptionParts[3].name}</Styles.DescriptionPartTitle>
-                {/*{product.examples}*/}
-                <Styles.DescriptionPartContent>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, quasi, velit! Commodi
-                    debitis explicabo minus molestias nihil qui soluta. Deserunt dolores enim inventore iure
-                    odio omnis ratione? Cupiditate, dolore, similique.
+                <Styles.DescriptionPartContent dangerouslySetInnerHTML={{__html: product.examples}}>
+                    {/*{product.examples}*/}
                 </Styles.DescriptionPartContent>
             </Styles.DescriptionPart>
         </Styles.Wrapper>
