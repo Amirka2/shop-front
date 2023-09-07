@@ -32,8 +32,8 @@ export const ThumbnailImage = styled.img`
     border-color: #007bff;
   }
 
-  min-width: 135px; /* Минимальная ширина для миниатюры */
-  min-height: 150px; /* Минимальная высота для миниатюры */
+  min-width: 110px; /* Минимальная ширина для миниатюры */
+  min-height: 135px; /* Минимальная высота для миниатюры */
 
   max-width: 135px; 
   max-height: 150px; 

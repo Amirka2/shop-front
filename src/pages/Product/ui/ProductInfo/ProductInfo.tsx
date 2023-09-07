@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import * as Styled from './ProductInfo.styles';
-import {useStores} from "@/shared/hooks";
+import {useMobileOrDesktop, useStores} from "@/shared/hooks";
 import {IProduct} from "@/entities";
 
 export const ProductInfo = (product: IProduct) => {
+    const isMobile = useMobileOrDesktop();
     const stores = useStores();
     const [text, setText] = useState('В корзину')
     function handleClick() {
@@ -12,7 +13,7 @@ export const ProductInfo = (product: IProduct) => {
     }
 
     return (
-        <Styled.Wrapper>
+        <Styled.Wrapper isMobile={isMobile}>
             <Styled.ProductName>{product.name}</Styled.ProductName>
             <Styled.ProductAvailability>
                 В наличии: {product.inStock ? (
