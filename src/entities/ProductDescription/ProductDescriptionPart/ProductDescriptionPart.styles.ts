@@ -31,7 +31,7 @@ export const DescriptionPartList = styled.ul`
 export const DescriptionPartListItem = styled.li`
   line-height: 22px;
   margin-bottom: 10px;
-  font-size: 16px;
+  font-size: 20px;
   position: relative;
   padding-left: 20px;
   

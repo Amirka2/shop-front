@@ -67,16 +67,15 @@ export const ProductDescription = (product: IProduct) => {
         );
     })
 
-
-    console.log(descriptionParts);
-
     return (
         <Styles.Wrapper>
             <Styles.DescriptionHeader>
                 {headerLinkElements}
             </Styles.DescriptionHeader>
             {descriptionParts[0] && (
+                <div style={{ whiteSpace: 'pre-line' }}>
                 <ProductDescriptionPart descriptionPart={descriptionParts[0]} partName={product.description}/>
+                </div>
             )}
             {descriptionParts[1] && (
                 <ProductDescriptionPart descriptionPart={descriptionParts[1]} specs={product.specifications}/>
