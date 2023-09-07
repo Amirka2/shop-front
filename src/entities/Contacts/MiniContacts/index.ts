@@ -1,1 +1,0 @@
-export {MiniContacts} from './MiniContacts';

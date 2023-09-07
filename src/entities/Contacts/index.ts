@@ -1,2 +1,3 @@
 export {Contacts} from './Contacts';
-export {MiniContacts} from './MiniContacts';
+export {HeaderContacts} from './HeaderContacts';
+export {MobileContacts} from './MobileContacts';

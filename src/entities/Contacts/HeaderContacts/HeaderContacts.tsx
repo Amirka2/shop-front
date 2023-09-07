@@ -1,10 +1,10 @@
 import React from 'react';
 
-import * as Styles from './MiniContacts.styles';
+import * as Styles from './HeaderContacts.styles';
 
 import {contacts} from '@/app/shop/mock';
 
-export const MiniContacts = () => {
+export const HeaderContacts = () => {
     return (
         <Styles.Flex>
             <Styles.LinkWrapper>

@@ -18,7 +18,8 @@ import {
 } from "@/pages";
 
 import {MainWrapper} from "./app.styles";
-import { products, categories, contacts } from './mock';
+import { categories, contacts } from './mock';
+import {MobileContacts} from "@/entities/Contacts";
 
 export function App() {
     let isMobile = useMobileOrDesktop();
@@ -31,6 +32,7 @@ export function App() {
         <BrowserRouter>
             <MainWrapper $isMobile={isMobile}>
                 <TopBar/>
+                <MobileContacts/>
                 <NavBar paths={Paths}/>
                 <Routes>
                     <Route path='*' Component={NotFoundPage}/>

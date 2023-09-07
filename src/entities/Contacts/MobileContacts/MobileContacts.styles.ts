@@ -1,14 +1,24 @@
 import {styled} from "styled-components";
+import {Color} from "@/shared/constants";
 
-export const Wrapper = styled.div`
-  height: 100%;
+export const MobileContacts = styled.div`
+  //background: rgb(255,255,255);
+  //background: linear-gradient(180deg, rgba(255,255,255,1) 74%, rgba(220,220,220,1) 100%);
+  //width: 100vw;
+  border-radius: 16px;
+  background-color: ${Color.gray};
+  width: 90vw;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  line-height: 30px;
-  font-size: 24px;
-  gap: 10px;
+  gap: 20px;
+`;
+
+export const Number = styled.span`
+  font-family: Inter, sans-serif;
+  color: ${Color.black};
+  font-size: 20px;
 `;
 
 export const IconsWrapper = styled.div`

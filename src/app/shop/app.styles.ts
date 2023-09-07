@@ -11,6 +11,7 @@ export const MainWrapper = styled.div<{
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
+  gap: 20px;
   color: ${Color.black};
   background-color: ${Color.white};
 `;
