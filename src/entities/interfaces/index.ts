@@ -1,14 +1,3 @@
-export interface IPaths {
-    main: string;
-    catalog: string;
-    aboutUs: string;
-    shipping: string;
-    payment: string;
-    cart: string;
-    notFound: string;
-    product: string;
-}
-
 export interface IProduct {
     id: number;
     price: number;
@@ -45,4 +34,18 @@ export interface IOrder {
     name: string;
     phoneNumber: string;
     productsAndCounts: Map<IProduct, number>;
+}
+
+export interface ICategoryCard {
+    id: number;
+    photo: string;
+    name: string;
+    subCategoryCount: number;
+}
+
+export interface ISubCategoryCard {
+    id: number;
+    photo: string;
+    name: string;
+    productCount: number;
 }

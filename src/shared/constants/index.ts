@@ -1,16 +1,3 @@
-import {IPaths} from "@/entities/interfaces";
-
-export const Paths: IPaths = {
-    main: '/',
-    catalog: '/catalog',
-    aboutUs: '/about-us',
-    shipping: '/shipping',
-    payment: '/payment',
-    cart: '/cart',
-    notFound: '/not-found',
-    product: '/product/:id',
-}
-
 export const Color = {
     blue: '#225479',
     white: '#fff',

@@ -1,7 +1,9 @@
 import React from 'react';
-import {LogoIcon} from './Logo.styles';
 import {Link} from "react-router-dom";
-import {Paths} from "@/shared/constants";
+
+import {LogoIcon} from './Logo.styles';
+
+import {Paths} from "@/shared/routing";
 import {useMobileOrDesktop} from "@/shared/hooks";
 
 export const Logo = () => {

@@ -1,4 +1,6 @@
 import {IProduct} from "@/entities";
+import {ICategoryCard} from "@/entities";
+import {ISubCategoryCard} from "@/entities";
 
 export const contacts = {
     whatsApp: 'https://wa.me/79260845222',
@@ -7,6 +9,84 @@ export const contacts = {
     email: 'info@constrspb.ru',
     phone: '+7(499)938-87-67',
 }
+
+export const categories: ICategoryCard[] = [
+    {
+        id: 0,
+        photo: '/photos/1.jpg',
+        name: 'name',
+        subCategoryCount: 3,
+    },
+    {
+        id: 1,
+        photo: '/photos/11.jpg',
+        name: 'Category name',
+        subCategoryCount: 2,
+    },
+    {
+        id: 2,
+        photo: '/photos/1.jpg',
+        name: 'Category name',
+        subCategoryCount: 3,
+    },
+    {
+        id: 4,
+        photo: '/photos/11.jpg',
+        name: 'Category name',
+        subCategoryCount: 2,
+    },
+    {
+        id: 5,
+        photo: '/photos/1.jpg',
+        name: 'Category name',
+        subCategoryCount: 3,
+    },
+    {
+        id: 6,
+        photo: '/photos/11.jpg',
+        name: 'Category name',
+        subCategoryCount: 2,
+    }
+]
+
+export const subCategories: ISubCategoryCard[] = [
+    {
+        id: 0,
+        photo: '/photos/6.jpg',
+        name: 'name',
+        productCount: 3,
+    },
+    {
+        id: 1,
+        photo: '/photos/12.jpg',
+        name: 'subCategory name',
+        productCount: 2,
+    },
+    {
+        id: 2,
+        photo: '/photos/20.jpg',
+        name: 'subCategory name',
+        productCount: 3,
+    },
+    {
+        id: 4,
+        photo: '/photos/17.jpg',
+        name: 'subCategory name',
+        productCount: 2,
+    },
+    {
+        id: 5,
+        photo: '/photos/14.jpg',
+        name: 'subCategory name',
+        productCount: 3,
+    },
+    {
+        id: 6,
+        photo: '/photos/18.jpg',
+        name: 'subCategory name',
+        productCount: 2,
+    }
+]
 
 export const products: IProduct[] = [
     {
@@ -259,7 +339,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 2,
@@ -269,7 +349,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 3,
@@ -279,7 +359,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 4,
@@ -289,7 +369,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 5,
@@ -299,7 +379,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 6,
@@ -309,7 +389,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 0,
@@ -319,7 +399,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 1,
@@ -329,7 +409,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 2,
@@ -339,7 +419,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 3,
@@ -349,7 +429,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 4,
@@ -359,7 +439,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 5,
@@ -369,7 +449,7 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
     // {
     //     id: 6,
@@ -379,58 +459,8 @@ export const products: IProduct[] = [
     //         'https://www.designevo.com/res/templates/thumb_small/special-wine-glass.webp',
     //         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNZv2_asDiTvmiZU507obKxzRuicXE-iYQOw&usqp=CAU',
     //     ],
-    //     name: 'Product name',
+    //     name: 'ProductInfoCard name',
     // },
 ]
 
-export const categories = [
-    {
-        name: 'Шлемы из папье-маше',
-        url: '/not-found'
-    },
-    {
-        name: 'Автомобильные прокладки',
-        url: '/xxx'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Цветочные арки для свадьбы',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-    {
-        name: 'Семечки',
-        url: '/'
-    },
-];
 

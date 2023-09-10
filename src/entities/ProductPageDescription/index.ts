@@ -1,0 +1,1 @@
+export {ProductPageDescription} from './ProductPageDescription';

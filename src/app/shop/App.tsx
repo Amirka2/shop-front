@@ -1,7 +1,10 @@
 import React from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {Paths} from "@/shared/constants";
+import {MainWrapper} from "./app.styles";
+import {categories, contacts} from './mock';
+
+import {Paths} from "@/shared/routing";
 import {NavBar} from "@/shared/components";
 import {Footer} from "@/shared/components";
 import {TopBar} from "@/widgets/TopBar";
@@ -11,14 +14,13 @@ import {
     MainPage,
     ShippingPage,
     PaymentPage,
-    CatalogPage,
+    CategoriesPage,
     AboutUsPage,
     ProductPage,
     CartPage,
+    SubCategoriesPage,
+    ProductsPage,
 } from "@/pages";
-
-import {MainWrapper} from "./app.styles";
-import { categories, contacts } from './mock';
 import {MobileContacts} from "@/entities/Contacts";
 
 export function App() {
@@ -28,6 +30,7 @@ export function App() {
         categories,
         ...contacts,
     }
+    console.log(Paths.category + Paths.subCategory + Paths.products)
     return (
         <BrowserRouter>
             <MainWrapper $isMobile={isMobile}>
@@ -35,16 +38,31 @@ export function App() {
                 <MobileContacts/>
                 <NavBar paths={Paths}/>
                 <Routes>
-                    <Route path='*' Component={NotFoundPage}/>
+                    <Route path='*' element={<NotFoundPage/>}/>
                     <Route path={Paths.main} element={<MainPage {...mainPageProps} />}/>
-                    <Route path={Paths.aboutUs} Component={AboutUsPage}/>
-                    <Route path={Paths.catalog} element={<CatalogPage itemsValue={12}/>}/>
-                    <Route path={Paths.cart} Component={CartPage}/>
-                    <Route path={Paths.payment} Component={PaymentPage}/>
-                    <Route path={Paths.shipping} Component={ShippingPage}/>
-                    <Route path={Paths.product} element={<ProductPage/> }/>
+                    <Route path={Paths.aboutUs} element={<AboutUsPage/>}/>
+                    <Route path={Paths.categories} element={<CategoriesPage/>}/>
+                    <Route
+                        path={Paths.category + Paths.subCategories}
+                        element={<SubCategoriesPage/>}
+                    />
+                    <Route
+                        path={Paths.category + Paths.subCategory + Paths.products}
+                        element={<ProductsPage/>}
+                    />
+                    <Route
+                        path={Paths.category + Paths.subCategory + Paths.product}
+                        element={<ProductPage />}
+                    />
+                    <Route
+                        path={'/:name'}
+                        element={<ProductPage />}
+                    />
+                    <Route path={Paths.cart} element={<CartPage/>}/>
+                    <Route path={Paths.payment} element={<PaymentPage/>}/>
+                    <Route path={Paths.shipping} element={<ShippingPage/>}/>
                 </Routes>
-                <Footer />
+                <Footer/>
             </MainWrapper>
         </BrowserRouter>
     );

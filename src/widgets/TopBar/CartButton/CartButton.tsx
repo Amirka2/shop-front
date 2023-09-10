@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, Counter, Wrapper, Link} from './CartButton.styles';
-import {Paths} from "@/shared/constants";
+import {Paths} from "@/shared/routing";
 import {useStores} from "@/shared/hooks";
 import {observer} from "mobx-react";
 

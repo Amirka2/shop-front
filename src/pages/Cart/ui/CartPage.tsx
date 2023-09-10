@@ -20,7 +20,7 @@ import {
 import {useMobileOrDesktop, useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
 import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
-import {ProductCounter} from '@/entities';
+import {ProductCartCounter} from '@/entities';
 
 export const CartPage = observer(() => {
     const stores = useStores();
@@ -54,7 +54,7 @@ export const CartPage = observer(() => {
             <>
                 <ProductWrapper>
                     <CartProductCard product={p} key={p.id}/>
-                    <ProductCounter product={p} />
+                    <ProductCartCounter product={p} />
                 </ProductWrapper>
                 <Line/>
             </>

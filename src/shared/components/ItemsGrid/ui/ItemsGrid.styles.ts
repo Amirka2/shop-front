@@ -11,9 +11,8 @@ export const GridWrapper = styled.div<{
   height: ${props => props?.height};
   width: ${props => props?.width};
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  padding: 10px;
   gap: 20px;
 `;

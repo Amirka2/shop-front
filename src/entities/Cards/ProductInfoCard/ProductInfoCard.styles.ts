@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-export const ProductInfo = styled.div`
+export const ProductCardInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;

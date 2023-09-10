@@ -1,6 +1,8 @@
 import React from 'react';
+
 import {Wrapper, Link} from "./NavBar.styles";
-import {IPaths} from "@/entities/interfaces";
+
+import {IPaths} from "@/shared/routing";
 import {useMobileOrDesktop} from "@/shared/hooks";
 
 interface NavBarProps {
@@ -13,7 +15,7 @@ export const NavBar = ({paths}: NavBarProps) => {
     return (
         isMobile ? null : (
             <Wrapper $isMobile={isMobile}>
-                <Link to={paths.catalog} $isMobile={isMobile} $isTop={isMobile} $isLeft={!isMobile}>Каталог</Link>
+                <Link to={paths.categories} $isMobile={isMobile} $isTop={isMobile} $isLeft={!isMobile}>Категории</Link>
                 <Link to={paths.aboutUs} $isMobile={isMobile}>О нас</Link>
                 <Link to={paths.main} $isMobile={isMobile}>Главная</Link>
                 <Link to={paths.payment} $isMobile={isMobile}>Оплата</Link>

@@ -5,7 +5,7 @@ import { ProductInfo } from './ProductInfo';
 import {useMobileOrDesktop} from "@/shared/hooks";
 import {useProduct} from "@/shared/hooks";
 import {useParams} from "react-router";
-import {ProductDescription} from "@/entities";
+import {ProductPageDescription} from "@/entities";
 
 export const ProductPage = () => {
     const isMobile = useMobileOrDesktop();
@@ -18,7 +18,7 @@ export const ProductPage = () => {
                 <Slider images={product.photos} />
                 <ProductInfo {...product}></ProductInfo>
             </Flex>
-            <ProductDescription {...product}/>
+            <ProductPageDescription {...product}/>
         </Wrapper>
     );
 };

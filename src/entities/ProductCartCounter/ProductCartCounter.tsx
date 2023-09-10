@@ -1,14 +1,19 @@
 import { useStores } from '@/shared/hooks';
 import React, {useState} from 'react';
 
-import {Button, CounterWithButtons, InteractionPanel, SumInfo} from './ProductCounter.styles';
+import {
+    Button,
+    CounterWithButtons,
+    InteractionPanel,
+    SumInfo
+} from './ProductCartCounter.styles';
 import {IProduct} from "@/entities";
 
 interface ProductCounterProps {
     product: IProduct;
 }
 
-export const ProductCounter = ({product}: ProductCounterProps) => {
+export const ProductCartCounter = ({product}: ProductCounterProps) => {
     const stores = useStores();
     let [counter, setCounter] = useState((stores.cartStore.getProductCount(product)));
 

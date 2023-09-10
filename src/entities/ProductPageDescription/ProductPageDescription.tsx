@@ -1,13 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import * as Styles from './ProductDescription.styles';
+
+import * as Styles from './ProductPageDescription.styles';
+
 import {IProduct} from "@/entities";
-import {ProductDescriptionPart} from "@/entities/ProductDescription/ProductDescriptionPart/ProductDescriptionPart";
+import {ProductDescriptionPart} from "@/entities/ProductPageDescription/ProductDescriptionPart/ProductDescriptionPart";
 
 interface descriptionPart {
     id: string,
     name: string,
 }
-export const ProductDescription = (product: IProduct) => {
+
+export const ProductPageDescription = (product: IProduct) => {
     const [descriptionParts, setDescriptionParts] = useState<descriptionPart[]>([]);
 
     const fillParts = () => {

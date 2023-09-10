@@ -1,12 +1,14 @@
 import React from 'react';
+
 import {ContactsWrapper, Wrapper} from "./MainPage.styles";
+
 import {products} from "@/app/shop/mock";
-import {Categories, CategoriesProps, ItemsGrid} from "@/shared/components";
+import {ItemsGrid} from "@/shared/components";
 import { Contacts, IContacts} from '@/entities';
 import { ProductCard } from '@/widgets';
 import {useMobileOrDesktop} from "@/shared/hooks";
 
-interface MainPageProps extends IContacts, CategoriesProps {
+interface MainPageProps extends IContacts {
     itemsValue: number;
 }
 
@@ -14,7 +16,6 @@ export const MainPage = (props: MainPageProps) => {
     const isMobile = useMobileOrDesktop();
     const {
         itemsValue,
-        categories,
     } = props;
     let width = isMobile ? 600 : 1000;
     const itemsComponents = products
@@ -25,7 +26,6 @@ export const MainPage = (props: MainPageProps) => {
         <Wrapper $isMobile={isMobile}>
             {isMobile ? null : (
                 <aside>
-                    {/*<Categories categories={categories}/>*/}
                     <ContactsWrapper>
                         <Contacts/>
                     </ContactsWrapper>
