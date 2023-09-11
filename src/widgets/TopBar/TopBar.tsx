@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
+
 import {Wrapper, LogoContactsWrapper, Title, SearchWrapper, Textarea, CartButtonWrapper, SearchModal} from "./TopBar.styles";
+
 import {Logo} from '@/shared/components';
 import {CartButton} from './CartButton';
 import {useMobileOrDesktop} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
 import {HeaderContacts} from "@/entities/Contacts";
-import {BurgerMenu} from "@/shared/components/BurgerMenu";
+import {BurgerMenu} from "@/shared/components";
 
 export const TopBar = () => {
     const [isOpen, setIsOpen] = useState(false);
