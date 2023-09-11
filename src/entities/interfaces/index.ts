@@ -33,8 +33,14 @@ export interface IContacts {
 export interface IOrder {
     name: string;
     phoneNumber: string;
-    mail: string;
-    productsAndCounts: Map<IProduct, number>;
+    mail?: string;
+    products: IProductsToOrder[];
+}
+
+export interface IProductsToOrder {
+    name: string;
+    price: number;
+    count: number;
 }
 
 export interface ICategory {

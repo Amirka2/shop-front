@@ -20,7 +20,9 @@ import {
 import {useMobileOrDesktop, useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
 import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
-import {ProductCartCounter} from '@/entities';
+import {IOrder, ProductCartCounter} from '@/entities';
+import {IProductsToOrder} from "@/entities/interfaces";
+import {processOrder} from "../api";
 
 export const CartPage = observer(() => {
     const stores = useStores();
@@ -28,28 +30,39 @@ export const CartPage = observer(() => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
 
-    const products = Array.from(stores.cartStore.getProductsCounts.keys());
+    const productsInCart = Array.from(stores.cartStore.getProductsCounts.keys());
     const productsCounts = Array.from(stores.cartStore.getProductsCounts.values());
     let totalSum = 0;
-    for (let i = 0; i < products.length; i++) {
-        totalSum += products[i].price * productsCounts[i];
+    for (let i = 0; i < productsInCart.length; i++) {
+        totalSum += productsInCart[i].price * productsCounts[i];
     }
     const handleSubmit = function () {
         if (name.length < 2
             || phoneNumber.length < 10
-            || products.length < 1)
+            || productsInCart.length < 1)
         {
             alert("Введите корректные данные, пожалуйста!");
         }
-        let orderInfo = {
-            productsAndCounts: {...stores.cartStore.getProductsCounts},
+        let mapOfProducts = stores.cartStore.getProductsCounts;
+        let products: IProductsToOrder[] = [];
+        mapOfProducts.forEach((n, p) => {
+            let productsToOrder = {
+                name: p.name,
+                price: p.price,
+                count: n,
+            }
+            products.push(productsToOrder);
+        })
+        let orderInfo: IOrder = {
+            products: products,
             name: name,
             phoneNumber: phoneNumber,
+            mail: '',
         }
-        // processOrder(orderInfo);
+        processOrder(orderInfo);
     }
 
-    const productsElements = products.map(p => {
+    const productsElements = productsInCart.map(p => {
         return (
             <>
                 <ProductWrapper>
@@ -76,7 +89,7 @@ export const CartPage = observer(() => {
                 <CartInfoMenu isMobile={isMobile}>
                     <CartCaption>Ваш заказ</CartCaption>
                     <OrderFieldsList>
-                        {products.map(p => {
+                        {productsInCart.map(p => {
                             return (
                                 <OrderFieldsListItem>
                                     {p.name}
