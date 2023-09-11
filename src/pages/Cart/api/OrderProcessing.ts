@@ -7,7 +7,9 @@ export const processOrder = function (order: IOrder) {
         ...order
     })
         .then(function (response) {
-            console.log(response);
+            if (response.status === 200) {
+                alert('Ура, вы успешно совершили заказ!');
+            }
         })
         .catch(function (error) {
             console.log(error);
