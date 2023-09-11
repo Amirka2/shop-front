@@ -22,10 +22,12 @@ export const TopBar = () => {
                 {isMobile ? null : (<Logo/>)}
                 {isMobile ? null : (<HeaderContacts/>)}
             </LogoContactsWrapper>
-            <BurgerMenu/>
             {
                 isMobile ? (
-                        <Title>ООО "Конструкция СПБ"</Title>
+                        <>
+                            <BurgerMenu/>
+                            <Title>ООО "Конструкция СПБ"</Title>
+                        </>
                     ) : (
                     <SearchWrapper>
                         <Textarea onClick={() => setIsOpen(true)}/>
