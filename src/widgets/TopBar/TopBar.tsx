@@ -5,6 +5,7 @@ import {CartButton} from './CartButton';
 import {useMobileOrDesktop} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
 import {HeaderContacts} from "@/entities/Contacts";
+import {BurgerMenu} from "@/shared/components/BurgerMenu";
 
 export const TopBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -16,9 +17,10 @@ export const TopBar = () => {
     return (
         <Wrapper $isMobile={isMobile}>
             <LogoContactsWrapper>
-                <Logo/>
+                {isMobile ? null : (<Logo/>)}
                 {isMobile ? null : (<HeaderContacts/>)}
             </LogoContactsWrapper>
+            <BurgerMenu/>
             {
                 isMobile ? (
                         <Title>ООО "Конструкция СПБ"</Title>

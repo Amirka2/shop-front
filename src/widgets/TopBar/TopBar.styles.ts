@@ -30,6 +30,7 @@ export const SearchWrapper = styled.div`
 
 export const Title = styled.h6`
   color: ${Color.white};
+  max-width: 250px;
 `;
 
 export const Textarea = styled.textarea`
