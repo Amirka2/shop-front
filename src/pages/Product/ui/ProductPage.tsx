@@ -10,7 +10,7 @@ import {ProductPageDescription} from "@/entities";
 export const ProductPage = () => {
     const isMobile = useMobileOrDesktop();
     const params = useParams();
-    const product = useProduct(Number(params.id));
+    const product = useProduct(params.name);
 
     return (
         <Wrapper isMobile={isMobile}>

@@ -33,17 +33,18 @@ export interface IContacts {
 export interface IOrder {
     name: string;
     phoneNumber: string;
+    mail: string;
     productsAndCounts: Map<IProduct, number>;
 }
 
-export interface ICategoryCard {
+export interface ICategory {
     id: number;
     photo: string;
     name: string;
     subCategoryCount: number;
 }
 
-export interface ISubCategoryCard {
+export interface ISubCategory {
     id: number;
     photo: string;
     name: string;

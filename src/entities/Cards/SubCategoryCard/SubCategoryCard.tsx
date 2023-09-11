@@ -4,9 +4,9 @@ import * as Styles from './SubCategory.styles';
 
 import {Card} from "@/shared/components";
 
-import type {ISubCategoryCard} from "@/entities/interfaces";
+import type {ISubCategory} from "@/entities/interfaces";
 
-export const SubCategoryCard = (props: ISubCategoryCard) => {
+export const SubCategoryCard = (props: ISubCategory) => {
     const {
         id,
         photo,

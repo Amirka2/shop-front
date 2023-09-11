@@ -2,10 +2,10 @@ import React from 'react';
 
 import * as Styles from './CategoryCard.styles';
 
-import {ICategoryCard} from "@/entities/interfaces";
+import {ICategory} from "@/entities/interfaces";
 import {Card} from "@/shared/components";
 
-export const CategoryCard = (props: ICategoryCard) => {
+export const CategoryCard = (props: ICategory) => {
     const {
         id,
         photo,

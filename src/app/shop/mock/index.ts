@@ -1,6 +1,6 @@
 import {IProduct} from "@/entities";
-import {ICategoryCard} from "@/entities";
-import {ISubCategoryCard} from "@/entities";
+import {ICategory} from "@/entities";
+import {ISubCategory} from "@/entities";
 
 export const contacts = {
     whatsApp: 'https://wa.me/79260845222',
@@ -10,82 +10,28 @@ export const contacts = {
     phone: '+7(499)938-87-67',
 }
 
-export const categories: ICategoryCard[] = [
+export const categories: ICategory[] = [
     {
         id: 0,
-        photo: '/photos/1.jpg',
-        name: 'name',
-        subCategoryCount: 3,
-    },
-    {
-        id: 1,
-        photo: '/photos/11.jpg',
-        name: 'Category name',
+        photo: '/photos/19.jpg',
+        name: 'Товары для неразрушающего контроля',
         subCategoryCount: 2,
     },
-    {
-        id: 2,
-        photo: '/photos/1.jpg',
-        name: 'Category name',
-        subCategoryCount: 3,
-    },
-    {
-        id: 4,
-        photo: '/photos/11.jpg',
-        name: 'Category name',
-        subCategoryCount: 2,
-    },
-    {
-        id: 5,
-        photo: '/photos/1.jpg',
-        name: 'Category name',
-        subCategoryCount: 3,
-    },
-    {
-        id: 6,
-        photo: '/photos/11.jpg',
-        name: 'Category name',
-        subCategoryCount: 2,
-    }
 ]
 
-export const subCategories: ISubCategoryCard[] = [
+export const subCategories: ISubCategory[] = [
     {
         id: 0,
-        photo: '/photos/6.jpg',
-        name: 'name',
-        productCount: 3,
+        photo: '/photos/10.jpg',
+        name: 'Химические реактивы для пленки',
+        productCount: 2,
     },
     {
         id: 1,
-        photo: '/photos/12.jpg',
-        name: 'subCategory name',
+        photo: '/photos/19.jpg',
+        name: 'Рулонная пленка D7',
         productCount: 2,
     },
-    {
-        id: 2,
-        photo: '/photos/20.jpg',
-        name: 'subCategory name',
-        productCount: 3,
-    },
-    {
-        id: 4,
-        photo: '/photos/17.jpg',
-        name: 'subCategory name',
-        productCount: 2,
-    },
-    {
-        id: 5,
-        photo: '/photos/14.jpg',
-        name: 'subCategory name',
-        productCount: 3,
-    },
-    {
-        id: 6,
-        photo: '/photos/18.jpg',
-        name: 'subCategory name',
-        productCount: 2,
-    }
 ]
 
 export const products: IProduct[] = [

@@ -35,7 +35,6 @@ export function App() {
         <BrowserRouter>
             <MainWrapper $isMobile={isMobile}>
                 <TopBar/>
-                <MobileContacts/>
                 <NavBar paths={Paths}/>
                 <Routes>
                     <Route path='*' element={<NotFoundPage/>}/>
