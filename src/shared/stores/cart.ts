@@ -31,6 +31,10 @@ export class CartStore {
         }
     }
 
+    public deleteAllProducts = () => {
+        this.cartProductsCounts.clear();
+    }
+
     public deleteProductFromCart = (product: IProduct) => {
         this.cartProductsCounts.delete(product);
     };

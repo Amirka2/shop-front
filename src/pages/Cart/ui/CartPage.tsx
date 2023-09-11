@@ -59,7 +59,18 @@ export const CartPage = observer(() => {
             phoneNumber: phoneNumber,
             mail: '',
         }
-        processOrder(orderInfo);
+        processOrder(orderInfo)
+            .then(function (response) {
+                if (response.status === 200) {
+                    alert('Ура, вы успешно совершили заказ!');
+                    stores.cartStore.deleteAllProducts();
+                    setName('');
+                    setPhoneNumber('');
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     const productsElements = productsInCart.map(p => {
@@ -102,8 +113,18 @@ export const CartPage = observer(() => {
                         {'Итого:'}
                         <span>{totalSum} ₽</span>
                     </Summary>
-                    <Input type='text' onChange={(e) => setName(e.target.value)} placeholder={'Имя'}/>
-                    <Input type='text' onChange={(e) => setPhoneNumber(e.target.value)} placeholder={'Номер телефона'}/>
+                    <Input
+                        type='text'
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder={'Имя'}
+                        value={name}
+                    />
+                    <Input
+                        type='text'
+                        onChange={(e) => setPhoneNumber(e.target.value)}
+                        placeholder={'Номер телефона'}
+                        value={phoneNumber}
+                    />
                     <SubmitButton onClick={handleSubmit}>Оформить</SubmitButton>
                 </CartInfoMenu>
             </Flex>

@@ -30,7 +30,6 @@ export function App() {
         categories,
         ...contacts,
     }
-    console.log(Paths.category + Paths.subCategory + Paths.products)
     return (
         <BrowserRouter>
             <MainWrapper $isMobile={isMobile}>
