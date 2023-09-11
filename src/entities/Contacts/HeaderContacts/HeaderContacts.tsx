@@ -7,6 +7,7 @@ import {contacts} from '@/app/shop/mock';
 export const HeaderContacts = () => {
     return (
         <Styles.Flex>
+            <Styles.Title>ООО "Конструкция СПБ"</Styles.Title>
             <Styles.LinkWrapper>
                 <Styles.ContactLink href={'mailto:' + contacts.email}>{contacts.email}</Styles.ContactLink>
                 <Styles.MiniIcon $src={'/icons/mail.png'}>

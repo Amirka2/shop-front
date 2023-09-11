@@ -11,6 +11,9 @@ export const Flex = styled.div`
   gap: 10px;
 `;
 
+export const Title = styled.h4`
+  color: ${Color.white};
+`;
 export const LinkWrapper = styled.div`
   display: flex;
   flex-direction: row;

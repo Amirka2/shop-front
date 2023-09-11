@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Wrapper, LogoContactsWrapper, SearchWrapper, Textarea, CartButtonWrapper, SearchModal} from "./TopBar.styles";
+import {Wrapper, LogoContactsWrapper, Title, SearchWrapper, Textarea, CartButtonWrapper, SearchModal} from "./TopBar.styles";
 import {Logo} from '@/shared/components';
 import {CartButton} from './CartButton';
 import {useMobileOrDesktop} from "@/shared/hooks";
@@ -20,7 +20,9 @@ export const TopBar = () => {
                 {isMobile ? null : (<HeaderContacts/>)}
             </LogoContactsWrapper>
             {
-                isMobile ? null : (
+                isMobile ? (
+                        <Title>ООО "Конструкция СПБ"</Title>
+                    ) : (
                     <SearchWrapper>
                         <Textarea onClick={() => setIsOpen(true)}/>
                         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill={Color.blue}>

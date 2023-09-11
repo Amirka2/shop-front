@@ -23,8 +23,13 @@ export const LogoContactsWrapper = styled.div`
   align-items: center;
   gap: 50px;
 `;
+
 export const SearchWrapper = styled.div`
   width: 470px;
+`;
+
+export const Title = styled.h6`
+  color: ${Color.white};
 `;
 
 export const Textarea = styled.textarea`
