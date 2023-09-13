@@ -23,9 +23,9 @@ export interface ISpecifications {
 }
 
 export interface IContacts {
-    whatsApp: string;
-    telegram: string;
-    viber: string;
+    whatsAppNumber: string;
+    whatsAppLink: string;
+    telegramLink: string;
     email: string;
     phone: string;
 }

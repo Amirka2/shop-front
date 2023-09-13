@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {Color} from "@/shared/constants";
 
 const borderRadius = '10px';
-export const Wrapper = styled.div<{
+export const Wrapper = styled.nav<{
     $isMobile: boolean;
 }>`
   width: ${props => props.$isMobile ? '70vw' : '1330px'};

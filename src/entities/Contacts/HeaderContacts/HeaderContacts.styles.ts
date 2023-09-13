@@ -7,6 +7,7 @@ import {Icon} from '../Contacts.styles';
 export const Flex = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   align-items: flex-start;
   gap: 10px;
 `;

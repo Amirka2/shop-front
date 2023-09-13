@@ -1,6 +1,7 @@
 import {styled} from "styled-components";
+import {MainWrapper} from "@/shared/components";
 
-export const Wrapper = styled.div.withConfig({
+export const Wrapper = styled(MainWrapper).withConfig({
     shouldForwardProp: (prop) => !['isMobile'].includes(prop)
 })<{ isMobile?: boolean; }>`
   display: flex;
@@ -11,6 +12,7 @@ export const Wrapper = styled.div.withConfig({
 export const Flex = styled.div.withConfig({
     shouldForwardProp: (prop) => !['isMobile'].includes(prop)
 })<{ isMobile?: boolean; }>`
+  width: 100%;
   display: flex;
   flex-direction: ${props => props.isMobile ? 'column' : 'row'};
   justify-content: ${props => props.isMobile ? 'flex-start' : 'space-between'};

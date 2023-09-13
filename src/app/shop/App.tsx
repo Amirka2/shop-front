@@ -21,7 +21,6 @@ import {
     SubCategoriesPage,
     ProductsPage,
 } from "@/pages";
-import {MobileContacts} from "@/entities/Contacts";
 
 export function App() {
     let isMobile = useMobileOrDesktop();

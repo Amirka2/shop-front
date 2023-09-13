@@ -17,7 +17,7 @@ export const MobileContacts = () => {
                     </a>
                     <Styles.IconsWrapper>
                         <Styles.Icon $src={'icons/whatsapp.png'}>
-                            <a href={contacts.whatsApp}/>
+                            <a href={contacts.whatsAppLink}/>
                         </Styles.Icon>
                     </Styles.IconsWrapper>
                 </Styles.MobileContacts>

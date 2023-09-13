@@ -24,13 +24,6 @@ export const MainPage = (props: MainPageProps) => {
         );
     return (
         <Wrapper $isMobile={isMobile}>
-            {isMobile ? null : (
-                <aside>
-                    <ContactsWrapper>
-                        <Contacts/>
-                    </ContactsWrapper>
-                </aside>
-            )}
             <ItemsGrid width={width.toString()}>
                 {itemsComponents}
             </ItemsGrid>

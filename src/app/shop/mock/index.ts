@@ -3,9 +3,9 @@ import {ICategory} from "@/entities";
 import {ISubCategory} from "@/entities";
 
 export const contacts = {
-    whatsApp: 'https://wa.me/79260845222',
-    telegram: 'https://t.me',
-    viber: '',
+    whatsAppLink: 'https://wa.me/79260845222',
+    whatsAppNumber: '+7(926)084-52-22',
+    telegramLink: 'https://t.me',
     email: 'info@constrspb.ru',
     phone: '+7(499)938-87-67',
 }
