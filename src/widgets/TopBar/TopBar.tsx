@@ -44,9 +44,9 @@ export const TopBar = () => {
                     </SearchWrapper>
                 )
             }
-            <CartButtonWrapper>
-                <CartButton/>
-            </CartButtonWrapper>
+            {/*<CartButtonWrapper>*/}
+            {/*    <CartButton/>*/}
+            {/*</CartButtonWrapper>*/}
             {isOpen ? (<SearchModal/>) : null}
         </Wrapper>
     );
