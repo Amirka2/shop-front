@@ -5,7 +5,6 @@ import {MainWrapper} from "./app.styles";
 import {categories, contacts} from './mock';
 
 import {Paths} from "@/shared/routing";
-import {NavBar} from "@/shared/components";
 import {Footer} from "@/shared/components";
 import {TopBar} from "@/widgets/TopBar";
 import {useMobileOrDesktop} from "@/shared/hooks";
@@ -20,6 +19,7 @@ import {
     CartPage,
     SubCategoriesPage,
     ProductsPage,
+    ContactsPage,
 } from "@/pages";
 
 export function App() {
@@ -32,20 +32,19 @@ export function App() {
     return (
         <BrowserRouter>
             <MainWrapper $isMobile={isMobile}>
-                <TopBar/>
-                <NavBar paths={Paths}/>
+                <TopBar />
                 <Routes>
-                    <Route path='*' element={<NotFoundPage/>}/>
-                    <Route path={Paths.main} element={<MainPage {...mainPageProps} />}/>
-                    <Route path={Paths.aboutUs} element={<AboutUsPage/>}/>
-                    <Route path={Paths.categories} element={<CategoriesPage/>}/>
+                    <Route path='*' element={<NotFoundPage />} />
+                    <Route path={Paths.main} element={<MainPage {...mainPageProps} />} />
+                    <Route path={Paths.aboutUs} element={<AboutUsPage />} />
+                    <Route path={Paths.categories} element={<CategoriesPage />} />
                     <Route
                         path={Paths.category + Paths.subCategories}
-                        element={<SubCategoriesPage/>}
+                        element={<SubCategoriesPage />}
                     />
                     <Route
                         path={Paths.category + Paths.subCategory + Paths.products}
-                        element={<ProductsPage/>}
+                        element={<ProductsPage />}
                     />
                     <Route
                         path={Paths.category + Paths.subCategory + Paths.product}
@@ -55,11 +54,12 @@ export function App() {
                         path={'/:name'}
                         element={<ProductPage />}
                     />
-                    <Route path={Paths.cart} element={<CartPage/>}/>
-                    <Route path={Paths.payment} element={<PaymentPage/>}/>
-                    <Route path={Paths.shipping} element={<ShippingPage/>}/>
+                    <Route path={Paths.contacts} element={<ContactsPage />} />
+                    <Route path={Paths.cart} element={<CartPage />} />
+                    <Route path={Paths.payment} element={<PaymentPage />} />
+                    <Route path={Paths.shipping} element={<ShippingPage />} />
                 </Routes>
-                <Footer/>
+                <Footer />
             </MainWrapper>
         </BrowserRouter>
     );

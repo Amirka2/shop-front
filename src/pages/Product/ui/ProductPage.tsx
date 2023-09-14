@@ -10,9 +10,9 @@ import {ProductPageDescription} from "@/entities";
 export const ProductPage = () => {
     const isMobile = useMobileOrDesktop();
     const params = useParams();
-    const product = useProduct(params.name);
+    const product = useProduct(params?.name);
 
-    return (
+    return product ? (
         <Wrapper isMobile={isMobile}>
             <Flex isMobile={isMobile}>
                 <Slider images={product.photos} />
@@ -20,5 +20,5 @@ export const ProductPage = () => {
             </Flex>
             <ProductPageDescription {...product}/>
         </Wrapper>
-    );
+    ) : null;
 };

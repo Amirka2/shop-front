@@ -2,6 +2,7 @@ export interface IPaths {
     main: string;
     categories: string;
     category: string;
+    contacts: string;
     subCategories: string;
     subCategory: string;
     products: string;
