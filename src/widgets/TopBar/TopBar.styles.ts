@@ -28,9 +28,12 @@ export const SearchWrapper = styled.div`
   width: 470px;
 `;
 
-export const Title = styled.h6`
+export const Title = styled.h6<{
+    fontSize?: string;
+}>`
   color: ${Color.white};
   max-width: 250px;
+  font-size: ${({fontSize}) => fontSize};
 `;
 
 export const Textarea = styled.textarea`

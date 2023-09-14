@@ -9,7 +9,6 @@ export const Flex = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: flex-start;
-  gap: 10px;
 `;
 
 export const Title = styled.h4`
