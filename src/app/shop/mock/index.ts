@@ -29,7 +29,7 @@ export const subCategories: ISubCategory[] = [
     {
         id: 1,
         photo: '/photos/19.jpg',
-        name: 'Рулонная пленка D7',
+        name: 'Рентгеновская пленка D7',
         productCount: 2,
     },
 ]
