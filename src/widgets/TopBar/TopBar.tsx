@@ -34,7 +34,17 @@ export const TopBar = () => {
                                 <Logo/>
                                 <div>
                                     <Title fontSize={'18px'}>ООО "Конструкция СПБ"</Title>
-                                    <Title fontSize={'18px'}>г..Москва, Токмаков переулок, д14 стр 3</Title>
+                                    <Title fontSize={'18px'}>
+                                        <a
+                                            href={'https://2gis.ru/moscow/geo/4504235282657211'}
+                                            style={{
+                                                color: 'white',
+                                                cursor: 'pointer',
+                                            }}
+                                        >
+                                            г..Москва, Токмаков переулок, д14 стр 3
+                                        </a>
+                                    </Title>
                                 </div>
                             </div>
                         </LogoContactsWrapper>

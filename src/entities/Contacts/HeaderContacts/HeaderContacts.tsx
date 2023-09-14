@@ -10,12 +10,12 @@ export const HeaderContacts = () => {
         <Styles.Flex>
             <Styles.LinkWrapper>
                 <Styles.ContactLink href={'mailto:' + contacts.email}>{contacts.email}</Styles.ContactLink>
-                <a href={contacts.email}>
+                <a href={'mailto:' + contacts.email}>
                     <Mail size={30}/>
                 </a>
             </Styles.LinkWrapper>
             <Styles.LinkWrapper>
-                <Styles.ContactLink href={contacts.phone}>{contacts.phone}</Styles.ContactLink>
+                <Styles.ContactLink href={'tel:' + contacts.phone}>{contacts.phone}</Styles.ContactLink>
                 <a href={'tel:' + contacts.phone}>
                     <Phone size={30}/>
                 </a>
