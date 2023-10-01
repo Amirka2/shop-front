@@ -12,6 +12,8 @@ import "draft-js/dist/Draft.css";
 import { linkDecorator } from "./Link";
 import { mediaBlockRenderer } from "./Media";
 
+import * as Styles from './DocumentEditor.styles';
+
 const TEXT_EDITOR_ITEM = "draft-js-example-item";
 
 export const DocumentEditor: React.FC = () => {
@@ -77,57 +79,69 @@ export const DocumentEditor: React.FC = () => {
     };
 
     return (
-        <div className="texteditor">
-            <button onMouseDown={(e) => handleBlockClick(e, "header-one")}>H1</button>
-            <button onMouseDown={(e) => handleBlockClick(e, "header-two")}>H2</button>
-            <button onMouseDown={(e) => handleBlockClick(e, "header-three")}>H3</button>
-            <button onMouseDown={(e) => handleBlockClick(e, "unstyled")}>Normal</button>
-            <button onMouseDown={(e) => handleTogggleClick(e, "BOLD")}>bold</button>
-            <button onMouseDown={(e) => handleTogggleClick(e, "UNDERLINE")}>underline</button>
-            <button onMouseDown={(e) => handleTogggleClick(e, "ITALIC")}>italic</button>
-            <button onMouseDown={(e) => handleTogggleClick(e, "STRIKETHROUGH")}>strikthrough</button>
-            <button onMouseDown={(e) => handleBlockClick(e, "ordered-list-item")}>Ordered List</button>
-            <button onMouseDown={(e) => handleBlockClick(e, "unordered-list-item")}>Unordered List</button>
-            <button
-                onMouseDown={(e) => {
-                    e.preventDefault();
-                    handleInsertImage();
-                }}>
-                image
-            </button>
-            <button
-                disabled={editorState.getSelection().isCollapsed()}
-                onMouseDown={(e) => {
-                    e.preventDefault();
-                    handleAddLink();
-                }}>
-                link
-            </button>
-            <button
-                disabled={editorState.getUndoStack().size <= 0}
-                onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
-                шаг назад
-            </button>
-            <button
-                disabled={editorState.getRedoStack().size <= 0}
-                onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
-                шаг вперед
-            </button>
-            <Editor
+        <Styles.Wrapper className="texteditor">
+            <Styles.ButtonsContainer>
+                <Styles.ButtonsSection>
+                    <Styles.Button onMouseDown={(e) => handleBlockClick(e, "header-one")}>H1</Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleBlockClick(e, "header-two")}>H2</Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleBlockClick(e, "header-three")}>H3</Styles.Button>
+                </Styles.ButtonsSection>
+                <Styles.ButtonsSection>
+                    <Styles.Button onMouseDown={(e) => handleBlockClick(e, "unstyled")}>Обычный</Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleTogggleClick(e, "BOLD")}><b>Жирный</b></Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleTogggleClick(e, "UNDERLINE")}><u>Подчеркнутый</u></Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleTogggleClick(e, "ITALIC")}><i>Курсив</i></Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleTogggleClick(e, "STRIKETHROUGH")}><s>Перечеркнутый</s></Styles.Button>
+                </Styles.ButtonsSection>
+                <Styles.ButtonsSection>
+                    <Styles.Button onMouseDown={(e) => handleBlockClick(e, "ordered-list-item")}>1. Нумерованный список</Styles.Button>
+                    <Styles.Button onMouseDown={(e) => handleBlockClick(e, "unordered-list-item")}>&bull; Ненумерованный список</Styles.Button>
+                </Styles.ButtonsSection>
+                <Styles.ButtonsSection>
+                    <Styles.Button
+                        onMouseDown={(e) => {
+                            e.preventDefault();
+                            handleInsertImage();
+                        }}>
+                        Изображение
+                    </Styles.Button>
+                    <Styles.Button
+                        disabled={editorState.getSelection().isCollapsed()}
+                        onMouseDown={(e) => {
+                            e.preventDefault();
+                            handleAddLink();
+                        }}>
+                        Ссылка
+                    </Styles.Button>
+                </Styles.ButtonsSection>
+                <Styles.ButtonsSection>
+                    <Styles.Button
+                        disabled={editorState.getUndoStack().size <= 0}
+                        onMouseDown={() => setEditorState(EditorState.undo(editorState))}>
+                        &#8629; Шаг назад
+                    </Styles.Button>
+                    <Styles.Button
+                        disabled={editorState.getRedoStack().size <= 0}
+                        onMouseDown={() => setEditorState(EditorState.redo(editorState))}>
+                        &#8627; Шаг вперед
+                    </Styles.Button>
+                </Styles.ButtonsSection>
+            </Styles.ButtonsContainer>
+            <Styles.WordEditor
                 editorState={editorState}
                 onChange={setEditorState}
                 handleKeyCommand={handleKeyCommand}
                 blockRendererFn={mediaBlockRenderer}
             />
-            <button
+            <Styles.Button
                 className="save"
                 type="button"
                 onClick={(e) => {
                     e.preventDefault();
                     handleSave();
                 }}>
-                save
-            </button>
-        </div>
+                Сохранить
+            </Styles.Button>
+        </Styles.Wrapper>
     );
 };

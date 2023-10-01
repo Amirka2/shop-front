@@ -25,16 +25,6 @@ a, button {
 
 }
 
-button {
-  border: none;
-  background-color: white;
-  padding: 0.5rem 1rem;
-}
-
-.texteditor {
-  width: 40rem;
-}
-
 .DraftEditor-root {
   border: 1px solid #eee;
   margin: 2rem 0;
@@ -49,9 +39,4 @@ button {
   min-height: 20rem;
 }
 
-.save {
-  background-color: #3ed3d2;
-  color: white;
-  border-radius: 0.5rem;
-}
 
