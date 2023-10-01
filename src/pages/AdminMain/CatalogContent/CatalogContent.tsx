@@ -14,7 +14,9 @@ export const CatalogContent = ({categories}: CatalogContentProps) => {
                 return (
                     <>
                         <h1>{category.title}</h1>
-                        {category.subCategories.map(subCategory => <p>{subCategory}</p>)}
+                        <ul>
+                            {category.subCategories.map(subCategory => <li>{subCategory}</li>)}
+                        </ul>
                     </>
                 )
             })}
