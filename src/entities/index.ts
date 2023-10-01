@@ -1,4 +1,4 @@
-export {Contacts} from './Contacts';
+export {Contacts, HeaderContacts, MobileContacts} from './Contacts';
 export {City} from './City';
 export {ProductCartCounter} from './ProductCartCounter';
 export {ProductPageDescription} from './ProductPageDescription';

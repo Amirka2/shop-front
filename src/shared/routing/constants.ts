@@ -4,6 +4,7 @@ export const Paths: IPaths = {
     main: '/',
     categories: '/categories',
     category: '/categories/:name',
+    contacts: '/contacts',
     subCategories: '/sub-categories',
     subCategory: '/sub-categories/:name',
     products: '/products',

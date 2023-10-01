@@ -2,24 +2,21 @@ import React from 'react';
 
 import {Wrapper, Link} from "./NavBar.styles";
 
-import {IPaths} from "@/shared/routing";
+import {Paths} from "@/shared/routing";
 import {useMobileOrDesktop} from "@/shared/hooks";
 
-interface NavBarProps {
-    paths: IPaths;
-}
-
-export const NavBar = ({paths}: NavBarProps) => {
+export const NavBar = () => {
     const isMobile = useMobileOrDesktop();
 
     return (
         isMobile ? null : (
             <Wrapper $isMobile={isMobile}>
-                <Link to={paths.categories} $isMobile={isMobile} $isTop={isMobile} $isLeft={!isMobile}>Категории</Link>
-                <Link to={paths.aboutUs} $isMobile={isMobile}>О нас</Link>
-                <Link to={paths.main} $isMobile={isMobile}>Главная</Link>
-                <Link to={paths.payment} $isMobile={isMobile}>Оплата</Link>
-                <Link to={paths.shipping} $isMobile={isMobile} $isBottom={true} $isRight={!isMobile}>Доставка</Link>
+                <Link to={Paths.categories} $isMobile={isMobile} $isTop={isMobile} $isLeft={!isMobile}>Категории</Link>
+                <Link to={Paths.contacts} $isMobile={isMobile}>Контакты</Link>
+                <Link to={Paths.aboutUs} $isMobile={isMobile}>О нас</Link>
+                <Link to={Paths.main} $isMobile={isMobile}>Главная</Link>
+                <Link to={Paths.payment} $isMobile={isMobile}>Оплата</Link>
+                <Link to={Paths.shipping} $isMobile={isMobile} $isBottom={true} $isRight={!isMobile}>Доставка</Link>
             </Wrapper>
         )
     );
