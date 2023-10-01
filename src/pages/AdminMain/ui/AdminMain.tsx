@@ -1,18 +1,13 @@
 import React, {useState} from 'react';
 import * as Styles from './AdminMain.styles';
 import {CatalogContent} from "./CatalogContent";
+import {CATEGORIES} from "../api";
 
 export const AdminMain = () => {
     const [isCatalogOpen, setCatalogOpen] = useState(false);
     const handleCatalogButtonClick = function () {
         setCatalogOpen(prev => !prev);
     }
-    const categories = [
-        {
-            title: 'category',
-            subCategories: ['subCategory', 'subCategory'],
-        },
-    ];
 
     return (
         <Styles.Wrapper>
@@ -32,7 +27,7 @@ export const AdminMain = () => {
                     )}
                     </Styles.CatalogTitle>
                     {isCatalogOpen && (
-                        <CatalogContent categories={categories}/>
+                        <CatalogContent categories={CATEGORIES}/>
                     )}
                 </Styles.CatalogButton>
             </Styles.SectionButtonsWrapper>
