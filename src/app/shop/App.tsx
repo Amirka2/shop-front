@@ -21,6 +21,9 @@ import {
     ProductsPage,
     ContactsPage,
 } from "@/pages";
+import {AdminMain} from "@/pages/AdminMain";
+import {AdminCategory} from "@/pages/AdminCategory";
+import {AdminSubCategory} from "@/pages/AdminSubCategory";
 
 export function App() {
     let isMobile = useMobileOrDesktop();
@@ -58,6 +61,10 @@ export function App() {
                     <Route path={Paths.cart} element={<CartPage />} />
                     <Route path={Paths.payment} element={<PaymentPage />} />
                     <Route path={Paths.shipping} element={<ShippingPage />} />
+
+                    <Route path={Paths.admin} element={<AdminMain />} />
+                    <Route path={Paths.adminCategory} element={<AdminCategory />} />
+                    <Route path={Paths.adminSubCategory} element={<AdminSubCategory />} />
                 </Routes>
                 <Footer />
             </MainWrapper>

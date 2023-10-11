@@ -1,6 +1,4 @@
-import {IPaths} from "./interfaces";
-
-export const Paths: IPaths = {
+export const Paths = {
     main: '/',
     categories: '/categories',
     category: '/categories/:name',
@@ -14,4 +12,7 @@ export const Paths: IPaths = {
     payment: '/payment',
     cart: '/cart',
     notFound: '/not-found',
+    admin: '/admin',
+    adminCategory: '/admin/categories',
+    adminSubCategory: '/admin/subcategories',
 }

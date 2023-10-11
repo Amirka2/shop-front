@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react';
 
-import {CATEGORIES, createCategory} from '../api';
+import {Container} from "@/shared/components";
 
+import {CATEGORIES, createCategory} from '../api';
 import * as Styles from './AdminCategory.styles';
 
 export const AdminCategory = () => {
@@ -23,37 +24,43 @@ export const AdminCategory = () => {
     }, [reloadRef])
 
     return (
-        <Styles.Wrapper>
-            <Styles.Categories>
-                {CATEGORIES.map(category => {
-                    return (
-                        <Styles.Category>
-                            <h1>{category.title}</h1>
-                            <ul>
-                                {category.subCategories.map(subCategory => <li>{subCategory}</li>)}
-                            </ul>
-                        </Styles.Category>
-                    )
-                })}
-            </Styles.Categories>
-            <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
-                {isEditorOpen ? '-' : '+'}
-            </Styles.AddCategory>
-            {isEditorOpen && (
-                <Styles.EditorWindow>
-                    <Styles.Editor
-                        value={categoryName}
-                        placeholder={'Название категории'}
-                        onChange={handleChange}
-                    />
-                    <Styles.SaveButton
-                        ref={reloadRef}
-                        onClick={handleSave}
-                    >
-                        Сохранить
-                    </Styles.SaveButton>
-                </Styles.EditorWindow>
-            )}
-        </Styles.Wrapper>
+        <main>
+            <Container>
+                <Styles.Wrapper>
+                    <Styles.AddCategoryWrapper>
+                        <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
+                            {isEditorOpen ? '-' : '+'}
+                        </Styles.AddCategory>
+                    </Styles.AddCategoryWrapper>
+                    <Styles.Categories>
+                        {CATEGORIES.map(category => {
+                            return (
+                                <Styles.Category>
+                                    <h1>{category.title}</h1>
+                                    <ul>
+                                        {category.subCategories.map(subCategory => <li>{subCategory}</li>)}
+                                    </ul>
+                                </Styles.Category>
+                            )
+                        })}
+                    </Styles.Categories>
+                    {isEditorOpen && (
+                        <Styles.EditorWindow>
+                            <Styles.Editor
+                                value={categoryName}
+                                placeholder={'Название категории'}
+                                onChange={handleChange}
+                            />
+                            <Styles.SaveButton
+                                ref={reloadRef}
+                                onClick={handleSave}
+                            >
+                                Сохранить
+                            </Styles.SaveButton>
+                        </Styles.EditorWindow>
+                    )}
+                </Styles.Wrapper>
+            </Container>
+        </main>
     );
 };
