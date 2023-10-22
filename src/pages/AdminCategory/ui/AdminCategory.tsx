@@ -4,6 +4,11 @@ import {Container} from "@/shared/components";
 
 import {CATEGORIES, createCategory} from '../api';
 import * as Styles from './AdminCategory.styles';
+import {SubCategories} from "./SubCategories";
+import {subCategories as SubCategoriesData} from "@/app/shop/mock";
+import {Editor} from "./Editor";
+import {useNavigate} from "react-router";
+import {Back} from "@/shared/ui";
 
 export const AdminCategory = () => {
     const [isEditorOpen, setEditorOpen] = useState(false);
@@ -23,42 +28,49 @@ export const AdminCategory = () => {
         console.log('rerendered');
     }, [reloadRef])
 
+    const navigate = useNavigate();
+
     return (
         <main>
             <Container>
                 <Styles.Wrapper>
-                    <Styles.AddCategoryWrapper>
-                        <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
-                            {isEditorOpen ? '-' : '+'}
-                        </Styles.AddCategory>
-                    </Styles.AddCategoryWrapper>
-                    <Styles.Categories>
-                        {CATEGORIES.map(category => {
-                            return (
-                                <Styles.Category>
-                                    <h1>{category.title}</h1>
-                                    <ul>
-                                        {category.subCategories.map(subCategory => <li>{subCategory}</li>)}
-                                    </ul>
-                                </Styles.Category>
-                            )
-                        })}
-                    </Styles.Categories>
-                    {isEditorOpen && (
-                        <Styles.EditorWindow>
-                            <Styles.Editor
-                                value={categoryName}
+                    <Styles.BackButton onClick={() => navigate(-1)}>
+                        <Back />
+                    </Styles.BackButton>
+
+                    <Styles.ContentWrapper>
+                        <Styles.AddCategoryWrapper>
+                            <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
+                                {isEditorOpen ? '-' : '+'}
+                            </Styles.AddCategory>
+                        </Styles.AddCategoryWrapper>
+
+                        <Styles.Categories>
+                            {CATEGORIES.map(category => {
+                                return (
+                                    <Styles.Category>
+                                        <Styles.Title>
+                                            {category.title}
+                                        </Styles.Title>
+                                        <SubCategories
+                                            categoryId={category.id}
+                                            subCategories={SubCategoriesData}
+                                        />
+                                    </Styles.Category>
+                                )
+                            })}
+                        </Styles.Categories>
+
+                        {isEditorOpen && (
+                            <Editor
+                                inputState={categoryName}
                                 placeholder={'Название категории'}
-                                onChange={handleChange}
-                            />
-                            <Styles.SaveButton
+                                handleChange={handleChange}
+                                handleSave={handleSave}
                                 ref={reloadRef}
-                                onClick={handleSave}
-                            >
-                                Сохранить
-                            </Styles.SaveButton>
-                        </Styles.EditorWindow>
-                    )}
+                            />
+                        )}
+                    </Styles.ContentWrapper>
                 </Styles.Wrapper>
             </Container>
         </main>

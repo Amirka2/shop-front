@@ -2,11 +2,21 @@ import {styled} from "styled-components";
 import {Color} from "@/shared/constants";
 
 export const Wrapper = styled.div`
+  
+`;
+
+// TODO исправить размеры кнопки на незахардкоженные
+export const BackButton = styled.button`
+  background-color: transparent;
+  max-width: 70px;
+  max-height: 70px;
+  cursor: pointer;
+`;
+
+export const ContentWrapper = styled.div`
+  margin-top: 135px;
   display: flex;
-  gap: 32px;
-  min-height: 50vh;
-  width: 100%;
-  min-width: 1000px;
+  min-width: 500px;
 `;
 
 export const Categories = styled.div`
@@ -21,6 +31,17 @@ export const Category = styled.div`
   padding: 16px;
 `;
 
+export const Title = styled.h2`
+  color: ${Color.blue};
+
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  
+  margin-bottom: 15px;
+`;
+
 export const AddCategoryWrapper = styled.div`
   min-height: 200px;
   display: flex;
@@ -28,40 +49,16 @@ export const AddCategoryWrapper = styled.div`
 `;
 
 export const AddCategory = styled.button`
-  max-width: 60px;
-  max-height: 60px;
+  width: 50px;
+  height: 50px;
   background-color: ${Color.blue};
   color: ${Color.white};
   padding: 20px;
-  border-radius: 16px;
-  
+  border-radius: 10px;
+  font-weight: 700;
+
   &:hover {
     transform: scale(105%);
   }
 `;
 
-export const EditorWindow = styled.div`
-  max-height: 200px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-  padding: 8px;
-  border-radius: 16px;
-  background-color: ${Color.gray};
-  justify-self: flex-end;
-`;
-
-export const Editor = styled.input`
-  min-width: 300px;
-  padding: 10px;
-  border-radius: 16px;
-  border: 1px solid ${Color.black};
-`;
-
-export const SaveButton = styled.button`
-  background-color: ${Color.blue};
-  color: ${Color.white};
-  padding: 10px;
-  border-radius: 8px;
-`;

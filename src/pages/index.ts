@@ -9,4 +9,5 @@ export {PaymentPage} from './Payment';
 export {ProductPage} from './Product';
 export {SubCategoriesPage} from './SubCategories';
 export {ProductsPage} from './Products';
-
+export { AdminMain } from './AdminMain';
+export { AdminCategory } from './AdminCategory';

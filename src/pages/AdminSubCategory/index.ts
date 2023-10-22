@@ -1,1 +1,0 @@
-export {AdminSubCategory} from './ui';
