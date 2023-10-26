@@ -11,3 +11,4 @@ export {SubCategoriesPage} from './SubCategories';
 export {ProductsPage} from './Products';
 export { AdminMain } from './AdminMain';
 export { AdminCategory } from './AdminCategory';
+export { SubCategory } from './AdminSubCategory';

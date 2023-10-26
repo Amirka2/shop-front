@@ -8,6 +8,7 @@ export {NavBar} from './navbar';
 export {Card} from './Card';
 export {BurgerMenu} from './BurgerMenu';
 export {Container} from './Container';
+export {AdminProductCard} from './AdminProductCard';
 export * from './Icons';
 
 export type {CategoriesProps} from './Categories';

@@ -22,6 +22,7 @@ import {
     ContactsPage,
     AdminMain,
     AdminCategory,
+    SubCategory,
 } from "@/pages";
 
 export function App() {
@@ -63,6 +64,7 @@ export function App() {
 
                     <Route path={Paths.admin} element={<AdminMain />} />
                     <Route path={Paths.adminCategory} element={<AdminCategory />} />
+                    <Route path={'admin/:categoryId/:subCategoryId'} element={<SubCategory />} />
                 </Routes>
                 <Footer />
             </MainWrapper>
