@@ -2,7 +2,8 @@ import { styled } from 'styled-components';
 import { Color } from "@/shared/constants";
 
 export const Wrapper = styled.div`
-  width: 1240px;
+  min-width: 1240px;
+  width: 100%;
   height: 100px;
   background-color: ${Color.blue};
   color: ${Color.white};

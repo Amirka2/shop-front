@@ -7,7 +7,7 @@ export {Footer} from './footer';
 export {NavBar} from './navbar';
 export {Card} from './Card';
 export {BurgerMenu} from './BurgerMenu';
-export {Container} from './Container';
+export {Container} from '../ui/Container';
 export {AdminProductCard} from './AdminProductCard';
 export * from './Icons';
 
