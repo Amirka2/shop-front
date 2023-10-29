@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from "react-router";
 import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
-import { AdminProductCard } from "@/shared/components";
+import { AdminHeader, AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 
 import * as Styles from './SubCategories.styles';
-import {Back, Plus} from "@/shared/ui";
+import { Plus } from "@/shared/ui";
 
 export const SubCategory = () => {
     const navigate = useNavigate();
@@ -31,15 +31,7 @@ export const SubCategory = () => {
     return (
         <Container>
             <Styles.Wrapper>
-                <Styles.HeaderWrapper>
-                    <Styles.BackButton onClick={() => navigate(-1)}>
-                        <Back />
-                    </Styles.BackButton>
-                    <Styles.BreadCrumbs>
-                        text/moretext
-                    </Styles.BreadCrumbs>
-                    <Styles.Placeholder />
-                </Styles.HeaderWrapper>
+                <AdminHeader title={'text/more'} />
                 <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
                     <Plus />
                 </Styles.AddButton>
