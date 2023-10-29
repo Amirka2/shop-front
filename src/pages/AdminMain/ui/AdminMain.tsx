@@ -9,7 +9,9 @@ export const AdminMain = () => {
             <Styles.Wrapper>
                 <Styles.SmallButton to={Paths.main}>Выйти</Styles.SmallButton>
                 <Styles.SectionButtonsWrapper>
-                    <Styles.BigButton to={Paths.adminBestSellers}>BestSeller</Styles.BigButton>
+                    <Styles.BigButton to={Paths.adminBestSellers}>
+                        BestSeller
+                    </Styles.BigButton>
                     <Styles.BigButton to={Paths.adminCategory}>
                         Каталог товаров
                     </Styles.BigButton>

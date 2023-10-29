@@ -34,6 +34,7 @@ export const SmallButton = styled(Button)`
 `;
 
 export const BigButton = styled(Button)`
+  text-align: center;
   min-width: 45%;
   font-size: 48px;
   padding: 50px 135px;
