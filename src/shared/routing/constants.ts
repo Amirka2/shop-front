@@ -13,7 +13,8 @@ export const Paths = {
     cart: '/cart',
     notFound: '/not-found',
     admin: '/admin',
-    adminCategory: '/admin/categories',
-    adminSubCategory: '/admin/subcategories',
     adminBestSellers: '/admin/best-sellers',
+    adminCategory: '/admin/categories',
+    adminSubCategory: '/admin/:categoryId/:subCategoryId',
+    adminProduct: '/admin/:categoryId/:subCategoryId/:productId',
 }
