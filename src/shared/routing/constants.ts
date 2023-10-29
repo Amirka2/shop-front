@@ -15,4 +15,5 @@ export const Paths = {
     admin: '/admin',
     adminCategory: '/admin/categories',
     adminSubCategory: '/admin/subcategories',
+    adminBestSellers: '/admin/best-sellers',
 }
