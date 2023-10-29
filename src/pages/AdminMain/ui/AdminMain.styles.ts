@@ -3,10 +3,8 @@ import {Color} from "@/shared/constants";
 import {Link} from "react-router-dom";
 
 export const Wrapper = styled.div`
-  margin: 0 auto;
-  width: fit-content;
+  width: 100%;
   min-height: 100vh;
-  padding: 50px 70px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -14,6 +12,7 @@ export const Wrapper = styled.div`
 `;
 
 export const SectionButtonsWrapper = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-around;
   gap: 46px;
@@ -22,42 +21,21 @@ export const SectionButtonsWrapper = styled.div`
 const Button = styled(Link)`
   background-color: ${Color.blue};
   color: ${Color.white};
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-export const ExitButton = styled(Button)`
+export const SmallButton = styled(Button)`
   font-size: 32px;
   padding: 30px 75px;
   border-radius: 16px;
 `;
 
-export const SectionButton = styled(Button)`
+export const BigButton = styled(Button)`
+  min-width: 45%;
   font-size: 48px;
   padding: 50px 135px;
   border-radius: 30px;
-`;
-
-export const CatalogButton = styled.div`
-  background-color: ${Color.blue};
-  color: ${Color.white};
-  border-radius: 30px;
-  width: 490px;
-  padding: 50px 35px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
-  &:hover {
-    cursor: pointer;  
-  }
-  
-  & span {
-    font-size: 48px;
-  }
-`;
-
-export const CatalogTitle = styled.span`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
