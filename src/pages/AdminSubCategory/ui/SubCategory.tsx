@@ -7,11 +7,28 @@ import { Container } from '@/shared/ui';
 import * as Styles from './SubCategories.styles';
 import {Back, Plus} from "@/shared/ui";
 
+import {Editor} from "./Editor";
+
 export const SubCategory = () => {
     const navigate = useNavigate();
     const params = useParams();
     const subCategory = getSubCategoryProducts(Number(params.subCategoryId));
+    const [productName, setProductName] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    const [productDescription, setpProductDescription] = useState('');
     const [isEditorOpen, setEditorOpen] = useState(false);
+
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProductName(e.target.value)
+    }
+
+    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProductPrice(e.target.value)
+    }
+
+    const handleChangeDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setpProductDescription(e.target.value)
+    }
 
     const handleAddProduct = () => {
         const product = {
@@ -44,7 +61,13 @@ export const SubCategory = () => {
                     <Plus />
                 </Styles.AddButton>
                 {isEditorOpen && (
-                    <div style={{ height: '100px', border: '5px solid red'}}>Editor</div>
+                    <Editor
+                        placeholder={"input text"}
+                        textarea={''}
+                        handleNameChange={handleChangeName}
+                        handlePriceChange={handleChangePrice}
+                        handleDescriptionChange={handleChangeDescription}
+                    />
                 )}
                 <Styles.ProductsWrapper>
                     {subCategory.products.map(product => <AdminProductCard product={product} />)}
