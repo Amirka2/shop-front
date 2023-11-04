@@ -13,7 +13,7 @@ export const EditorWindow = styled.div`
   background-color: ${Color.gray};
 `;
 
-export const Editor = styled.input`
+export const Row = styled.input`
   min-width: 300px;
   padding: 10px;
   border-radius: 10px;
@@ -21,23 +21,36 @@ export const Editor = styled.input`
   font-size: 24px;
 `;
 
-export const Wrapper = styled.div`
+export const Input = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 8px;
   justify-content: space-between;
+  
 `;
 
 export const Title = styled.h4`
   color: ${Color.blue};
   font-size: 20px;
-  font-style: normal;
   font-weight: 500;
 `;
 
 export const CheckButton = styled.button`
-  
+  width: 100%;
+  color: ${Color.blue};
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
 `;
+
+export const Textarea = styled.textarea`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+`;
+
+
 

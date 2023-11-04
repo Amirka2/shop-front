@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import { useNavigate, useParams } from "react-router";
 import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
 import { AdminProductCard } from "@/shared/components";
@@ -15,7 +15,8 @@ export const SubCategory = () => {
     const subCategory = getSubCategoryProducts(Number(params.subCategoryId));
     const [productName, setProductName] = useState('');
     const [productPrice, setProductPrice] = useState('');
-    const [productDescription, setpProductDescription] = useState('');
+    const [productShortDescription, setProductShortDescription] = useState('');
+    const [productPhoto, setProductPhoto] = useState([]);
     const [isEditorOpen, setEditorOpen] = useState(false);
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,23 +28,32 @@ export const SubCategory = () => {
     }
 
     const handleChangeDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setpProductDescription(e.target.value)
+        setProductShortDescription(e.target.value)
     }
 
     const handleAddProduct = () => {
         const product = {
-            price: 1,
-            name: '',
-            inStock: false,
-            description: {
-                text: '',
-                tableText: [''],
-            },
-            shortDescription: 'string',
-            photos: [''],
+            price: Number(productPrice), 
+            name: productName,
+            shortDescription: productShortDescription,
+            photos: productPhoto,
         };
         addProduct(product);
+        console.log(product)
     }
+
+    const handleSave = () => {
+        handleAddProduct();
+        console.log(productPrice);
+        console.log(productName);
+        console.log(productShortDescription);
+        setEditorOpen(false);
+    }
+
+    const reloadRef = useRef(null);
+    useEffect(() => {
+        console.log('rerendered');
+    }, [reloadRef])
 
     return (
         <Container>
@@ -62,11 +72,13 @@ export const SubCategory = () => {
                 </Styles.AddButton>
                 {isEditorOpen && (
                     <Editor
-                        placeholder={"input text"}
-                        textarea={''}
+                        placeholder={""}
+                        textarea={""}
                         handleNameChange={handleChangeName}
                         handlePriceChange={handleChangePrice}
                         handleDescriptionChange={handleChangeDescription}
+                        handleSave={handleSave}
+                        ref={reloadRef}
                     />
                 )}
                 <Styles.ProductsWrapper>

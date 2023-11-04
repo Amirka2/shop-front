@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Styles from "./Editor.styles";
-//import {Check} from "@/shared/ui"
+import {Check} from "@/shared/ui"
 
 interface EditorProps{
     placeholder: string;
@@ -8,44 +8,47 @@ interface EditorProps{
     handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handlePriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handleDescriptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSave: () => void;
+    ref: any;
 }
-export const Editor = ({placeholder, textarea, handleNameChange, handlePriceChange, handleDescriptionChange}: EditorProps) => {
+export const Editor = ({placeholder, textarea, handleNameChange, handlePriceChange, handleDescriptionChange, handleSave, ref}: EditorProps) => {
     return (
         <Styles.EditorWindow>
-            <Styles.Wrapper>
+            <Styles.Input>
                 <Styles.Title>
                     Название
                 </Styles.Title>
-                <Styles.Editor
+                <Styles.Row
                     placeholder={placeholder}
                     onChange={handleNameChange}
                 />
-            </Styles.Wrapper>
-            <Styles.Wrapper>
+            </Styles.Input>
+            <Styles.Input>
                 <Styles.Title>
                     Цена
                 </Styles.Title>
-                <Styles.Editor
+                <Styles.Row
                     placeholder={placeholder}
                     onChange={handlePriceChange}
                 />
-            </Styles.Wrapper>
-            <Styles.Wrapper>
+            </Styles.Input>
+            <Styles.Input>
                 <Styles.Title>
                     Описание
                 </Styles.Title>
-                <Styles.Editor
+                <Styles.Row
+                    placeholder={textarea}
                     onChange={handleDescriptionChange}
                 />
-            </Styles.Wrapper>
-            <Styles.Wrapper>
+            </Styles.Input>
+            <Styles.Input>
                 <Styles.Title>
                     Фото
                 </Styles.Title>
-            </Styles.Wrapper>
-            <Styles.CheckButton>
-                {/*<Check />*/}
-            </Styles.CheckButton>
+            </Styles.Input>
+                <Styles.CheckButton ref={ref}>
+                    <Check onClick={handleSave}/>
+                </Styles.CheckButton>
         </Styles.EditorWindow>
 
     );
