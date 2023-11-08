@@ -1,8 +1,10 @@
 export interface IProduct {
     id: number;
     price: number;
+    isFixedPrice?: boolean;
     name: string;
     inStock: boolean;
+    nextArrivalDate?: string;
     description: IDescriptionData;
     shortDescription: string;
     photos: Array<string>;

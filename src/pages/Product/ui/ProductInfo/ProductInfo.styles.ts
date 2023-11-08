@@ -15,6 +15,9 @@ export const ProductName = styled.h4`
 `;
 
 export const ProductAvailability = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   color: ${Color.black};
   font-size: 21px;
   font-style: normal;
@@ -52,7 +55,7 @@ export const YesText = styled.span`
 `;
 
 export const NoText = styled.span`
-    color: ${Color.gray}; // Красный цвет для "Нет"
+    color: ${Color.darkGray}; // Красный цвет для "Нет"
 `;
 
 export const AddToCartButton = styled.button`

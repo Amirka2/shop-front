@@ -38,6 +38,7 @@ export const products: IProduct[] = [
     {
         id: 0,
         price: 13308,
+        isFixedPrice: true,
         inStock: true,
         photos: [
             '/photos/1.jpg',
@@ -78,6 +79,7 @@ export const products: IProduct[] = [
         id: 1,
         price: 11181,
         inStock: true,
+        isFixedPrice: true,
         photos: [
             '/photos/6.jpg',
             '/photos/7.jpg',
@@ -114,8 +116,9 @@ export const products: IProduct[] = [
     },
     {
         id: 2,
-        price: 83357,
-        inStock: true,
+        price: 73900,
+        isFixedPrice: false,
+        inStock: false,
         photos: [
             '/photos/11.jpg',
             '/photos/12.jpg',
@@ -196,8 +199,10 @@ export const products: IProduct[] = [
     },
     {
         id: 3,
-        price: 100211,
-        inStock: true,
+        price: 82000,
+        isFixedPrice: false,
+        inStock: false,
+        nextArrivalDate: 'В ноябре 2023 года',
         photos: [
             '/photos/16.jpg',
             '/photos/17.jpg',

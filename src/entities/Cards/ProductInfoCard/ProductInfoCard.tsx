@@ -13,7 +13,7 @@ export const ProductInfoCard = (props: IProduct) => {
             <ProductCardInfo>
                 <h3><NavLink to={props.name}>{props.name}</NavLink></h3>
                 <span>В наличии: {props.inStock ? 'Да' : 'Нет'}</span>
-                <span>Цена: {props.price } руб.</span>
+                <span>Цена: {`${!props.isFixedPrice ? 'от' : ''} ${props.price} руб.`}</span>
             </ProductCardInfo>
         </Wrapper>
     );
