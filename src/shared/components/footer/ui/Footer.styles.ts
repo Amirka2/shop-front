@@ -8,6 +8,7 @@ export const Wrapper = styled.div<{
   display: flex;
   justify-content: space-between;
   flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+  gap: 10px;
 `;
 
 export const MainWrapper = styled.footer<{

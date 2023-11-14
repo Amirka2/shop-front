@@ -13,7 +13,7 @@ export const FooterInfo = () => {
             </Item>
             <Item $isMobile={isMobile}>
                 <img src='/icons/watch.png' alt={'icon'}/>
-                <span>Быстрая обратная свзяь</span>
+                <span>Быстрая обратная связь</span>
             </Item>
             <Item $isMobile={isMobile}>
                 <img src='/icons/cheer.png' alt={'icon'}/>

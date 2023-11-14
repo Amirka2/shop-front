@@ -8,9 +8,9 @@ export const Item = styled.div<{
   display: flex;
   justify-content: ${props => props.$isMobile ? 'flex-start' : 'space-between'};
   align-items: center;
-  font-size: 20px;
+  font-size: 18px;
   & img {
-    width: 50px;
+    width: 42px;
     max-height: 60px;
     margin-right: 15px;
   }
