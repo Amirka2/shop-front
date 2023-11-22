@@ -1,27 +1,45 @@
 import { styled } from "styled-components";
-import { MainWrapper } from "@/shared/components";
 import { Color } from "@/shared/constants";
 import { mediaQueries } from "@/shared/constants/mediaQueries";
 
-export const WrapperAddress = styled(MainWrapper)`
+export const WrapperAddress = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  gap: 32px;
   
-  padding: 20px, 0px;
+  padding: 20px 0px;
+
+  ${mediaQueries.gt.Tablet} {
+    flex-direction: row;
+  }
+`;
+
+export const WrapperContact = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 20px 0px;
+
+
+  ${mediaQueries.gt.Tablet} {
+    flex-direction: row;
+    align-items: start;
+  }
 `;
 
 export const ContentAddress = styled.div`
   background-color: ${Color.white};
   width: 100%;
-  height: 55vh;
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   justify-content: center;
-  margin-right: 32px;
   padding: 30px;
   
   -webkit-box-shadow: 0 7px 45px 5px rgba(0,0,0,0.12);
@@ -58,18 +76,6 @@ export const TextAddress = styled.p`
 
 export const ContainerAdress = styled.div`
   margin-bottom: 32px;  
-`;
-
-
-
-export const WrapperContact = styled(MainWrapper)`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: start;
-  
-  padding: 20px, 0px;
 `;
 
 export const HeaderContact = styled.h3`
@@ -135,4 +141,3 @@ export const IconContact = styled.div<{
     height: 100%;
   }
 `;
- 

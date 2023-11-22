@@ -18,17 +18,17 @@ export const ContactsPage = () => {
                         <Styles.TextAddress>Сб, Вс: Выходной</Styles.TextAddress>
                     </Styles.ContainerAdress>
                 </Styles.ContentAddress>
-                <Styles.ContentAddress>
-                    <Styles.ContainerAdress>
-                        <Styles.HeaderAddress>Наш адресс</Styles.HeaderAddress>
-                        <Styles.TextAddress>г.Москва, Токмаков переулок, д14 стр 3</Styles.TextAddress>
-                    </Styles.ContainerAdress>
-                    <Styles.ContainerAdress>
-                        <Styles.HeaderAddress>Время работы</Styles.HeaderAddress>
-                        <Styles.TextAddress>Пн-Пт: 9:00-18:00, без перерыва</Styles.TextAddress>
-                        <Styles.TextAddress>Сб, Вс: Выходной</Styles.TextAddress>
-                    </Styles.ContainerAdress>
-                </Styles.ContentAddress>
+                {/*<Styles.ContentAddress>*/}
+                {/*    <Styles.ContainerAdress>*/}
+                {/*        <Styles.HeaderAddress>Наш адресс</Styles.HeaderAddress>*/}
+                {/*        <Styles.TextAddress>г.Москва, Токмаков переулок, д14 стр 3</Styles.TextAddress>*/}
+                {/*    </Styles.ContainerAdress>*/}
+                {/*    <Styles.ContainerAdress>*/}
+                {/*        <Styles.HeaderAddress>Время работы</Styles.HeaderAddress>*/}
+                {/*        <Styles.TextAddress>Пн-Пт: 9:00-18:00, без перерыва</Styles.TextAddress>*/}
+                {/*        <Styles.TextAddress>Сб, Вс: Выходной</Styles.TextAddress>*/}
+                {/*    </Styles.ContainerAdress>*/}
+                {/*</Styles.ContentAddress>*/}
             </Styles.WrapperAddress>
             <Styles.WrapperContact>
                 <Styles.ContentContact>
