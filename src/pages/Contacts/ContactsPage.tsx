@@ -2,11 +2,19 @@ import React from 'react';
 import * as Styles from './ContactsPage.styles';
 import {contacts} from '@/app/shop/mock';
 import { Container } from "@/shared/ui/Container";
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 export const ContactsPage = () => {
     return (
         <Container>
             <Styles.WrapperAddress>
+                <Styles.ContentAddress>
+                    <YMaps>
+                        <Map defaultState={{ center: [55.764805, 37.669567], zoom: 16 }}>
+                            <Placemark geometry={[55.764805, 37.669567]} />
+                        </Map>
+                    </YMaps>
+                </Styles.ContentAddress>
                 <Styles.ContentAddress>
                     <Styles.ContainerAdress>
                         <Styles.HeaderAddress>Наш адресс</Styles.HeaderAddress>
@@ -18,17 +26,6 @@ export const ContactsPage = () => {
                         <Styles.TextAddress>Сб, Вс: Выходной</Styles.TextAddress>
                     </Styles.ContainerAdress>
                 </Styles.ContentAddress>
-                {/*<Styles.ContentAddress>*/}
-                {/*    <Styles.ContainerAdress>*/}
-                {/*        <Styles.HeaderAddress>Наш адресс</Styles.HeaderAddress>*/}
-                {/*        <Styles.TextAddress>г.Москва, Токмаков переулок, д14 стр 3</Styles.TextAddress>*/}
-                {/*    </Styles.ContainerAdress>*/}
-                {/*    <Styles.ContainerAdress>*/}
-                {/*        <Styles.HeaderAddress>Время работы</Styles.HeaderAddress>*/}
-                {/*        <Styles.TextAddress>Пн-Пт: 9:00-18:00, без перерыва</Styles.TextAddress>*/}
-                {/*        <Styles.TextAddress>Сб, Вс: Выходной</Styles.TextAddress>*/}
-                {/*    </Styles.ContainerAdress>*/}
-                {/*</Styles.ContentAddress>*/}
             </Styles.WrapperAddress>
             <Styles.WrapperContact>
                 <Styles.ContentContact>
