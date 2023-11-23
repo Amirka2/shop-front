@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { Color } from "@/shared/constants";
 import { mediaQueries } from "@/shared/constants/mediaQueries";
+import {YMaps} from "@pbe/react-yandex-maps";
 
 export const WrapperAddress = styled.div`
   width: 100%;
@@ -36,9 +37,10 @@ export const WrapperContact = styled.div`
 export const ContentAddress = styled.div`
   background-color: ${Color.white};
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding: 30px;
   
@@ -48,6 +50,10 @@ export const ContentAddress = styled.div`
   &:last-child {
     margin-right: 0px;
   }
+`;
+
+export const TextWrapper = styled.div`
+  width: 100%;
 `;
 
 export const Text = styled.p`
