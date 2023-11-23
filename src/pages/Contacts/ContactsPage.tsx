@@ -10,7 +10,7 @@ export const ContactsPage = () => {
             <Styles.WrapperAddress>
                 <Styles.ContentAddress>
                     <YMaps>
-                        <Map defaultState={{ center: [55.764805, 37.669567], zoom: 16 }} width="100%" height="100%">
+                        <Map defaultState={{ center: [55.764805, 37.669567], zoom: 16 }} width="100%">
                             <Placemark geometry={[55.764805, 37.669567]} />
                         </Map>
                     </YMaps>
