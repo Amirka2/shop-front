@@ -17,7 +17,7 @@ export const ContactsPage = () => {
                 </Styles.ContentAddress>
                 <Styles.ContentAddress>
                     <Styles.TextWrapper>
-                        <Styles.HeaderAddress>Наш адресс</Styles.HeaderAddress>
+                        <Styles.HeaderAddress>Наш адрес</Styles.HeaderAddress>
                         <Styles.TextAddress>г.Москва, Токмаков переулок, д14 стр 3</Styles.TextAddress>
                     </Styles.TextWrapper>
                     <Styles.TextWrapper>
