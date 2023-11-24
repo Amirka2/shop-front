@@ -1,7 +1,6 @@
 import { styled } from "styled-components";
 import { Color } from "@/shared/constants";
 import { mediaQueries } from "@/shared/constants/mediaQueries";
-import {YMaps} from "@pbe/react-yandex-maps";
 
 export const WrapperAddress = styled.div`
   width: 100%;
@@ -38,7 +37,6 @@ export const ContentAddress = styled.div`
   background-color: ${Color.white};
   width: 100%;
   height: 100%;
-  max-height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,6 +45,10 @@ export const ContentAddress = styled.div`
   
   -webkit-box-shadow: 0 7px 45px 5px rgba(0,0,0,0.12);
   box-shadow: 0 7px 45px 5px rgba(0,0,0,0.12);
+  
+  ${mediaQueries.gt.Tablet} {
+    max-height: 300px;
+  }
 `;
 
 export const TextWrapper = styled.div`
