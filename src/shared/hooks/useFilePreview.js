@@ -31,7 +31,7 @@ const useFilePreview = () => {
 
     const previewContent = (
         <Modal
-            visible={previewVisibility}
+            open={previewVisibility}
             title={previewTitle}
             footer={null}
             onCancel={hidePreview}
