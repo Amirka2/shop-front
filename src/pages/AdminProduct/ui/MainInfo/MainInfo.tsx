@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 
 import { Edit, Plus } from "@/shared/ui";
+import { DragAndDrop } from "@/shared/components/DragAndDrop";
+import useFileSelection from "@/shared/hooks/useFileSelection";
 
 import * as Styles from './MainInfo.styles';
 
 export const MainInfo = () => {
     const [productName, setProductNameChange] = useState('Product name');
     const [productPrice, setProductPriceChange] = useState('0');
+    const [addFile, removeFile] = useFileSelection();
 
     const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProductNameChange(e.currentTarget.value);
@@ -31,8 +34,9 @@ export const MainInfo = () => {
                     <Edit />
                 </Styles.EditIconButton>
             </Styles.Header>
-            {/* TODO Заменить на компонент с фото */}
-            <Styles.Photos />
+            <Styles.Photos>
+                <DragAndDrop addFile={addFile} removeFile={removeFile}/>
+            </Styles.Photos>
             <Styles.Footer>
                 <Styles.Input
                     as="input"
