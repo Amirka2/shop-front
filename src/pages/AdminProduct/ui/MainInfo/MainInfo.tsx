@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Edit, Plus } from "@/shared/ui";
 import { DragAndDrop } from "@/shared/components/DragAndDrop";
 import useFileSelection from "@/shared/hooks/useFileSelection";
 
 import * as Styles from './MainInfo.styles';
+import { useStores } from "@/shared/hooks";
 
 export const MainInfo = () => {
-    const [productName, setProductNameChange] = useState('Product name');
-    const [productPrice, setProductPriceChange] = useState('0');
+    const { adminProductStore } = useStores();
     const [addFile, removeFile] = useFileSelection();
+    const { product } = adminProductStore;
 
     const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setProductNameChange(e.currentTarget.value);
+        const newName = e.currentTarget.value;
+        adminProductStore.changeState({
+            ...product,
+            name: newName,
+        })
     }
 
     const handleProductPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setProductPriceChange(e.currentTarget.value);
+        const newPrice = e.currentTarget.value;
+        adminProductStore.changeState({
+            ...product,
+            price: Number(newPrice),
+        })
     }
 
     return (
@@ -27,7 +36,8 @@ export const MainInfo = () => {
                 </Styles.Button>
                 <Styles.Input
                     as="input"
-                    value={productName}
+                    placeholder={'Название товара'}
+                    value={product?.name}
                     onChange={handleProductNameChange}
                 />
                 <Styles.EditIconButton>
@@ -40,7 +50,8 @@ export const MainInfo = () => {
             <Styles.Footer>
                 <Styles.Input
                     as="input"
-                    value={productPrice}
+                    placeholder={'Цена товара'}
+                    value={product?.price}
                     onChange={handleProductPriceChange}
                 />
                 <Styles.EditIconButton>
