@@ -1,13 +1,13 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate, useParams } from "react-router";
 import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
 import { AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 
 import * as Styles from './SubCategories.styles';
-import {Back, Plus} from "@/shared/ui";
+import { Back, Plus } from "@/shared/ui";
 
-import {Editor} from "./Editor";
+import { Editor } from "./Editor";
 
 export const SubCategory = () => {
     const navigate = useNavigate();
@@ -39,14 +39,10 @@ export const SubCategory = () => {
             photos: productPhoto,
         };
         addProduct(product);
-        console.log(product)
     }
 
     const handleSave = () => {
         handleAddProduct();
-        console.log(productPrice);
-        console.log(productName);
-        console.log(productShortDescription);
         setEditorOpen(false);
     }
 
@@ -72,7 +68,6 @@ export const SubCategory = () => {
                 </Styles.AddButton>
                 {isEditorOpen && (
                     <Editor
-                        placeholder={""}
                         textarea={""}
                         handleNameChange={handleChangeName}
                         handlePriceChange={handleChangePrice}

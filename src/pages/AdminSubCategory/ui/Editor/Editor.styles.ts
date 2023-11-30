@@ -1,12 +1,10 @@
-import {styled} from "styled-components";
-import {Color} from "@/shared/constants";
+import { styled } from "styled-components";
+import { Color } from "@/shared/constants";
 
 export const EditorWindow = styled.div`
-  max-height: min-content;
   max-width: min-content;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: 10px;
   padding: 10px;
   border-radius: 16px;
@@ -18,7 +16,7 @@ export const Row = styled.input`
   padding: 10px;
   border-radius: 10px;
   border: 1px solid ${Color.blue};
-  font-size: 24px;
+  font-size: 20px;
 `;
 
 export const Input = styled.div`
@@ -27,13 +25,15 @@ export const Input = styled.div`
   align-items: center;
   gap: 8px;
   justify-content: space-between;
-  
+  //font-family: Ubuntu;
 `;
 
 export const Title = styled.h4`
   color: ${Color.blue};
   font-size: 20px;
-  font-weight: 500;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const CheckButton = styled.button`
@@ -42,6 +42,7 @@ export const CheckButton = styled.button`
   padding: 10px;
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 `;
 
 export const Textarea = styled.textarea`
@@ -50,6 +51,12 @@ export const Textarea = styled.textarea`
   align-items: center;
   gap: 8px;
   justify-content: space-between;
+`;
+
+export const Elements = styled.div`
+  display: flex;
+  align-items: center;  
+  width: 100%;
 `;
 
 
