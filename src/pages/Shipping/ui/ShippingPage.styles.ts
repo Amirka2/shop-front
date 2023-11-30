@@ -1,9 +1,9 @@
 import { styled } from "styled-components";
-import { MainWrapper } from "@/shared/components";
+
 import { Color } from "@/shared/constants";
 import { mediaQueries } from "@/shared/constants/mediaQueries";
 
-export const Wrapper = styled(MainWrapper)`
+export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -15,6 +15,7 @@ export const Wrapper = styled(MainWrapper)`
 export const Content = styled.div`
   background-color: ${Color.white};
   
+  width: 100%;
   padding: 30px;
   
   -webkit-box-shadow: 0 7px 45px 5px rgba(0,0,0,0.12);
@@ -31,7 +32,7 @@ export const Text = styled.p`
 `;
 
 export const BoldText = styled(Text)`
-  font-weight: 500;
+  font-weight: 700;
 `;
 
 export const ContentAddress = styled.div`

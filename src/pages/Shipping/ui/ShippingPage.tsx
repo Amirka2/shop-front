@@ -1,12 +1,14 @@
 import React from 'react';
+import { Map, Placemark, YMaps } from "@pbe/react-yandex-maps";
+
+import { MainWrapper } from "@/shared/components";
+import { Container } from "@/shared/ui/Container";
+
 import * as Styles from "@/pages/Shipping/ui/ShippingPage.styles";
-import {Container} from "@/shared/ui/Container";
-import {Map, Placemark, YMaps} from "@pbe/react-yandex-maps";
-import {Wrapper} from "@/pages/Shipping/ui/ShippingPage.styles";
 
 export const ShippingPage = () => {
     return (
-        <Wrapper>
+        <MainWrapper>
             <Container>
                 <Styles.Wrapper>
                     <Styles.Content>
@@ -14,9 +16,11 @@ export const ShippingPage = () => {
                             Уважаемые покупатели, оплаченные заказы Вы можете забрать
                             самостоятельно на нашем складе:
                         </Styles.Text>
-                        <Styles.BoldText>
-                            г. Челябинск, Курчатовский район, тракт Свердловский, д.8
-                        </Styles.BoldText>
+                        <a href="https://2gis.ru/chelyabinsk/geo/2111697980502336">
+                            <Styles.BoldText>
+                                г. Челябинск, Курчатовский район, тракт Свердловский, д.8
+                            </Styles.BoldText>
+                        </a>
                         <Styles.ContentAddress>
                             <YMaps>
                                 <Map defaultState={{ center: [55.232659, 61.366477], zoom: 16 }} width="100%">
@@ -33,6 +37,6 @@ export const ShippingPage = () => {
                     </Styles.Content>
                 </Styles.Wrapper>
             </Container>
-        </Wrapper>
+        </MainWrapper>
     );
 };

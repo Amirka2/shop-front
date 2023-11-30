@@ -1,11 +1,14 @@
 import React from 'react';
-import {Container} from "@/shared/ui/Container";
+
+import { MainWrapper } from "@/shared/components";
+import { Container } from "@/shared/ui/Container";
+import { contacts } from "@/app/shop/mock";
+
 import * as Styles from "@/pages/Payment/ui/PaymentPage.styles";
-import {Wrapper} from "@/pages/Payment/ui/PaymentPage.styles";
-import {contacts} from "@/app/shop/mock";
+
 export const PaymentPage = () => {
     return (
-        <Wrapper>
+        <MainWrapper>
             <Container>
                 <Styles.Wrapper>
                     <Styles.Content>
@@ -20,8 +23,15 @@ export const PaymentPage = () => {
                         </Styles.BoldText>
                         <Styles.Text>
                             Напишите нам
-                            по <Styles.Link href={contacts.whatsAppLink}>Whatsapp</Styles.Link> или <Styles.Link href={`mailto:${contacts.email}`}>электронной почте</Styles.Link> с
-                            вложенными реквизитами Вашей компании.
+                            по&nbsp;
+                            <Styles.Link href={contacts.whatsAppLink}>
+                                Whatsapp
+                            </Styles.Link>
+                            &nbsp;или&nbsp;
+                            <Styles.Link href={`mailto:${contacts.email}`}>
+                                электронной почте
+                            </Styles.Link>
+                            &nbsp;с вложенными реквизитами Вашей компании.
                         </Styles.Text>
                         <Styles.Text>
                             Если необходимо, то заключаем Договор на поставку.
@@ -32,6 +42,6 @@ export const PaymentPage = () => {
                     </Styles.Content>
                 </Styles.Wrapper>
             </Container>
-        </Wrapper>
+        </MainWrapper>
     );
 };
