@@ -30,12 +30,10 @@ export const Text = styled.p`
   }
 `;
 
-export const BoldText = styled.p`
-  margin-bottom: 20px;
-  font-size: 18px;
+export const BoldText = styled(Text)`
   font-weight: 500;
+`;
 
-  ${mediaQueries.gt.Mobile} {
-    font-size: 24px;
-  }
+export const Link = styled.a`
+  text-decoration: underline;
 `;
