@@ -22,16 +22,15 @@ export const PaymentPage = () => {
                             Для получения счета:
                         </Styles.BoldText>
                         <Styles.Text>
-                            Напишите нам
-                            по&nbsp;
+                            {'Напишите нам по '}
                             <Styles.Link href={contacts.whatsAppLink}>
                                 Whatsapp
                             </Styles.Link>
-                            &nbsp;или&nbsp;
+                            {' или '}
                             <Styles.Link href={`mailto:${contacts.email}`}>
                                 электронной почте
                             </Styles.Link>
-                            &nbsp;с вложенными реквизитами Вашей компании.
+                            {' с вложенными реквизитами Вашей компании.'}
                         </Styles.Text>
                         <Styles.Text>
                             Если необходимо, то заключаем Договор на поставку.
