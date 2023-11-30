@@ -118,7 +118,7 @@ export const products: IProduct[] = [
         id: 2,
         price: 73900,
         isFixedPrice: false,
-        inStock: false,
+        inStock: true,
         photos: [
             '/photos/11.jpg',
             '/photos/12.jpg',
@@ -202,7 +202,7 @@ export const products: IProduct[] = [
         price: 82000,
         isFixedPrice: false,
         inStock: false,
-        nextArrivalDate: 'В ноябре 2023 года',
+        nextArrivalDate: 'В декабре 2023 года',
         photos: [
             '/photos/16.jpg',
             '/photos/17.jpg',
