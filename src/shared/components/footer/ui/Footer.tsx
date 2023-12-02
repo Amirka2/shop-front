@@ -1,9 +1,11 @@
 import React from 'react';
-import * as Styles from "./Footer.styles";
+
 import {FooterNav} from "./FooterNav";
 import {FooterInfo} from "../ui/FooterInfo";
 import {useMobileOrDesktop} from "@/shared/hooks";
-import {HeaderContacts} from "@/entities";
+import {Contacts} from "@/entities";
+
+import * as Styles from "./Footer.styles";
 
 export const Footer = () => {
     const isMobile = useMobileOrDesktop();
@@ -13,10 +15,10 @@ export const Footer = () => {
             <Styles.Wrapper $isMobile={isMobile}>
                 <FooterNav/>
                 <FooterInfo/>
-                <HeaderContacts/>
+                <Contacts/>
             </Styles.Wrapper>
             <Styles.CopyRightWrapper>
-                <Styles.CopyRight>{new Date().getFullYear()} © constrspb</Styles.CopyRight>
+                {new Date().getFullYear()} © constrspb
             </Styles.CopyRightWrapper>
         </Styles.MainWrapper>
     );

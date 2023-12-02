@@ -1,1 +1,0 @@
-export {MobileContacts} from './MobileContacts';
