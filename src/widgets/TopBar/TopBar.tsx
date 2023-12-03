@@ -1,27 +1,26 @@
 import React, {useState} from 'react';
 
+import {Logo, NavBar} from '@/shared/components';
+import {CartButton} from './CartButton';
+import {useMobileOrDesktop} from "@/shared/hooks";
+import {Color} from "@/shared/constants";
+import {Contacts} from "@/entities/Contacts";
+import {BurgerMenu} from "@/shared/components";
+
 import {
     Wrapper,
     LogoContactsWrapper,
     Title,
     SearchWrapper,
     Textarea,
-    CartButtonWrapper,
     SearchModal
 } from "./TopBar.styles";
-
-import {Logo, NavBar} from '@/shared/components';
-import {CartButton} from './CartButton';
-import {useMobileOrDesktop} from "@/shared/hooks";
-import {Color} from "@/shared/constants";
-import {HeaderContacts} from "@/entities/Contacts";
-import {BurgerMenu} from "@/shared/components";
 
 export const TopBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const isMobile = useMobileOrDesktop();
-    const handleSearch = function () {
 
+    const handleSearch = function () {
     }
 
     return (
@@ -71,7 +70,7 @@ export const TopBar = () => {
                                     </g>
                                 </svg>
                             </SearchWrapper>
-                            <HeaderContacts/>
+                            <Contacts/>
                         </>
                     )
                 }

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import {ContactsWrapper, Wrapper} from "./MainPage.styles";
-
 import {products} from "@/app/shop/mock";
 import {ItemsGrid} from "@/shared/components";
-import { Contacts, IContacts} from '@/entities';
+import {IContacts} from '@/entities';
 import { ProductCard } from '@/widgets';
 import {useMobileOrDesktop} from "@/shared/hooks";
+
+import {Wrapper} from "./MainPage.styles";
 
 interface MainPageProps extends IContacts {
     itemsValue: number;
