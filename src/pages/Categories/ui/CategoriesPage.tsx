@@ -9,11 +9,11 @@ import { getCategories } from '../api'
 
 export const CategoriesPage = () => {
     const [categories, setCategories] = useState<ICategory[]>([]);
-    const response = getCategories();
 
     useEffect(() => {
+        const response = getCategories();
         response.then(result => setCategories(result))
-    }, [response])
+    }, [])
 
     let isMobile = useMobileOrDesktop();
     let width = isMobile ? 600 : 1000;

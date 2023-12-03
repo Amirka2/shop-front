@@ -10,11 +10,11 @@ import { getSubCategories } from '../api'
 export const SubCategoriesPage = () => {
     const [subCategories, setSubCategories] =
         useState<ISubCategory[]>([]);
-    const response = getSubCategories();
 
     useEffect(() => {
+        const response = getSubCategories();
         response.then(result => setSubCategories(result))
-    }, [response])
+    }, [])
 
     let isMobile = useMobileOrDesktop();
     let width = isMobile ? 600 : 1000;
