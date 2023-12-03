@@ -8,6 +8,7 @@ export const SliderContainer = styled.div.withConfig({
   width: ${props => props.isMobile ? '100%' : '60%'};
   height: 700px;
   flex-direction: ${props => props.isMobile ? 'column-reverse' : 'row'};
+  overflow: hidden;
 `;
 
 export const Thumbnails = styled.div.withConfig({
