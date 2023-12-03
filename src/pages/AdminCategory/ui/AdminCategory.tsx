@@ -14,6 +14,7 @@ import * as Styles from './AdminCategory.styles';
 export const AdminCategory = () => {
     const [isEditorOpen, setEditorOpen] = useState(false);
     const [categoryName, setCategoryName] = useState('');
+    
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCategoryName(e.target.value);
     }

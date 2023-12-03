@@ -11,6 +11,14 @@ export interface IProduct {
     usage?: IDescriptionData;
 }
 
+export interface ICreateProduct {
+    id: number;
+    price: number;
+    name: string;
+    shortDescription: string;
+    photos: Array<string>;
+}
+
 export interface IDescriptionData {
     text: string;
     tableText?: string[];

@@ -1,1 +1,1 @@
-export {AdminCategory} from './AdminCategory';
+export { AdminCategory } from './AdminCategory';
