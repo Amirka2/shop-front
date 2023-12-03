@@ -41,6 +41,8 @@ export const AddButton = styled.button`
   margin-bottom: 10px;
   cursor: pointer;
   
+  color: ${Color.white};
+  font-size: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

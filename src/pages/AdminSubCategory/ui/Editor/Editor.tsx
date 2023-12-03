@@ -3,16 +3,14 @@ import * as Styles from "./Editor.styles";
 import { Check } from "@/shared/ui"
 
 interface EditorProps{
-    textarea: string;
     handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     handlePriceChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    handleDescriptionChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    handleDescriptionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     handleSave: () => void;
     ref: any;
 
 }
 export const Editor = ({
-    textarea,
     handleNameChange,
     handlePriceChange,
     handleDescriptionChange,
@@ -43,7 +41,7 @@ export const Editor = ({
                 <Styles.Title>
                     Описание
                 </Styles.Title>
-                <Styles.Row
+                <Styles.Textarea
                     placeholder="Введите описание"
                     onChange={handleDescriptionChange}
                 />
@@ -59,6 +57,5 @@ export const Editor = ({
                 </Styles.Elements>
             </Styles.Input>
         </Styles.EditorWindow>
-
     );
 };

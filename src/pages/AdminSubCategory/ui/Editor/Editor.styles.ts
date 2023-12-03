@@ -9,6 +9,7 @@ export const EditorWindow = styled.div`
   padding: 10px;
   border-radius: 16px;
   background-color: ${Color.gray};
+  margin-bottom: 30px;
 `;
 
 export const Row = styled.input`
@@ -18,6 +19,16 @@ export const Row = styled.input`
   border: 1px solid ${Color.blue};
   font-size: 20px;
 `;
+
+export const Textarea = styled.textarea`
+  min-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid ${Color.blue};
+  font-size: 20px;
+  height: 100px;
+  resize: none;
+`
 
 export const Input = styled.div`
   width: 100%;
@@ -43,14 +54,6 @@ export const CheckButton = styled.button`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;
-`;
-
-export const Textarea = styled.textarea`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  justify-content: space-between;
 `;
 
 export const Elements = styled.div`

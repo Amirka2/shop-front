@@ -5,7 +5,7 @@ import { AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 
 import * as Styles from './SubCategories.styles';
-import { Back, Plus } from "@/shared/ui";
+import { Back } from "@/shared/ui";
 
 import { Editor } from "./Editor";
 
@@ -27,7 +27,7 @@ export const SubCategory = () => {
         setProductPrice(e.target.value)
     }
 
-    const handleChangeDescription = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setProductShortDescription(e.target.value)
     }
 
@@ -64,11 +64,10 @@ export const SubCategory = () => {
                     <Styles.Placeholder />
                 </Styles.HeaderWrapper>
                 <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
-                    <Plus />
+                    {isEditorOpen ? '-' : '+'}
                 </Styles.AddButton>
                 {isEditorOpen && (
                     <Editor
-                        textarea={""}
                         handleNameChange={handleChangeName}
                         handlePriceChange={handleChangePrice}
                         handleDescriptionChange={handleChangeDescription}
