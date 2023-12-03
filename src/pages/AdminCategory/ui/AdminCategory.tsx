@@ -3,12 +3,13 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Container} from "@/shared/components";
 
 import {CATEGORIES, createCategory} from '../api';
-import * as Styles from './AdminCategory.styles';
 import {SubCategories} from "./SubCategories";
 import {subCategories as SubCategoriesData} from "@/app/shop/mock";
 import {Editor} from "./Editor";
 import {useNavigate} from "react-router";
 import {Back} from "@/shared/ui";
+
+import * as Styles from './AdminCategory.styles';
 
 export const AdminCategory = () => {
     const [isEditorOpen, setEditorOpen] = useState(false);
@@ -23,6 +24,12 @@ export const AdminCategory = () => {
         setCategoryName('');
         setEditorOpen(false);
     }
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSave();
+        }
+    };
     const reloadRef = useRef(null);
     useEffect(() => {
         console.log('rerendered');
@@ -67,6 +74,7 @@ export const AdminCategory = () => {
                                 placeholder={'Название категории'}
                                 handleChange={handleChange}
                                 handleSave={handleSave}
+                                handleKeyPress={handleKeyPress}
                                 ref={reloadRef}
                             />
                         )}

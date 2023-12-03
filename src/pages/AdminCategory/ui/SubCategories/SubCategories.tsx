@@ -1,7 +1,9 @@
 import React, {useEffect, useRef, useState} from 'react';
+
 import {ISubCategory} from "@/entities";
 import {createSubCategory} from "../../api";
 import {Editor} from "@/pages/AdminCategory/ui/Editor";
+
 import * as Styles from "./SubCategories.styles";
 
 interface SubCategories {
@@ -23,6 +25,12 @@ export const SubCategories = ({categoryId, subCategories}: SubCategories) => {
         setSubCategoryName('');
         setEditorOpen(false);
     }
+    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSave();
+        }
+    };
     const reloadRef = useRef(null);
     useEffect(() => {
         console.log('rerendered subCat');
@@ -53,6 +61,7 @@ export const SubCategories = ({categoryId, subCategories}: SubCategories) => {
                     placeholder={'Название подкатегории'}
                     handleChange={handleChange}
                     handleSave={handleSave}
+                    handleKeyPress={handleKeyPress}
                     ref={reloadRef}
                 />
             )}
