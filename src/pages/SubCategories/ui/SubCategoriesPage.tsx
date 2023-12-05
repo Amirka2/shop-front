@@ -1,19 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
+import {observer} from "mobx-react";
+
+
+import {ItemsGrid} from "@/shared/components";
+import {useMobileOrDesktop, useStores} from "@/shared/hooks";
+import {SubCategoryCard} from "@/entities";
 
 import {Wrapper} from "./SubCategoriesPage.styles";
 
-import {ItemsGrid} from "@/shared/components";
-import {useMobileOrDesktop} from "@/shared/hooks";
-import {ISubCategory, SubCategoryCard} from "@/entities";
 import { getSubCategories } from '../api'
 
-export const SubCategoriesPage = () => {
-    const [subCategories, setSubCategories] =
-        useState<ISubCategory[]>([]);
+export const SubCategoriesPage = observer(() => {
+    const { subCategoriesStore } = useStores();
+    const { subCategories } = subCategoriesStore;
 
     useEffect(() => {
         const response = getSubCategories();
-        response.then(result => setSubCategories(result))
+        response.then(result => subCategoriesStore.set(result))
     }, [])
 
     let isMobile = useMobileOrDesktop();
@@ -28,4 +31,4 @@ export const SubCategoriesPage = () => {
             </ItemsGrid>
         </Wrapper>
     );
-};
+});
