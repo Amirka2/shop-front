@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react';
 import {observer} from "mobx-react";
 
-
 import {ItemsGrid} from "@/shared/components";
 import {useMobileOrDesktop, useStores} from "@/shared/hooks";
 import {SubCategoryCard} from "@/entities";
