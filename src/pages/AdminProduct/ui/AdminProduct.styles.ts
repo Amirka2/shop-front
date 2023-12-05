@@ -24,16 +24,3 @@ export const PartitionWrapper = styled.div`
 export const TextAreaWrapper = styled.div`
   width: 100%;
 `;
-
-export const TextArea = styled.textarea`
-  all: unset;
-  
-  width: 100%;
-  min-height: 550px;
-  
-  padding: 16px;
-
-  border-radius: 10px;
-  background: #FFF;
-  box-shadow: 6px 3px 53px 0px rgba(0, 0, 0, 0.10);
-`;

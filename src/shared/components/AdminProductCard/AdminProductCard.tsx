@@ -25,7 +25,9 @@ export const AdminProductCard = ({product}: AdminProductCardProps) => {
         <Link to={String(product.id)}>
             <Styles.Wrapper>
                 <Styles.PhotoWrapper>
-                    <Styles.MainPhoto src={product.photos.at(0)}/>
+                    {product.photos && (
+                        <Styles.MainPhoto src={product.photos.at(0)}/>
+                    )}
                 </Styles.PhotoWrapper>
                 <Styles.MainText>
                     {product.name}

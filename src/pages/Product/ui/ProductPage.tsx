@@ -15,7 +15,9 @@ export const ProductPage = () => {
     return product ? (
         <Wrapper isMobile={isMobile}>
             <Flex isMobile={isMobile}>
-                <Slider images={product.photos} />
+                {product.photos && (
+                    <Slider images={product.photos} />
+                )}
                 <ProductInfo {...product}></ProductInfo>
             </Flex>
             <ProductPageDescription {...product}/>

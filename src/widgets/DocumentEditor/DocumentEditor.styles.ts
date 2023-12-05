@@ -1,12 +1,13 @@
 import {styled} from "styled-components";
-import {Color} from "@/shared/constants";
 import {Editor} from "draft-js";
+
+import {Color} from "@/shared/constants";
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 900px;
+  width: 100%;
 `;
 
 export const ButtonsContainer = styled.div`

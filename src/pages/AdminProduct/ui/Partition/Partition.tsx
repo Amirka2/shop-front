@@ -1,28 +1,85 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
+import { observer } from "mobx-react";
 
 import { Delete, Plus } from "@/shared/ui";
+import { PRODUCT_DESCRIPTION_KEYS } from "@/entities/interfaces";
+import { useStores } from "@/shared/hooks";
 
 import * as Styles from './Partition.styles';
 
-export const Partition = () => {
+interface PartitionProps {
+    setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
+    setDescriptionId: React.Dispatch<SetStateAction<number>>
+    descriptionId: number;
+}
+
+export const Partition = observer(({setDescriptionId, descriptionId, setEditorOpen}: PartitionProps) => {
+    const {adminProductStore} = useStores();
+    const {product} = adminProductStore;
+    if (!product) return <span>ERROR</span>
+
+    const handleNameChange = (e:  React.ChangeEvent<HTMLInputElement>, id: number) => {
+        setDescriptionId(id);
+        adminProductStore.addDescriptionField(id, PRODUCT_DESCRIPTION_KEYS.NAME, e.currentTarget.value);
+        console.log({...adminProductStore.product})
+    }
+
+    const handleAddClick = () => {
+        setEditorOpen(true);
+
+        let newItemIndex = 0;
+        if (product?.description?.length) {
+            newItemIndex = product?.description?.length;
+        }
+
+        adminProductStore.addDescriptionField(newItemIndex, PRODUCT_DESCRIPTION_KEYS.NAME, 'name');
+        console.log(product.description)
+    }
+
+    const handleDeleteClick = (id: number) => {
+        setEditorOpen(false);
+        setDescriptionId(id);
+        adminProductStore.deleteDescription(id);
+    }
+
     return (
         <Styles.Wrapper>
             <Styles.Header>
                 <Styles.Title>
                     Разделы
                 </Styles.Title>
-                <Styles.Button>
-                    <Plus width={28} height={28} />
+                <Styles.Button onClick={handleAddClick}>
+                    <Plus width={28} height={28}/>
                 </Styles.Button>
             </Styles.Header>
-            <Styles.PartitionBlock>
-                <Styles.PartitionTitle>
-                    Title
-                </Styles.PartitionTitle>
-                <Styles.DeleteButton>
-                    <Delete width={22} height={22} />
-                </Styles.DeleteButton>
-            </Styles.PartitionBlock>
+            <Styles.PartitionBlocksWrapper>
+                {adminProductStore.product && adminProductStore.product.description && adminProductStore?.product?.description
+                  .map((d, index) => (
+                    <Styles.PartitionBlock key={index}>
+                        {product.description && (
+                          <Styles.PartitionTitle
+                            value={d.name || ''}
+                            onClick={() => {
+                                setDescriptionId((prev) => {
+                                    console.log('clicked partition ', index);
+                                    return index
+                                });
+                                setEditorOpen(true);
+                            }}
+                            onChange={(e) => {
+                                handleNameChange(e, index);
+                            }}
+                          />
+                        )
+                        }
+                        <Styles.DeleteButton onClick={() => {
+                            handleDeleteClick(index);
+                        }}>
+                            <Delete width={22} height={22}/>
+                        </Styles.DeleteButton>
+                    </Styles.PartitionBlock>
+                  ))}
+            </Styles.PartitionBlocksWrapper>
         </Styles.Wrapper>
     );
-};
+});

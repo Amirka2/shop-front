@@ -46,7 +46,7 @@ export const DeleteButton = styled.button`
   cursor: pointer;
 `;
 
-export const PartitionBlocks = styled.div`
+export const PartitionBlocksWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -65,10 +65,16 @@ export const PartitionBlock = styled.div`
   border-radius: 10px;
 `;
 
-export const PartitionTitle = styled.h4`
+export const PartitionTitle = styled.input`
+  outline: none;
+  border: none;
+  
   color: ${Color.white};
+  background-color: ${Color.blue};
 
   font-family: Ubuntu, sans-serif;
   font-size: 20px;
   font-weight: 400;
+  
+  margin-bottom: 8px;
 `;

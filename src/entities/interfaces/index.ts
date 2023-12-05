@@ -1,31 +1,50 @@
 export interface IProduct {
     id: number;
+    subCategoryId: number;
     price: number;
     name: string;
     inStock: boolean;
-    description: IDescriptionData;
     shortDescription: string;
-    photos: Array<string>;
-    specifications?: ISpecifications;
-    examples?: IDescriptionData;
-    usage?: IDescriptionData;
+    description?: IDescriptionData[];
+    photos?: string[];
 }
 
 export interface ICreateProduct {
 
 }
 
-export interface IChangeProduct {
-    name?: string;
-    price?: number;
-    photos?: string[];
-    shortDescription?: string;
-    description?: any;
+export interface IChangeProduct extends IProduct {}
+
+export enum PRODUCT_KEYS {
+    ID = 'id',
+    NAME = 'name',
+    PRICE = 'price',
+    IN_STOCK = 'inStock',
+    SHORT_DESCRIPTION = 'shortDescription',
+    DESCRIPTION = 'description',
+    PHOTOS = 'photos',
+}
+
+export enum PRODUCT_PHOTO_KEYS {
+    NAME= 'name',
+    UID = 'uid',
+}
+
+export enum PRODUCT_DESCRIPTION_KEYS {
+    ID = 'id',
+    NAME = 'name',
+    BODY = 'body',
+}
+
+export interface IPhoto {
+    name: string;
+    uid: string;
 }
 
 export interface IDescriptionData {
-    text: string;
-    tableText?: string[];
+    id: number;
+    name?: string;
+    body?: string;
 }
 
 export interface ISpecifications {

@@ -6,6 +6,7 @@ import { Container } from '@/shared/ui';
 
 import * as Styles from './SubCategories.styles';
 import { Plus } from "@/shared/ui";
+import {IProduct} from "@/entities";
 
 export const SubCategory = () => {
     const navigate = useNavigate();
@@ -14,16 +15,13 @@ export const SubCategory = () => {
     const [isEditorOpen, setEditorOpen] = useState(false);
 
     const handleAddProduct = () => {
-        const product = {
-            price: 1,
-            name: '',
+        let product: IProduct = {
+            id: 0,
+            subCategoryId: 0,
+            price: 11111,
+            name: 'MOCK',
             inStock: false,
-            description: {
-                text: '',
-                tableText: [''],
-            },
-            shortDescription: 'string',
-            photos: [''],
+            shortDescription: 'MOCK description',
         };
         addProduct(product);
     }

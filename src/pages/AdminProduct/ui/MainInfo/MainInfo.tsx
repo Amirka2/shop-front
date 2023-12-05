@@ -3,29 +3,52 @@ import React from 'react';
 import { Edit, Plus } from "@/shared/ui";
 import { DragAndDrop } from "@/shared/components/DragAndDrop";
 import useFileSelection from "@/shared/hooks/useFileSelection";
+import { useStores } from "@/shared/hooks";
+import { IPhoto, PRODUCT_KEYS } from "@/entities/interfaces";
 
 import * as Styles from './MainInfo.styles';
-import { useStores } from "@/shared/hooks";
+import {observer} from "mobx-react";
 
-export const MainInfo = () => {
+export const MainInfo = observer(() => {
     const { adminProductStore } = useStores();
     const [addFile, removeFile] = useFileSelection();
     const { product } = adminProductStore;
 
+    const handleAddPhoto = (file: IPhoto) => {
+        console.log(file);
+        if (adminProductStore.product?.photos) {
+            adminProductStore.addProductField(PRODUCT_KEYS.PHOTOS, [
+                ...adminProductStore.product.photos,
+                file.name
+            ])
+        }
+        addFile(file);
+    }
+
+    const handlePhotoDelete = (file: any) => {
+        console.log(file);
+        removeFile(file)
+    }
+
     const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newName = e.currentTarget.value;
-        adminProductStore.changeState({
-            ...product,
-            name: newName,
-        })
+        if (product) {
+            adminProductStore.set({
+                ...product,
+                name: newName,
+            })
+        }
+        console.log({...product})
     }
 
     const handleProductPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newPrice = e.currentTarget.value;
-        adminProductStore.changeState({
-            ...product,
-            price: Number(newPrice),
-        })
+        if (product) {
+            adminProductStore.set({
+                ...product,
+                price: Number(newPrice),
+            })
+        }
     }
 
     return (
@@ -45,7 +68,7 @@ export const MainInfo = () => {
                 </Styles.EditIconButton>
             </Styles.Header>
             <Styles.Photos>
-                <DragAndDrop addFile={addFile} removeFile={removeFile}/>
+                <DragAndDrop addFile={handleAddPhoto} removeFile={handlePhotoDelete}/>
             </Styles.Photos>
             <Styles.Footer>
                 <Styles.Input
@@ -60,4 +83,4 @@ export const MainInfo = () => {
             </Styles.Footer>
         </Styles.Wrapper>
     );
-};
+});
