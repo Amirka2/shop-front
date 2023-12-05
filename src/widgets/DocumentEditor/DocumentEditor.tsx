@@ -1,4 +1,4 @@
-import React, {SetStateAction} from "react";
+import React, {SetStateAction, useEffect} from "react";
 import {AtomicBlockUtils, convertFromRaw, convertToRaw, DraftEditorCommand, EditorState, RichUtils} from "draft-js";
 import "draft-js/dist/Draft.css";
 import {linkDecorator} from "./Link";
@@ -7,8 +7,6 @@ import {mediaBlockRenderer} from "./Media";
 import * as Styles from './DocumentEditor.styles';
 import {useStores} from "@/shared/hooks";
 import {PRODUCT_DESCRIPTION_KEYS} from "@/entities/interfaces";
-
-const TEXT_EDITOR_ITEM = "draft-js-example-item";
 
 interface DocumentEditorProps {
     description: string | undefined;
@@ -29,13 +27,19 @@ export const DocumentEditor: React.FC<DocumentEditorProps> = ({
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
     console.log(initialState.getCurrentContent())
 
+    useEffect(() => {
+        const initialState = description
+          ? EditorState.createWithContent(convertFromRaw(JSON.parse(description)), linkDecorator)
+          : EditorState.createEmpty(linkDecorator);
+        setEditorState(initialState);
+    }, [descriptionId, description]);
+
     const handleSave = () => {
         const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
         // console.log(convertToRaw(editorState.getCurrentContent()));
         // localStorage.setItem(TEXT_EDITOR_ITEM, data);
         adminProductStore.addDescriptionField(descriptionId, PRODUCT_DESCRIPTION_KEYS.BODY, data)
         setEditorOpen(false);
-        setDescriptionId(prev => ++prev);
     };
 
     const handleInsertImage = () => {

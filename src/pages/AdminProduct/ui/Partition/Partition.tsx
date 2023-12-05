@@ -2,7 +2,7 @@ import React, { SetStateAction } from 'react';
 import { observer } from "mobx-react";
 
 import { Delete, Plus } from "@/shared/ui";
-import { PRODUCT_DESCRIPTION_KEYS } from "@/entities/interfaces";
+import {IDescriptionData, PRODUCT_DESCRIPTION_KEYS} from "@/entities/interfaces";
 import { useStores } from "@/shared/hooks";
 
 import * as Styles from './Partition.styles';
@@ -11,15 +11,16 @@ interface PartitionProps {
     setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
     setDescriptionId: React.Dispatch<SetStateAction<number>>
     descriptionId: number;
+    setCurrentDescription: React.Dispatch<React.SetStateAction<IDescriptionData | undefined>>;
 }
 
-export const Partition = observer(({setDescriptionId, descriptionId, setEditorOpen}: PartitionProps) => {
+export const Partition = observer(({setDescriptionId, setEditorOpen, setCurrentDescription}: PartitionProps) => {
     const {adminProductStore} = useStores();
     const {product} = adminProductStore;
     if (!product) return <span>ERROR</span>
 
     const handleNameChange = (e:  React.ChangeEvent<HTMLInputElement>, id: number) => {
-        setDescriptionId(id);
+        setCurrentDescription(adminProductStore.getDescription(id));
         adminProductStore.addDescriptionField(id, PRODUCT_DESCRIPTION_KEYS.NAME, e.currentTarget.value);
         console.log({...adminProductStore.product})
     }
@@ -32,12 +33,14 @@ export const Partition = observer(({setDescriptionId, descriptionId, setEditorOp
             newItemIndex = product?.description?.length;
         }
 
+        setCurrentDescription(adminProductStore.getDescription(newItemIndex));
         adminProductStore.addDescriptionField(newItemIndex, PRODUCT_DESCRIPTION_KEYS.NAME, 'name');
         console.log(product.description)
     }
 
     const handleDeleteClick = (id: number) => {
         setEditorOpen(false);
+        setCurrentDescription(undefined);
         setDescriptionId(id);
         adminProductStore.deleteDescription(id);
     }
@@ -60,7 +63,9 @@ export const Partition = observer(({setDescriptionId, descriptionId, setEditorOp
                           <Styles.PartitionTitle
                             value={d.name || ''}
                             onClick={() => {
-                                setDescriptionId((prev) => {
+                              setCurrentDescription(adminProductStore.getDescription(index));
+
+                              setDescriptionId((prev) => {
                                     console.log('clicked partition ', index);
                                     return index
                                 });

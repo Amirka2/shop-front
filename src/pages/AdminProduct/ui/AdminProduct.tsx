@@ -1,24 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
+import {observer} from "mobx-react";
 
 import {Container} from "@/shared/ui";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
+import {IDescriptionData} from "@/entities/interfaces";
 
 import {getProductById} from "../api";
 import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
 
+
 import * as Styles from './AdminProduct.styles';
 
-export const AdminProduct = () => {
+export const AdminProduct = observer(() => {
   const {
     categoryId,
     subCategoryId,
     productId
   } = useParams();
   const {adminProductStore} = useStores();
+  const [isEditorOpen, setEditorOpen] = useState(false);
+  const [descriptionId, setDescriptionId] = useState(0);
+  const [currentDescription, setCurrentDescription] = useState<IDescriptionData | undefined>(undefined);
 
   const { product } = adminProductStore;
   const productName = product?.name || '';
@@ -28,16 +34,18 @@ export const AdminProduct = () => {
     response.then(result => {
       adminProductStore.set(result);
       console.log(result)
+      setCurrentDescription(adminProductStore.getDescription(descriptionId))
     })
-    return adminProductStore.clear;
 
+
+    return adminProductStore.clear;
   }, []);
 
-  const [isEditorOpen, setEditorOpen] = useState(false);
-  const [descriptionId, setDescriptionId] = useState(0);
-  if (product && product.description && product?.description?.[descriptionId]) {
-    console.log(product)
-  }
+  useEffect(() => {
+    if (product) {
+      setCurrentDescription(adminProductStore.getDescription(descriptionId))
+    }
+  }, [descriptionId]);
 
   return (
     <Container>
@@ -48,14 +56,19 @@ export const AdminProduct = () => {
             <MainInfo/>
           </Styles.MainInfoWrapper>
           <Styles.PartitionWrapper>
-            <Partition descriptionId={descriptionId} setDescriptionId={setDescriptionId} setEditorOpen={setEditorOpen}/>
+            <Partition
+              descriptionId={descriptionId}
+              setDescriptionId={setDescriptionId}
+              setEditorOpen={setEditorOpen}
+              setCurrentDescription={setCurrentDescription}
+            />
           </Styles.PartitionWrapper>
         </Styles.InfoWrapper>
         {isEditorOpen && (
           <Styles.TextAreaWrapper>
-            {product && product.description && product.description[descriptionId] && (
+            {currentDescription && (
               <DocumentEditor
-                description={product.description[descriptionId].body}
+                description={currentDescription.body}
                 descriptionId={descriptionId}
                 setDescriptionId={setDescriptionId}
                 setEditorOpen={setEditorOpen}
@@ -66,4 +79,4 @@ export const AdminProduct = () => {
       </Styles.Wrapper>
     </Container>
   );
-};
+});

@@ -13,6 +13,7 @@ export interface ICreateProduct {
 
 }
 
+// @ts-ignore
 export interface IChangeProduct extends IProduct {}
 
 export enum PRODUCT_KEYS {
@@ -50,7 +51,7 @@ export interface IChangeProduct {
     price?: number;
     photos?: string[];
     shortDescription?: string;
-    description?: any;
+    description?: IDescriptionData[];
 }
 
 export interface IDescriptionData {
