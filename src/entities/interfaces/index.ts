@@ -41,6 +41,18 @@ export interface IPhoto {
     uid: string;
 }
 
+export interface ICreateProduct {
+
+}
+
+export interface IChangeProduct {
+    name?: string;
+    price?: number;
+    photos?: string[];
+    shortDescription?: string;
+    description?: any;
+}
+
 export interface IDescriptionData {
     id: number;
     name?: string;
