@@ -1,10 +1,11 @@
-import {styled} from "styled-components";
+import { styled } from "styled-components";
 
 export const MainWrapper = styled.main`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1330px;
+  
+  width: 100%;
   margin: 0 0 20px 0;
 `;

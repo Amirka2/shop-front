@@ -1,22 +1,31 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
-import {Icon, IconsWrapper, Wrapper} from "./Contacts.styles";
+
 import {contacts} from '@/app/shop/mock';
-import {Mail} from "@/shared/components";
+import {Phone, Mail} from "@/shared/components/Icons";
+
+import * as Styles from './Contacts.styles';
 
 export const Contacts = () => {
     return (
-        <Wrapper>
-            <h4>Наши контакты</h4>
-            <IconsWrapper>
-                <Icon $src={'/icons/whatsapp.png'}><a href={contacts.whatsAppLink}/></Icon>
-                <a href={contacts.email}>
-                    <Mail size={50} />
+        <Styles.Flex>
+            <Styles.LinkWrapper>
+                <Styles.ContactLink href={'mailto:' + contacts.email}>{contacts.email}</Styles.ContactLink>
+                <a href={'mailto:' + contacts.email}>
+                    <Mail size={30}/>
                 </a>
-                {/*<Icon $src={'/icons/telegram.png'}><a href={contacts.telegram}/></Icon>*/}
-            </IconsWrapper>
-            <a href={'mailto:' + contacts.email}>{contacts.email}</a>
-            <a href={'tel:' + contacts.phone}>{contacts.phone}</a>
-        </Wrapper>
+            </Styles.LinkWrapper>
+            <Styles.LinkWrapper>
+                <Styles.ContactLink href={'tel:' + contacts.phone}>{contacts.phone}</Styles.ContactLink>
+                <a href={'tel:' + contacts.phone}>
+                    <Phone size={30}/>
+                </a>
+            </Styles.LinkWrapper>
+            <Styles.LinkWrapper>
+                <Styles.ContactLink href={contacts.whatsAppLink}>{contacts.whatsAppNumber}</Styles.ContactLink>
+                <Styles.MiniIcon $src={'/icons/whatsapp.png'}>
+                    <a href={contacts.whatsAppLink}/>
+                </Styles.MiniIcon>
+            </Styles.LinkWrapper>
+        </Styles.Flex>
     );
 };

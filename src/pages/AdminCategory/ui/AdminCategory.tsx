@@ -1,19 +1,25 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {observer} from "mobx-react";
 
 import {Container} from "@/shared/components";
+import {useStores} from "@/shared/hooks";
+import {Back} from "@/shared/ui";
 
-import {CATEGORIES, createCategory} from '../api';
 import {SubCategories} from "./SubCategories";
-import {subCategories as SubCategoriesData} from "@/app/shop/mock";
 import {Editor} from "./Editor";
 import {useNavigate} from "react-router";
-import {Back} from "@/shared/ui";
+
+import {createCategory, getCategories, getSubCategories} from '../api';
 
 import * as Styles from './AdminCategory.styles';
 
-export const AdminCategory = () => {
+export const AdminCategory = observer(() => {
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [categoryName, setCategoryName] = useState('');
+
+  const { categoriesStore, subCategoriesStore } = useStores();
+  const { categories } = categoriesStore;
+  const { subCategories } = subCategoriesStore;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName(e.target.value);
@@ -33,8 +39,15 @@ export const AdminCategory = () => {
   };
   const reloadRef = useRef(null);
   useEffect(() => {
-    console.log('rerendered');
-  }, [reloadRef])
+    getCategories()
+      .then(res => {
+        categoriesStore.set(res);
+      });
+    getSubCategories()
+      .then(res => {
+        subCategoriesStore.set(res);
+      })
+  }, [])
 
   const navigate = useNavigate();
 
@@ -54,15 +67,15 @@ export const AdminCategory = () => {
           </Styles.AddCategoryWrapper>
 
           <Styles.Categories>
-            {CATEGORIES.map(category => {
+            {categories && categories.map(category => {
               return (
                 <Styles.Category>
                   <Styles.Title>
-                    {category.title}
+                    {category.name}
                   </Styles.Title>
                   <SubCategories
                     categoryId={category.id}
-                    subCategories={SubCategoriesData}
+                    subCategories={subCategories}
                   />
                 </Styles.Category>
               )
@@ -75,7 +88,6 @@ export const AdminCategory = () => {
               placeholder={'Название категории'}
               handleChange={handleChange}
               handleSave={handleSave}
-              handleKeyPress={handleKeyPress}
               ref={reloadRef}
             />
           )}
@@ -83,4 +95,4 @@ export const AdminCategory = () => {
       </Container>
     </Styles.Wrapper>
   );
-};
+});

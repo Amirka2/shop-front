@@ -12,6 +12,7 @@ export const FooterNav = () => {
             <Link to={Paths.aboutUs}>О нас</Link>
             <Link to={Paths.main}>Главная</Link>
             <Link to={Paths.payment}>Оплата</Link>
+            <Link to={Paths.contacts}>Контакты</Link>
             <Link to={Paths.shipping}>Доставка</Link>
         </Wrapper>
     );

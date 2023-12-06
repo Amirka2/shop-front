@@ -1,32 +1,45 @@
-import React from "react";
-import {
-    Editor,
-    EditorState,
-    RichUtils,
-    AtomicBlockUtils,
-    DraftEditorCommand,
-    convertToRaw,
-    convertFromRaw
-} from "draft-js";
+import React, {SetStateAction, useEffect} from "react";
+import {AtomicBlockUtils, convertFromRaw, convertToRaw, DraftEditorCommand, EditorState, RichUtils} from "draft-js";
 import "draft-js/dist/Draft.css";
-import { linkDecorator } from "./Link";
-import { mediaBlockRenderer } from "./Media";
+import {linkDecorator} from "./Link";
+import {mediaBlockRenderer} from "./Media";
 
 import * as Styles from './DocumentEditor.styles';
+import {useStores} from "@/shared/hooks";
+import {PRODUCT_DESCRIPTION_KEYS} from "@/entities/interfaces";
 
-const TEXT_EDITOR_ITEM = "draft-js-example-item";
+interface DocumentEditorProps {
+    description: string | undefined;
+    setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
+    descriptionId: number;
+    setDescriptionId: React.Dispatch<SetStateAction<number>>
+}
 
-export const DocumentEditor: React.FC = () => {
-    const data = localStorage.getItem(TEXT_EDITOR_ITEM);
-    const initialState = data
-        ? EditorState.createWithContent(convertFromRaw(JSON.parse(data)), linkDecorator)
+export const DocumentEditor: React.FC<DocumentEditorProps> = ({
+    description,
+    descriptionId,
+    setDescriptionId,
+    setEditorOpen }) => {
+    const { adminProductStore } = useStores();
+    const initialState = description
+        ? EditorState.createWithContent(convertFromRaw(JSON.parse(description)), linkDecorator)
         : EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
+    console.log(initialState.getCurrentContent())
+
+    useEffect(() => {
+        const initialState = description
+          ? EditorState.createWithContent(convertFromRaw(JSON.parse(description)), linkDecorator)
+          : EditorState.createEmpty(linkDecorator);
+        setEditorState(initialState);
+    }, [descriptionId, description]);
 
     const handleSave = () => {
         const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-        console.log(data);
-        localStorage.setItem(TEXT_EDITOR_ITEM, data);
+        // console.log(convertToRaw(editorState.getCurrentContent()));
+        // localStorage.setItem(TEXT_EDITOR_ITEM, data);
+        adminProductStore.addDescriptionField(descriptionId, PRODUCT_DESCRIPTION_KEYS.BODY, data)
+        setEditorOpen(false);
     };
 
     const handleInsertImage = () => {

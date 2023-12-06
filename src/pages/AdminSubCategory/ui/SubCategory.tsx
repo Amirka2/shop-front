@@ -1,84 +1,70 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate, useParams } from "react-router";
-import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
-import { AdminProductCard } from "@/shared/components";
+import {addProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
+import { AdminHeader, AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 
+import { Plus } from "@/shared/ui";
+import {IProduct} from "@/entities";
+
 import * as Styles from './SubCategories.styles';
-import { Back } from "@/shared/ui";
+import {useStores} from "@/shared/hooks";
+import {observer} from "mobx-react";
 
-import { Editor } from "./Editor";
+export interface SubCategoryPageProps {
+    categoryName: string;
+    subCategoryName: string;
+    products: IProduct[];
+}
 
-export const SubCategory = () => {
+export const SubCategory = observer(() => {
     const navigate = useNavigate();
     const params = useParams();
-    const subCategory = getSubCategoryProducts(Number(params.subCategoryId));
-    const [productName, setProductName] = useState('');
-    const [productPrice, setProductPrice] = useState('');
-    const [productShortDescription, setProductShortDescription] = useState('');
-    const [productPhoto, setProductPhoto] = useState([]);
     const [isEditorOpen, setEditorOpen] = useState(false);
+    const { productsStore } = useStores();
 
-    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setProductName(e.target.value)
+    const { products } = productsStore;
+
+    let subCategory: SubCategoryPageProps = {
+        categoryName: 'Category',
+        subCategoryName: 'SubCategory',
+        products: products.filter((p) => p.subCategoryId === Number(params.subCategoryId))
+        ,
     }
 
-    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setProductPrice(e.target.value)
-    }
-
-    const handleChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setProductShortDescription(e.target.value)
-    }
+    useEffect(() => {
+        getSubCategoryProducts(Number(params.subCategoryId))
+          .then(res => productsStore.set(res));
+    }, []);
 
     const handleAddProduct = () => {
-        const product = {
-            price: Number(productPrice), 
-            name: productName,
-            shortDescription: productShortDescription,
-            photos: productPhoto,
+        let product: IProduct = {
+            id: 0,
+            subCategoryId: 0,
+            price: 11111,
+            name: 'MOCK',
+            inStock: false,
+            shortDescription: 'MOCK description',
         };
         addProduct(product);
     }
 
-    const handleSave = () => {
-        handleAddProduct();
-        setEditorOpen(false);
-    }
-
-    const reloadRef = useRef(null);
-    useEffect(() => {
-        console.log('rerendered');
-    }, [reloadRef])
-
     return (
         <Container>
             <Styles.Wrapper>
-                <Styles.HeaderWrapper>
-                    <Styles.BackButton onClick={() => navigate(-1)}>
-                        <Back />
-                    </Styles.BackButton>
-                    <Styles.BreadCrumbs>
-                        text/moretext
-                    </Styles.BreadCrumbs>
-                    <Styles.Placeholder />
-                </Styles.HeaderWrapper>
+                <AdminHeader title={'text/more'} />
                 <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
-                    {isEditorOpen ? '-' : '+'}
+                    <Plus />
                 </Styles.AddButton>
                 {isEditorOpen && (
-                    <Editor
-                        handleNameChange={handleChangeName}
-                        handlePriceChange={handleChangePrice}
-                        handleDescriptionChange={handleChangeDescription}
-                        handleSave={handleSave}
-                        ref={reloadRef}
-                    />
+                    <div style={{ height: '100px', border: '5px solid red'}}>Editor</div>
                 )}
                 <Styles.ProductsWrapper>
-                    {subCategory.products.map(product => <AdminProductCard product={product} />)}
+                    {subCategory &&
+                      subCategory.products &&
+                      subCategory.products.map(product => <AdminProductCard product={product} />)}
                 </Styles.ProductsWrapper>
             </Styles.Wrapper>
         </Container>
     );
-};
+});
