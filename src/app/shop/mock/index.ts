@@ -38,6 +38,7 @@ export const products: IProduct[] = [
     {
         id: 0,
         price: 13308,
+        isFixedPrice: true,
         inStock: true,
         subCategoryId: 0,
         photos: [

@@ -16,10 +16,16 @@ export const ProductInfo = (product: IProduct) => {
         <Styled.Wrapper isMobile={isMobile}>
             <Styled.ProductName>{product.name}</Styled.ProductName>
             <Styled.ProductAvailability>
-                В наличии: {product.inStock ? (
-                <Styled.YesText>ДА</Styled.YesText>) : (
-                <Styled.NoText>Нет</Styled.NoText>
-            )}
+                <div>
+                    В наличии: {product.inStock ? (
+                    <Styled.YesText>Да</Styled.YesText>) : (
+                    <Styled.NoText>Нет</Styled.NoText>
+                )}
+                </div>
+                {!product.inStock && product.nextArrivalDate && (
+                    <span>Примерная дата следующей поставки: {product.nextArrivalDate}</span>
+                )
+                }
             </Styled.ProductAvailability>
             <Styled.ProductPrice>{product.price + ' ₽'}</Styled.ProductPrice>
             {/*<Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>*/}

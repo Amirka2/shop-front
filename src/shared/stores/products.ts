@@ -1,19 +1,20 @@
-import {makeAutoObservable} from "mobx";
+import { makeAutoObservable } from "mobx";
+import { IProduct } from "@/entities";
 
-import { IProduct } from "@/entities/interfaces";
-
-export class Products {
+export class ProductsStore {
   public products: IProduct[] = [];
+  public isLoading = false;
+  public isInitialized = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  get() {
-    return this.products;
-  }
-
   set(products: IProduct[]) {
     this.products = products;
+  }
+
+  get() {
+    return this.products;
   }
 }

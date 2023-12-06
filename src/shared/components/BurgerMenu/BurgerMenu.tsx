@@ -30,8 +30,9 @@ const Menu = ({open, setOpen}: MenuProps) => {
             <Link to={Paths.categories} onClick={close}>Категории</Link>
             <Link to={Paths.aboutUs} onClick={close}>О нас</Link>
             <Link to={Paths.main} onClick={close}>Главная</Link>
-            <Link to={Paths.payment} onClick={close}>Оплата</Link>
+            <Link to={Paths.contacts} onClick={close}>Контакты</Link>
             <Link to={Paths.shipping} onClick={close}>Доставка</Link>
+            <Link to={Paths.payment} onClick={close}>Оплата</Link>
         </Styles.StyledMenu>
     )
 }

@@ -1,5 +1,5 @@
-import { makeAutoObservable} from "mobx";
-import {IProduct} from "@/entities";
+import { makeAutoObservable } from "mobx";
+import { IProduct } from "@/entities";
 
 
 export class CartStore {

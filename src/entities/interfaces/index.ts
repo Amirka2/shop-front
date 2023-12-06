@@ -2,8 +2,10 @@ export interface IProduct {
     id: number;
     subCategoryId: number;
     price: number;
+    isFixedPrice?: boolean;
     name: string;
     inStock: boolean;
+    nextArrivalDate?: string;
     shortDescription: string;
     description?: IDescriptionData[];
     photos?: string[];

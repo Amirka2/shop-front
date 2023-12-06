@@ -1,4 +1,5 @@
 import {styled} from "styled-components";
+
 import {Color} from '@/shared/constants'
 
 export const Wrapper = styled.div<{
@@ -36,9 +37,3 @@ export const CopyRightWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-export const CopyRight = styled.span`
-  
-`;
-
-
