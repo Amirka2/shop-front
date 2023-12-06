@@ -93,12 +93,13 @@ export interface ICategory {
     id: number;
     photo: string;
     name: string;
-    subCategoryCount: number;
+    subCategoryCount?: number;
 }
 
 export interface ISubCategory {
     id: number;
+    categoryId: number;
     photo: string;
     name: string;
-    productCount: number;
+    productCount?: number;
 }

@@ -22,12 +22,14 @@ export const categories: ICategory[] = [
 export const subCategories: ISubCategory[] = [
     {
         id: 0,
+        categoryId: 0,
         photo: '/photos/10.jpg',
         name: 'Химические реактивы для пленки',
         productCount: 2,
     },
     {
         id: 1,
+        categoryId: 1,
         photo: '/photos/19.jpg',
         name: 'Рентгеновская пленка D7',
         productCount: 2,
