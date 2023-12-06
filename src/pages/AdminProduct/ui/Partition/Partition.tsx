@@ -34,7 +34,7 @@ export const Partition = observer(({setDescriptionId, setEditorOpen, setCurrentD
         }
 
         setCurrentDescription(adminProductStore.getDescription(newItemIndex));
-        adminProductStore.addDescriptionField(newItemIndex, PRODUCT_DESCRIPTION_KEYS.NAME, 'name');
+        adminProductStore.addDescriptionField(newItemIndex, PRODUCT_DESCRIPTION_KEYS.NAME, '');
         console.log(product.description)
     }
 
