@@ -1,20 +1,28 @@
 import {IProduct} from "@/entities";
-import { products } from '@/app/shop/mock';
+import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 
-interface SubCategoryPageProps {
-    categoryName: string;
-    subCategoryName: string;
-    products: IProduct[];
-}
+const URL = 'http://194.58.111.33';
 
-export const getSubCategoryProducts = (subCategoryId: number): SubCategoryPageProps  => {
+export const getSubCategoryProducts = async (subCategoryId: number)  => {
     console.log(subCategoryId);
 
-    return {
-        categoryName: 'Category',
-        subCategoryName: 'SubCategory',
-        products,
-    }
+    let products: IProduct[] = [];
+
+    await apiFetch(URL + '/constrspb/group/subgroup/product', {
+        method: HTTP_METHODS.GET,
+    }).then(res => {
+        if (res && res.ok) {
+            const backProducts = res.body.products;
+            products = backProducts
+              .map((p: { subgroupId: number; isAvailable: boolean; }) => ({
+                ...p,
+                subCategoryId: p.subgroupId,
+                inStock: p.isAvailable,
+            }));
+        }
+    })
+
+    return products;
 }
 
 export const addProduct = (product: Omit<IProduct, 'id'>) => {

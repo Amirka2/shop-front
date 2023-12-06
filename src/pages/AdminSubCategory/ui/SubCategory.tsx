@@ -1,18 +1,41 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate, useParams } from "react-router";
-import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
+import {addProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
 import { AdminHeader, AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 
-import * as Styles from './SubCategories.styles';
 import { Plus } from "@/shared/ui";
 import {IProduct} from "@/entities";
 
-export const SubCategory = () => {
+import * as Styles from './SubCategories.styles';
+import {useStores} from "@/shared/hooks";
+import {observer} from "mobx-react";
+
+export interface SubCategoryPageProps {
+    categoryName: string;
+    subCategoryName: string;
+    products: IProduct[];
+}
+
+export const SubCategory = observer(() => {
     const navigate = useNavigate();
     const params = useParams();
-    const subCategory = getSubCategoryProducts(Number(params.subCategoryId));
     const [isEditorOpen, setEditorOpen] = useState(false);
+    const { productsStore } = useStores();
+
+    const { products } = productsStore;
+
+    let subCategory: SubCategoryPageProps = {
+        categoryName: 'Category',
+        subCategoryName: 'SubCategory',
+        products: products.filter((p) => p.subCategoryId === Number(params.subCategoryId))
+        ,
+    }
+
+    useEffect(() => {
+        getSubCategoryProducts(Number(params.subCategoryId))
+          .then(res => productsStore.set(res));
+    }, []);
 
     const handleAddProduct = () => {
         let product: IProduct = {
@@ -37,9 +60,11 @@ export const SubCategory = () => {
                     <div style={{ height: '100px', border: '5px solid red'}}>Editor</div>
                 )}
                 <Styles.ProductsWrapper>
-                    {subCategory.products.map(product => <AdminProductCard product={product} />)}
+                    {subCategory &&
+                      subCategory.products &&
+                      subCategory.products.map(product => <AdminProductCard product={product} />)}
                 </Styles.ProductsWrapper>
             </Styles.Wrapper>
         </Container>
     );
-};
+});
