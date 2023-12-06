@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import { useNavigate, useParams } from "react-router";
 import {addProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
 import { AdminHeader, AdminProductCard } from "@/shared/components";
@@ -10,6 +10,7 @@ import {IProduct} from "@/entities";
 import * as Styles from './SubCategories.styles';
 import {useStores} from "@/shared/hooks";
 import {observer} from "mobx-react";
+import { Editor } from './Editor';
 
 export interface SubCategoryPageProps {
     categoryName: string;
@@ -20,7 +21,6 @@ export interface SubCategoryPageProps {
 export const SubCategory = observer(() => {
     const navigate = useNavigate();
     const params = useParams();
-    const [isEditorOpen, setEditorOpen] = useState(false);
     const { productsStore } = useStores();
 
     const { products } = productsStore;
@@ -28,26 +28,54 @@ export const SubCategory = observer(() => {
     let subCategory: SubCategoryPageProps = {
         categoryName: 'Category',
         subCategoryName: 'SubCategory',
-        products: products.filter((p) => p.subCategoryId === Number(params.subCategoryId))
-        ,
+        products: products.filter((p) => p.subCategoryId === Number(params.subCategoryId)),
     }
+
+    const [productName, setProductName] = useState('');
+    const [productPrice, setProductPrice] = useState('');
+    const [productShortDescription, setProductShortDescription] = useState('');
+    const [productPhoto, setProductPhoto] = useState([]);
+    const [isEditorOpen, setEditorOpen] = useState(false);
+
+    const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProductName(e.target.value)
+    }
+
+    const handleChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProductPrice(e.target.value)
+    }
+
+    const handleChangeDescription = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        setProductShortDescription(e.target.value)
+    }
+
+    const handleAddProduct = () => {
+        const product = {
+            subCategoryId: Number(params.subCategoryId),
+            inStock: true,
+            price: Number(productPrice),
+            name: productName,
+            shortDescription: productShortDescription,
+            photos: productPhoto,
+        };
+        addProduct(product);
+    }
+
+    const handleSave = () => {
+        handleAddProduct();
+        setEditorOpen(false);
+    }
+
+    const reloadRef = useRef(null);
 
     useEffect(() => {
         getSubCategoryProducts(Number(params.subCategoryId))
           .then(res => productsStore.set(res));
     }, []);
 
-    const handleAddProduct = () => {
-        let product: IProduct = {
-            id: 0,
-            subCategoryId: 0,
-            price: 11111,
-            name: 'MOCK',
-            inStock: false,
-            shortDescription: 'MOCK description',
-        };
-        addProduct(product);
-    }
+    useEffect(() => {
+        console.log('rerendered');
+    }, [reloadRef])
 
     return (
         <Container>
@@ -57,7 +85,13 @@ export const SubCategory = observer(() => {
                     <Plus />
                 </Styles.AddButton>
                 {isEditorOpen && (
-                    <div style={{ height: '100px', border: '5px solid red'}}>Editor</div>
+                  <Editor
+                    handleNameChange={handleChangeName}
+                    handlePriceChange={handleChangePrice}
+                    handleDescriptionChange={handleChangeDescription}
+                    handleSave={handleSave}
+                    ref={reloadRef}
+                  />
                 )}
                 <Styles.ProductsWrapper>
                     {subCategory &&
