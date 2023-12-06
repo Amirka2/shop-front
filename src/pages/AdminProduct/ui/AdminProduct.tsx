@@ -36,9 +36,6 @@ export const AdminProduct = observer(() => {
       console.log(result)
       setCurrentDescription(adminProductStore.getDescription(descriptionId))
     })
-
-
-    return adminProductStore.clear;
   }, []);
 
   useEffect(() => {
