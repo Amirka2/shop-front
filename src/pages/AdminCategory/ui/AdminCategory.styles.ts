@@ -1,8 +1,9 @@
 import {styled} from "styled-components";
+
 import {Color} from "@/shared/constants";
 
-export const Wrapper = styled.div`
-  
+export const Wrapper = styled.main`
+  width: 100%;
 `;
 
 // TODO исправить размеры кнопки на незахардкоженные
