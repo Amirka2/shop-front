@@ -1,16 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react';
-import { useNavigate, useParams } from "react-router";
-import {addProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
+import React, { useEffect, useRef, useState } from 'react';
+import { useParams } from "react-router";
+import { observer } from "mobx-react";
+
+import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
 import { AdminHeader, AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
-
 import { Plus } from "@/shared/ui";
-import {IProduct} from "@/entities";
+import { IProduct } from "@/entities";
+import { useStores } from "@/shared/hooks";
 
-import * as Styles from './SubCategories.styles';
-import {useStores} from "@/shared/hooks";
-import {observer} from "mobx-react";
 import { Editor } from './Editor';
+
+import * as Styles from './AdminSubCategory.styles';
 
 export interface SubCategoryPageProps {
     categoryName: string;
@@ -18,8 +19,7 @@ export interface SubCategoryPageProps {
     products: IProduct[];
 }
 
-export const SubCategory = observer(() => {
-    const navigate = useNavigate();
+export const AdminSubCategory = observer(() => {
     const params = useParams();
     const { productsStore } = useStores();
 

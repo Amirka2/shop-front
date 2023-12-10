@@ -1,13 +1,14 @@
-import React, {useEffect} from 'react';
-import {observer} from "mobx-react";
+import React, { useEffect } from 'react';
+import { observer } from "mobx-react";
 
-import {ItemsGrid} from "@/shared/components";
-import {useMobileOrDesktop, useStores} from "@/shared/hooks";
-import {SubCategoryCard} from "@/entities";
-
-import {Wrapper} from "./SubCategoriesPage.styles";
+import { ItemsGrid } from "@/shared/components";
+import { useMobileOrDesktop, useStores } from "@/shared/hooks";
+import { SubCategoryCard } from "@/entities";
+import { MainLayout } from "@/shared/ui/Layouts";
 
 import { getSubCategories } from '../api'
+
+import * as Styles from "./SubCategoriesPage.styles";
 
 export const SubCategoriesPage = observer(() => {
     const { subCategoriesStore } = useStores();
@@ -23,11 +24,13 @@ export const SubCategoriesPage = observer(() => {
     const itemsComponents = subCategories.map(s => <SubCategoryCard {...s}/>);
 
     return (
-        <Wrapper $isMobile={isMobile}>
+        <MainLayout>
+          <Styles.Wrapper $isMobile={isMobile}>
             <h1>Подкатегории</h1>
             <ItemsGrid width={width.toString()}>
-                {itemsComponents}
+              {itemsComponents}
             </ItemsGrid>
-        </Wrapper>
+          </Styles.Wrapper>
+        </MainLayout>
     );
 });

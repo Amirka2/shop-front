@@ -1,28 +1,16 @@
-import React, {useState} from 'react';
-import {observer} from "mobx-react";
+import React, { useState } from 'react';
+import { observer } from "mobx-react";
 
-import {
-    CaptionWrapper,
-    Wrapper,
-    Link,
-    CartInfoMenu,
-    Summary,
-    SubmitButton,
-    Flex,
-    CartCaption,
-    Line,
-    ProductWrapper,
-    OrderFieldsList,
-    OrderFieldsListItem, Input
-} from './CartPage.styles';
-// import {processOrder} from "@/pages/Cart/api";
+import { useMobileOrDesktop, useStores } from "@/shared/hooks";
+import { ItemsGrid } from "@/shared/components";
+import { CartProductCard } from "@/widgets/CartProductCard/CartProductCard";
+import { IOrder, ProductCartCounter } from '@/entities';
+import { IProductsToOrder } from "@/entities/interfaces";
+import { MainLayout } from "@/shared/ui/Layouts";
 
-import {useMobileOrDesktop, useStores} from "@/shared/hooks";
-import {ItemsGrid} from "@/shared/components";
-import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
-import {IOrder, ProductCartCounter} from '@/entities';
-import {IProductsToOrder} from "@/entities/interfaces";
-import {processOrder} from "../api";
+import { processOrder } from "../api";
+
+import * as Styles from './CartPage.styles';
 
 export const CartPage = observer(() => {
     const stores = useStores();
@@ -76,58 +64,60 @@ export const CartPage = observer(() => {
     const productsElements = productsInCart.map(p => {
         return (
             <>
-                <ProductWrapper>
+                <Styles.ProductWrapper>
                     <CartProductCard product={p} key={p.id}/>
                     <ProductCartCounter product={p} />
-                </ProductWrapper>
-                <Line/>
+                </Styles.ProductWrapper>
+                <Styles.Line/>
             </>
         )
     })
 
     return (
-        <Wrapper isMobile={isMobile}>
-            <CaptionWrapper right={true}>
-                <Link to={'/'}>Вернуться к покупкам</Link>
-            </CaptionWrapper>
-            <CaptionWrapper>
-                <h1>Корзина</h1>
-            </CaptionWrapper>
-            <Flex isMobile={isMobile}>
-                <ItemsGrid width={isMobile ? '100%' : '65%'}>
-                    {productsElements}
-                </ItemsGrid>
-                <CartInfoMenu isMobile={isMobile}>
-                    <CartCaption>Ваш заказ</CartCaption>
-                    <OrderFieldsList>
-                        {productsInCart.map(p => {
-                            return (
-                                <OrderFieldsListItem>
-                                    {p.name}
-                                    <span>{p.price * stores.cartStore.getProductCount(p)} ₽</span>
-                                </OrderFieldsListItem>
-                            );
-                        })}
-                    </OrderFieldsList>
-                    <Summary>
-                        {'Итого:'}
-                        <span>{totalSum} ₽</span>
-                    </Summary>
-                    <Input
-                        type='text'
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder={'Имя'}
-                        value={name}
-                    />
-                    <Input
-                        type='text'
-                        onChange={(e) => setPhoneNumber(e.target.value)}
-                        placeholder={'Номер телефона'}
-                        value={phoneNumber}
-                    />
-                    <SubmitButton onClick={handleSubmit}>Оформить</SubmitButton>
-                </CartInfoMenu>
-            </Flex>
-        </Wrapper>
+        <MainLayout>
+            <Styles.Wrapper isMobile={isMobile}>
+                <Styles.CaptionWrapper right={true}>
+                    <Styles.Link to={'/'}>Вернуться к покупкам</Styles.Link>
+                </Styles.CaptionWrapper>
+                <Styles.CaptionWrapper>
+                    <h1>Корзина</h1>
+                </Styles.CaptionWrapper>
+                <Styles.Flex isMobile={isMobile}>
+                    <ItemsGrid width={isMobile ? '100%' : '65%'}>
+                        {productsElements}
+                    </ItemsGrid>
+                    <Styles.CartInfoMenu isMobile={isMobile}>
+                        <Styles.CartCaption>Ваш заказ</Styles.CartCaption>
+                        <Styles.OrderFieldsList>
+                            {productsInCart.map(p => {
+                                return (
+                                  <Styles.OrderFieldsListItem>
+                                      {p.name}
+                                      <span>{p.price * stores.cartStore.getProductCount(p)} ₽</span>
+                                  </Styles.OrderFieldsListItem>
+                                );
+                            })}
+                        </Styles.OrderFieldsList>
+                        <Styles.Summary>
+                            {'Итого:'}
+                            <span>{totalSum} ₽</span>
+                        </Styles.Summary>
+                        <Styles.Input
+                          type='text'
+                          onChange={(e) => setName(e.target.value)}
+                          placeholder={'Имя'}
+                          value={name}
+                        />
+                        <Styles.Input
+                          type='text'
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                          placeholder={'Номер телефона'}
+                          value={phoneNumber}
+                        />
+                        <Styles.SubmitButton onClick={handleSubmit}>Оформить</Styles.SubmitButton>
+                    </Styles.CartInfoMenu>
+                </Styles.Flex>
+            </Styles.Wrapper>
+        </MainLayout>
     );
 });

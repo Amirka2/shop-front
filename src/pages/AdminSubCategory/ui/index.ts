@@ -1,1 +1,1 @@
-export { SubCategory } from './SubCategory';
+export { AdminSubCategory } from './AdminSubCategory';
