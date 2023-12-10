@@ -49,10 +49,23 @@ export const getSubCategories = async () => {
     return subCategories;
 }
 
-export const createCategory = ({title}: CreateCategoryProps): void => {
-    console.log(title);
+export const createCategory = async ({title}: CreateCategoryProps) => {
+    await apiFetch(URL + '/constrspb/group', {
+        method: HTTP_METHODS.POST,
+        body: {
+            name: title,
+            groupPhotoLink: "string",
+        }
+    }).then(res => res && res.ok)
 }
 
-export const createSubCategory = ({title, categoryId}: CreateSubCategoryProps): void => {
-    console.log(title, categoryId);
+export const createSubCategory = async ({title, categoryId}: CreateSubCategoryProps) => {
+    await apiFetch(URL + '/constrspb/group/subgroup', {
+        method: HTTP_METHODS.POST,
+        body: {
+            groupId: categoryId,
+            name: title,
+            groupPhotoLink: "string",
+        }
+    }).then(res => res && res.ok)
 }
