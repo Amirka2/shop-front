@@ -1,21 +1,34 @@
 import React, {useEffect, useRef, useState} from 'react';
+import {useNavigate} from "react-router";
 import {observer} from "mobx-react";
+import {Dictionary} from 'lodash'
+import {useCookies} from "react-cookie";
 
 import {Container} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {Back} from "@/shared/ui";
+import {ISubCategory} from "@/entities";
 
 import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
-import {useNavigate} from "react-router";
 
-import {createCategory, getCategories, getSubCategories} from '../api';
+import {
+  createCategory,
+  getCategories,
+  getSubCategories,
+  groupSubCategories,
+} from '../api';
 
 import * as Styles from './AdminCategory.styles';
 
 export const AdminCategory = observer(() => {
+  const [groupedSubCategories, setGroupedSubCategories] = useState<Dictionary<ISubCategory[]>>();
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [categoryName, setCategoryName] = useState('');
+  const [isLoading, setLoading] = useState(false);
+
+  const [cookies] = useCookies(['token']);
+  const { token } = cookies;
 
   const { categoriesStore, subCategoriesStore } = useStores();
   const { categories } = categoriesStore;
@@ -24,20 +37,43 @@ export const AdminCategory = observer(() => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName(e.target.value);
   }
+
   const handleSave = () => {
-    createCategory({
-      title: categoryName,
-    });
+    setLoading(true);
+    createCategory(token , {
+      title: categoryName
+    }).then(() => setLoading(false));
+
     setCategoryName('');
     setEditorOpen(false);
   }
+
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
       handleSave();
     }
   };
+
   const reloadRef = useRef(null);
+
+  useEffect(() => {
+    setLoading(true);
+    getCategories()
+      .then(res => {
+        categoriesStore.set(res);
+        setLoading(false);
+      });
+    getSubCategories()
+      .then(res => {
+        subCategoriesStore.set(res);
+
+        const grouped = groupSubCategories(subCategories);
+        setGroupedSubCategories(grouped);
+        setLoading(false);
+      })
+  }, [])
+
   useEffect(() => {
     getCategories()
       .then(res => {
@@ -46,8 +82,11 @@ export const AdminCategory = observer(() => {
     getSubCategories()
       .then(res => {
         subCategoriesStore.set(res);
+
+        const grouped = groupSubCategories(subCategories);
+        setGroupedSubCategories(grouped);
       })
-  }, [])
+  }, [isLoading])
 
   const navigate = useNavigate();
 
@@ -67,19 +106,20 @@ export const AdminCategory = observer(() => {
           </Styles.AddCategoryWrapper>
 
           <Styles.Categories>
-            {categories && categories.map(category => {
-              return (
+            {categories && categories.map(category => (
                 <Styles.Category>
                   <Styles.Title>
                     {category.name}
                   </Styles.Title>
-                  <SubCategories
-                    categoryId={category.id}
-                    subCategories={subCategories}
-                  />
+                  {groupedSubCategories && (
+                    <SubCategories
+                      categoryId={category.id}
+                      subCategories={groupedSubCategories?.[category.id] || []}
+                    />
+                  )}
                 </Styles.Category>
               )
-            })}
+            )}
           </Styles.Categories>
 
           {isEditorOpen && (

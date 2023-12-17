@@ -20,7 +20,9 @@ import {
   AdminCategory,
   AdminSubCategory,
   AdminProduct,
+  AdminAuth
 } from "@/pages";
+import AuthChecker from "@/shared/components/AuthChecker/AuthChecker";
 
 export function App() {
   const mainPageProps = {
@@ -56,10 +58,11 @@ export function App() {
         <Route path={Paths.payment} element={<PaymentPage/>}/>
         <Route path={Paths.shipping} element={<ShippingPage/>}/>
 
-        <Route path={Paths.admin} element={<AdminMain/>}/>
-        <Route path={Paths.adminCategory} element={<AdminCategory/>}/>
-        <Route path={Paths.adminSubCategory} element={<AdminSubCategory/>}/>
-        <Route path={Paths.adminProduct} element={<AdminProduct/>}/>
+        <Route path={Paths.adminAuth} element={<AuthChecker> <AdminAuth /></AuthChecker>} />
+        <Route path={Paths.admin} element={<AuthChecker> <AdminMain/> </AuthChecker>}/>
+        <Route path={Paths.adminCategory} element={<AuthChecker> <AdminCategory/> </AuthChecker>}/>
+        <Route path={Paths.adminSubCategory} element={<AuthChecker> <AdminSubCategory/> </AuthChecker>}/>
+        <Route path={Paths.adminProduct} element={<AuthChecker> <AdminProduct/> </AuthChecker>}/>
       </Routes>
     </BrowserRouter>
   );

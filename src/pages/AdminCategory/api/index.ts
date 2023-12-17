@@ -1,3 +1,5 @@
+import { groupBy } from 'lodash'
+
 import {ICategory, ISubCategory} from "@/entities";
 import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 
@@ -49,13 +51,17 @@ export const getSubCategories = async () => {
     return subCategories;
 }
 
-export const createCategory = async ({title}: CreateCategoryProps) => {
+export const createCategory = async (token: string | undefined, { title }: CreateCategoryProps) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
     await apiFetch(URL + '/constrspb/group', {
         method: HTTP_METHODS.POST,
         body: {
             name: title,
             groupPhotoLink: "string",
-        }
+        },
+        headers: new Headers(headers)
     }).then(res => res && res.ok)
 }
 
@@ -68,4 +74,8 @@ export const createSubCategory = async ({title, categoryId}: CreateSubCategoryPr
             groupPhotoLink: "string",
         }
     }).then(res => res && res.ok)
+}
+
+export const groupSubCategories = (subCategories: ISubCategory[]) => {
+    return groupBy(subCategories, 'categoryId');
 }
