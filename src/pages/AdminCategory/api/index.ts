@@ -65,14 +65,18 @@ export const createCategory = async (token: string | undefined, { title }: Creat
     }).then(res => res && res.ok)
 }
 
-export const createSubCategory = async ({title, categoryId}: CreateSubCategoryProps) => {
+export const createSubCategory = async (token: string | undefined, {title, categoryId}: CreateSubCategoryProps) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
     await apiFetch(URL + '/constrspb/group/subgroup', {
         method: HTTP_METHODS.POST,
         body: {
             groupId: categoryId,
             name: title,
             groupPhotoLink: "string",
-        }
+        },
+        headers: new Headers(headers)
     }).then(res => res && res.ok)
 }
 

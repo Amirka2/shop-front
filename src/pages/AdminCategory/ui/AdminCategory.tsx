@@ -42,7 +42,9 @@ export const AdminCategory = observer(() => {
     setLoading(true);
     createCategory(token , {
       title: categoryName
-    }).then(() => setLoading(false));
+    }).then(() => {
+      updateData();
+    });
 
     setCategoryName('');
     setEditorOpen(false);
@@ -57,7 +59,7 @@ export const AdminCategory = observer(() => {
 
   const reloadRef = useRef(null);
 
-  useEffect(() => {
+  const updateData = () => {
     setLoading(true);
     getCategories()
       .then(res => {
@@ -72,25 +74,20 @@ export const AdminCategory = observer(() => {
         setGroupedSubCategories(grouped);
         setLoading(false);
       })
+  }
+
+  useEffect(() => {
+    updateData();
   }, [])
 
   useEffect(() => {
-    getCategories()
-      .then(res => {
-        categoriesStore.set(res);
-      });
-    getSubCategories()
-      .then(res => {
-        subCategoriesStore.set(res);
-
-        const grouped = groupSubCategories(subCategories);
-        setGroupedSubCategories(grouped);
-      })
-  }, [isLoading])
+    const grouped = groupSubCategories(subCategories);
+    setGroupedSubCategories(grouped);
+  }, [subCategories]);
 
   const navigate = useNavigate();
 
-  return (
+  return isLoading ? (<p>Loading</p>) : (
     <Styles.Wrapper>
       <Container>
 
@@ -115,6 +112,8 @@ export const AdminCategory = observer(() => {
                     <SubCategories
                       categoryId={category.id}
                       subCategories={groupedSubCategories?.[category.id] || []}
+                      updateData={updateData}
+                      isLoading={isLoading}
                     />
                   )}
                 </Styles.Category>
