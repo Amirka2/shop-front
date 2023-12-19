@@ -6,7 +6,7 @@ import {useCookies} from "react-cookie";
 
 import {Container} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
-import {Back} from "@/shared/ui";
+import {Back, PageLoader} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
 
 import {SubCategories} from "./SubCategories";
@@ -87,7 +87,9 @@ export const AdminCategory = observer(() => {
 
   const navigate = useNavigate();
 
-  return isLoading ? (<p>Loading</p>) : (
+  return isLoading ? (
+    <PageLoader />
+  ) : (
     <Styles.Wrapper>
       <Container>
 

@@ -4,7 +4,7 @@ import {observer} from "mobx-react";
 import {useCookies} from "react-cookie";
 
 import {createProductFromNullable} from "@/shared/libs";
-import {Button, Container} from "@/shared/ui";
+import {Button, Container, PageLoader} from "@/shared/ui";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
@@ -60,7 +60,7 @@ export const AdminProduct = observer(() => {
   }, [descriptionId]);
 
   return isLoading ? (
-    <p>Loading...</p>
+    <PageLoader />
   ) : (
     <Container>
       <Styles.Wrapper>
