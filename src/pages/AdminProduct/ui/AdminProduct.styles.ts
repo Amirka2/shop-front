@@ -24,3 +24,11 @@ export const PartitionWrapper = styled.div`
 export const TextAreaWrapper = styled.div`
   width: 100%;
 `;
+
+export const SaveButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  min-height: 100px;
+`;

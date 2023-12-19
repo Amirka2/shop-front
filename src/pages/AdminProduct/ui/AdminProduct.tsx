@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {observer} from "mobx-react";
+import {useCookies} from "react-cookie";
 
-import {Container} from "@/shared/ui";
+import {createProductFromNullable} from "@/shared/libs";
+import {Button, Container} from "@/shared/ui";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
 import {IDescriptionData} from "@/entities/interfaces";
 
-import {getProductById} from "../api";
+import {changeProduct, getProductById} from "../api";
 import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
-
 
 import * as Styles from './AdminProduct.styles';
 
@@ -22,21 +23,35 @@ export const AdminProduct = observer(() => {
     productId
   } = useParams();
   const {adminProductStore} = useStores();
+  const [cookies] = useCookies(['token']);
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [descriptionId, setDescriptionId] = useState(0);
+  const [isLoading, setLoading] = useState(false);
   const [currentDescription, setCurrentDescription] = useState<IDescriptionData | undefined>(undefined);
 
   const { product } = adminProductStore;
   const productName = product?.name || '';
 
+  const { token } = cookies;
+
+  const handleSaveProduct = () => {
+    setLoading(true);
+
+    if (product) {
+      const resultProduct = createProductFromNullable(product);
+      changeProduct(token, resultProduct);
+    }
+
+    setLoading(false);
+  }
+
   useEffect(() => {
     const response = getProductById(Number(productId));
     response.then(result => {
       adminProductStore.set(result);
-      console.log(result)
       setCurrentDescription(adminProductStore.getDescription(descriptionId))
     })
-  }, []);
+  }, [isLoading]);
 
   useEffect(() => {
     if (product) {
@@ -44,10 +59,20 @@ export const AdminProduct = observer(() => {
     }
   }, [descriptionId]);
 
-  return (
+  return isLoading ? (
+    <p>Loading...</p>
+  ) : (
     <Container>
       <Styles.Wrapper>
         <AdminHeader title={productName}/>
+        <Styles.SaveButtonContainer>
+          <Button
+            size="M"
+            onClick={handleSaveProduct}
+          >
+            Сохранить изменения
+          </Button>
+        </Styles.SaveButtonContainer>
         <Styles.InfoWrapper>
           <Styles.MainInfoWrapper>
             <MainInfo/>

@@ -28,3 +28,18 @@ export const getProductById = async (id: number) => {
 
     return product;
 }
+
+export const changeProduct = async (token: string | undefined, product: IProduct) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch(URL + '/constrspb/group/subgroup/product/' + product.id, {
+        method: HTTP_METHODS.PUT,
+        body: {
+            ...product,
+            subGroupId: product.subCategoryId,
+            isAvailable: product.inStock,
+        },
+        headers: new Headers(headers)
+    })
+}
