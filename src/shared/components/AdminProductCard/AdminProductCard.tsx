@@ -6,13 +6,13 @@ import {Link} from "react-router-dom";
 
 interface AdminProductCardProps {
     product: IProduct;
+    handleDelete: (id: number) => void;
 }
 
-export const AdminProductCard = ({product}: AdminProductCardProps) => {
-    const handleDeleteClick = () => {
-
-    }
-
+export const AdminProductCard = ({
+    product,
+    handleDelete : handleDeleteClick
+}: AdminProductCardProps) => {
     const toggleStock = () => {
 
     }
@@ -42,7 +42,11 @@ export const AdminProductCard = ({product}: AdminProductCardProps) => {
                     <Styles.CircleButton color={'#E94D4D'} onClick={toggleStock} />
                     <Styles.CircleButton color={'#5CD969'} onClick={toggleStock} />
                 </Styles.InStockToggler>
-                <Styles.DeleteIconWrapper>
+                <Styles.DeleteIconWrapper onClick={(e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    handleDeleteClick(product.id);
+                }}>
                     <DeleteIcon />
                 </Styles.DeleteIconWrapper>
             </Styles.Wrapper>

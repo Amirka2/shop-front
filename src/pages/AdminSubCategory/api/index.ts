@@ -40,3 +40,13 @@ export const createProduct = async (token: string | undefined, product: Omit<IPr
         headers: new Headers(headers)
     }).then(res => res && res.ok)
 }
+
+export const deleteProduct = async (token: string | undefined, productId: number) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch(URL + '/constrspb/group/subgroup/product/' + productId, {
+        method: HTTP_METHODS.DELETE,
+        headers: new Headers(headers)
+    }).then(res => res && res.ok)
+}

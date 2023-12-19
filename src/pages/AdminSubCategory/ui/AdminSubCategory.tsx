@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { observer } from "mobx-react";
 import { useCookies } from "react-cookie";
 
-import { createProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
+import {createProduct, deleteProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
 import { AdminHeader, AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 import { Plus } from "@/shared/ui";
@@ -73,6 +73,13 @@ export const AdminSubCategory = observer(() => {
         setEditorOpen(false);
     }
 
+    const handleDeleteProduct = (id: number) => {
+        setLoading(true);
+
+        deleteProduct(token, id)
+          .then(() => setLoading(false));
+    }
+
     const reloadRef = useRef(null);
 
     useEffect(() => {
@@ -99,7 +106,7 @@ export const AdminSubCategory = observer(() => {
                 <Styles.ProductsWrapper>
                     {subCategory &&
                       subCategory.products &&
-                      subCategory.products.map(product => <AdminProductCard product={product} />)}
+                      subCategory.products.map(product => <AdminProductCard product={product} handleDelete={handleDeleteProduct}/>)}
                 </Styles.ProductsWrapper>
             </Styles.Wrapper>
         </Container>
