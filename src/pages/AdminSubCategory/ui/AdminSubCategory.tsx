@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from "react-router";
 import { observer } from "mobx-react";
+import { useCookies } from "react-cookie";
 
-import { addProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
+import { createProduct, getSubCategoryProducts } from "@/pages/AdminSubCategory/api";
 import { AdminHeader, AdminProductCard } from "@/shared/components";
 import { Container } from '@/shared/ui';
 import { Plus } from "@/shared/ui";
@@ -22,8 +23,10 @@ export interface SubCategoryPageProps {
 export const AdminSubCategory = observer(() => {
     const params = useParams();
     const { productsStore } = useStores();
+    const [cookies] = useCookies(['token']);
 
     const { products } = productsStore;
+    const { token } = cookies;
 
     let subCategory: SubCategoryPageProps = {
         categoryName: 'Category',
@@ -36,6 +39,7 @@ export const AdminSubCategory = observer(() => {
     const [productShortDescription, setProductShortDescription] = useState('');
     const [productPhoto, setProductPhoto] = useState([]);
     const [isEditorOpen, setEditorOpen] = useState(false);
+    const [isLoading, setLoading] = useState(false);
 
     const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProductName(e.target.value)
@@ -50,6 +54,8 @@ export const AdminSubCategory = observer(() => {
     }
 
     const handleAddProduct = () => {
+        setLoading(true);
+
         const product = {
             subCategoryId: Number(params.subCategoryId),
             inStock: true,
@@ -58,7 +64,8 @@ export const AdminSubCategory = observer(() => {
             shortDescription: productShortDescription,
             photos: productPhoto,
         };
-        addProduct(product);
+        createProduct(token, product)
+          .then(() => setLoading(false));
     }
 
     const handleSave = () => {
@@ -71,11 +78,7 @@ export const AdminSubCategory = observer(() => {
     useEffect(() => {
         getSubCategoryProducts(Number(params.subCategoryId))
           .then(res => productsStore.set(res));
-    }, []);
-
-    useEffect(() => {
-        console.log('rerendered');
-    }, [reloadRef])
+    }, [isLoading])
 
     return (
         <Container>

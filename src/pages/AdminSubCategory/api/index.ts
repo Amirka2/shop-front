@@ -18,6 +18,7 @@ export const getSubCategoryProducts = async (subCategoryId: number)  => {
                 ...p,
                 subCategoryId: p.subgroupId,
                 inStock: p.isAvailable,
+                  count: 0
             }));
         }
     })
@@ -25,6 +26,17 @@ export const getSubCategoryProducts = async (subCategoryId: number)  => {
     return products;
 }
 
-export const addProduct = (product: Omit<IProduct, 'id'>) => {
-    console.log(product);
+export const createProduct = async (token: string | undefined, product: Omit<IProduct, 'id'>) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch(URL + '/constrspb/group/subgroup/product', {
+        method: HTTP_METHODS.POST,
+        body: {
+            ...product,
+            subGroupId: product.subCategoryId,
+            isAvailable: product.inStock
+        },
+        headers: new Headers(headers)
+    }).then(res => res && res.ok)
 }
