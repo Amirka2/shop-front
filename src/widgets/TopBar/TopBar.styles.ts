@@ -36,7 +36,7 @@ export const Title = styled.h6<{
   font-size: ${({fontSize}) => fontSize};
 `;
 
-export const Textarea = styled.textarea`
+export const Input = styled.input`
   position: absolute;
   top: 72px;
   resize: none;
@@ -46,9 +46,8 @@ export const Textarea = styled.textarea`
   padding: 13px;
   border-radius: 10px;
   background-color: ${Color.gray};
-  &:focus {
-    outline: none;
-  }
+  border: none;
+  outline: none;
   &:focus (SearchModal){
     display: block;
   }
@@ -63,13 +62,4 @@ export const Textarea = styled.textarea`
 export const CartButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-`;
-
-export const SearchModal = styled.div`
-  position: absolute;
-  top: 200px;
-  display: none;
-  width: 620px;
-  min-height: 300px;
-  background-color: ${Color.white};
 `;

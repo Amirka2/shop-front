@@ -12,16 +12,30 @@ import {
     LogoContactsWrapper,
     Title,
     SearchWrapper,
-    Textarea,
-    SearchModal
+    Input
 } from "./TopBar.styles";
 
+import {Modal} from "@/shared/components/Modal/Modal"
+import {FilteredProductsList} from "@/shared/components/FilteredProductsList";
+import {CloseModalButton} from "@/shared/components/FilteredProductsList/FilteredProductsList.styles";
+
 export const TopBar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchInput, setSearchInput] = useState('')
     const isMobile = useMobileOrDesktop();
 
-    const handleSearch = function () {
-    }
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+    const handleInputClick = () => {
+        setIsModalOpen(true);
+    };
 
     return (
         <>
@@ -57,7 +71,7 @@ export const TopBar = () => {
                                 </div>
                             </LogoContactsWrapper>
                             <SearchWrapper>
-                                <Textarea onClick={() => setIsOpen(true)}/>
+                                <Input onClick={handleInputClick} />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
                                      fill={Color.blue}>
                                     <g id="search">
@@ -77,7 +91,13 @@ export const TopBar = () => {
                 {/*<CartButtonWrapper>*/}
                 {/*    <CartButton/>*/}
                 {/*</CartButtonWrapper>*/}
-                {isOpen ? (<SearchModal/>) : null}
+                <Modal isModalOpen={isModalOpen} toggle={toggleModal}>
+                    <CloseModalButton onClick={closeModal}>X</CloseModalButton>
+                    <FilteredProductsList
+                        searchInput={searchInput}
+                        setSearchInput={setSearchInput}
+                    />
+                </Modal>
             </Wrapper>
             <NavBar/>
         </>
