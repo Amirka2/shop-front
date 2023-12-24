@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from "react";
 import {getProducts} from "@/pages/Products/api";
 import {useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
+import {Button} from "@/shared/ui";
 import {ProductCard} from "@/widgets";
 
 import * as Styles from "./FilteredProductsList.styles";
@@ -49,13 +50,24 @@ export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProp
                 onChange={(e) => setSearchInput(e.target.value)}
                 autoFocus
             />
-            <Styles.ProductsContainer>
-                <ItemsGrid>
-                    {filteredProducts?.map((product) => (
+            {filteredProducts.length > 0 ? (
+              <Styles.ProductsContainer>
+                  <ItemsGrid>
+                      {filteredProducts?.map((product) => (
                         <ProductCard key={product.id} {...product} />
-                    ))}
-                </ItemsGrid>
-            </Styles.ProductsContainer>
+                      ))}
+                  </ItemsGrid>
+              </Styles.ProductsContainer>
+            ) : (
+              <Styles.LabelContainer>
+                  <p>
+                      По данному запросу ничего не найдено
+                  </p>
+                  <Button size={"S"} onClick={() => setSearchInput('')}>
+                      Очистить запрос
+                  </Button>
+              </Styles.LabelContainer>
+            )}
         </Styles.SearchWrapper>
     );
 };

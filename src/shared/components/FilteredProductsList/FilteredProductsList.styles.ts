@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 export const SearchWrapper = styled.div`
   display: flex;
-  justify-content: center; 
+  flex-direction: column;
+  justify-content: flex-start; 
   align-items: center; 
   height: 100%;
+  padding-top: 10px;
 `;
 
 export const ModalInput = styled.input`
-  position: absolute;
-  top: 40px;
   resize: none;
-  width: 45%;
+  width: 80%;
   height: 48px;
   font-size: 16px;
   padding: 13px;
@@ -24,6 +24,20 @@ export const ModalInput = styled.input`
 `
 
 export const ProductsContainer = styled.div`
-    height: 100%;
-    overflow: auto;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  
+  padding: 10px 0;
+`;
+
+export const LabelContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 `;

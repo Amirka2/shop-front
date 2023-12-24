@@ -16,25 +16,27 @@ export const ModalOverlay = styled.div`
 `
 
 export const ModalBox = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   background-color: #e1e1e1;
   width: 55%;
   height: 92%;
-  padding: 10px;
   border-radius: 20px;
 `
 
 export const ModalContent = styled.div`
   width: 100%;
   height: 100%;
-  padding-top: 40px;
   overflow: hidden;
 `
 
 export const CloseModalButton = styled.button`
-  width: 5%;
-  height: 5%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
   border-radius: 10px;
   font-size: 16px;
   color: ${Color.darkGray};
