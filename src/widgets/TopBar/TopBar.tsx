@@ -60,7 +60,7 @@ export const TopBar = () => {
                                 </div>
                             </Styles.LogoContactsWrapper>
                             <Styles.SearchWrapper>
-                              <Input onClick={handleInputClick} />
+                              <Styles.Input onClick={handleInputClick} />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
                                      fill={Color.blue}>
                                     <g id="search">
@@ -87,7 +87,6 @@ export const TopBar = () => {
                         setSearchInput={setSearchInput}
                     />
                 </Modal>
-            </Wrapper>
             <NavBar/>
         </>
     );
