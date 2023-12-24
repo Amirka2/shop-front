@@ -6,6 +6,8 @@ import {useMobileOrDesktop} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
 import {Contacts} from "@/entities/Contacts";
 import {BurgerMenu} from "@/shared/components";
+import {FilteredProductsList} from "@/shared/components/FilteredProductsList";
+import {Modal} from "@/shared/components/Modal/Modal"
 
 import {
     Wrapper,
@@ -15,10 +17,6 @@ import {
     Input
 } from "./TopBar.styles";
 
-import {Modal} from "@/shared/components/Modal/Modal"
-import {FilteredProductsList} from "@/shared/components/FilteredProductsList";
-import {CloseModalButton} from "@/shared/components/FilteredProductsList/FilteredProductsList.styles";
-
 export const TopBar = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchInput, setSearchInput] = useState('')
@@ -27,10 +25,6 @@ export const TopBar = () => {
 
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
     };
 
     const handleInputClick = () => {
@@ -91,8 +85,7 @@ export const TopBar = () => {
                 {/*<CartButtonWrapper>*/}
                 {/*    <CartButton/>*/}
                 {/*</CartButtonWrapper>*/}
-                <Modal isModalOpen={isModalOpen} toggle={toggleModal}>
-                    <CloseModalButton onClick={closeModal}>X</CloseModalButton>
+                <Modal isModalOpen={isModalOpen} toggle={toggleModal} onClose={() => setIsModalOpen(false)}>
                     <FilteredProductsList
                         searchInput={searchInput}
                         setSearchInput={setSearchInput}

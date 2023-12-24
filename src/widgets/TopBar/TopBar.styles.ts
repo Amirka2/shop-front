@@ -1,4 +1,5 @@
 import {styled} from "styled-components";
+
 import {Color} from "@/shared/constants";
 
 export const Wrapper = styled.header<{
@@ -48,6 +49,7 @@ export const Input = styled.input`
   background-color: ${Color.gray};
   border: none;
   outline: none;
+  cursor: pointer;
   &:focus (SearchModal){
     display: block;
   }

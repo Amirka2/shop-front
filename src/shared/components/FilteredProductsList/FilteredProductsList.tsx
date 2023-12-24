@@ -1,9 +1,11 @@
-import {ModalInput, ProductsContainer, SearchWrapper} from "./FilteredProductsList.styles";
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
+
 import {getProducts} from "@/pages/Products/api";
 import {useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
 import {ProductCard} from "@/widgets";
+
+import * as Styles from "./FilteredProductsList.styles";
 
 interface SearchProps {
     searchInput: string;
@@ -13,6 +15,7 @@ interface SearchProps {
 export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProps) => {
     const { productsStore } = useStores();
     const { products } = productsStore;
+    const [filteredProducts, setFilteredProducts] = useState(products);
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -25,29 +28,34 @@ export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProp
         const response = getProducts();
         response.then(result => {
             productsStore.set(result);
+            setFilteredProducts(result);
         })
     }, [])
 
-    const filteredProducts = products.filter((item) =>
-        item.name.toLowerCase().includes(searchInput.toLowerCase())
-    );
+    useEffect(() => {
+        setFilteredProducts(
+            products.filter((item) =>
+                item.name.toLowerCase().includes(searchInput.toLowerCase())
+            )
+        );
+    }, [searchInput, products]);
 
     return (
-        <SearchWrapper>
-            <ModalInput
+        <Styles.SearchWrapper>
+            <Styles.ModalInput
                 ref={inputRef}
                 placeholder={'Поиск'}
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
                 autoFocus
             />
-            <ProductsContainer>
+            <Styles.ProductsContainer>
                 <ItemsGrid>
                     {filteredProducts?.map((product) => (
                         <ProductCard key={product.id} {...product} />
-                    )) || []}
+                    ))}
                 </ItemsGrid>
-            </ProductsContainer>
-        </SearchWrapper>
+            </Styles.ProductsContainer>
+        </Styles.SearchWrapper>
     );
 };

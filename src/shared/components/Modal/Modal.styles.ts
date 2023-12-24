@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
+import {Color} from "@/shared/constants";
+
 export const ModalOverlay = styled.div`
-  z-index: 10;
   width: 100%;
   height: 100%;
   position: fixed;
@@ -19,7 +20,30 @@ export const ModalBox = styled.div`
   flex-direction: column;
   background-color: #e1e1e1;
   width: 55%;
-  height: 94%;
+  height: 92%;
   padding: 10px;
   border-radius: 20px;
 `
+
+export const ModalContent = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
+  overflow: hidden;
+`
+
+export const CloseModalButton = styled.button`
+  width: 5%;
+  height: 5%;
+  border-radius: 10px;
+  font-size: 16px;
+  color: ${Color.darkGray};
+  background-color: #e1e1e1;
+  align-self: flex-end;
+  padding: 4.25px;
+  cursor: pointer;
+  &:hover{
+    color: ${Color.black};
+  }
+`;
+
