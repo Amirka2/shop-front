@@ -7,12 +7,18 @@ export const Wrapper = styled.div`
 export const InfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 20px;
   
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 `;
 
 export const MainInfoWrapper = styled.div`
   width: 50%;
+`;
+
+export const AdditionalInfoWrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 export const PartitionWrapper = styled.div`

@@ -15,6 +15,7 @@ import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
 
 import * as Styles from './AdminProduct.styles';
+import {AdditionalInfo} from "@/pages/AdminProduct/ui/AdditionalInfo";
 
 export const AdminProduct = observer(() => {
   const {
@@ -77,6 +78,9 @@ export const AdminProduct = observer(() => {
           <Styles.MainInfoWrapper>
             <MainInfo/>
           </Styles.MainInfoWrapper>
+          <Styles.AdditionalInfoWrapper>
+            <AdditionalInfo />
+          </Styles.AdditionalInfoWrapper>
           <Styles.PartitionWrapper>
             <Partition
               descriptionId={descriptionId}
