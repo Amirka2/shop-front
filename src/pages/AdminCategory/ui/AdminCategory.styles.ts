@@ -1,6 +1,7 @@
 import {styled} from "styled-components";
 
 import {Color} from "@/shared/constants";
+import {Button} from "@/shared/ui";
 
 export const Wrapper = styled.main`
   width: 100%;
@@ -63,3 +64,8 @@ export const AddCategory = styled.button`
   }
 `;
 
+export const DeleteButton = styled(Button)`
+  font-size: 18px;
+  
+  margin-left: 10px;
+`;

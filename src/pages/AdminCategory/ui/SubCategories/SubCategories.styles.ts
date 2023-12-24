@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import {Color} from "@/shared/constants";
 import { Link } from 'react-router-dom';
+import {Button} from "@/shared/ui";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -10,6 +11,8 @@ export const Wrapper = styled.div`
 export const SubCategory = styled.li`
   list-style-type: none;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const StyledLink = styled(Link)`
@@ -39,4 +42,10 @@ export const AddSubCategory = styled.button`
   &:hover {
     transform: scale(105%);
   }
+`;
+
+export const DeleteButton = styled(Button)`
+  font-size: 18px;
+  
+  margin-left: 10px;
 `;

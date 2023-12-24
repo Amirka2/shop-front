@@ -39,8 +39,11 @@ export const AdminProductCard = ({
                     {product.shortDescription}
                 </Styles.Description>
                 <Styles.InStockToggler>
-                    <Styles.CircleButton color={'#E94D4D'} onClick={toggleStock} />
+                    {product.inStock ? (
                     <Styles.CircleButton color={'#5CD969'} onClick={toggleStock} />
+                    ): (
+                    <Styles.CircleButton color={'#E94D4D'} onClick={toggleStock} />
+                    )}
                 </Styles.InStockToggler>
                 <Styles.DeleteIconWrapper onClick={(e) => {
                     e.stopPropagation();

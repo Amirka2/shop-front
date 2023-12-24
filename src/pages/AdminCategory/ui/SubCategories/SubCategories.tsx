@@ -1,12 +1,12 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 
 import {ISubCategory} from "@/entities";
-import {createSubCategory, getCategories, getSubCategories, groupSubCategories} from "../../api";
+import {createSubCategory, deleteSubCategory} from "../../api";
 import {Editor} from "@/pages/AdminCategory/ui/Editor";
 
 import * as Styles from "./SubCategories.styles";
 import {useCookies} from "react-cookie";
-import {useStores} from "@/shared/hooks";
+import {Spin} from "antd";
 
 interface SubCategoriesProps {
     categoryId: number;
@@ -21,6 +21,11 @@ export const SubCategories = ({categoryId, subCategories, updateData, isLoading}
 
     const [cookies] = useCookies(['token']);
     const { token } = cookies;
+
+    const handleDeleteClick = (id: number) => {
+        deleteSubCategory(token, id)
+          .then(() => updateData());
+    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSubCategoryName(e.target.value);
@@ -47,7 +52,7 @@ export const SubCategories = ({categoryId, subCategories, updateData, isLoading}
     const reloadRef = useRef(null);
 
 
-    return isLoading ? (<p>Loading</p>) : (
+    return isLoading ? (<Spin />) : (
         <Styles.Wrapper>
             <Styles.AddSubCategory onClick={() => setEditorOpen(prev => !prev)}>
                 {isEditorOpen ? '-' : '+'}
@@ -61,6 +66,9 @@ export const SubCategories = ({categoryId, subCategories, updateData, isLoading}
                                     {subCategory.name}
                                 </Styles.StyledLink>
                             </Styles.Title>
+                            <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
+                                X
+                            </Styles.DeleteButton>
                         </Styles.SubCategory>
                     </ul>
                 ))}

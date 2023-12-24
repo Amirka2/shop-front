@@ -34,6 +34,7 @@ export const AdditionalInfo = observer(() => {
           Короткое описание:
         </Styles.Label>
         <Styles.Description
+          value={product?.shortDescription}
           onChange={handleShortDescriptionChange}
         />
       </Styles.DescriptionWrapper>
