@@ -7,7 +7,7 @@ export const ProductCard = (props: IProduct) => {
     return (
         <Wrapper>
             <ProductInfoCard {...props} />
-            {/*<AddToCartBtn {...props} />*/}
+            <AddToCartBtn {...props} />
         </Wrapper>
     );
 };

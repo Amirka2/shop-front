@@ -9,10 +9,10 @@ interface AddToCartBtnProps extends IProduct {
 
 export const AddToCartBtn = (props: AddToCartBtnProps) => {
     const stores = useStores();
-    const [text, setText] = useState('Это мне нужно')
+    const [text, setText] = useState('В корзину')
     function handleClick() {
         stores.cartStore.increaseProductsCount({...props});
-        setText('Я это куплю');
+        setText('Добавлено');
     }
 
     return (

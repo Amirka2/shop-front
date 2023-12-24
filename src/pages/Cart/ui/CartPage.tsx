@@ -82,7 +82,7 @@ export const CartPage = observer(() => {
                 <Styles.CaptionWrapper>
                     <h1>Корзина</h1>
                 </Styles.CaptionWrapper>
-                <Styles.Flex isMobile={isMobile}>
+                <Styles.Flex>
                     <ItemsGrid width={isMobile ? '100%' : '65%'}>
                         {productsElements}
                     </ItemsGrid>

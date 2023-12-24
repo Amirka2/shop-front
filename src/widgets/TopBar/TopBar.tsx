@@ -1,48 +1,39 @@
 import React, {useState} from 'react';
 
 import {Logo, NavBar} from '@/shared/components';
-import {CartButton} from './CartButton';
 import {useMobileOrDesktop} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
 import {Contacts} from "@/entities/Contacts";
 import {BurgerMenu} from "@/shared/components";
 
-import {
-    Wrapper,
-    LogoContactsWrapper,
-    Title,
-    SearchWrapper,
-    Textarea,
-    SearchModal
-} from "./TopBar.styles";
+import {CartButton} from './CartButton';
+
+import * as Styles from "./TopBar.styles";
 
 export const TopBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const isMobile = useMobileOrDesktop();
 
-    const handleSearch = function () {
-    }
-
     return (
         <>
-            <Wrapper $isMobile={isMobile}>
+            <Styles.Wrapper $isMobile={isMobile}>
                 {
                     isMobile ? (
                         <>
                             <BurgerMenu/>
-                            <Title>ООО "Конструкция СПБ"</Title>
+                            <Styles.Title>ООО "Конструкция СПБ"</Styles.Title>
                         </>
                     ) : (
                         <>
-                            <LogoContactsWrapper>
+                            <Styles.LogoContactsWrapper>
                                 <div style={{
                                     display: 'flex',
                                     alignItems: 'center',
                                 }}>
                                     <Logo/>
                                     <div>
-                                        <Title fontSize={'18px'}>ООО "Конструкция СПБ"</Title>
-                                        <Title fontSize={'18px'}>
+                                        <Styles.Title fontSize={'18px'}>ООО "Конструкция СПБ"</Styles.Title>
+                                        <Styles.Title fontSize={'18px'}>
                                             <a
                                                 href={'https://2gis.ru/moscow/geo/4504235282657211'}
                                                 style={{
@@ -52,12 +43,12 @@ export const TopBar = () => {
                                             >
                                                 г..Москва, Токмаков переулок, д14 стр 3
                                             </a>
-                                        </Title>
+                                        </Styles.Title>
                                     </div>
                                 </div>
-                            </LogoContactsWrapper>
-                            <SearchWrapper>
-                                <Textarea onClick={() => setIsOpen(true)}/>
+                            </Styles.LogoContactsWrapper>
+                            <Styles.SearchWrapper>
+                                <Styles.Textarea onClick={() => setIsOpen(true)}/>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
                                      fill={Color.blue}>
                                     <g id="search">
@@ -69,16 +60,16 @@ export const TopBar = () => {
                                               fill={Color.blue}/>
                                     </g>
                                 </svg>
-                            </SearchWrapper>
+                            </Styles.SearchWrapper>
                             <Contacts/>
                         </>
                     )
                 }
-                {/*<CartButtonWrapper>*/}
-                {/*    <CartButton/>*/}
-                {/*</CartButtonWrapper>*/}
-                {isOpen ? (<SearchModal/>) : null}
-            </Wrapper>
+                <Styles.CartButtonWrapper>
+                    <CartButton/>
+                </Styles.CartButtonWrapper>
+                {isOpen ? (<Styles.SearchModal/>) : null}
+            </Styles.Wrapper>
             <NavBar/>
         </>
     );
