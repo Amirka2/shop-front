@@ -83,3 +83,23 @@ export const createSubCategory = async (token: string | undefined, {title, categ
 export const groupSubCategories = (subCategories: ISubCategory[]) => {
     return groupBy(subCategories, 'categoryId');
 }
+
+export const deleteCategory = async (token: string, id: number) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch(URL + '/constrspb/group/' + id, {
+        method: HTTP_METHODS.DELETE,
+        headers: new Headers(headers)
+    }).then(res => res && res.ok)
+}
+
+export const deleteSubCategory = async (token: string, id: number) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch(URL + '/constrspb/group/subgroup/' + id, {
+        method: HTTP_METHODS.DELETE,
+        headers: new Headers(headers)
+    }).then(res => res && res.ok)
+}

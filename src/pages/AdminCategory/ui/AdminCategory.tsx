@@ -13,7 +13,7 @@ import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
 
 import {
-  createCategory,
+  createCategory, deleteCategory,
   getCategories,
   getSubCategories,
   groupSubCategories,
@@ -33,6 +33,11 @@ export const AdminCategory = observer(() => {
   const { categoriesStore, subCategoriesStore } = useStores();
   const { categories } = categoriesStore;
   const { subCategories } = subCategoriesStore;
+
+  const handleDeleteClick = (id: number) => {
+    setLoading(true);
+    deleteCategory(token, id).then(() => setLoading(false));
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCategoryName(e.target.value);
@@ -109,6 +114,9 @@ export const AdminCategory = observer(() => {
                 <Styles.Category>
                   <Styles.Title>
                     {category.name}
+                    <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
+                      Удалить
+                    </Styles.DeleteButton>
                   </Styles.Title>
                   {groupedSubCategories && (
                     <SubCategories
