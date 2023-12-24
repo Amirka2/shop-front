@@ -9,6 +9,8 @@ import { useMobileOrDesktop } from "@/shared/hooks";
 import { MainLayout } from "@/shared/ui/Layouts";
 
 import * as Styles from "./MainPage.styles";
+import {colors} from "@mui/material";
+import {Color} from "@/shared/constants";
 
 interface MainPageProps extends IContacts {
     itemsValue: number;
@@ -27,6 +29,12 @@ export const MainPage = (props: MainPageProps) => {
     return (
         <MainLayout>
             <Styles.Wrapper $isMobile={isMobile}>
+                <h1 style={{
+                    marginBottom: '20px',
+                    color: Color.blue
+                }}>
+                    Бестселлеры
+                </h1>
                 <ItemsGrid width={width.toString()}>
                     {itemsComponents}
                 </ItemsGrid>
