@@ -6,6 +6,7 @@ import { useMobileOrDesktop, useStores } from "@/shared/hooks";
 import { CategoryCard } from "@/entities";
 import { MainLayout } from "@/shared/ui/Layouts";
 
+import { categories as CATEGORIES } from '@/app/shop/mock';
 import { getCategories } from '../api'
 
 import { Wrapper } from "./CategoriesPage.styles";
@@ -17,10 +18,11 @@ export const CategoriesPage = observer(() => {
   const {categories} = categoriesStore;
 
   useEffect(() => {
-    const response = getCategories();
-    response.then(result => {
-      categoriesStore.set(result);
-    })
+    categoriesStore.set(CATEGORIES);
+    // const response = getCategories();
+    // response.then(result => {
+    //   categoriesStore.set(result);
+    // })
   }, [])
 
   let width = isMobile ? 600 : 1000;

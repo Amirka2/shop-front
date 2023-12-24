@@ -5,6 +5,7 @@ import { ItemsGrid } from "@/shared/components";
 import { useMobileOrDesktop, useStores } from "@/shared/hooks";
 import { SubCategoryCard } from "@/entities";
 import { MainLayout } from "@/shared/ui/Layouts";
+import { subCategories as SUB_CATEGORIES } from '@/app/shop/mock';
 
 import { getSubCategories } from '../api'
 
@@ -15,8 +16,9 @@ export const SubCategoriesPage = observer(() => {
     const { subCategories } = subCategoriesStore;
 
     useEffect(() => {
-        const response = getSubCategories();
-        response.then(result => subCategoriesStore.set(result))
+      subCategoriesStore.set(SUB_CATEGORIES);
+        // const response = getSubCategories();
+        // response.then(result => subCategoriesStore.set(result))
     }, [])
 
     let isMobile = useMobileOrDesktop();
