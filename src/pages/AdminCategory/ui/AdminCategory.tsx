@@ -115,7 +115,7 @@ export const AdminCategory = observer(() => {
                   <Styles.Title>
                     {category.name}
                     <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                      Удалить
+                      X
                     </Styles.DeleteButton>
                   </Styles.Title>
                   {groupedSubCategories && (

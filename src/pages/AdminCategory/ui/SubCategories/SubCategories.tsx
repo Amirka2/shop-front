@@ -67,7 +67,7 @@ export const SubCategories = ({categoryId, subCategories, updateData, isLoading}
                                 </Styles.StyledLink>
                             </Styles.Title>
                             <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
-                                Удалить
+                                X
                             </Styles.DeleteButton>
                         </Styles.SubCategory>
                     </ul>
