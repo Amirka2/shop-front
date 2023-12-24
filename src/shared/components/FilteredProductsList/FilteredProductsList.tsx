@@ -8,6 +8,8 @@ import {ProductCard} from "@/widgets";
 
 import * as Styles from "./FilteredProductsList.styles";
 
+import { products as PRODUCTS} from '@/app/shop/mock';
+
 interface SearchProps {
     searchInput: string;
     setSearchInput: React.Dispatch<string>;
@@ -16,7 +18,7 @@ interface SearchProps {
 export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProps) => {
     const { productsStore } = useStores();
     const { products } = productsStore;
-    const [filteredProducts, setFilteredProducts] = useState(products);
+    const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -25,17 +27,17 @@ export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProp
         }
     }, [searchInput]);
 
-    useEffect(() => {
-        const response = getProducts();
-        response.then(result => {
-            productsStore.set(result);
-            setFilteredProducts(result);
-        })
-    }, [])
+    // useEffect(() => {
+    //     const response = getProducts();
+    //     response.then(result => {
+    //         productsStore.set(result);
+    //         setFilteredProducts(result);
+    //     })
+    // }, [])
 
     useEffect(() => {
         setFilteredProducts(
-            products.filter((item) =>
+            PRODUCTS.filter((item) =>
                 item.name.toLowerCase().includes(searchInput.toLowerCase())
             )
         );
