@@ -5,14 +5,26 @@ import {useMobileOrDesktop} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
 import {Contacts} from "@/entities/Contacts";
 import {BurgerMenu} from "@/shared/components";
+import {FilteredProductsList} from "@/shared/components/FilteredProductsList";
+import {Modal} from "@/shared/components/Modal/Modal"
 
 import {CartButton} from './CartButton';
 
 import * as Styles from "./TopBar.styles";
 
 export const TopBar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [searchInput, setSearchInput] = useState('')
     const isMobile = useMobileOrDesktop();
+
+
+    const toggleModal = () => {
+        setIsModalOpen(!isModalOpen);
+    };
+
+    const handleInputClick = () => {
+        setIsModalOpen(true);
+    };
 
     return (
         <>
@@ -48,7 +60,7 @@ export const TopBar = () => {
                                 </div>
                             </Styles.LogoContactsWrapper>
                             <Styles.SearchWrapper>
-                                <Styles.Textarea onClick={() => setIsOpen(true)}/>
+                              <Input onClick={handleInputClick} />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25"
                                      fill={Color.blue}>
                                     <g id="search">
@@ -68,8 +80,14 @@ export const TopBar = () => {
                 <Styles.CartButtonWrapper>
                     <CartButton/>
                 </Styles.CartButtonWrapper>
-                {isOpen ? (<Styles.SearchModal/>) : null}
             </Styles.Wrapper>
+                <Modal isModalOpen={isModalOpen} toggle={toggleModal} onClose={() => setIsModalOpen(false)}>
+                    <FilteredProductsList
+                        searchInput={searchInput}
+                        setSearchInput={setSearchInput}
+                    />
+                </Modal>
+            </Wrapper>
             <NavBar/>
         </>
     );
