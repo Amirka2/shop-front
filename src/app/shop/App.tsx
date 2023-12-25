@@ -23,6 +23,7 @@ import {
   AdminAuth
 } from "@/pages";
 import AuthChecker from "@/shared/components/AuthChecker/AuthChecker";
+import {AdminBestsellers} from "@/pages/AdminBestsellers/ui";
 
 export function App() {
   const mainPageProps = {
@@ -61,6 +62,7 @@ export function App() {
         <Route path={Paths.adminAuth} element={<AuthChecker> <AdminAuth /></AuthChecker>} />
         <Route path={Paths.admin} element={<AuthChecker> <AdminMain/> </AuthChecker>}/>
         <Route path={Paths.adminCategory} element={<AuthChecker> <AdminCategory/> </AuthChecker>}/>
+        <Route path={Paths.adminBestSellers} element={<AuthChecker> <AdminBestsellers/> </AuthChecker>}/>
         <Route path={Paths.adminSubCategory} element={<AuthChecker> <AdminSubCategory/> </AuthChecker>}/>
         <Route path={Paths.adminProduct} element={<AuthChecker> <AdminProduct/> </AuthChecker>}/>
       </Routes>
