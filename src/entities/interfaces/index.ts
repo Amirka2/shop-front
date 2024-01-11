@@ -9,9 +9,6 @@ export interface IProduct {
     nextArrivalDate?: string;
     description?: IDescriptionData[];
     photos?: string[];
-    specifications?: string;
-    usage?: string;
-    examples?: string;
 }
 
 export interface ICreateProduct {

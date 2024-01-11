@@ -1,5 +1,5 @@
 import {IProduct} from "@/entities";
-import {apiFetch, HTTP_METHODS} from "@/shared/libs";
+import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
 
 const URL = 'http://194.58.111.33';
 
@@ -18,11 +18,7 @@ export const getProductById = async (id: number) => {
     }).then(res => {
         if (res && res.ok) {
             const backProduct = res.body.product;
-            product = {
-                ...backProduct,
-                subCategoryId: backProduct.subgroupId,
-                inStock: backProduct.isAvailable,
-            };
+            product = productBackToFront(backProduct);
         }
     })
 
@@ -33,13 +29,11 @@ export const changeProduct = async (token: string | undefined, product: IProduct
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    await apiFetch(URL + '/constrspb/group/subgroup/product/' + product.id, {
+    const backProduct = productFrontToBack(product);
+
+    return await apiFetch(URL + '/constrspb/group/subgroup/product/' + product.id, {
         method: HTTP_METHODS.PUT,
-        body: {
-            ...product,
-            subGroupId: product.subCategoryId,
-            isAvailable: product.inStock,
-        },
+        body: backProduct,
         headers: new Headers(headers)
     })
 }

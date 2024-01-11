@@ -3,7 +3,7 @@ import {useParams} from "react-router";
 import {observer} from "mobx-react";
 import {useCookies} from "react-cookie";
 
-import {createProductFromNullable} from "@/shared/libs";
+import {createProductFromNullable, productBackToFront} from "@/shared/libs";
 import {Button, Container, PageLoader} from "@/shared/ui";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
@@ -40,7 +40,12 @@ export const AdminProduct = observer(() => {
 
     if (product) {
       const resultProduct = createProductFromNullable(product);
-      changeProduct(token, resultProduct);
+      changeProduct(token, resultProduct)
+        .then(res => {
+          const frontProduct = productBackToFront(res?.body.product)
+
+          adminProductStore.set(frontProduct);
+        })
     }
 
     setLoading(false);
