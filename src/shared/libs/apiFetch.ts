@@ -115,3 +115,39 @@ export const apiFetch: IApiFetch = async (
       console.error(error);
     });
 };
+
+export const apiFetchFormData: IApiFetch = async (
+  url,
+  { body = {}, method = HTTP_METHODS.POST } = {}
+) => {
+  const requestParamsOptions: {
+    headers: any;
+    body: BodyInit | object | string | null;
+    method: HTTP_METHODS;
+  } = {
+    headers: new Headers({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    }),
+    body: null,
+    method: method,
+  };
+
+  let requestUrl = url;
+
+  if (body !== undefined) {
+    if (method === HTTP_METHODS.GET) {
+      requestUrl += `?${getURLSearchParamsByObject(body).toString()}`;
+    } else {
+      requestParamsOptions.body = body;
+    }
+  }
+
+  return fetch(requestUrl, requestParamsOptions)
+    .then((response) => {
+      return handleResponse(response);
+    })
+    .catch((error) => {
+      return console.error(error);
+    });
+};
