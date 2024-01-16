@@ -4,11 +4,12 @@ import useFilePreview from '../../hooks/useFilePreview';
 
 const { Dragger } = Upload;
 
-export const DragAndDrop = ({ addFile, removeFile }) => {
+export const DragAndDrop = ({ addFile, removeFile, beforeUpload }) => {
     const [handlePreview, previewContent] = useFilePreview();
 
     const beforeUploadHandler = (file) => {
         addFile(file);
+        beforeUpload(file);
         return false;
     };
 
