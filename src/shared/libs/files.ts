@@ -1,5 +1,6 @@
 import {TFileResponse} from "@/shared/interfaces/files";
 import {apiFetchFormData, HTTP_METHODS} from "@/shared/libs/apiFetch";
+import {URL} from "@/shared/constants";
 
 const createFilePromise = (
   formData: FormData
@@ -9,7 +10,7 @@ const createFilePromise = (
   ok: boolean;
 }> => {
   return new Promise((resolve) => {
-    return apiFetchFormData('/api/files', {
+    return apiFetchFormData(`${URL}/constrspb/file`, {
       method: HTTP_METHODS.POST,
       body: formData,
       errorHandler: (error) => {
@@ -29,13 +30,13 @@ const createFilePromise = (
 };
 
 export const postFiles = async (
-  files: File[]
+  files: Blob[]
 ): Promise<{ body: TFileResponse | null; status: string; ok: boolean }[]> => {
   if (typeof files === 'undefined') return [];
 
   const formDataFileArray = files.map((file) => {
     const formData = new FormData();
-    formData.append('File', file);
+    formData.append('FormFile', file);
 
     return formData;
   });
