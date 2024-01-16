@@ -143,6 +143,7 @@ export const apiFetchFormData: IApiFetch = async (
     }
   }
 
+  // @ts-ignore
   return fetch(requestUrl, requestParamsOptions)
     .then((response) => {
       return handleResponse(response);
