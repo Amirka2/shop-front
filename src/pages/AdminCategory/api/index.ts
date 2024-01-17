@@ -7,11 +7,13 @@ const URL = 'http://194.58.111.33';
 
 interface CreateCategoryProps {
     title: string;
+    photo: string;
 }
 
 interface CreateSubCategoryProps {
     title: string;
     categoryId: number;
+    photo: string;
 }
 
 export const getCategories = async () => {
@@ -51,7 +53,7 @@ export const getSubCategories = async () => {
     return subCategories;
 }
 
-export const createCategory = async (token: string | undefined, { title }: CreateCategoryProps) => {
+export const createCategory = async (token: string | undefined, { title, photo }: CreateCategoryProps) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
@@ -59,13 +61,13 @@ export const createCategory = async (token: string | undefined, { title }: Creat
         method: HTTP_METHODS.POST,
         body: {
             name: title,
-            groupPhotoLink: "string",
+            groupPhotoLink: photo,
         },
         headers: new Headers(headers)
     }).then(res => res && res.ok)
 }
 
-export const createSubCategory = async (token: string | undefined, {title, categoryId}: CreateSubCategoryProps) => {
+export const createSubCategory = async (token: string | undefined, {title, categoryId, photo}: CreateSubCategoryProps) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
@@ -74,7 +76,7 @@ export const createSubCategory = async (token: string | undefined, {title, categ
         body: {
             groupId: categoryId,
             name: title,
-            groupPhotoLink: "string",
+            subgroupPhotoLink: photo,
         },
         headers: new Headers(headers)
     }).then(res => res && res.ok)

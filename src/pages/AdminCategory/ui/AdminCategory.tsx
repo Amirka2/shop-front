@@ -8,6 +8,7 @@ import {Container} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {Back, PageLoader} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
+import {postFiles} from "@/shared/libs/files";
 
 import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
@@ -24,34 +25,52 @@ import * as Styles from './AdminCategory.styles';
 export const AdminCategory = observer(() => {
   const [groupedSubCategories, setGroupedSubCategories] = useState<Dictionary<ISubCategory[]>>();
   const [isEditorOpen, setEditorOpen] = useState(false);
-  const [categoryName, setCategoryName] = useState('');
-  const [isLoading, setLoading] = useState(false);
+  const [photos, setPhotos] = useState<Blob[]>([]);
 
   const [cookies] = useCookies(['token']);
   const { token } = cookies;
 
   const { categoriesStore, subCategoriesStore } = useStores();
-  const { categories } = categoriesStore;
+  const { categories, setLoading } = categoriesStore;
+  const adminCategory = categoriesStore.getAdminCategory();
   const { subCategories } = subCategoriesStore;
+  const isLoading = categoriesStore.getIsLoading();
 
   const handleDeleteClick = (id: number) => {
     setLoading(true);
     deleteCategory(token, id).then(() => setLoading(false));
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategoryName(e.target.value);
+  const handleCategoryNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    categoriesStore.setCategoryName(e.target.value);
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setLoading(true);
+
+    if (photos) {
+      const response = await postFiles(photos);
+
+      if (response?.[0].ok) {
+        const photoName = response?.[0].body?.fileName;
+
+        if (photoName) {
+          categoriesStore.setCategoryPhoto(photoName);
+        } else {
+          console.error("Имя файла в ответе не найдено!");
+        }
+      }
+    }
+
     createCategory(token , {
-      title: categoryName
+      title: adminCategory.name,
+      photo: adminCategory.photo,
     }).then(() => {
       updateData();
     });
 
-    setCategoryName('');
+    categoriesStore.clearAdminCategory();
+    setPhotos([]);
     setEditorOpen(false);
   }
 
@@ -123,7 +142,6 @@ export const AdminCategory = observer(() => {
                       categoryId={category.id}
                       subCategories={groupedSubCategories?.[category.id] || []}
                       updateData={updateData}
-                      isLoading={isLoading}
                     />
                   )}
                 </Styles.Category>
@@ -133,10 +151,12 @@ export const AdminCategory = observer(() => {
 
           {isEditorOpen && (
             <Editor
-              inputState={categoryName}
+              nameInput={categoriesStore.getAdminCategory().name}
               placeholder={'Название категории'}
-              handleChange={handleChange}
+              handleKeyPress={handleKeyPress}
+              handleNameInputChange={handleCategoryNameChange}
               handleSave={handleSave}
+              setPhotosBlob={setPhotos}
               ref={reloadRef}
             />
           )}

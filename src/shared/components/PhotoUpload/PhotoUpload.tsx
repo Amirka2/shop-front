@@ -1,34 +1,26 @@
-import React, {FormEvent, useState} from 'react';
+import React, {Dispatch} from 'react';
 import {RcFile} from "antd/es/upload";
 
-import {postFiles} from "@/shared/libs/files";
 import {DragAndDrop} from "@/shared/components/DragAndDrop";
 import useFileSelection from "@/shared/hooks/useFileSelection";
 
-export const PhotoUpload = () => {
+interface PhotoUploadProps {
+  setPhotosBlob: Dispatch<React.SetStateAction<Blob[]>>;
+}
+
+export const PhotoUpload = ({setPhotosBlob}: PhotoUploadProps) => {
   const [addFile, removeFile] = useFileSelection();
-
-  const [photos, setPhotos] = useState<Blob[]>([]);
-  const [name, setName] = useState<string | null>();
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    if (photos) {
-      postFiles(photos);
-    }
-  }
 
   const beforeUpload = (file: RcFile) => {
     if (file) {
       const reader = new FileReader();
       reader.onload = function () {
         const arrayBuffer = reader.result as ArrayBuffer;
-        const blyadskiyBlob = new Blob([arrayBuffer], { type: 'image/jpeg' });
-          setPhotos(prev => [
-            ...prev,
-            blyadskiyBlob
-          ]);
+        const blob = new Blob([arrayBuffer], {type: 'image/jpeg'});
+        setPhotosBlob((prev: Blob[]) => [
+          ...prev,
+          blob
+        ]);
       };
       reader.readAsArrayBuffer(file);
     }
@@ -36,11 +28,7 @@ export const PhotoUpload = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type={'text'} value={name || ''} onChange={(e) => setName(e.currentTarget.value)}/>
-        <DragAndDrop addFile={addFile} removeFile={removeFile} beforeUpload={beforeUpload}/>
-        <input type="submit"/>
-      </form>
+      <DragAndDrop addFile={addFile} removeFile={removeFile} beforeUpload={beforeUpload}/>
     </>
   );
 };
