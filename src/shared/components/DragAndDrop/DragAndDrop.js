@@ -27,9 +27,6 @@ export const DragAndDrop = ({ addFile, removeFile, beforeUpload }) => {
                 <p className="ant-upload-drag-icon">
                     <PlusOutlined />
                 </p>
-                <p className="ant-upload-text">
-                    Click this area or drag files to upload
-                </p>
             </Dragger>
             {previewContent}
         </>
