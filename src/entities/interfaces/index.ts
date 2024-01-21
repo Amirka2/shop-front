@@ -7,7 +7,8 @@ export interface IProduct {
     shortDescription: string;
     isFixedPrice?: boolean;
     nextArrivalDate?: string;
-    description: IDescriptionData[];
+    productDescriptions: IDescriptionData[];
+    // count: number;
     photos: IPhoto[];
 }
 

@@ -39,7 +39,7 @@ export const AdminProduct = observer(() => {
   const handleSaveProduct = async () => {
     setLoading(true);
 
-    if (photos) {
+    if (photos && photos.length > 0) {
       const response = await postFiles(photos);
 
       if (response?.[0].ok) {

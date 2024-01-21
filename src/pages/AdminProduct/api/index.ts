@@ -1,7 +1,6 @@
 import {IChangeProduct, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
-
-const URL = 'http://194.58.111.33';
+import {URL} from "@/shared/constants";
 
 export const getProductById = async (id: number) => {
     let product: IProduct = {
@@ -11,11 +10,11 @@ export const getProductById = async (id: number) => {
         name: 'MOCK',
         inStock: false,
         shortDescription: 'MOCK description',
-        description: [],
+        productDescriptions: [],
         photos: [],
     };
 
-    await apiFetch(URL + '/constrspb/group/subgroup/product/' + id + '/fullInfo', {
+    await apiFetch(URL + '/constrspb/group/subgroup/product/' + id, {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {

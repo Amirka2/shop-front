@@ -16,3 +16,17 @@ export const getProducts = async () => {
 
   return products;
 }
+
+export const getProductsInSubCategory = async (subgroupId: number) => {
+  let products: IProduct[] = [];
+
+  await apiFetch(URL + `/constrspb/group/subgroup/${subgroupId}/products`, {
+    method: HTTP_METHODS.GET,
+  }).then(res => {
+    if (res && res.ok) {
+      products = res.body.products;
+    }
+  })
+
+  return products;
+}

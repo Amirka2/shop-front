@@ -8,6 +8,7 @@ export const createProductFromNullable = (product: IChangeProduct, photos?: ICre
     price: product.price || -1,
     subCategoryId: product.subCategoryId || 1,
     shortDescription: product.shortDescription || 'Описание',
+    productDescriptions: product.productDescriptions || [],
   };
 
   if (photos) {
@@ -33,8 +34,9 @@ export const productBackToFront = (
     price: product.price,
     shortDescription: product.shortDescription,
     photos: product?.photos,
-    description: product?.description,
+    productDescriptions: product?.productDescriptions,
   }
+  console.log('converted', newProduct)
 
   return newProduct
 }
@@ -52,8 +54,8 @@ export const productFrontToBack = (
     isAvailable: product.inStock,
     price: product?.price,
     shortDescription: product?.shortDescription,
-    photos: product?.photos,
-    description: product?.description,
+    photos: product?.photos || [],
+    productDescriptions: product?.productDescriptions || [],
   }
 
   return newProduct

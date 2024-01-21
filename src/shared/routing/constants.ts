@@ -6,7 +6,7 @@ export const Paths = {
     subCategories: '/sub-categories',
     subCategory: '/sub-categories/:subCategoryId',
     products: '/products',
-    product: '/products/:name',
+    product: '/products/:productId',
     aboutUs: '/about-us',
     shipping: '/shipping',
     payment: '/payment',

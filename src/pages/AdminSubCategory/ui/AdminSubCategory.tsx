@@ -63,7 +63,7 @@ export const AdminSubCategory = observer(() => {
             name: productName,
             shortDescription: productShortDescription,
             photos: productPhoto,
-            description: [],
+            productDescriptions: [],
         };
         createProduct(token, product)
           .then(() => setLoading(false));
