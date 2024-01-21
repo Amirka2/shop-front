@@ -14,7 +14,7 @@ export class SubCategoriesStore {
       id: 0,
       categoryId: 0,
       name: '',
-      photo: ''
+      subgroupPhotoLink: ''
     }
   }
 
@@ -35,7 +35,7 @@ export class SubCategoriesStore {
   }
 
   public setAdminSubCategoryPhoto = (photoName: string) => {
-    this.adminSubCategory.photo = photoName;
+    this.adminSubCategory.subgroupPhotoLink = photoName;
   }
 
   public setAdminSubCategoryName = (name: string) => {
@@ -51,7 +51,7 @@ export class SubCategoriesStore {
       id: 0,
       categoryId: 0,
       name: '',
-      photo: ''
+      subgroupPhotoLink: ''
     }
   }
 }

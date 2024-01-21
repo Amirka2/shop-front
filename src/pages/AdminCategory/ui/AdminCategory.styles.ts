@@ -33,6 +33,16 @@ export const Category = styled.div`
   padding: 16px;
 `;
 
+export const Flex = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const Photo = styled.img`
+  width: 50px;
+  height: 50px;
+`;
+
 export const Title = styled.h2`
   color: ${Color.blue};
 

@@ -1,4 +1,4 @@
-import {IProduct} from "@/entities";
+import {IChangeProduct, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
 
 const URL = 'http://194.58.111.33';
@@ -11,9 +11,11 @@ export const getProductById = async (id: number) => {
         name: 'MOCK',
         inStock: false,
         shortDescription: 'MOCK description',
+        description: [],
+        photos: [],
     };
 
-    await apiFetch(URL + '/constrspb/group/subgroup/product/' + id, {
+    await apiFetch(URL + '/constrspb/group/subgroup/product/' + id + '/fullInfo', {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {
@@ -25,7 +27,7 @@ export const getProductById = async (id: number) => {
     return product;
 }
 
-export const changeProduct = async (token: string | undefined, product: IProduct) => {
+export const changeProduct = async (token: string | undefined, product: IChangeProduct) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
@@ -35,5 +37,17 @@ export const changeProduct = async (token: string | undefined, product: IProduct
         method: HTTP_METHODS.PUT,
         body: backProduct,
         headers: new Headers(headers)
+    })
+}
+
+export const createPhoto = async (token: string | undefined, photo: { productId: number, link: string }) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+
+    return await apiFetch(URL + '/constrspb/group/subgroup/product/photo/', {
+        method: HTTP_METHODS.POST,
+        body: photo,
+        headers: new Headers(headers),
     })
 }

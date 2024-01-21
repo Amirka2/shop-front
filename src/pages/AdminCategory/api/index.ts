@@ -76,7 +76,7 @@ export const createSubCategory = async (token: string | undefined, {title, categ
         body: {
             groupId: categoryId,
             name: title,
-            subgroupPhotoLink: photo,
+            groupPhotoLink: photo,
         },
         headers: new Headers(headers)
     }).then(res => res && res.ok)

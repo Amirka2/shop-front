@@ -5,8 +5,8 @@ import {Spin} from "antd";
 
 import {ISubCategory} from "@/entities";
 import {Editor} from "@/pages/AdminCategory/ui/Editor";
-import {postFiles} from "@/shared/libs/files";
 import {useStores} from "@/shared/hooks";
+import {getPhotoUrl, postFiles} from "@/shared/libs";
 
 import {createSubCategory, deleteSubCategory} from "../../api";
 
@@ -56,7 +56,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
     createSubCategory(token, {
       categoryId,
       title: adminSubCategory.name,
-      photo: adminSubCategory.photo || 'Без фото',
+      photo: adminSubCategory.subgroupPhotoLink || 'Без фото',
     }).then(() => {
       updateData();
     })
@@ -80,20 +80,23 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
         {isEditorOpen ? '-' : '+'}
       </Styles.AddSubCategory>
       <Styles.SubCategories>
-        {subCategories.map(subCategory => (
-          <ul>
+        <ul>
+          {subCategories.map(subCategory => (
             <Styles.SubCategory key={subCategory.id}>
-              <Styles.Title>
-                <Styles.StyledLink to={`/admin/${categoryId}/${subCategory.id}`}>
-                  {subCategory.name}
-                </Styles.StyledLink>
-              </Styles.Title>
+              <Styles.Flex>
+                <Styles.Photo src={getPhotoUrl(subCategory.subgroupPhotoLink)}/>
+                <Styles.Title>
+                  <Styles.StyledLink to={`/admin/${categoryId}/${subCategory.id}`}>
+                    {subCategory.name}
+                  </Styles.StyledLink>
+                </Styles.Title>
+              </Styles.Flex>
               <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
                 X
               </Styles.DeleteButton>
             </Styles.SubCategory>
-          </ul>
-        ))}
+          ))}
+        </ul>
       </Styles.SubCategories>
       {isEditorOpen && (
         <Editor

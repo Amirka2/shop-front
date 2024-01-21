@@ -1,6 +1,5 @@
 import { makeAutoObservable } from "mobx";
 import { ICategory } from "@/entities";
-import {categories} from "@/app/shop/mock";
 
 export class CategoriesStore {
     public categories: ICategory[] = [];
@@ -14,7 +13,7 @@ export class CategoriesStore {
         this.adminCategory = {
             id: 0,
             name: '',
-            photo: ''
+            groupPhotoLink: ''
         }
     }
 
@@ -35,7 +34,7 @@ export class CategoriesStore {
     }
 
     public setCategoryPhoto = (photoName: string) => {
-        this.adminCategory.photo = photoName;
+        this.adminCategory.groupPhotoLink = photoName;
     }
 
     public setCategoryName = (name: string) => {
@@ -50,7 +49,7 @@ export class CategoriesStore {
         this.adminCategory = {
             id: 0,
             name: '',
-            photo: ''
+            groupPhotoLink: ''
         }
     }
 }

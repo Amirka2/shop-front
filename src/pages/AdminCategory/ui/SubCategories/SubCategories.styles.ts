@@ -15,6 +15,16 @@ export const SubCategory = styled.li`
   justify-content: space-between;
 `;
 
+export const Flex = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+
+export const Photo = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
 export const StyledLink = styled(Link)`
   color: ${Color.blue};
 `;

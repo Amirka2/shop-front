@@ -1,10 +1,10 @@
 export const Paths = {
     main: '/',
     categories: '/categories',
-    category: '/categories/:name',
+    category: '/categories/:categoryId',
     contacts: '/contacts',
     subCategories: '/sub-categories',
-    subCategory: '/sub-categories/:name',
+    subCategory: '/sub-categories/:subCategoryId',
     products: '/products',
     product: '/products/:name',
     aboutUs: '/about-us',

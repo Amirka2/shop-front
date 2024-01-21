@@ -1,22 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {observer} from "mobx-react";
 
-import { products } from "@/app/shop/mock";
-import { ItemsGrid } from "@/shared/components";
+import {getProducts} from "@/pages/Products/api";
 import { IContacts } from '@/entities';
 import { ProductCard } from '@/widgets';
-import { useMobileOrDesktop } from "@/shared/hooks";
 
+import {useMobileOrDesktop, useStores} from "@/shared/hooks";
+import {Color} from "@/shared/constants";
 import { MainLayout } from "@/shared/ui/Layouts";
+import { ItemsGrid } from "@/shared/components";
 
 import * as Styles from "./MainPage.styles";
-import {colors} from "@mui/material";
-import {Color} from "@/shared/constants";
 
 interface MainPageProps extends IContacts {
     itemsValue: number;
 }
 
-export const MainPage = (props: MainPageProps) => {
+export const MainPage = observer((props: MainPageProps) => {
+    const { productsStore } = useStores();
+    const { products } = productsStore;
+
     const isMobile = useMobileOrDesktop();
     const {
         itemsValue,
@@ -26,6 +29,14 @@ export const MainPage = (props: MainPageProps) => {
         .slice(0, itemsValue).map(i =>
             <ProductCard {...i}/>
         );
+
+    useEffect(() => {
+        const response = getProducts();
+        response.then(result => {
+            productsStore.set(result);
+        })
+    }, [])
+
     return (
         <MainLayout>
             <Styles.Wrapper $isMobile={isMobile}>
@@ -41,4 +52,4 @@ export const MainPage = (props: MainPageProps) => {
             </Styles.Wrapper>
         </MainLayout>
     );
-};
+});

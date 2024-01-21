@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, useState} from 'react';
 
 import { Edit, Plus } from "@/shared/ui";
 import { DragAndDrop } from "@/shared/components/DragAndDrop";
@@ -8,27 +8,27 @@ import { IPhoto, PRODUCT_KEYS } from "@/entities/interfaces";
 
 import * as Styles from './MainInfo.styles';
 import {observer} from "mobx-react";
+import {PhotoUpload} from "@/shared/components";
 
-export const MainInfo = observer(() => {
+export const MainInfo = observer(({setPhotos}: {setPhotos: Dispatch<React.SetStateAction<Blob[]>>}) => {
     const { adminProductStore } = useStores();
-    const [addFile, removeFile] = useFileSelection();
     const { product } = adminProductStore;
 
-    const handleAddPhoto = (file: IPhoto) => {
-        console.log(file);
-        if (adminProductStore.product?.photos) {
-            adminProductStore.addProductField(PRODUCT_KEYS.PHOTOS, [
-                ...adminProductStore.product.photos,
-                file.name
-            ])
-        }
-        addFile(file);
-    }
-
-    const handlePhotoDelete = (file: any) => {
-        console.log(file);
-        removeFile(file)
-    }
+    // const handleAddPhoto = (file: IPhoto) => {
+    //     console.log(file);
+    //     if (adminProductStore.product?.photos) {
+    //         adminProductStore.addProductField(PRODUCT_KEYS.PHOTOS, [
+    //             ...adminProductStore.product.photos,
+    //             file.name
+    //         ])
+    //     }
+    //     addFile(file);
+    // }
+    //
+    // const handlePhotoDelete = (file: any) => {
+    //     console.log(file);
+    //     removeFile(file)
+    // }
 
     const handleProductNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newName = e.currentTarget.value;
@@ -68,7 +68,7 @@ export const MainInfo = observer(() => {
                 </Styles.EditIconButton>
             </Styles.Header>
             <Styles.Photos>
-                <DragAndDrop addFile={handleAddPhoto} removeFile={handlePhotoDelete}/>
+                <PhotoUpload setPhotosBlob={setPhotos} />
             </Styles.Photos>
             <Styles.Footer>
                 <Styles.Input

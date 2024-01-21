@@ -8,7 +8,7 @@ import {Container} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {Back, PageLoader} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
-import {postFiles} from "@/shared/libs/files";
+import {postFiles, getPhotoUrl} from "@/shared/libs";
 
 import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
@@ -64,7 +64,7 @@ export const AdminCategory = observer(() => {
 
     createCategory(token , {
       title: adminCategory.name,
-      photo: adminCategory.photo,
+      photo: adminCategory.groupPhotoLink,
     }).then(() => {
       updateData();
     });
@@ -131,12 +131,15 @@ export const AdminCategory = observer(() => {
           <Styles.Categories>
             {categories && categories.map(category => (
                 <Styles.Category>
-                  <Styles.Title>
-                    {category.name}
-                    <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                      X
-                    </Styles.DeleteButton>
-                  </Styles.Title>
+                  <Styles.Flex>
+                    <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)}/>
+                    <Styles.Title>
+                      {category.name}
+                      <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
+                        X
+                      </Styles.DeleteButton>
+                    </Styles.Title>
+                  </Styles.Flex>
                   {groupedSubCategories && (
                     <SubCategories
                       categoryId={category.id}

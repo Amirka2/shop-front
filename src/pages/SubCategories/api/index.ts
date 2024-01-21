@@ -1,13 +1,12 @@
 import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 import {ISubCategory} from "@/entities";
+import {URL} from "@/shared/constants";
 
-const URL = 'http://194.58.111.33';
-
-export const getSubCategories = async () => {
+export const getSubCategories = async (groupId: number) => {
     let body: any;
     let subGroups: ISubCategory[] = [];
 
-    await apiFetch(URL + '/constrspb/group/subgroup', {
+    await apiFetch(URL + `/constrspb/group/${groupId}/subgroups`, {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {

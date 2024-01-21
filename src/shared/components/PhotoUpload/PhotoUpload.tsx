@@ -28,7 +28,11 @@ export const PhotoUpload = ({setPhotosBlob}: PhotoUploadProps) => {
 
   return (
     <>
-      <DragAndDrop addFile={addFile} removeFile={removeFile} beforeUpload={beforeUpload}/>
+      <DragAndDrop
+        addFile={addFile}
+        removeFile={removeFile}
+        beforeUpload={beforeUpload}
+      />
     </>
   );
 };

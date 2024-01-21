@@ -9,7 +9,7 @@ export const ProductInfoCard = (props: IProduct) => {
   return (
     <Styles.Wrapper>
       {props.photos && (
-        <PhotoSlider photos={props.photos} width={200} height={150}/>
+        <PhotoSlider photos={props.photos.map(p => p.link)} width={200} height={150}/>
       )}
       <Styles.ProductCardInfo>
         <h3><Styles.NavLink to={props.name}>{props.name}</Styles.NavLink></h3>

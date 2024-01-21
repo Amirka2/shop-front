@@ -1,7 +1,7 @@
-import {IChangeProduct, IProduct} from "@/entities";
+import {IChangeProduct, ICreatePhoto, IProduct} from "@/entities";
 
-export const createProductFromNullable = (product: IChangeProduct): IProduct => {
-  let resultProduct: IProduct = {
+export const createProductFromNullable = (product: IChangeProduct, photos?: ICreatePhoto[]): IChangeProduct => {
+  let resultProduct: IChangeProduct = {
     id: product.id,
     name: product.name || 'Имя продукта',
     inStock: product.inStock,
@@ -9,6 +9,13 @@ export const createProductFromNullable = (product: IChangeProduct): IProduct => 
     subCategoryId: product.subCategoryId || 1,
     shortDescription: product.shortDescription || 'Описание',
   };
+
+  if (photos) {
+    resultProduct = {
+      ...resultProduct,
+      photos,
+    }
+  }
 
   return resultProduct;
 }
@@ -33,18 +40,18 @@ export const productBackToFront = (
 }
 
 export const productFrontToBack = (
-  product: IProduct
+  product: IChangeProduct
 ) => {
   const newProduct: Omit<
-    IProduct & { isAvailable: boolean, subgroupId: number },
+    IChangeProduct & { isAvailable: boolean, subgroupId: number },
     "inStock" | "subCategoryId"
   > = {
     id: product.id,
-    name: product.name,
+    name: product?.name,
     subgroupId: product.subCategoryId,
     isAvailable: product.inStock,
-    price: product.price,
-    shortDescription: product.shortDescription,
+    price: product?.price,
+    shortDescription: product?.shortDescription,
     photos: product?.photos,
     description: product?.description,
   }

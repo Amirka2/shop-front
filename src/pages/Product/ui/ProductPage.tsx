@@ -21,7 +21,7 @@ export const ProductPage = () => {
           <Styles.Wrapper isMobile={isMobile}>
             <Styles.Flex isMobile={isMobile}>
               {product.photos && (
-                <Slider images={product.photos} />
+                <Slider images={product.photos.map(p => p.link)} />
               )}
               <ProductInfo {...product}></ProductInfo>
             </Styles.Flex>
