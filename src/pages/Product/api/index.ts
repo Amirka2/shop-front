@@ -14,7 +14,7 @@ export const getProductById = async (id: number) => {
     photos: [],
   };
 
-  await apiFetch(URL + '/constrspb/group/subgroup/product/' + id, {
+  await apiFetch(URL + '/constrspb/group/subgroup/product/' + id + '/fullInfo', {
     method: HTTP_METHODS.GET,
   }).then(res => {
     if (res && res.ok) {
