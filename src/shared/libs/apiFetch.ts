@@ -1,3 +1,5 @@
+import {BASE_URL} from "@/shared/constants";
+
 export enum HTTP_METHODS {
   GET = 'GET',
   POST = 'POST',
@@ -97,7 +99,7 @@ export const apiFetch: IApiFetch = async (
     headers,
   }
 
-  let requestUrl = url;
+  let requestUrl = `${BASE_URL}/${url}`;
 
   if (body !== undefined) {
     if (method === HTTP_METHODS.GET) {
@@ -133,7 +135,7 @@ export const apiFetchFormData: IApiFetch = async (
     method: method,
   };
 
-  let requestUrl = url;
+  let requestUrl = `${BASE_URL}/${url}`;
 
   if (body !== undefined) {
     if (method === HTTP_METHODS.GET) {

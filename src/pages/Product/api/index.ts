@@ -1,6 +1,5 @@
 import {IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront} from "@/shared/libs";
-import {URL} from "@/shared/constants";
 
 export const getProductById = async (id: number) => {
   let product: IProduct = {
@@ -14,7 +13,7 @@ export const getProductById = async (id: number) => {
     photos: [],
   };
 
-  await apiFetch(URL + '/constrspb/group/subgroup/product/' + id + '/fullInfo', {
+  await apiFetch('/constrspb/group/subgroup/product/' + id + '/fullInfo', {
     method: HTTP_METHODS.GET,
   }).then(res => {
     if (res && res.ok) {

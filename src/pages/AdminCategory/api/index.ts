@@ -3,8 +3,6 @@ import { groupBy } from 'lodash'
 import {ICategory, ISubCategory} from "@/entities";
 import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 
-const URL = 'http://194.58.111.33';
-
 interface CreateCategoryProps {
     title: string;
     photo: string;
@@ -18,7 +16,7 @@ interface CreateSubCategoryProps {
 
 export const getCategories = async () => {
     let categories: ICategory[] = [];
-    await apiFetch(URL + '/constrspb/group/', {
+    await apiFetch('/constrspb/group/', {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {
@@ -36,7 +34,7 @@ export const getCategories = async () => {
 
 export const getSubCategories = async () => {
     let subCategories: ISubCategory[] = [];
-    await apiFetch(URL + '/constrspb/group/subgroup/', {
+    await apiFetch('/constrspb/group/subgroup/', {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {
@@ -57,7 +55,7 @@ export const createCategory = async (token: string | undefined, { title, photo }
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    await apiFetch(URL + '/constrspb/group', {
+    await apiFetch('/constrspb/group', {
         method: HTTP_METHODS.POST,
         body: {
             name: title,
@@ -71,7 +69,7 @@ export const createSubCategory = async (token: string | undefined, {title, categ
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    await apiFetch(URL + '/constrspb/group/subgroup', {
+    await apiFetch('/constrspb/group/subgroup', {
         method: HTTP_METHODS.POST,
         body: {
             groupId: categoryId,
@@ -90,7 +88,7 @@ export const deleteCategory = async (token: string, id: number) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    await apiFetch(URL + '/constrspb/group/' + id, {
+    await apiFetch( '/constrspb/group/' + id, {
         method: HTTP_METHODS.DELETE,
         headers: new Headers(headers)
     }).then(res => res && res.ok)
@@ -100,7 +98,7 @@ export const deleteSubCategory = async (token: string, id: number) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
-    await apiFetch(URL + '/constrspb/group/subgroup/' + id, {
+    await apiFetch('/constrspb/group/subgroup/' + id, {
         method: HTTP_METHODS.DELETE,
         headers: new Headers(headers)
     }).then(res => res && res.ok)

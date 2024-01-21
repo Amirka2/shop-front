@@ -1,5 +1,5 @@
-import {URL} from "@/shared/constants";
+import {BASE_URL} from "@/shared/constants";
 
 export const getPhotoUrl = (photoName: string) => {
-  return `${URL}/constrspb/file/get/${photoName}`
+  return `${BASE_URL}/constrspb/file/get/${photoName}`
 }

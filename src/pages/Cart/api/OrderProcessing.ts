@@ -1,10 +1,9 @@
-import axios from "axios";
-
 import {IOrder} from "@/entities";
-import { URL } from '@/shared/constants';
+import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 
 export const processOrder = function (order: IOrder) {
-    return axios.post(URL + '/constrspb/mail/purchase', {
-        ...order
+    return apiFetch('/constrspb/mail/purchase', {
+        method: HTTP_METHODS.POST,
+        body: order
     })
 }

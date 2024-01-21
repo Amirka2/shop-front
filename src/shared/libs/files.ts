@@ -1,6 +1,5 @@
 import {TFileResponse} from "@/shared/interfaces/files";
 import {apiFetchFormData, HTTP_METHODS} from "@/shared/libs/apiFetch";
-import {URL} from "@/shared/constants";
 
 const createFilePromise = (
   formData: FormData
@@ -10,7 +9,7 @@ const createFilePromise = (
   ok: boolean;
 }> => {
   return new Promise((resolve) => {
-    return apiFetchFormData(`${URL}/constrspb/file`, {
+    return apiFetchFormData('/constrspb/file', {
       method: HTTP_METHODS.POST,
       body: formData,
       errorHandler: (error) => {

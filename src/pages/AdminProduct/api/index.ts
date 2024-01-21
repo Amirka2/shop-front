@@ -1,6 +1,5 @@
 import {IChangeProduct, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
-import {URL} from "@/shared/constants";
 
 export const getProductById = async (id: number) => {
     let product: IProduct = {
@@ -14,7 +13,7 @@ export const getProductById = async (id: number) => {
         photos: [],
     };
 
-    await apiFetch(URL + '/constrspb/group/subgroup/product/' + id, {
+    await apiFetch('/constrspb/group/subgroup/product/' + id, {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {
@@ -32,7 +31,7 @@ export const changeProduct = async (token: string | undefined, product: IChangeP
     }
     const backProduct = productFrontToBack(product);
 
-    return await apiFetch(URL + '/constrspb/group/subgroup/product/' + product.id, {
+    return await apiFetch('/constrspb/group/subgroup/product/' + product.id, {
         method: HTTP_METHODS.PUT,
         body: backProduct,
         headers: new Headers(headers)
@@ -44,7 +43,7 @@ export const createPhoto = async (token: string | undefined, photo: { productId:
         'Authorization': `Bearer ${token}`
     }
 
-    return await apiFetch(URL + '/constrspb/group/subgroup/product/photo/', {
+    return await apiFetch('/constrspb/group/subgroup/product/photo/', {
         method: HTTP_METHODS.POST,
         body: photo,
         headers: new Headers(headers),
