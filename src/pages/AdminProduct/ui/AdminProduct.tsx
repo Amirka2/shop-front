@@ -42,25 +42,20 @@ export const AdminProduct = observer(() => {
     if (photos && photos.length > 0) {
       const response = await postFiles(photos);
 
-      if (response?.[0].ok) {
-        const photoName = response?.[0].body?.fileName;
+      response.forEach(fileResponse => {
+        if (fileResponse.ok) {
+          const photoName = fileResponse.body?.fileName;
 
-        if (photoName) {
-
-          const photoResponse = await createPhoto(token, {
-            productId: Number(productId),
-            link: photoName
-          })
-
-          if (photoResponse && photoResponse.ok) {
-
+          if (photoName) {
+            createPhoto(token, {
+              productId: Number(productId),
+              link: photoName
+            })
           } else {
-            console.error("Имя фото в ответе не найдено!");
+            console.error("Имя файла в ответе не найдено!");
           }
-        } else {
-          console.error("Имя файла в ответе не найдено!");
         }
-      }
+      })
     }
 
     if (product) {

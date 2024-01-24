@@ -29,7 +29,7 @@ export const AdminProductCard = ({
             <Styles.Wrapper>
                 <Styles.PhotoWrapper>
                     {product.photos && (
-                        <Styles.MainPhoto src={getPhotoUrl(product.photos.at(0)?.link || '')}/>
+                        <Styles.MainPhoto src={getPhotoUrl(product.photos?.[0]?.link || '')}/>
                     )}
                 </Styles.PhotoWrapper>
                 <Styles.MainText>

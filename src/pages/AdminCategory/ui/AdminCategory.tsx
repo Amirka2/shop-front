@@ -132,7 +132,11 @@ export const AdminCategory = observer(() => {
             {categories && categories.map(category => (
                 <Styles.Category>
                   <Styles.Flex>
-                    <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)}/>
+                    {/*<Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} onError={({ currentTarget }) => {*/}
+                    {/*  currentTarget.onerror = null; // prevents looping*/}
+                    {/*  currentTarget.src="photos/1.jpg";*/}
+                    {/*}}/>// FIXME */}
+                    <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} />
                     <Styles.Title>
                       {category.name}
                       <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>

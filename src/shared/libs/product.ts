@@ -36,7 +36,6 @@ export const productBackToFront = (
     photos: product?.photos,
     productDescriptions: product?.productDescriptions,
   }
-  console.log('converted', newProduct)
 
   return newProduct
 }

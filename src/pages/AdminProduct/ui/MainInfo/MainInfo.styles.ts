@@ -3,7 +3,7 @@ import { Color } from "@/shared/constants";
 
 export const Wrapper = styled.div`
   width: 500px;
-  height: 450px;
+  min-height: 450px;
   
   display: flex;
   flex-direction: column;
@@ -43,9 +43,17 @@ export const EditIconButton = styled.button`
   background: ${Color.white};
 `;
 
+export const SavedPhotos = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  
+  column-gap: 18px;
+  row-gap: 8px;
+`;
+
 export const Photos = styled.div`
   width: 100%;
-  height: 360px;
+  height: calc(100% + 150px);
   border: 1px solid black;
   border-radius: 10px;
 `;

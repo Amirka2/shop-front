@@ -1,5 +1,6 @@
 import {IChangeProduct, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
+import {fetchBlobFromBackend} from "@/shared/libs/apiFetch";
 
 export const getProductById = async (id: number) => {
     let product: IProduct = {
@@ -46,6 +47,21 @@ export const createPhoto = async (token: string | undefined, photo: { productId:
     return await apiFetch('/constrspb/group/subgroup/product/photo/', {
         method: HTTP_METHODS.POST,
         body: photo,
+        headers: new Headers(headers),
+    })
+}
+
+// TODO проверить, как будто не нужно
+export const getPhoto = async (name: string) => {
+    return await fetchBlobFromBackend(name);
+}
+
+export const deletePhoto = async (token: string | undefined, id: number) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    return await apiFetch('/constrspb/group/subgroup/product/photo/' + id, {
+        method: HTTP_METHODS.DELETE,
         headers: new Headers(headers),
     })
 }

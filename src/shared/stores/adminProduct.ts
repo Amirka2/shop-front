@@ -59,9 +59,9 @@ export class AdminProduct {
     });
   }
 
-  // public deletePhoto = (photoId: number) => {
-  //
-  // }
+  public deletePhotoFromStore = (photoId: number) => {
+    this.photos = this.photos.filter(p => p.id !== photoId);
+  }
 
   public getDescription(id: number): IDescriptionData {
     if (!this.product) {

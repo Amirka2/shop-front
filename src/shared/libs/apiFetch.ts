@@ -154,3 +154,18 @@ export const apiFetchFormData: IApiFetch = async (
       return console.error(error);
     });
 };
+
+// TODO проверить, как будто не нужно
+export async function fetchBlobFromBackend(name: string) {
+  try {
+    const response = await fetch(`${BASE_URL}/constrspb/file/get/${name}`);
+    if (!response.ok) {
+      throw new Error('Ошибка при получении файла с бэкенда.');
+    }
+    const blob = await response.blob();
+    return blob;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
