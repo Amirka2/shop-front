@@ -1,10 +1,9 @@
-import {styled} from 'styled-components';
-import {Color} from "@/shared/constants";
+import styled from 'styled-components';
+import { Color } from "@/shared/constants";
+import { mediaQueries } from "@/shared/constants/mediaQueries";
 
-export const MainWrapper = styled.div<{
-    $isMobile: boolean;
-}>`
-  width: ${props => props.$isMobile ? '100vw' : '100%'};
+export const MainWrapper = styled.div`
+  width: 100vw;
   height: 100vh;
   margin: 20px auto 0;
   display: flex;
@@ -14,6 +13,10 @@ export const MainWrapper = styled.div<{
   gap: 20px;
   color: ${Color.black};
   background-color: ${Color.white};
+  
+  ${mediaQueries.gt.Tablet} {
+    width: 100%;
+  }
 `;
 
 export const FooterWrapper = styled(MainWrapper)`

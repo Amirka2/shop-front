@@ -13,6 +13,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -29,6 +33,7 @@ a, button {
   border: 1px solid #eee;
   margin: 2rem 0;
   border-radius: 0.5rem;
+  width: 100%;
 }
 
 .DraftEditor-editorContainer {
@@ -38,5 +43,4 @@ a, button {
 .public-DraftEditor-content {
   min-height: 20rem;
 }
-
 

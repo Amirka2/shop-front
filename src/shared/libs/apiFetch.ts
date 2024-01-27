@@ -6,18 +6,19 @@ export enum HTTP_METHODS {
   DELETE = 'DELETE',
 }
 
-interface IApiFetch {
+export interface IApiFetch {
   (
     url: string,
     options?: {
       body?: { [key: string]: any };
       method?: HTTP_METHODS;
       errorHandler?: (error: Error) => void;
+      headers?: Headers;
     }
   ): Promise<void | { body: any; status: string; ok: boolean } | null>;
 }
 
-const getURLSearchParamsByObject = (data: {
+export const getURLSearchParamsByObject = (data: {
   [key: string]: string | number | null | Array<string | number>;
 }): URLSearchParams => {
   const params = new URLSearchParams();
@@ -68,28 +69,39 @@ const handleResponse = async (response: any) => {
 
 export const apiFetch: IApiFetch = async (
   url,
-  { body = {}, method = HTTP_METHODS.GET } = {}
+  { body = {}, method = HTTP_METHODS.GET, headers } = {}
 ) => {
-  const requestParamsOptions: {
-    headers: any;
+  let requestParamsOptions: {
     body: string | null;
     method: HTTP_METHODS;
+    headers?: any;
   } = {
-    headers: new Headers({
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Content-Type': 'application/json',
-      Authorization: `Basic ${window.btoa('user' + ':' + '123z')}`,
-    }),
     body: null,
     method: method,
   };
+
+  if (headers) {
+    headers.append('Access-Control-Allow-Origin', '*')
+    headers.append('Access-Control-Allow-Headers', 'Content-Type')
+    headers.append('Content-Type', 'application/json')
+  } else {
+    headers = new Headers({
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Content-Type': 'application/json',
+    });
+  }
+
+  requestParamsOptions = {
+    ...requestParamsOptions,
+    headers,
+  }
 
   let requestUrl = url;
 
   if (body !== undefined) {
     if (method === HTTP_METHODS.GET) {
-      requestUrl += `?${getURLSearchParamsByObject(body).toString()}`;
+      requestUrl += `${getURLSearchParamsByObject(body).toString()}`;
     } else {
       requestParamsOptions.body = JSON.stringify(body);
     }

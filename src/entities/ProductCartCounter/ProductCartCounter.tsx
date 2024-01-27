@@ -1,5 +1,8 @@
+import React from 'react';
+import { observer } from "mobx-react";
+
 import { useStores } from '@/shared/hooks';
-import React, {useState} from 'react';
+import { IProduct } from "@/entities";
 
 import {
     Button,
@@ -7,26 +10,22 @@ import {
     InteractionPanel,
     SumInfo
 } from './ProductCartCounter.styles';
-import {IProduct} from "@/entities";
 
 interface ProductCounterProps {
     product: IProduct;
 }
 
-export const ProductCartCounter = ({product}: ProductCounterProps) => {
+export const ProductCartCounter = observer(({product}: ProductCounterProps) => {
     const stores = useStores();
-    let [counter, setCounter] = useState((stores.cartStore.getProductCount(product)));
 
-    let sum = product.price * counter;
+    let sum = product.price * stores.cartStore.getProductCount(product);
 
     const handleMinus = function () {
         stores.cartStore.decreaseProductsCount(product);
-        setCounter(prevState => prevState - 1);
     }
 
     const handlePlus = function () {
         stores.cartStore.increaseProductsCount(product);
-        setCounter(prevState => prevState + 1);
     }
 
     return (
@@ -40,7 +39,7 @@ export const ProductCartCounter = ({product}: ProductCounterProps) => {
                         </g>
                     </svg>
                 </Button>
-                <div>{counter}</div>
+                <div>{stores.cartStore.getProductCount(product)}</div>
                 <Button onClick={handlePlus}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <g id="plus">
@@ -51,4 +50,4 @@ export const ProductCartCounter = ({product}: ProductCounterProps) => {
             </CounterWithButtons>
         </InteractionPanel>
     );
-};
+});

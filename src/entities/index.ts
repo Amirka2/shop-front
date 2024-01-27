@@ -6,8 +6,5 @@ export {CategoryCard} from './Cards';
 export {SubCategoryCard} from './Cards';
 export {ProductInfoCard} from './Cards';
 
-export type {IContacts} from './interfaces';
-export type {IProduct} from './interfaces';
-export type {IOrder} from './interfaces';
-export type {ICategory} from './interfaces';
-export type {ISubCategory} from './interfaces';
+export * from './interfaces';
+

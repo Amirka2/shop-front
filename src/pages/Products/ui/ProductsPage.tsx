@@ -1,11 +1,13 @@
-import React, {useEffect} from 'react';
-import {observer} from "mobx-react";
+import React, { useEffect } from 'react';
+import { observer } from "mobx-react";
 
-import {ItemsGrid} from "@/shared/components";
-import {useMobileOrDesktop, useStores} from "@/shared/hooks";
-import {ProductCard} from "@/widgets";
+import { ItemsGrid } from "@/shared/components";
+import { useMobileOrDesktop, useStores } from "@/shared/hooks";
+import { ProductCard } from "@/widgets";
+import { MainLayout } from "@/shared/ui/Layouts";
+import { products as PRODUCTS } from '@/app/shop/mock';
 
-import {getProducts} from "../api";
+import { getProducts } from "../api";
 
 import * as Styles from "./ProductsPage.styles";
 
@@ -18,17 +20,20 @@ export const ProductsPage = observer(() => {
     let itemsComponents = products.map(i => <ProductCard {...i}/>);
 
     useEffect(() => {
-        const response = getProducts();
-        response.then(result => {
-            productsStore.set(result);
-        })
+        productsStore.set(PRODUCTS);
+        // const response = getProducts();
+        // response.then(result => {
+        //     productsStore.set(result);
+        // })
     }, [])
 
     return (
-        <Styles.Wrapper $isMobile={isMobile}>
-            <ItemsGrid width={width.toString()}>
-                {itemsComponents}
-            </ItemsGrid>
-        </Styles.Wrapper>
+        <MainLayout>
+            <Styles.Wrapper $isMobile={isMobile}>
+                <ItemsGrid width={width.toString()}>
+                    {itemsComponents}
+                </ItemsGrid>
+            </Styles.Wrapper>
+        </MainLayout>
     );
 });

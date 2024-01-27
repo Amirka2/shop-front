@@ -10,7 +10,9 @@ interface CartProductCardProps {
 export const CartProductCard = ({product}: CartProductCardProps) => {
     return (
         <Wrapper>
-            <ProductPhoto src={product.photos[0]} alt={'product photo'}/>
+            {product.photos && (
+                <ProductPhoto src={product.photos[0]} alt={'product photo'}/>
+            )}
             <Info>
                 <Link to={'/product/' + product.id}>
                     <Name>{product.name}</Name>

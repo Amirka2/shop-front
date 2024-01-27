@@ -4,8 +4,10 @@ import {Color} from '@/shared/constants';
 export const Wrapper = styled.div<{
     isMobile?: boolean;
 }>`
-  width: ${props => props.isMobile ? '100%' : '370px'};
+  width: 100%;
+  max-width: 500px; 
 `;
+
 export const ProductName = styled.h4`
   color: ${Color.blue};
   font-size: 32px;

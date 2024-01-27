@@ -1,11 +1,15 @@
 import React from 'react';
-import {Flex, Wrapper} from './ProductPage.styles';
-import {Slider} from "./Slider";
+import { useParams } from "react-router";
+
+import { useMobileOrDesktop } from "@/shared/hooks";
+import { useProduct } from "@/shared/hooks";
+import { ProductPageDescription } from "@/entities";
+import { MainLayout } from "@/shared/ui/Layouts";
+
+import { Slider } from "./Slider";
 import { ProductInfo } from './ProductInfo';
-import {useMobileOrDesktop} from "@/shared/hooks";
-import {useProduct} from "@/shared/hooks";
-import {useParams} from "react-router";
-import {ProductPageDescription} from "@/entities";
+
+import * as Styles from './ProductPage.styles';
 
 export const ProductPage = () => {
     const isMobile = useMobileOrDesktop();
@@ -13,12 +17,16 @@ export const ProductPage = () => {
     const product = useProduct(params?.name);
 
     return product ? (
-        <Wrapper isMobile={isMobile}>
-            <Flex isMobile={isMobile}>
+        <MainLayout>
+          <Styles.Wrapper isMobile={isMobile}>
+            <Styles.Flex isMobile={isMobile}>
+              {product.photos && (
                 <Slider images={product.photos} />
-                <ProductInfo {...product}></ProductInfo>
-            </Flex>
+              )}
+              <ProductInfo {...product}></ProductInfo>
+            </Styles.Flex>
             <ProductPageDescription {...product}/>
-        </Wrapper>
+          </Styles.Wrapper>
+        </MainLayout>
     ) : null;
 };

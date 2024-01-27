@@ -8,7 +8,7 @@ export const Wrapper = styled(MainWrapper)<{
   width: ${props => props.$isMobile ? '90vw' : '1330px'};
   justify-content: ${props => props.$isMobile ? 'flex-start' : 'space-between'};
   align-items: ${props => props.$isMobile ? 'center' : 'flex-start'};
-  flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+  flex-direction: column;
   
   & aside {
     display: flex;

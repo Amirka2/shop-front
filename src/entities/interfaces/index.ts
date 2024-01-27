@@ -1,21 +1,73 @@
 export interface IProduct {
     id: number;
-    price: number;
-    isFixedPrice?: boolean;
+    subCategoryId: number;
     name: string;
+    price: number;
     inStock: boolean;
+    shortDescription: string;
+    isFixedPrice?: boolean;
     nextArrivalDate?: string;
-    description: IDescriptionData;
+    description?: IDescriptionData[];
+    photos?: string[];
+}
+
+export interface ICreateProduct {
+
+}
+
+// @ts-ignore
+export interface IChangeProduct extends IProduct {}
+
+export enum PRODUCT_KEYS {
+    ID = 'id',
+    NAME = 'name',
+    PRICE = 'price',
+    IN_STOCK = 'inStock',
+    SHORT_DESCRIPTION = 'shortDescription',
+    DESCRIPTION = 'description',
+    PHOTOS = 'photos',
+}
+
+export enum PRODUCT_PHOTO_KEYS {
+    NAME= 'name',
+    UID = 'uid',
+}
+
+export enum PRODUCT_DESCRIPTION_KEYS {
+    ID = 'id',
+    NAME = 'name',
+    BODY = 'body',
+}
+
+export interface IPhoto {
+    name: string;
+    uid: string;
+}
+
+export interface ICreateProduct {
+
+}
+
+export interface IChangeProduct {
+    name?: string;
+    price?: number;
+    photos?: string[];
+    shortDescription?: string;
+    description?: IDescriptionData[];
+}
+
+export interface ICreateProduct {
+    id: number;
+    price: number;
+    name: string;
     shortDescription: string;
     photos: Array<string>;
-    specifications?: ISpecifications;
-    examples?: IDescriptionData;
-    usage?: IDescriptionData;
 }
 
 export interface IDescriptionData {
-    text: string;
-    tableText?: string[];
+    id: number;
+    name?: string;
+    body?: string;
 }
 
 export interface ISpecifications {
@@ -49,12 +101,13 @@ export interface ICategory {
     id: number;
     photo: string;
     name: string;
-    subCategoryCount: number;
+    subCategoryCount?: number;
 }
 
 export interface ISubCategory {
     id: number;
+    categoryId: number;
     photo: string;
     name: string;
-    productCount: number;
+    productCount?: number;
 }

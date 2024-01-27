@@ -1,6 +1,8 @@
 import {styled} from "styled-components";
 import {NavLink} from "react-router-dom";
+
 import {Color} from "@/shared/constants";
+import {mediaQueries} from "@/shared/constants/mediaQueries";
 
 export const Wrapper = styled.div<{
     isMobile?: boolean;
@@ -37,13 +39,17 @@ export const Link = styled(NavLink)`
   text-decoration-line: underline;
 `;
 
-export const Flex = styled.div<{
-    isMobile?: boolean;
-}>`
+export const Flex = styled.div`
   display: flex;
-  flex-direction: ${props => props.isMobile ? 'column' : 'row'};
-  justify-content: ${props => props.isMobile ? 'flex-start' : 'space-between'};
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+
+  ${mediaQueries.gt.Tablet} {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 50px;
+  }
 `;
 
 export const ProductWrapper = styled.div`

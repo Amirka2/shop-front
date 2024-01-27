@@ -28,7 +28,7 @@ export const ProductInfo = (product: IProduct) => {
                 }
             </Styled.ProductAvailability>
             <Styled.ProductPrice>{product.price + ' ₽'}</Styled.ProductPrice>
-            {/*<Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>*/}
+            <Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>
             <Styled.ProductDescription>
                 {product.shortDescription}
             </Styled.ProductDescription>
