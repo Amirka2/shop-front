@@ -5,6 +5,7 @@ import {useCookies} from "react-cookie";
 
 import {createProductFromNullable, postFiles} from "@/shared/libs";
 import {Button, PageLoader} from "@/shared/ui";
+import {AdminLayout} from "@/shared/ui/Layouts";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
@@ -15,7 +16,6 @@ import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
 
 import * as Styles from './AdminProduct.styles';
-import {AdminLayout} from "@/shared/ui/Layouts";
 
 export const AdminProduct = observer(() => {
   const {
