@@ -1,4 +1,4 @@
-import {IChangeProduct, IProduct} from "@/entities";
+import {IChangeProduct, ICreateDescriptionData, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
 import {fetchBlobFromBackend} from "@/shared/libs/apiFetch";
 
@@ -14,7 +14,7 @@ export const getProductById = async (id: number) => {
         photos: [],
     };
 
-    await apiFetch('/constrspb/group/subgroup/product/' + id, {
+    await apiFetch('/constrspb/group/subgroup/product/' + id + '/fullInfo/', {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {
@@ -62,6 +62,18 @@ export const deletePhoto = async (token: string | undefined, id: number) => {
     }
     return await apiFetch('/constrspb/group/subgroup/product/photo/' + id, {
         method: HTTP_METHODS.DELETE,
+        headers: new Headers(headers),
+    })
+}
+
+export const createDescription = async (token: string | undefined, description: ICreateDescriptionData) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+
+    return await apiFetch('/constrspb/group/subgroup/product/productDescriptions/', {
+        method: HTTP_METHODS.POST,
+        body: description,
         headers: new Headers(headers),
     })
 }

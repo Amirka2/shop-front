@@ -78,6 +78,12 @@ export interface IDescriptionData {
     text?: string;
 }
 
+export interface ICreateDescriptionData {
+    productId: number;
+    header: string;
+    text: string;
+}
+
 export interface ISpecifications {
     type: string;
     manufacturer: string;

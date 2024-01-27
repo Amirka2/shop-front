@@ -1,0 +1,12 @@
+.DraftEditor-root {
+    border: none;
+}
+
+.DraftEditor-editorContainer {
+    padding: 0;
+}
+
+.public-DraftEditor-content {
+    height: fit-content;
+    min-height: 5rem;
+}

@@ -4,9 +4,8 @@ import {AtomicBlockUtils, convertFromRaw, convertToRaw, DraftEditorCommand, Edit
 import "draft-js/dist/Draft.css";
 
 import {useStores} from "@/shared/hooks";
-
-import {linkDecorator} from "./Link";
-import {mediaBlockRenderer} from "./Media";
+import {linkDecorator} from "@/shared/components";
+import {mediaBlockRenderer} from "@/shared/components";
 
 import * as Styles from './DocumentEditor.styles';
 
@@ -140,12 +139,14 @@ export const DocumentEditor = observer(() => {
                     </Styles.Button>
                 </Styles.ButtonsSection>
             </Styles.ButtonsContainer>
-            <Styles.WordEditor
-                editorState={editorState}
-                onChange={setEditorState}
-                handleKeyCommand={handleKeyCommand}
-                blockRendererFn={mediaBlockRenderer}
-            />
+            <Styles.EditorWrapper>
+                <Styles.WordEditor
+                  editorState={editorState}
+                  onChange={setEditorState}
+                  handleKeyCommand={handleKeyCommand}
+                  blockRendererFn={mediaBlockRenderer}
+                />
+            </Styles.EditorWrapper>
             <Styles.Button
                 className="save"
                 type="button"

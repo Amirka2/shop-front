@@ -8,10 +8,9 @@ import {Button, Container, PageLoader} from "@/shared/ui";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
-import {IDescriptionData} from "@/entities/interfaces";
 import {AdditionalInfo} from "@/pages/AdminProduct/ui/AdditionalInfo";
 
-import {changeProduct, createPhoto, getProductById} from "../api";
+import {changeProduct, createDescription, createPhoto, getProductById} from "../api";
 import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
 
@@ -29,6 +28,7 @@ export const AdminProduct = observer(() => {
 
   const { product, isLoading } = adminProductStore;
   const { setLoading } = adminProductStore;
+  const descriptions = descriptionsStore.descriptions;
   const currentDescription = descriptionsStore.getActiveDescription();
   const productName = product?.name || '';
 
@@ -56,6 +56,16 @@ export const AdminProduct = observer(() => {
       })
     }
 
+    if (descriptions) {
+      descriptions.forEach(description => {
+        const response = createDescription(token, {
+          productId: Number(productId),
+          header: description.header || '',
+          text: description.text || '',
+        })
+      })
+    }
+
     if (product) {
       const resultProduct = createProductFromNullable(product, adminProductStore.photos);
       changeProduct(token, resultProduct)
@@ -74,6 +84,9 @@ export const AdminProduct = observer(() => {
     const response = getProductById(Number(productId));
     response.then(result => {
       adminProductStore.set(result);
+      if (result.productDescriptions) {
+        descriptionsStore.set(result.productDescriptions);
+      }
     })
   }, [isLoading]);
 
