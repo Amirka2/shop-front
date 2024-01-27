@@ -9,6 +9,7 @@ export const Wrapper = styled.div<{
   display: flex;
   justify-content: space-between;
   flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+  position: relative;
 `;
 
 export const MainWrapper = styled.footer<{

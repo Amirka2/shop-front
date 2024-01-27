@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import {MainWrapper} from "./app.styles";
+import {MainWrapper, FooterWrapper} from "./app.styles";
 import {categories, contacts} from './mock';
 
 import {Paths} from "@/shared/routing";
@@ -21,6 +21,7 @@ import {
     ProductsPage,
     ContactsPage,
 } from "@/pages";
+import {CallOrdering} from "@/shared/components/CallOrdering";
 
 export function App() {
     let isMobile = useMobileOrDesktop();
@@ -59,7 +60,10 @@ export function App() {
                     <Route path={Paths.payment} element={<PaymentPage />} />
                     <Route path={Paths.shipping} element={<ShippingPage />} />
                 </Routes>
-                <Footer />
+                <FooterWrapper $isMobile={isMobile}>
+                    <CallOrdering />
+                    <Footer />
+                </FooterWrapper>
             </MainWrapper>
         </BrowserRouter>
     );

@@ -15,3 +15,8 @@ export const MainWrapper = styled.div<{
   color: ${Color.black};
   background-color: ${Color.white};
 `;
+
+export const FooterWrapper = styled(MainWrapper)`
+  margin: 0;
+  gap: 0;
+`;
