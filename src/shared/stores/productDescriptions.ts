@@ -15,7 +15,7 @@ export class ProductDescriptions {
 
   set(descriptions: IDescriptionData[]) {
     this.descriptions = descriptions;
-    this.counter = descriptions.length;
+    this.counter = descriptions[descriptions.length - 1]?.id + 1;
   }
 
   get() {
