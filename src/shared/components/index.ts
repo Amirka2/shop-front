@@ -12,6 +12,9 @@ export {AdminProductCard} from './AdminProductCard';
 export { AdminHeader } from './AdminHeader';
 export { PhotoUpload } from './PhotoUpload';
 export { SavedPhoto } from './SavedPhoto';
+export * from './DocumentLink';
+export * from './DocumentMedia';
 export * from './Icons';
+
 
 export type {CategoriesProps} from './Categories';

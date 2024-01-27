@@ -1,45 +1,44 @@
-import React, {SetStateAction, useEffect} from "react";
+import React, {useEffect} from "react";
+import {observer} from "mobx-react";
 import {AtomicBlockUtils, convertFromRaw, convertToRaw, DraftEditorCommand, EditorState, RichUtils} from "draft-js";
 import "draft-js/dist/Draft.css";
-import {linkDecorator} from "./Link";
-import {mediaBlockRenderer} from "./Media";
+
+import {useStores} from "@/shared/hooks";
+import {linkDecorator} from "@/shared/components";
+import {mediaBlockRenderer} from "@/shared/components";
 
 import * as Styles from './DocumentEditor.styles';
-import {useStores} from "@/shared/hooks";
-import {PRODUCT_DESCRIPTION_KEYS} from "@/entities/interfaces";
 
-interface DocumentEditorProps {
-    description: string | undefined;
-    setEditorOpen: React.Dispatch<SetStateAction<boolean>>;
-    descriptionId: number;
-    setDescriptionId: React.Dispatch<SetStateAction<number>>
-}
+export const DocumentEditor = observer(() => {
+    const { descriptionsStore } = useStores();
+    const activeDescription = descriptionsStore.getActiveDescription();
+    const descriptionText = activeDescription?.text;
 
-export const DocumentEditor: React.FC<DocumentEditorProps> = ({
-    description,
-    descriptionId,
-    setDescriptionId,
-    setEditorOpen }) => {
-    const { adminProductStore } = useStores();
-    const initialState = description
-        ? EditorState.createWithContent(convertFromRaw(JSON.parse(description)), linkDecorator)
+    if (activeDescription === null) {
+        return <></>
+    }
+
+    const initialState = descriptionText
+        ? EditorState.createWithContent(convertFromRaw(JSON.parse(descriptionText)), linkDecorator)
         : EditorState.createEmpty(linkDecorator);
     const [editorState, setEditorState] = React.useState<EditorState>(initialState);
-    console.log(initialState.getCurrentContent())
 
     useEffect(() => {
-        const initialState = description
-          ? EditorState.createWithContent(convertFromRaw(JSON.parse(description)), linkDecorator)
+        const initialState = (descriptionText && descriptionText !== '')
+          ? EditorState.createWithContent(convertFromRaw(JSON.parse(descriptionText)), linkDecorator)
           : EditorState.createEmpty(linkDecorator);
         setEditorState(initialState);
-    }, [descriptionId, description]);
+    }, [descriptionText]);
 
     const handleSave = () => {
         const data = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-        // console.log(convertToRaw(editorState.getCurrentContent()));
-        // localStorage.setItem(TEXT_EDITOR_ITEM, data);
-        adminProductStore.addDescriptionField(descriptionId, PRODUCT_DESCRIPTION_KEYS.BODY, data)
-        setEditorOpen(false);
+
+        try {
+            descriptionsStore.changeActiveDescriptionText(data);
+            descriptionsStore.setActiveDescription(null);
+        } catch (e) {
+            console.error(e)
+        }
     };
 
     const handleInsertImage = () => {
@@ -140,12 +139,14 @@ export const DocumentEditor: React.FC<DocumentEditorProps> = ({
                     </Styles.Button>
                 </Styles.ButtonsSection>
             </Styles.ButtonsContainer>
-            <Styles.WordEditor
-                editorState={editorState}
-                onChange={setEditorState}
-                handleKeyCommand={handleKeyCommand}
-                blockRendererFn={mediaBlockRenderer}
-            />
+            <Styles.EditorWrapper>
+                <Styles.WordEditor
+                  editorState={editorState}
+                  onChange={setEditorState}
+                  handleKeyCommand={handleKeyCommand}
+                  blockRendererFn={mediaBlockRenderer}
+                />
+            </Styles.EditorWrapper>
             <Styles.Button
                 className="save"
                 type="button"
@@ -157,4 +158,4 @@ export const DocumentEditor: React.FC<DocumentEditorProps> = ({
             </Styles.Button>
         </Styles.Wrapper>
     );
-};
+});

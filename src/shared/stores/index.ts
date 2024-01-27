@@ -1,9 +1,10 @@
 import { createContext } from "react";
 import { CartStore } from "./cart";
 import { AdminProduct } from './adminProduct';
-import { CategoriesStore } from "@/shared/stores/categories";
-import { SubCategoriesStore } from "@/shared/stores/subCategories";
-import { ProductsStore } from "@/shared/stores/products";
+import { CategoriesStore } from "./categories";
+import { SubCategoriesStore } from "./subCategories";
+import { ProductsStore } from "./products";
+import { ProductDescriptions } from './productDescriptions';
 
 export const rootStoreContext = createContext({
     cartStore: new CartStore(),
@@ -11,4 +12,5 @@ export const rootStoreContext = createContext({
     categoriesStore: new CategoriesStore(),
     subCategoriesStore: new SubCategoriesStore(),
     productsStore: new ProductsStore(),
+    descriptionsStore: new ProductDescriptions(),
 });

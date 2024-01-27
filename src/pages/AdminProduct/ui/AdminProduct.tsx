@@ -8,10 +8,9 @@ import {Button, Container, PageLoader} from "@/shared/ui";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
-import {IDescriptionData} from "@/entities/interfaces";
 import {AdditionalInfo} from "@/pages/AdminProduct/ui/AdditionalInfo";
 
-import {changeProduct, createPhoto, getProductById} from "../api";
+import {changeProduct, createDescription, createPhoto, getProductById} from "../api";
 import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
 
@@ -23,21 +22,22 @@ export const AdminProduct = observer(() => {
     subCategoryId,
     productId
   } = useParams();
-  const {adminProductStore} = useStores();
+  const {adminProductStore, descriptionsStore} = useStores();
   const [cookies] = useCookies(['token']);
-  const [isEditorOpen, setEditorOpen] = useState(false);
-  const [descriptionId, setDescriptionId] = useState(0);
-  const [currentDescription, setCurrentDescription] = useState<IDescriptionData | undefined>(undefined);
   const [photos, setPhotos] = useState<Blob[]>([]);
 
   const { product, isLoading } = adminProductStore;
   const { setLoading } = adminProductStore;
+  const descriptions = descriptionsStore.descriptions;
+  const currentDescription = descriptionsStore.getActiveDescription();
   const productName = product?.name || '';
 
   const { token } = cookies;
 
   const handleSaveProduct = async () => {
     setLoading(true);
+
+    const backDescriptions = adminProductStore.product?.productDescriptions;
 
     if (photos && photos.length > 0) {
       const response = await postFiles(photos);
@@ -58,33 +58,39 @@ export const AdminProduct = observer(() => {
       })
     }
 
+    if (descriptions) {
+      descriptions.forEach(description => {
+        const isBackDescription = backDescriptions && Boolean(backDescriptions.find(d => d.id === description.id));
+
+        if (!isBackDescription) {
+          const response = createDescription(token, {
+            productId: Number(productId),
+            header: description.header || '',
+            text: description.text || '',
+          })
+        }
+      })
+    }
+
     if (product) {
       const resultProduct = createProductFromNullable(product, adminProductStore.photos);
       changeProduct(token, resultProduct)
-        .then(res => {
-          const frontProduct = productBackToFront(res?.body.product)
-
-          adminProductStore.set(frontProduct);
+        .then(() => {
+          setPhotos([]);
+          setLoading(false);
         })
     }
-
-    setPhotos([]);
-    setLoading(false);
   }
 
   useEffect(() => {
     const response = getProductById(Number(productId));
     response.then(result => {
       adminProductStore.set(result);
-      setCurrentDescription(adminProductStore.getDescription(descriptionId))
+      if (result.productDescriptions) {
+        descriptionsStore.set(result.productDescriptions);
+      }
     })
   }, [isLoading]);
-
-  useEffect(() => {
-    if (product) {
-      setCurrentDescription(adminProductStore.getDescription(descriptionId))
-    }
-  }, [descriptionId]);
 
   return isLoading ? (
     <PageLoader />
@@ -108,27 +114,16 @@ export const AdminProduct = observer(() => {
             <AdditionalInfo />
           </Styles.AdditionalInfoWrapper>
           <Styles.PartitionWrapper>
-            <Partition
-              descriptionId={descriptionId}
-              setDescriptionId={setDescriptionId}
-              setEditorOpen={setEditorOpen}
-              setCurrentDescription={setCurrentDescription}
-            />
+            <Partition />
           </Styles.PartitionWrapper>
         </Styles.InfoWrapper>
-        {isEditorOpen && (
+        {currentDescription && (
           <Styles.TextAreaWrapper>
-            {currentDescription && (
-              <DocumentEditor
-                description={currentDescription.body}
-                descriptionId={descriptionId}
-                setDescriptionId={setDescriptionId}
-                setEditorOpen={setEditorOpen}
-              />
-            )}
+              <DocumentEditor />
           </Styles.TextAreaWrapper>
         )}
       </Styles.Wrapper>
     </Container>
   );
 });
+

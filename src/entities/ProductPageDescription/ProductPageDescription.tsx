@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
-
-import * as Styles from './ProductPageDescription.styles';
+import React, {useState} from 'react';
 
 import {IProduct} from "@/entities";
-import {ProductDescriptionPart} from "@/entities/ProductPageDescription/ProductDescriptionPart/ProductDescriptionPart";
+import {DocumentReader} from "@/widgets/DocumentReader";
+
+import * as Styles from './ProductPageDescription.styles';
 
 interface descriptionPart {
     id: string,
@@ -26,9 +26,8 @@ export const ProductPageDescription = (product: IProduct) => {
             </Styles.DescriptionHeader>
             {product.productDescriptions && product.productDescriptions.map(partition => (
                 <>
-                    <h3>{partition.name}</h3>
-                    <section dangerouslySetInnerHTML={{__html: partition?.body || ''}}>
-                    </section>
+                    <h3>{partition.header}</h3>
+                    <DocumentReader description={partition.text || ''}/>
                 </>
             ))}
         </Styles.Wrapper>
