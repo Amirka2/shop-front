@@ -5,10 +5,10 @@ import {useCookies} from "react-cookie";
 
 import {createProduct, deleteProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
 import {AdminHeader, AdminProductCard} from "@/shared/components";
-import {Container} from '@/shared/ui';
 import {Plus} from "@/shared/ui";
 import {IProduct} from "@/entities";
 import {useStores} from "@/shared/hooks";
+import {AdminLayout} from "@/shared/ui/Layouts";
 
 import {Editor} from './Editor';
 
@@ -89,32 +89,30 @@ export const AdminSubCategory = observer(() => {
   }, [isLoading])
 
   return (
-    <Container>
-      <Styles.Wrapper>
-        <AdminHeader title={'text/more'}/>
-        <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
-          <Plus/>
-        </Styles.AddButton>
-        {isEditorOpen && (
-          <Editor
-            handleNameChange={handleChangeName}
-            handlePriceChange={handleChangePrice}
-            handleDescriptionChange={handleChangeDescription}
-            handleSave={handleSave}
-            ref={reloadRef}
-          />
-        )}
-        <Styles.ProductsWrapper>
-          {subCategory &&
-            subCategory.products &&
-            subCategory.products.map(product => (
-              <AdminProductCard
-                key={product.id}
-                product={product}
-                handleDelete={handleDeleteProduct}/>
-            ))}
-        </Styles.ProductsWrapper>
-      </Styles.Wrapper>
-    </Container>
+    <AdminLayout>
+      <AdminHeader title={'text/more'}/>
+      <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
+        <Plus/>
+      </Styles.AddButton>
+      {isEditorOpen && (
+        <Editor
+          handleNameChange={handleChangeName}
+          handlePriceChange={handleChangePrice}
+          handleDescriptionChange={handleChangeDescription}
+          handleSave={handleSave}
+          ref={reloadRef}
+        />
+      )}
+      <Styles.ProductsWrapper>
+        {subCategory &&
+          subCategory.products &&
+          subCategory.products.map(product => (
+            <AdminProductCard
+              key={product.id}
+              product={product}
+              handleDelete={handleDeleteProduct}/>
+          ))}
+      </Styles.ProductsWrapper>
+    </AdminLayout>
   );
 });

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import * as Styled from './ProductInfo.styles';
-import {useMobileOrDesktop, useStores} from "@/shared/hooks";
+import { useStores } from "@/shared/hooks";
 import {IProduct} from "@/entities";
 
+import * as Styles from './ProductInfo.styles';
+
 export const ProductInfo = (product: IProduct) => {
-    const isMobile = useMobileOrDesktop();
     const stores = useStores();
     const [text, setText] = useState('В корзину')
     function handleClick() {
@@ -13,25 +13,25 @@ export const ProductInfo = (product: IProduct) => {
     }
 
     return (
-        <Styled.Wrapper isMobile={isMobile}>
-            <Styled.ProductName>{product.name}</Styled.ProductName>
-            <Styled.ProductAvailability>
+        <Styles.Wrapper>
+            <Styles.ProductName>{product.name}</Styles.ProductName>
+            <Styles.ProductAvailability>
                 <div>
                     В наличии: {product.inStock ? (
-                    <Styled.YesText>Да</Styled.YesText>) : (
-                    <Styled.NoText>Нет</Styled.NoText>
+                    <Styles.YesText>Да</Styles.YesText>) : (
+                    <Styles.NoText>Нет</Styles.NoText>
                 )}
                 </div>
                 {!product.inStock && product.nextArrivalDate && (
                     <span>Примерная дата следующей поставки: {product.nextArrivalDate}</span>
                 )
                 }
-            </Styled.ProductAvailability>
-            <Styled.ProductPrice>{product.price + ' ₽'}</Styled.ProductPrice>
-            <Styled.AddToCartButton onClick={handleClick}>{text}</Styled.AddToCartButton>
-            <Styled.ProductDescription>
+            </Styles.ProductAvailability>
+            <Styles.ProductPrice>{product.price + ' ₽'}</Styles.ProductPrice>
+            <Styles.AddToCartButton onClick={handleClick}>{text}</Styles.AddToCartButton>
+            <Styles.ProductDescription>
                 {product.shortDescription}
-            </Styled.ProductDescription>
-        </Styled.Wrapper>
+            </Styles.ProductDescription>
+        </Styles.Wrapper>
     );
 }

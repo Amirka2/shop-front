@@ -1,23 +1,29 @@
 import styled from 'styled-components';
+import {mediaQueries} from "@/shared/constants/mediaQueries";
 
-export const SliderContainer = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['isMobile'].includes(prop)
-})<{ isMobile?: boolean; }>`
+export const SliderContainer = styled.div`
   display: flex;
   align-items: center;
-  width: ${props => props.isMobile ? '100%' : '60%'};
+  width: 100%;
   height: 700px;
-  flex-direction: ${props => props.isMobile ? 'column-reverse' : 'row'};
+  flex-direction: column-reverse;
+    
+    ${mediaQueries.gt.Tablet} {
+        width: 60%;
+        flex-direction: row;
+    }
 `;
 
-export const Thumbnails = styled.div.withConfig({
-    shouldForwardProp: (prop) => !['isMobile'].includes(prop)
-})<{ isMobile?: boolean; }>`
+export const Thumbnails = styled.div`
   display: flex;
-  flex-direction: ${props => props.isMobile ? 'row' : 'column'};
+  flex-direction: row;
   align-items: center;
   max-height: 600px; /* Максимальная высота для миниатюр */
   overflow-y: auto; /* Добавьте прокрутку, если миниатюры не помещаются */
+
+    ${mediaQueries.gt.Tablet} {
+        flex-direction: column;
+    }
 `;
 
 export const ThumbnailImage = styled.img`

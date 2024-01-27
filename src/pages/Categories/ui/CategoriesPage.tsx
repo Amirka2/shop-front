@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react';
 import { observer } from "mobx-react";
 
-import { ItemsGrid } from "@/shared/components";
-import { useMobileOrDesktop, useStores } from "@/shared/hooks";
+import {ItemsGrid, MainWrapper} from "@/shared/components";
+import { useStores } from "@/shared/hooks";
 import { CategoryCard } from "@/entities";
 import { MainLayout } from "@/shared/ui/Layouts";
 
 import { getCategories } from '../api'
 
-import { Wrapper } from "./CategoriesPage.styles";
-
 export const CategoriesPage = observer(() => {
   const {categoriesStore} = useStores();
-  let isMobile = useMobileOrDesktop();
 
   const {categories} = categoriesStore;
 
@@ -23,17 +20,16 @@ export const CategoriesPage = observer(() => {
     })
   }, [])
 
-  let width = isMobile ? 600 : 1000;
   const itemsComponents = categories.map(c => <CategoryCard key={c.id} {...c}/>);
 
   return (
     <MainLayout>
-      <Wrapper $isMobile={isMobile}>
+      <MainWrapper>
         <h1>Категории</h1>
-        <ItemsGrid width={width.toString()}>
+        <ItemsGrid>
           {itemsComponents}
         </ItemsGrid>
-      </Wrapper>
+      </MainWrapper>
     </MainLayout>
   );
 });

@@ -53,7 +53,10 @@ export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProp
             />
             {filteredProducts.length > 0 ? (
               <Styles.ProductsContainer>
-                  <ItemsGrid>
+                  <ItemsGrid style={{
+                      padding: '0 20px',
+                      justifyContent: 'space-evenly'
+                  }}>
                       {filteredProducts?.map((product) => (
                         <ProductCard key={product.id} {...product} />
                       ))}

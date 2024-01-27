@@ -1,24 +1,19 @@
 import React from 'react';
 
-import {Wrapper, Link} from "./NavBar.styles";
+import * as Styles from "./NavBar.styles";
 
 import {Paths} from "@/shared/routing";
-import {useMobileOrDesktop} from "@/shared/hooks";
 
 export const NavBar = () => {
-    const isMobile = useMobileOrDesktop();
-
-    return (
-        isMobile ? null : (
-            <Wrapper $isMobile={isMobile}>
-                <Link to={Paths.categories} $isMobile={isMobile} $isTop={isMobile} $isLeft={!isMobile}>Категории</Link>
-                <Link to={Paths.contacts} $isMobile={isMobile}>Контакты</Link>
-                <Link to={Paths.aboutUs} $isMobile={isMobile}>О нас</Link>
-                <Link to={Paths.main} $isMobile={isMobile}>Главная</Link>
-                <Link to={Paths.payment} $isMobile={isMobile}>Оплата</Link>
-                <Link to={Paths.shipping} $isMobile={isMobile} $isBottom={true} $isRight={!isMobile}>Доставка</Link>
-            </Wrapper>
-        )
-    );
+  return (
+    <Styles.Wrapper>
+      <Styles.Link to={Paths.categories}>Категории</Styles.Link>
+      <Styles.Link to={Paths.contacts}>Контакты</Styles.Link>
+      <Styles.Link to={Paths.aboutUs}>О нас</Styles.Link>
+      <Styles.Link to={Paths.main}>Главная</Styles.Link>
+      <Styles.Link to={Paths.payment}>Оплата</Styles.Link>
+      <Styles.Link to={Paths.shipping}>Доставка</Styles.Link>
+    </Styles.Wrapper>
+  );
 };
 
