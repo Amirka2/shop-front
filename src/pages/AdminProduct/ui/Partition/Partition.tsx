@@ -1,14 +1,19 @@
 import React from 'react';
 import {observer} from "mobx-react";
+import {useCookies} from "react-cookie";
 
 import {Delete, Plus} from "@/shared/ui";
 import {useStores} from "@/shared/hooks";
+import {deleteDescription} from "@/pages/AdminProduct/api";
 
 import * as Styles from './Partition.styles';
 
 export const Partition = observer(() => {
+    const [cookies] = useCookies(['token']);
+    const { token } = cookies;
     const { adminProductStore, descriptionsStore } = useStores();
     const descriptions = descriptionsStore.descriptions;
+    const backDescriptions = adminProductStore.product?.productDescriptions;
 
     if (descriptions) {
         descriptionsStore.set(descriptions);
@@ -21,9 +26,6 @@ export const Partition = observer(() => {
         descriptionsStore.setActiveDescription(id);
 
         descriptionsStore.changeActiveDescriptionHeader(newValue);
-
-        // adminProductStore.addDescriptionField(id, PRODUCT_DESCRIPTION_KEYS.NAME, e.currentTarget.value);
-        // console.log({...adminProductStore.product})
     }
 
     const handleAddClick = () => {
@@ -34,6 +36,9 @@ export const Partition = observer(() => {
     }
 
     const handleDeleteClick = (id: number) => {
+        if (backDescriptions && backDescriptions.filter(d => d.id === id)) {
+            deleteDescription(token, id);
+        }
         descriptionsStore.deleteDescription(id);
     }
 

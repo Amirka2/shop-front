@@ -37,6 +37,8 @@ export const AdminProduct = observer(() => {
   const handleSaveProduct = async () => {
     setLoading(true);
 
+    const backDescriptions = adminProductStore.product?.productDescriptions;
+
     if (photos && photos.length > 0) {
       const response = await postFiles(photos);
 
@@ -58,26 +60,26 @@ export const AdminProduct = observer(() => {
 
     if (descriptions) {
       descriptions.forEach(description => {
-        const response = createDescription(token, {
-          productId: Number(productId),
-          header: description.header || '',
-          text: description.text || '',
-        })
+        const isBackDescription = backDescriptions && Boolean(backDescriptions.find(d => d.id === description.id));
+
+        if (!isBackDescription) {
+          const response = createDescription(token, {
+            productId: Number(productId),
+            header: description.header || '',
+            text: description.text || '',
+          })
+        }
       })
     }
 
     if (product) {
       const resultProduct = createProductFromNullable(product, adminProductStore.photos);
       changeProduct(token, resultProduct)
-        .then(res => {
-          const frontProduct = productBackToFront(res?.body.product)
-
-          adminProductStore.set(frontProduct);
+        .then(() => {
+          setPhotos([]);
+          setLoading(false);
         })
     }
-
-    setPhotos([]);
-    setLoading(false);
   }
 
   useEffect(() => {
@@ -112,8 +114,7 @@ export const AdminProduct = observer(() => {
             <AdditionalInfo />
           </Styles.AdditionalInfoWrapper>
           <Styles.PartitionWrapper>
-            <Partition
-            />
+            <Partition />
           </Styles.PartitionWrapper>
         </Styles.InfoWrapper>
         {currentDescription && (

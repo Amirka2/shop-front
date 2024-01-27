@@ -77,3 +77,14 @@ export const createDescription = async (token: string | undefined, description: 
         headers: new Headers(headers),
     })
 }
+
+export const deleteDescription = async (token: string | undefined, descriptionId: number) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+
+    return await apiFetch('/constrspb/group/subgroup/product/productDescriptions/' + descriptionId, {
+        method: HTTP_METHODS.DELETE,
+        headers: new Headers(headers),
+    })
+}
