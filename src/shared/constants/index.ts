@@ -7,4 +7,4 @@ export const Color = {
 
 } as const;
 
-export { URL } from './api';
+export { BASE_URL } from './api';

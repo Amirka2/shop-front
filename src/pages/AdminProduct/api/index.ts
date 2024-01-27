@@ -1,7 +1,6 @@
-import {IProduct} from "@/entities";
+import {IChangeProduct, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
-
-const URL = 'http://194.58.111.33';
+import {fetchBlobFromBackend} from "@/shared/libs/apiFetch";
 
 export const getProductById = async (id: number) => {
     let product: IProduct = {
@@ -11,9 +10,11 @@ export const getProductById = async (id: number) => {
         name: 'MOCK',
         inStock: false,
         shortDescription: 'MOCK description',
+        productDescriptions: [],
+        photos: [],
     };
 
-    await apiFetch(URL + '/constrspb/group/subgroup/product/' + id, {
+    await apiFetch('/constrspb/group/subgroup/product/' + id, {
         method: HTTP_METHODS.GET,
     }).then(res => {
         if (res && res.ok) {
@@ -25,15 +26,42 @@ export const getProductById = async (id: number) => {
     return product;
 }
 
-export const changeProduct = async (token: string | undefined, product: IProduct) => {
+export const changeProduct = async (token: string | undefined, product: IChangeProduct) => {
     const headers = {
         'Authorization': `Bearer ${token}`
     }
     const backProduct = productFrontToBack(product);
 
-    return await apiFetch(URL + '/constrspb/group/subgroup/product/' + product.id, {
+    return await apiFetch('/constrspb/group/subgroup/product/' + product.id, {
         method: HTTP_METHODS.PUT,
         body: backProduct,
         headers: new Headers(headers)
+    })
+}
+
+export const createPhoto = async (token: string | undefined, photo: { productId: number, link: string }) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+
+    return await apiFetch('/constrspb/group/subgroup/product/photo/', {
+        method: HTTP_METHODS.POST,
+        body: photo,
+        headers: new Headers(headers),
+    })
+}
+
+// TODO проверить, как будто не нужно
+export const getPhoto = async (name: string) => {
+    return await fetchBlobFromBackend(name);
+}
+
+export const deletePhoto = async (token: string | undefined, id: number) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    return await apiFetch('/constrspb/group/subgroup/product/photo/' + id, {
+        method: HTTP_METHODS.DELETE,
+        headers: new Headers(headers),
     })
 }

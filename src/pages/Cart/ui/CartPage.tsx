@@ -49,7 +49,7 @@ export const CartPage = observer(() => {
         }
         processOrder(orderInfo)
             .then(function (response) {
-                if (response.status === 200) {
+                if (response && response?.status === '200') {
                     alert('Ура, вы успешно совершили заказ!');
                     stores.cartStore.deleteAllProducts();
                     setName('');

@@ -5,10 +5,9 @@ import {useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
 import {Button} from "@/shared/ui";
 import {ProductCard} from "@/widgets";
+import {IProduct} from "@/entities";
 
 import * as Styles from "./FilteredProductsList.styles";
-
-import { products as PRODUCTS} from '@/app/shop/mock';
 
 interface SearchProps {
     searchInput: string;
@@ -18,7 +17,7 @@ interface SearchProps {
 export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProps) => {
     const { productsStore } = useStores();
     const { products } = productsStore;
-    const [filteredProducts, setFilteredProducts] = useState(PRODUCTS);
+    const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -27,17 +26,17 @@ export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProp
         }
     }, [searchInput]);
 
-    // useEffect(() => {
-    //     const response = getProducts();
-    //     response.then(result => {
-    //         productsStore.set(result);
-    //         setFilteredProducts(result);
-    //     })
-    // }, [])
+    useEffect(() => {
+        const response = getProducts();
+        response.then(result => {
+            productsStore.set(result);
+            setFilteredProducts(result);
+        })
+    }, [])
 
     useEffect(() => {
         setFilteredProducts(
-            PRODUCTS.filter((item) =>
+          filteredProducts.filter((item) =>
                 item.name.toLowerCase().includes(searchInput.toLowerCase())
             )
         );
