@@ -2,10 +2,10 @@ import React, {ChangeEvent, useState} from 'react';
 
 import {useMobileOrDesktop} from "@/shared/hooks";
 import {PhoneMask} from "@/shared/components/CallOrdering/PhoneMask";
-import {CallOrderPhone} from '../Icons/CallOrderPhone';
-import planeImage from '../../photos/plane.png'
+import {CallOrderPhone} from '@/shared/components/Icons/CallOrderPhone';
+import planeImage from '@/shared/photos/plane.png';
 
-import * as Styles from "@/shared/components/CallOrdering/CallOrdering.styles";
+import * as Styles from "../CallOrdering/CallOrdering.styles";
 
 export const CallOrdering = () => {
     const isMobile = useMobileOrDesktop();

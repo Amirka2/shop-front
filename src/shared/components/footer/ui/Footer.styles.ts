@@ -2,6 +2,10 @@ import {styled} from "styled-components";
 
 import {Color} from '@/shared/constants'
 
+export const FooterWrapper = styled.div`
+    width: 100%;
+`;
+
 export const Wrapper = styled.div<{
     $isMobile: boolean;
 }>`
