@@ -1,6 +1,5 @@
 import React, {ChangeEvent, useState} from 'react';
 
-import {useMobileOrDesktop} from "@/shared/hooks";
 import {PhoneMask} from "@/shared/components/CallOrdering/PhoneMask";
 import {CallOrderPhone} from '@/shared/components/Icons/CallOrderPhone';
 import planeImage from '@/shared/photos/plane.png';
@@ -8,7 +7,6 @@ import planeImage from '@/shared/photos/plane.png';
 import * as Styles from "../CallOrdering/CallOrdering.styles";
 
 export const CallOrdering = () => {
-    const isMobile = useMobileOrDesktop();
     const [phone, setPhone] = useState<string>('');
     const [isNumberEntered, setIsNumberEntered] = useState<boolean>(false);
 
@@ -25,8 +23,8 @@ export const CallOrdering = () => {
     }
 
     return (
-        <Styles.MainWrapper $isMobile={isMobile}>
-            <Styles.Wrapper $isMobile={isMobile}>
+        <Styles.MainWrapper>
+            <Styles.Wrapper>
                 <Styles.BigCircle />
                 <Styles.SmallCircle />
                 <Styles.Plane src={planeImage} />

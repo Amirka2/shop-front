@@ -18,8 +18,3 @@ export const MainWrapper = styled.div`
     width: 100%;
   }
 `;
-
-export const FooterWrapper = styled(MainWrapper)`
-  margin: 0;
-  gap: 0;
-`;

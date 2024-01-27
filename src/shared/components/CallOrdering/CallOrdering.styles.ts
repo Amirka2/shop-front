@@ -1,26 +1,32 @@
 import styled from 'styled-components'
 
+import {mediaQueries} from '@/shared/constants/mediaQueries';
+
 import {Color} from "@/shared/constants";
 
-export const Wrapper = styled.div<{
-    $isMobile: boolean;
-}>`
+export const Wrapper = styled.div`
   width: 100%;
   height: 400px;
   padding: 24px 50px 0 50px;
-  display: ${props => props.$isMobile ? 'none' : 'flex'};
-  flex-direction: column;
+  display: none;
   position: relative;
+  
+  ${mediaQueries.gt.Tablet} {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
-export const MainWrapper = styled.footer<{
-    $isMobile: boolean;
-}>`
-  width: ${props => props.$isMobile ? '100vw' : '100%'};
+export const MainWrapper = styled.footer`
+  width: 100vh;
   display: flex;
   flex-direction: column;
   gap: 28px;
   background: linear-gradient(180deg, #225479 0%, #12446A 100%);
+  
+  ${mediaQueries.gt.Tablet} {
+    width: 100%;
+  }
 `;
 
 export const Item = styled.div`
