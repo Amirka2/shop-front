@@ -1,4 +1,4 @@
-import {IChangeProduct, ICreateDescriptionData, IProduct} from "@/entities";
+import {IChangeProduct, ICreateDescriptionData, IDescriptionData, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS, productBackToFront, productFrontToBack} from "@/shared/libs";
 import {fetchBlobFromBackend} from "@/shared/libs/apiFetch";
 
@@ -73,6 +73,18 @@ export const createDescription = async (token: string | undefined, description: 
 
     return await apiFetch('/constrspb/group/subgroup/product/productDescriptions/', {
         method: HTTP_METHODS.POST,
+        body: description,
+        headers: new Headers(headers),
+    })
+}
+
+export const changeDescription = async (token: string | undefined, description: IDescriptionData & { productId: number }) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+
+    return await apiFetch('/constrspb/group/subgroup/product/productDescriptions/' + description.id, {
+        method: HTTP_METHODS.PUT,
         body: description,
         headers: new Headers(headers),
     })

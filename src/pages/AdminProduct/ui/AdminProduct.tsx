@@ -10,7 +10,7 @@ import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
 import {AdditionalInfo} from "@/pages/AdminProduct/ui/AdditionalInfo";
 
-import {changeProduct, createDescription, createPhoto, getProductById} from "../api";
+import {changeDescription, changeProduct, createDescription, createPhoto, getProductById} from "../api";
 import {MainInfo} from "./MainInfo";
 import {Partition} from "./Partition";
 
@@ -61,10 +61,24 @@ export const AdminProduct = observer(() => {
     if (descriptions) {
       descriptions.forEach(description => {
         const isBackDescription = backDescriptions && Boolean(backDescriptions.find(d => d.id === description.id));
+        const backDescription = backDescriptions?.filter(d => d.id === description.id)[0];
+        const isEditedDescription =
+          backDescriptions && ((
+            backDescription?.header !== description.header) || (
+            backDescription?.text !== description.text));
 
         if (!isBackDescription) {
           const response = createDescription(token, {
             productId: Number(productId),
+            header: description.header || '',
+            text: description.text || '',
+          })
+        }
+
+        if (isEditedDescription) {
+          const response = changeDescription(token, {
+            productId: Number(productId),
+            id: description.id,
             header: description.header || '',
             text: description.text || '',
           })
