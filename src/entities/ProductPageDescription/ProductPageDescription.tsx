@@ -26,8 +26,8 @@ export const ProductPageDescription = (product: IProduct) => {
             </Styles.DescriptionHeader>
             {product.productDescriptions && product.productDescriptions.map(partition => (
                 <>
-                    <h3>{partition.name}</h3>
-                    <section dangerouslySetInnerHTML={{__html: partition?.body || ''}}>
+                    <h3>{partition.header}</h3>
+                    <section dangerouslySetInnerHTML={{__html: partition?.text || ''}}>
                     </section>
                 </>
             ))}

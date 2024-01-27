@@ -23,15 +23,13 @@ export const AdminProduct = observer(() => {
     subCategoryId,
     productId
   } = useParams();
-  const {adminProductStore} = useStores();
+  const {adminProductStore, descriptionsStore} = useStores();
   const [cookies] = useCookies(['token']);
-  const [isEditorOpen, setEditorOpen] = useState(false);
-  const [descriptionId, setDescriptionId] = useState(0);
-  const [currentDescription, setCurrentDescription] = useState<IDescriptionData | undefined>(undefined);
   const [photos, setPhotos] = useState<Blob[]>([]);
 
   const { product, isLoading } = adminProductStore;
   const { setLoading } = adminProductStore;
+  const currentDescription = descriptionsStore.getActiveDescription();
   const productName = product?.name || '';
 
   const { token } = cookies;
@@ -76,15 +74,8 @@ export const AdminProduct = observer(() => {
     const response = getProductById(Number(productId));
     response.then(result => {
       adminProductStore.set(result);
-      setCurrentDescription(adminProductStore.getDescription(descriptionId))
     })
   }, [isLoading]);
-
-  useEffect(() => {
-    if (product) {
-      setCurrentDescription(adminProductStore.getDescription(descriptionId))
-    }
-  }, [descriptionId]);
 
   return isLoading ? (
     <PageLoader />
@@ -109,26 +100,16 @@ export const AdminProduct = observer(() => {
           </Styles.AdditionalInfoWrapper>
           <Styles.PartitionWrapper>
             <Partition
-              descriptionId={descriptionId}
-              setDescriptionId={setDescriptionId}
-              setEditorOpen={setEditorOpen}
-              setCurrentDescription={setCurrentDescription}
             />
           </Styles.PartitionWrapper>
         </Styles.InfoWrapper>
-        {isEditorOpen && (
+        {currentDescription && (
           <Styles.TextAreaWrapper>
-            {currentDescription && (
-              <DocumentEditor
-                description={currentDescription.body}
-                descriptionId={descriptionId}
-                setDescriptionId={setDescriptionId}
-                setEditorOpen={setEditorOpen}
-              />
-            )}
+              <DocumentEditor />
           </Styles.TextAreaWrapper>
         )}
       </Styles.Wrapper>
     </Container>
   );
 });
+

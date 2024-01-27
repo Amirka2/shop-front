@@ -74,8 +74,8 @@ export interface ICreateProduct {
 
 export interface IDescriptionData {
     id: number;
-    name?: string;
-    body?: string;
+    header?: string;
+    text?: string;
 }
 
 export interface ISpecifications {
