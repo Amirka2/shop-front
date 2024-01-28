@@ -15,7 +15,6 @@ export const Paths = {
     notFound: '/not-found',
     admin: '/admin',
     adminAuth: '/admin/auth',
-    adminBestSellers: '/admin/best-sellers',
     adminCategory: '/admin/categories',
     adminSubCategory: '/admin/:categoryId/:subCategoryId',
     adminProduct: '/admin/:categoryId/:subCategoryId/:productId',
