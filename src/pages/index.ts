@@ -14,3 +14,4 @@ export { AdminMain } from './AdminMain';
 export { AdminCategory } from './AdminCategory';
 export { AdminSubCategory } from './AdminSubCategory';
 export { AdminProduct } from './AdminProduct';
+export { PrivacyPolicy } from './PrivacyPolicy';
