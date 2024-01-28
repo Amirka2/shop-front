@@ -11,6 +11,7 @@ import {MainLayout} from "@/shared/ui/Layouts";
 import {ItemsGrid} from "@/shared/components";
 
 import * as Styles from "./MainPage.styles";
+import {productBackToFront} from "@/shared/libs";
 
 interface MainPageProps extends IContacts {
   itemsValue: number;
@@ -32,7 +33,10 @@ export const MainPage = observer((props: MainPageProps) => {
   useEffect(() => {
     const response = getProducts();
     response.then(result => {
-      productsStore.set(result);
+      const frontProducts = result.map(p => {
+        return productBackToFront(p)
+      });
+      productsStore.set(frontProducts);
     })
   }, [])
 
@@ -43,7 +47,7 @@ export const MainPage = observer((props: MainPageProps) => {
           marginBottom: '20px',
           color: Color.blue
         }}>
-          Бестселлеры
+          Наша продукция
         </h1>
         <ItemsGrid>
           {itemsComponents}

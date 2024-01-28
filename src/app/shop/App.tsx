@@ -51,7 +51,7 @@ export function App() {
           element={<ProductPage/>}
         />
         <Route
-          path={'/:name'}
+          path={Paths.product}
           element={<ProductPage/>}
         />
         <Route path={Paths.contacts} element={<ContactsPage/>}/>

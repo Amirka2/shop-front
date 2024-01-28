@@ -22,10 +22,7 @@ export const createProductFromNullable = (product: IChangeProduct, photos?: ICre
 }
 
 export const productBackToFront = (
-  product: Omit<
-    IProduct & { isAvailable: boolean, subgroupId: number },
-    "inStock" | "subCategoryId"
-  >) => {
+  product: any) => {
   const newProduct: IProduct = {
     id: product.id,
     name: product.name,

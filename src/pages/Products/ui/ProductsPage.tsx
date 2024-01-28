@@ -7,7 +7,8 @@ import { useStores } from "@/shared/hooks";
 import { ProductCard } from "@/widgets";
 import { MainLayout } from "@/shared/ui/Layouts";
 
-import { getProductsInSubCategory } from "../api";
+import {getProductsInSubCategory} from "../api";
+import {productBackToFront} from "@/shared/libs";
 
 export const ProductsPage = observer(() => {
     const { productsStore } = useStores();
@@ -17,11 +18,14 @@ export const ProductsPage = observer(() => {
     let itemsComponents = products.map(i => <ProductCard key={i.id} {...i}/>);
 
     useEffect(() => {
-        const response = getProductsInSubCategory(Number(subCategoryId));
+        const response = getProductsInSubCategory(Number(subCategoryId))
         response.then(result => {
-            productsStore.set(result);
+            const frontProducts = result.map(p => {
+                return productBackToFront(p)
+            });
+            productsStore.set(frontProducts);
         })
-    }, [])
+    }, []);
 
     return (
         <MainLayout>

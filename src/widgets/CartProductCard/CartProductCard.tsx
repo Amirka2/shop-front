@@ -17,10 +17,10 @@ export const CartProductCard = ({product}: CartProductCardProps) => {
                 <ProductPhoto src={getPhotoUrl(product.photos?.[0]?.link || '')} alt={'product photo'}/>
             )}
             <Info>
-                <Link to={'/product/' + product.id}>
+                <Link to={'/products/' + product.id}>
                     <Name>{product.name}</Name>
                 </Link>
-                <p>description</p>
+                <p>{product.shortDescription}</p>
             </Info>
         </Wrapper>
     );
