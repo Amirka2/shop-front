@@ -24,9 +24,9 @@ export const PhotoWrapper = styled.div`
 `;
 
 export const MainPhoto = styled.img`
-  min-width: 100%;
-  max-height: 100%;
-  background-size: contain;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
 `;
 

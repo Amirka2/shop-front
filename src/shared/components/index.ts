@@ -12,6 +12,7 @@ export {AdminProductCard} from './AdminProductCard';
 export { AdminHeader } from './AdminHeader';
 export { PhotoUpload } from './PhotoUpload';
 export { SavedPhoto } from './SavedPhoto';
+export { TextBlock } from './TextBlock';
 export * from './DocumentLink';
 export * from './DocumentMedia';
 export * from './Icons';

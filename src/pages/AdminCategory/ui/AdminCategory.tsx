@@ -4,11 +4,11 @@ import {observer} from "mobx-react";
 import {Dictionary} from 'lodash'
 import {useCookies} from "react-cookie";
 
-import {Container} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {Back, PageLoader} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
 import {postFiles, getPhotoUrl} from "@/shared/libs";
+import {AdminLayout} from "@/shared/ui/Layouts";
 
 import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
@@ -28,12 +28,12 @@ export const AdminCategory = observer(() => {
   const [photos, setPhotos] = useState<Blob[]>([]);
 
   const [cookies] = useCookies(['token']);
-  const { token } = cookies;
+  const {token} = cookies;
 
-  const { categoriesStore, subCategoriesStore } = useStores();
-  const { categories, setLoading } = categoriesStore;
+  const {categoriesStore, subCategoriesStore} = useStores();
+  const {categories, setLoading} = categoriesStore;
   const adminCategory = categoriesStore.getAdminCategory();
-  const { subCategories } = subCategoriesStore;
+  const {subCategories} = subCategoriesStore;
   const isLoading = categoriesStore.getIsLoading();
 
   const handleDeleteClick = (id: number) => {
@@ -62,7 +62,7 @@ export const AdminCategory = observer(() => {
       }
     }
 
-    createCategory(token , {
+    createCategory(token, {
       title: adminCategory.name,
       photo: adminCategory.groupPhotoLink,
     }).then(() => {
@@ -112,63 +112,60 @@ export const AdminCategory = observer(() => {
   const navigate = useNavigate();
 
   return isLoading ? (
-    <PageLoader />
+    <PageLoader/>
   ) : (
-    <Styles.Wrapper>
-      <Container>
+    <AdminLayout>
+      <Styles.BackButton onClick={() => navigate(-1)}>
+        <Back/>
+      </Styles.BackButton>
 
-        <Styles.BackButton onClick={() => navigate(-1)}>
-          <Back/>
-        </Styles.BackButton>
+      <Styles.ContentWrapper>
+        <Styles.AddCategoryWrapper>
+          <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
+            {isEditorOpen ? '-' : '+'}
+          </Styles.AddCategory>
+        </Styles.AddCategoryWrapper>
 
-        <Styles.ContentWrapper>
-          <Styles.AddCategoryWrapper>
-            <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
-              {isEditorOpen ? '-' : '+'}
-            </Styles.AddCategory>
-          </Styles.AddCategoryWrapper>
-
-          <Styles.Categories>
-            {categories && categories.map(category => (
-                <Styles.Category>
-                  <Styles.Flex>
-                    {/*<Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} onError={({ currentTarget }) => {*/}
-                    {/*  currentTarget.onerror = null; // prevents looping*/}
-                    {/*  currentTarget.src="photos/1.jpg";*/}
-                    {/*}}/>// FIXME */}
-                    <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} />
-                    <Styles.Title>
-                      {category.name}
-                      <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                        X
-                      </Styles.DeleteButton>
-                    </Styles.Title>
-                  </Styles.Flex>
-                  {groupedSubCategories && (
-                    <SubCategories
-                      categoryId={category.id}
-                      subCategories={groupedSubCategories?.[category.id] || []}
-                      updateData={updateData}
-                    />
-                  )}
-                </Styles.Category>
-              )
-            )}
-          </Styles.Categories>
-
-          {isEditorOpen && (
-            <Editor
-              nameInput={categoriesStore.getAdminCategory().name}
-              placeholder={'Название категории'}
-              handleKeyPress={handleKeyPress}
-              handleNameInputChange={handleCategoryNameChange}
-              handleSave={handleSave}
-              setPhotosBlob={setPhotos}
-              ref={reloadRef}
-            />
+        <Styles.Categories>
+          {categories && categories.map(category => (
+              <Styles.Category>
+                <Styles.Flex>
+                  {/*<Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} onError={({ currentTarget }) => {*/}
+                  {/*  currentTarget.onerror = null; // prevents looping*/}
+                  {/*  currentTarget.src="photos/1.jpg";*/}
+                  {/*}}/>// FIXME */}
+                  <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)}/>
+                  <Styles.Title>
+                    {category.name}
+                    <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
+                      X
+                    </Styles.DeleteButton>
+                  </Styles.Title>
+                </Styles.Flex>
+                {groupedSubCategories && (
+                  <SubCategories
+                    categoryId={category.id}
+                    subCategories={groupedSubCategories?.[category.id] || []}
+                    updateData={updateData}
+                  />
+                )}
+              </Styles.Category>
+            )
           )}
-        </Styles.ContentWrapper>
-      </Container>
-    </Styles.Wrapper>
+        </Styles.Categories>
+
+        {isEditorOpen && (
+          <Editor
+            nameInput={categoriesStore.getAdminCategory().name}
+            placeholder={'Название категории'}
+            handleKeyPress={handleKeyPress}
+            handleNameInputChange={handleCategoryNameChange}
+            handleSave={handleSave}
+            setPhotosBlob={setPhotos}
+            ref={reloadRef}
+          />
+        )}
+      </Styles.ContentWrapper>
+    </AdminLayout>
   );
 });

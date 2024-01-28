@@ -6,7 +6,8 @@ export const Wrapper = styled.div`
   max-width: 250px;
   display: flex;
   flex-direction: column;
-  line-height: 30px;
+  line-height: 22px;
+  gap: 12px;
 `;
 
 export const Link = styled(NavLink)`

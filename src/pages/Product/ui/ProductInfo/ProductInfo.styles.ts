@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import {Color} from '@/shared/constants';
 
-export const Wrapper = styled.div<{
-    isMobile?: boolean;
-}>`
+export const Wrapper = styled.div`
   width: 100%;
   max-width: 500px; 
 `;

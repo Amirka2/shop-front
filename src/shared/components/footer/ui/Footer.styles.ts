@@ -1,20 +1,21 @@
 import {styled} from "styled-components";
 
 import {Color} from '@/shared/constants'
+import {mediaQueries} from "@/shared/constants/mediaQueries";
 
-export const Wrapper = styled.div<{
-    $isMobile: boolean;
-}>`
+export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  flex-direction: ${props => props.$isMobile ? 'column' : 'row'};
+  flex-direction: column;
+
+    ${mediaQueries.gt.Tablet} {
+       flex-direction: row;
+    }
 `;
 
-export const MainWrapper = styled.footer<{
-    $isMobile: boolean;
-}>`
-  width: ${props => props.$isMobile ? '100vw' : '100%'};
+export const MainWrapper = styled.footer`
+  width: 100vw;
   padding: 50px 50px 0 50px;
   display: flex;
   flex-direction: column;
@@ -30,6 +31,10 @@ export const MainWrapper = styled.footer<{
   & a:hover {
     color: ${Color.black};
   }
+    
+    ${mediaQueries.gt.Tablet} {
+        width: 100%;
+    }
 `;
 
 export const CopyRightWrapper = styled.div`

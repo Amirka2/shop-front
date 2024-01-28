@@ -3,8 +3,9 @@ import {useParams} from "react-router";
 import {observer} from "mobx-react";
 import {useCookies} from "react-cookie";
 
-import {createProductFromNullable, productBackToFront, postFiles} from "@/shared/libs";
-import {Button, Container, PageLoader} from "@/shared/ui";
+import {createProductFromNullable, postFiles} from "@/shared/libs";
+import {Button, PageLoader} from "@/shared/ui";
+import {AdminLayout} from "@/shared/ui/Layouts";
 import {AdminHeader} from "@/shared/components";
 import {useStores} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
@@ -26,13 +27,13 @@ export const AdminProduct = observer(() => {
   const [cookies] = useCookies(['token']);
   const [photos, setPhotos] = useState<Blob[]>([]);
 
-  const { product, isLoading } = adminProductStore;
-  const { setLoading } = adminProductStore;
+  const {product, isLoading} = adminProductStore;
+  const {setLoading} = adminProductStore;
   const descriptions = descriptionsStore.descriptions;
   const currentDescription = descriptionsStore.getActiveDescription();
   const productName = product?.name || '';
 
-  const { token } = cookies;
+  const {token} = cookies;
 
   const handleSaveProduct = async () => {
     setLoading(true);
@@ -107,37 +108,35 @@ export const AdminProduct = observer(() => {
   }, [isLoading]);
 
   return isLoading ? (
-    <PageLoader />
+    <PageLoader/>
   ) : (
-    <Container>
-      <Styles.Wrapper>
-        <AdminHeader title={productName}/>
-        <Styles.SaveButtonContainer>
-          <Button
-            size="M"
-            onClick={handleSaveProduct}
-          >
-            Сохранить изменения
-          </Button>
-        </Styles.SaveButtonContainer>
-        <Styles.InfoWrapper>
-          <Styles.MainInfoWrapper>
-            <MainInfo setPhotos={setPhotos}/>
-          </Styles.MainInfoWrapper>
-          <Styles.AdditionalInfoWrapper>
-            <AdditionalInfo />
-          </Styles.AdditionalInfoWrapper>
-          <Styles.PartitionWrapper>
-            <Partition />
-          </Styles.PartitionWrapper>
-        </Styles.InfoWrapper>
-        {currentDescription && (
-          <Styles.TextAreaWrapper>
-              <DocumentEditor />
-          </Styles.TextAreaWrapper>
-        )}
-      </Styles.Wrapper>
-    </Container>
+    <AdminLayout>
+      <AdminHeader title={productName}/>
+      <Styles.SaveButtonContainer>
+        <Button
+          size="M"
+          onClick={handleSaveProduct}
+        >
+          Сохранить изменения
+        </Button>
+      </Styles.SaveButtonContainer>
+      <Styles.InfoWrapper>
+        <Styles.MainInfoWrapper>
+          <MainInfo setPhotos={setPhotos}/>
+        </Styles.MainInfoWrapper>
+        <Styles.AdditionalInfoWrapper>
+          <AdditionalInfo/>
+        </Styles.AdditionalInfoWrapper>
+        <Styles.PartitionWrapper>
+          <Partition/>
+        </Styles.PartitionWrapper>
+      </Styles.InfoWrapper>
+      {currentDescription && (
+        <Styles.TextAreaWrapper>
+          <DocumentEditor/>
+        </Styles.TextAreaWrapper>
+      )}
+    </AdminLayout>
   );
 });
 
