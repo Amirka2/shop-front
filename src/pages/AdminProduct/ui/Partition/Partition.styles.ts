@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import {css, styled} from "styled-components";
 import { Color } from "@/shared/constants";
 
 export const Wrapper = styled.div`
@@ -52,7 +52,9 @@ export const PartitionBlocksWrapper = styled.div`
   gap: 8px;
 `;
 
-export const PartitionBlock = styled.div`
+export const PartitionBlock = styled.div<{
+  isActive?: boolean;
+}>`
   width: 100%;
   height: 50px;
   padding: 0 8px;
@@ -63,6 +65,11 @@ export const PartitionBlock = styled.div`
   
   background: ${Color.blue};
   border-radius: 10px;
+  
+  ${({isActive}) => isActive ? css`
+    outline: 4px solid ${Color.blue};
+    outline-offset: -2px;
+  ` : null}
 `;
 
 export const PartitionTitle = styled.input`

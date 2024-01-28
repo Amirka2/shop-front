@@ -55,7 +55,7 @@ export const Partition = observer(() => {
             <Styles.PartitionBlocksWrapper>
                 {descriptions && descriptions
                   .map((d) => (
-                    <Styles.PartitionBlock key={d.id}>
+                    <Styles.PartitionBlock key={d.id} isActive={d.id === descriptionsStore.getActiveDescription()?.id}>
                       <Styles.PartitionTitle
                         value={d.header || ''}
                         onClick={() => {
