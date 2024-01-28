@@ -4,7 +4,6 @@ import {Color} from "@/shared/constants";
 import {mediaQueries} from "@/shared/constants/mediaQueries";
 
 export const Wrapper = styled.header`
-  width: 90vw;
   min-height: 70px;
   height: 70px;
   margin: 0 0 20px 0;
@@ -17,7 +16,6 @@ export const Wrapper = styled.header`
   border-radius: 10px;
 
   ${mediaQueries.gt.Tablet} {
-    width: 1330px;
     min-height: 150px;
     height: 150px;
     padding: 33px;
@@ -52,6 +50,8 @@ export const LogoContactsWrapper = styled.div`
 export const SearchWrapper = styled.div`
   width: 470px;
   margin: 0 10px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Title = styled.h6<{
@@ -66,7 +66,7 @@ export const Input = styled.input`
   position: absolute;
   top: 72px;
   resize: none;
-  width: 470px;
+  width: 300px;
   height: 48px;
   font-size: 16px;
   padding: 13px;
@@ -75,6 +75,10 @@ export const Input = styled.input`
   border: none;
   outline: none;
   cursor: pointer;
+  
+  ${mediaQueries.gt.Desktop} {
+    width: 470px;
+  }
   
   &:focus (SearchModal){
     display: block;

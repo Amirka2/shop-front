@@ -7,7 +7,7 @@ import {mediaQueries} from "@/shared/constants/mediaQueries";
 const borderRadius = '10px';
 
 export const Wrapper = styled.nav`
-  width: 70vw;
+  width: 100%;
   margin: 0 0 20px 0;
   display: flex;
   justify-content: space-evenly;
@@ -17,7 +17,6 @@ export const Wrapper = styled.nav`
   overflow: hidden;
 
   ${mediaQueries.gt.Tablet} {
-    width: 1330px;
     min-height: 50px;
     height: 50px;
     flex-direction: row;
