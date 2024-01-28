@@ -12,17 +12,20 @@ export const SubCategory = styled.li`
   list-style-type: none;
   margin-bottom: 10px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 8px;
 `;
 
 export const Flex = styled.div`
   display: flex;
+  align-items: center;
   gap: 8px;
 `;
 
 export const Photo = styled.img`
-  width: 40px;
-  height: 40px;
+  width: 100px;
+  height: 100px;
 `;
 
 export const StyledLink = styled(Link)`
@@ -37,7 +40,10 @@ export const Title = styled.h3`
 `;
 
 export const SubCategories = styled.div`
-  margin: 20px 10px 0;
+  display: flex;
+  flex-direction: column;
+  
+  gap: 8px;
 `;
 
 export const AddSubCategory = styled.button`
@@ -49,6 +55,8 @@ export const AddSubCategory = styled.button`
   border-radius: 10px;
   font-weight: 700;
   
+  margin-top: 25px;
+  
   &:hover {
     transform: scale(105%);
   }
@@ -56,6 +64,6 @@ export const AddSubCategory = styled.button`
 
 export const DeleteButton = styled(Button)`
   font-size: 18px;
-  
-  margin-left: 10px;
+  height: 40px;
+  width: 40px;
 `;

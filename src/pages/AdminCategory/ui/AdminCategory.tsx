@@ -135,12 +135,14 @@ export const AdminCategory = observer(() => {
                   {/*  currentTarget.src="photos/1.jpg";*/}
                   {/*}}/>// FIXME */}
                   <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)}/>
-                  <Styles.Title>
-                    {category.name}
+                  <Styles.TitleWrapper>
+                    <Styles.Title>
+                      {category.name}
+                    </Styles.Title>
                     <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
                       X
                     </Styles.DeleteButton>
-                  </Styles.Title>
+                  </Styles.TitleWrapper>
                 </Styles.Flex>
                 {groupedSubCategories && (
                   <SubCategories
