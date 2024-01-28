@@ -22,7 +22,7 @@ export const PhotoSlider = ({photos, width, height}: PhotoSliderProps) => {
     }
     const photoItems = photos.map(url => {
         return (
-            <ImgWrapper>
+            <ImgWrapper key={url}>
                 <img src={url} alt={'product photo'}/>
             </ImgWrapper>
         )

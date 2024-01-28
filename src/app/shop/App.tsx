@@ -16,6 +16,7 @@ import {
   SubCategoriesPage,
   ProductsPage,
   ContactsPage,
+  PrivacyPolicy,
   AdminMain,
   AdminCategory,
   AdminSubCategory,
@@ -57,6 +58,7 @@ export function App() {
         <Route path={Paths.cart} element={<CartPage/>}/>
         <Route path={Paths.payment} element={<PaymentPage/>}/>
         <Route path={Paths.shipping} element={<ShippingPage/>}/>
+        <Route path={Paths.privacyPolicy} element={<PrivacyPolicy/>}/>
 
         <Route path={Paths.adminAuth} element={<AuthChecker> <AdminAuth /></AuthChecker>} />
         <Route path={Paths.admin} element={<AuthChecker> <AdminMain/> </AuthChecker>}/>

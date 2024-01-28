@@ -10,6 +10,16 @@ export const Wrapper = styled.div`
   width: 100%;
 `;
 
+export const EditorWrapper = styled.div`
+  width: 100%;
+  
+  margin: 10px 0 10px;
+  padding: 0 10px;
+  
+  border: 1px solid gray;
+  border-radius: 8px;
+`;
+
 export const ButtonsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;

@@ -1,32 +1,38 @@
-import React from 'react';
-import { useParams } from "react-router";
+import React, {useEffect, useState} from 'react';
+import {useParams} from "react-router";
 
-import { useMobileOrDesktop } from "@/shared/hooks";
-import { useProduct } from "@/shared/hooks";
-import { ProductPageDescription } from "@/entities";
-import { MainLayout } from "@/shared/ui/Layouts";
+import {IProduct, ProductPageDescription} from "@/entities";
+import {MainLayout} from "@/shared/ui/Layouts";
+import {getPhotoUrl} from "@/shared/libs";
 
-import { Slider } from "./Slider";
-import { ProductInfo } from './ProductInfo';
+import {getProductById} from "../api";
+import {Slider} from "./Slider";
+import {ProductInfo} from './ProductInfo';
 
 import * as Styles from './ProductPage.styles';
 
 export const ProductPage = () => {
-    const isMobile = useMobileOrDesktop();
-    const params = useParams();
-    const product = useProduct(params?.name);
+  const {productId} = useParams();
+  const [product, setProduct] = useState<IProduct | null>(null);
 
-    return product ? (
-        <MainLayout>
-          <Styles.Wrapper isMobile={isMobile}>
-            <Styles.Flex isMobile={isMobile}>
-              {product.photos && (
-                <Slider images={product.photos} />
-              )}
-              <ProductInfo {...product}></ProductInfo>
-            </Styles.Flex>
-            <ProductPageDescription {...product}/>
-          </Styles.Wrapper>
-        </MainLayout>
-    ) : null;
+  useEffect(() => {
+    getProductById(Number(productId))
+      .then(res => {
+        setProduct(res);
+      })
+  }, [productId]);
+
+  return product ? (
+    <MainLayout>
+      <Styles.Wrapper>
+        <Styles.Flex>
+          {product.photos && (
+            <Slider images={product.photos.map(p => getPhotoUrl(p.link))}/>
+          )}
+          <ProductInfo {...product}></ProductInfo>
+        </Styles.Flex>
+        <ProductPageDescription {...product}/>
+      </Styles.Wrapper>
+    </MainLayout>
+  ) : null;
 };

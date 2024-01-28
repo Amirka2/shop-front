@@ -1,7 +1,7 @@
 import React, {PropsWithChildren, useEffect} from 'react';
 
 import { TopBar } from "@/widgets";
-import { Footer } from "@/shared/components";
+import {Container, Footer} from "@/shared/components";
 
 import * as Styles from './MainLayout.styles';
 
@@ -12,8 +12,10 @@ export const MainLayout = ({children, ...restProps}: PropsWithChildren) => {
 
   return (
     <Styles.MainWrapper {...restProps} >
-      <TopBar />
-      {children}
+      <Container>
+        <TopBar />
+        {children}
+      </Container>
       <Footer />
     </Styles.MainWrapper>
   );

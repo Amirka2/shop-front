@@ -1,8 +1,10 @@
-import { makeAutoObservable } from "mobx";
+import {makeAutoObservable} from "mobx";
 
 import {
   IChangeProduct,
+  ICreatePhoto,
   IDescriptionData,
+  IPhoto,
   PRODUCT_DESCRIPTION_KEYS,
   PRODUCT_KEYS
 } from "@/entities/interfaces";
@@ -10,6 +12,8 @@ import {
 export class AdminProduct {
   public product: IChangeProduct | undefined;
   public description: IDescriptionData | undefined;
+  public photos: ICreatePhoto[] = [];
+  public isLoading = false;
 
   constructor() {
     makeAutoObservable(this);
@@ -21,15 +25,42 @@ export class AdminProduct {
 
   set(product: IChangeProduct) {
     this.product = product;
+
+    if (product.photos) {
+      this.photos = product.photos;
+    }
+  }
+
+  public getIsLoading = () => {
+    return this.isLoading;
+  }
+
+  public setLoading = (value: boolean) => {
+    this.isLoading = value;
   }
 
   public addProductField(fieldName: PRODUCT_KEYS, value: any) {
+    debugger
     const product = this.get();
+    if (fieldName === PRODUCT_KEYS.PHOTOS) {
+      console.log({...this.product})
+    }
 
     if (product) {
       // @ts-ignore
       product[fieldName] = value;
     }
+  }
+
+  public addPhoto = (photoName: string, id = -1) => {
+    this.photos.push({
+      id: id,
+      link: photoName
+    });
+  }
+
+  public deletePhotoFromStore = (photoId: number) => {
+    this.photos = this.photos.filter(p => p.id !== photoId);
   }
 
   public getDescription(id: number): IDescriptionData {

@@ -1,88 +1,114 @@
-import React, { useRef, useState} from 'react';
-
-import {ISubCategory} from "@/entities";
-import {createSubCategory, deleteSubCategory} from "../../api";
-import {Editor} from "@/pages/AdminCategory/ui/Editor";
-
-import * as Styles from "./SubCategories.styles";
+import React, {useRef, useState} from 'react';
 import {useCookies} from "react-cookie";
+import {observer} from "mobx-react";
 import {Spin} from "antd";
 
+import {ISubCategory} from "@/entities";
+import {Editor} from "@/pages/AdminCategory/ui/Editor";
+import {useStores} from "@/shared/hooks";
+import {getPhotoUrl, postFiles} from "@/shared/libs";
+
+import {createSubCategory, deleteSubCategory} from "../../api";
+
+import * as Styles from "./SubCategories.styles";
+
 interface SubCategoriesProps {
-    categoryId: number;
-    subCategories: ISubCategory[];
-    updateData: () => void;
-    isLoading: boolean;
+  categoryId: number;
+  subCategories: ISubCategory[];
+  updateData: () => void;
 }
 
-export const SubCategories = ({categoryId, subCategories, updateData, isLoading}: SubCategoriesProps) => {
-    const [isEditorOpen, setEditorOpen] = useState(false);
-    const [subCategoryName, setSubCategoryName] = useState('');
+export const SubCategories = observer(({categoryId, subCategories, updateData}: SubCategoriesProps) => {
+  const [isEditorOpen, setEditorOpen] = useState(false);
+  const [photos, setPhotos] = useState<Blob[]>([]);
 
-    const [cookies] = useCookies(['token']);
-    const { token } = cookies;
+  const {subCategoriesStore} = useStores();
+  const {setAdminSubCategoryName, isLoading} = subCategoriesStore;
+  const adminSubCategory = subCategoriesStore.getAdminSubCategory();
 
-    const handleDeleteClick = (id: number) => {
-        deleteSubCategory(token, id)
-          .then(() => updateData());
-    }
+  const [cookies] = useCookies(['token']);
+  const {token} = cookies;
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSubCategoryName(e.target.value);
-    }
+  const handleDeleteClick = (id: number) => {
+    deleteSubCategory(token, id)
+      .then(() => updateData());
+  }
 
-    const handleSave = () => {
-        createSubCategory(token, {
-            title: subCategoryName,
-            categoryId,
-        }).then(() => {
-            updateData();
-        })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAdminSubCategoryName(e.target.value);
+  }
 
-        setSubCategoryName('');
-        setEditorOpen(false);
-    }
+  const handleSave = async () => {
+    if (photos) {
+      const response = await postFiles(photos);
 
-    const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-            handleSave();
+      if (response?.[0].ok) {
+        const photoName = response?.[0].body?.fileName;
+
+        if (photoName) {
+          subCategoriesStore.setAdminSubCategoryPhoto(photoName);
+        } else {
+          console.error("Имя файла в ответе не найдено!");
         }
-    };
-    const reloadRef = useRef(null);
+      }
+    }
+
+    createSubCategory(token, {
+      categoryId,
+      title: adminSubCategory.name,
+      photo: adminSubCategory.subgroupPhotoLink || 'Без фото',
+    }).then(() => {
+      updateData();
+    })
+
+    subCategoriesStore.clearAdminSubCategory();
+    setEditorOpen(false);
+  }
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSave();
+    }
+  };
+  const reloadRef = useRef(null);
 
 
-    return isLoading ? (<Spin />) : (
-        <Styles.Wrapper>
-            <Styles.AddSubCategory onClick={() => setEditorOpen(prev => !prev)}>
-                {isEditorOpen ? '-' : '+'}
-            </Styles.AddSubCategory>
-            <Styles.SubCategories>
-                {subCategories.map(subCategory => (
-                    <ul>
-                        <Styles.SubCategory key={subCategory.id}>
-                            <Styles.Title>
-                                <Styles.StyledLink to={`/admin/${categoryId}/${subCategory.id}`}>
-                                    {subCategory.name}
-                                </Styles.StyledLink>
-                            </Styles.Title>
-                            <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
-                                X
-                            </Styles.DeleteButton>
-                        </Styles.SubCategory>
-                    </ul>
-                ))}
-            </Styles.SubCategories>
-            {isEditorOpen && (
-                <Editor
-                    inputState={subCategoryName}
-                    placeholder={'Название подкатегории'}
-                    handleChange={handleChange}
-                    handleSave={handleSave}
-                    handleKeyPress={handleKeyPress}
-                    ref={reloadRef}
-                />
-            )}
-        </Styles.Wrapper>
-    );
-};
+  return isLoading ? (<Spin/>) : (
+    <Styles.Wrapper>
+      <Styles.AddSubCategory onClick={() => setEditorOpen(prev => !prev)}>
+        {isEditorOpen ? '-' : '+'}
+      </Styles.AddSubCategory>
+      <Styles.SubCategories>
+        <ul>
+          {subCategories.map(subCategory => (
+            <Styles.SubCategory key={subCategory.id}>
+              <Styles.Flex>
+                <Styles.Photo src={getPhotoUrl(subCategory.subgroupPhotoLink)}/>
+                <Styles.Title>
+                  <Styles.StyledLink to={`/admin/${categoryId}/${subCategory.id}`}>
+                    {subCategory.name}
+                  </Styles.StyledLink>
+                </Styles.Title>
+              </Styles.Flex>
+              <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
+                X
+              </Styles.DeleteButton>
+            </Styles.SubCategory>
+          ))}
+        </ul>
+      </Styles.SubCategories>
+      {isEditorOpen && (
+        <Editor
+          nameInput={adminSubCategory.name}
+          placeholder={'Название подкатегории'}
+          handleNameInputChange={handleChange}
+          handleSave={handleSave}
+          handleKeyPress={handleKeyPress}
+          setPhotosBlob={setPhotos}
+          ref={reloadRef}
+        />
+      )}
+    </Styles.Wrapper>
+  );
+});

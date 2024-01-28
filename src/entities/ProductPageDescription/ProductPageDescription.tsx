@@ -1,21 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
+
+import {IDescriptionData, IProduct} from "@/entities";
+import {DocumentReader} from "@/widgets/DocumentReader";
 
 import * as Styles from './ProductPageDescription.styles';
 
-import {IProduct} from "@/entities";
-import {ProductDescriptionPart} from "@/entities/ProductPageDescription/ProductDescriptionPart/ProductDescriptionPart";
-
-interface descriptionPart {
-    id: string,
-    name: string,
-}
-
 export const ProductPageDescription = (product: IProduct) => {
-    const [descriptionParts, setDescriptionParts] = useState<descriptionPart[]>([]);
+    const [descriptionParts, setDescriptionParts] = useState<IDescriptionData[]>(product.productDescriptions);
 
     const headerLinkElements = descriptionParts.map(l => {
         return (
-            <Styles.DescriptionHeaderLink href={'#' + l.id} key={l.id}>{l.name}</Styles.DescriptionHeaderLink>
+            <Styles.DescriptionHeaderLink href={'#' + l.id} key={l.id}>{l.header}</Styles.DescriptionHeaderLink>
         );
     })
 
@@ -24,11 +19,10 @@ export const ProductPageDescription = (product: IProduct) => {
             <Styles.DescriptionHeader>
                 {headerLinkElements}
             </Styles.DescriptionHeader>
-            {product.description && product.description.map(partition => (
+            {product.productDescriptions && product.productDescriptions.map(partition => (
                 <>
-                    <h3>{partition.name}</h3>
-                    <section dangerouslySetInnerHTML={{__html: partition?.body || ''}}>
-                    </section>
+                    <h3 id={String(partition.id)}>{partition.header}</h3>
+                    <DocumentReader description={partition.text || ''}/>
                 </>
             ))}
         </Styles.Wrapper>

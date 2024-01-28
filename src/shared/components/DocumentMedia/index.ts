@@ -1,0 +1,1 @@
+export { mediaBlockRenderer } from './DocumentMedia';

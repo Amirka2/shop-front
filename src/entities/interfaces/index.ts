@@ -7,16 +7,20 @@ export interface IProduct {
     shortDescription: string;
     isFixedPrice?: boolean;
     nextArrivalDate?: string;
-    description?: IDescriptionData[];
-    photos?: string[];
+    productDescriptions: IDescriptionData[];
+    // count: number;
+    photos: IPhoto[];
 }
 
-export interface ICreateProduct {
+export interface IBackProduct extends Omit<IProduct, ''> {}
 
+export interface ICreateProduct {
 }
 
 // @ts-ignore
-export interface IChangeProduct extends IProduct {}
+export interface IChangeProduct extends Omit<IProduct, 'photos'> {
+    photos?: ICreatePhoto[];
+}
 
 export enum PRODUCT_KEYS {
     ID = 'id',
@@ -40,9 +44,13 @@ export enum PRODUCT_DESCRIPTION_KEYS {
 }
 
 export interface IPhoto {
-    name: string;
-    uid: string;
+    id: number;
+    link: string;
 }
+
+export type ICreatePhoto = Omit<IPhoto, 'id'> & {
+    id?: number
+};
 
 export interface ICreateProduct {
 
@@ -51,9 +59,9 @@ export interface ICreateProduct {
 export interface IChangeProduct {
     name?: string;
     price?: number;
-    photos?: string[];
     shortDescription?: string;
     description?: IDescriptionData[];
+    photos?: ICreatePhoto[];
 }
 
 export interface ICreateProduct {
@@ -61,13 +69,19 @@ export interface ICreateProduct {
     price: number;
     name: string;
     shortDescription: string;
-    photos: Array<string>;
+    photos?: ICreatePhoto[];
 }
 
 export interface IDescriptionData {
     id: number;
-    name?: string;
-    body?: string;
+    header?: string;
+    text?: string;
+}
+
+export interface ICreateDescriptionData {
+    productId: number;
+    header: string;
+    text: string;
 }
 
 export interface ISpecifications {
@@ -99,7 +113,7 @@ export interface IProductsToOrder {
 
 export interface ICategory {
     id: number;
-    photo: string;
+    groupPhotoLink: string;
     name: string;
     subCategoryCount?: number;
 }
@@ -107,7 +121,7 @@ export interface ICategory {
 export interface ISubCategory {
     id: number;
     categoryId: number;
-    photo: string;
+    subgroupPhotoLink: string;
     name: string;
     productCount?: number;
 }

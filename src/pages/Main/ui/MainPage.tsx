@@ -1,44 +1,54 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {observer} from "mobx-react";
 
-import { products } from "@/app/shop/mock";
-import { ItemsGrid } from "@/shared/components";
-import { IContacts } from '@/entities';
-import { ProductCard } from '@/widgets';
-import { useMobileOrDesktop } from "@/shared/hooks";
+import {getProducts} from "@/pages/Products/api";
+import {IContacts} from '@/entities';
+import {ProductCard} from '@/widgets';
 
-import { MainLayout } from "@/shared/ui/Layouts";
+import {useStores} from "@/shared/hooks";
+import {Color} from "@/shared/constants";
+import {MainLayout} from "@/shared/ui/Layouts";
+import {ItemsGrid} from "@/shared/components";
 
 import * as Styles from "./MainPage.styles";
-import {colors} from "@mui/material";
-import {Color} from "@/shared/constants";
 
 interface MainPageProps extends IContacts {
-    itemsValue: number;
+  itemsValue: number;
 }
 
-export const MainPage = (props: MainPageProps) => {
-    const isMobile = useMobileOrDesktop();
-    const {
-        itemsValue,
-    } = props;
-    let width = isMobile ? 600 : 1000;
-    const itemsComponents = products
-        .slice(0, itemsValue).map(i =>
-            <ProductCard {...i}/>
-        );
-    return (
-        <MainLayout>
-            <Styles.Wrapper $isMobile={isMobile}>
-                <h1 style={{
-                    marginBottom: '20px',
-                    color: Color.blue
-                }}>
-                    Бестселлеры
-                </h1>
-                <ItemsGrid width={width.toString()}>
-                    {itemsComponents}
-                </ItemsGrid>
-            </Styles.Wrapper>
-        </MainLayout>
+export const MainPage = observer((props: MainPageProps) => {
+  const {
+    itemsValue,
+  } = props;
+
+  const {productsStore} = useStores();
+  const {products} = productsStore;
+
+  const itemsComponents = products
+    .slice(0, itemsValue).map(i =>
+      <ProductCard {...i}/>
     );
-};
+
+  useEffect(() => {
+    const response = getProducts();
+    response.then(result => {
+      productsStore.set(result);
+    })
+  }, [])
+
+  return (
+    <MainLayout>
+      <Styles.Wrapper>
+        <h1 style={{
+          marginBottom: '20px',
+          color: Color.blue
+        }}>
+          Бестселлеры
+        </h1>
+        <ItemsGrid>
+          {itemsComponents}
+        </ItemsGrid>
+      </Styles.Wrapper>
+    </MainLayout>
+  );
+});

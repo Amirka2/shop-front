@@ -1,17 +1,11 @@
-import React, {PropsWithChildren} from 'react';
-import {GridWrapper} from "@/shared/components/ItemsGrid/ui/ItemsGrid.styles";
+import React, {ComponentPropsWithoutRef} from 'react';
 
-interface IItemsGrid {
-    height?: string;
-    width?: string;
-    maxHeight?: number;
-    maxWidth?: number;
-}
+import * as Styles from "./ItemsGrid.styles";
 
-export const ItemsGrid = ({height, width, maxHeight, maxWidth, children}: PropsWithChildren<IItemsGrid>) => {
+export const ItemsGrid = (props: ComponentPropsWithoutRef<'div'>) => {
     return (
-        <GridWrapper height={height} width={width} maxHeight={maxHeight} maxWidth={maxWidth}>
-            {children}
-        </GridWrapper>
+        <Styles.Wrapper {...props}>
+            {props.children}
+        </Styles.Wrapper>
     );
 };

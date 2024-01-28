@@ -4,15 +4,6 @@ import {NavLink} from "react-router-dom";
 import {Color} from "@/shared/constants";
 import {mediaQueries} from "@/shared/constants/mediaQueries";
 
-export const Wrapper = styled.div<{
-    isMobile?: boolean;
-}>`
-  display: flex;
-  flex-direction: column;
-  width: ${props => props.isMobile ? '90vw' : '1330px'};
-  margin-bottom: 40px;
-`;
-
 export const CaptionWrapper = styled.div<{
     right?: boolean;
 }>`
@@ -74,9 +65,7 @@ export const Line = styled.div`
   margin-bottom: 40px;
 `;
 
-export const CartInfoMenu = styled.div<{
-    isMobile?: boolean;
-}>`
+export const CartInfoMenu = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -84,9 +73,13 @@ export const CartInfoMenu = styled.div<{
   background-color: ${Color.gray};
   padding: 40px;
   border-radius: 20px;
-  width: ${props => props.isMobile ? '100%' : '40%'};
+  width: 100%;
   max-width: 444px;
   min-height: 387px;
+  
+  ${mediaQueries.gt.Tablet} {
+    width: 45%;
+  }
 `;
 
 export const CartCaption = styled.h4`
@@ -136,6 +129,11 @@ export const SubmitButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  
+  &:disabled {
+    background: ${Color.darkGray};
+    cursor: inherit;
+  }
 `;
 
 export const Input = styled.input`
@@ -144,5 +142,27 @@ export const Input = styled.input`
   height: 30px;
   border-radius: 20px;
   padding: 3px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+`;
+
+export const PrivacyRow = styled.div`
+  width: 100%;
+  height: 30px;
+  
+  margin-bottom: 10px;
+  
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const LabelText = styled.label`
+  font-size: 14px;
+  color: ${Color.darkGray};
+  
+`;
+
+export const LabelLink = styled(Link)`
+  font-size: 14px;
+  color: ${Color.blue};
 `;

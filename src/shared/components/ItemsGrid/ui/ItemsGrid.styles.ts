@@ -1,17 +1,9 @@
 import {styled} from "styled-components";
 
-export const GridWrapper = styled.div<{
-    height?: string;
-    width?: string;
-    maxHeight?: number;
-    maxWidth?: number;
-}>`
-  max-height: ${props => props?.maxHeight + 'px'};
-  max-width: ${props => props?.maxWidth + 'px'};
-  height: ${props => props?.height};
-  width: ${props => props?.width};
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;

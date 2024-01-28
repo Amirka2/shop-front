@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
-import {IProduct} from "@/entities";
-import * as Styles from './AdminProductCard.styles';
-import { Delete as DeleteIcon } from "@/shared/ui";
 import {Link} from "react-router-dom";
+
+import {IProduct} from "@/entities";
+import { Delete as DeleteIcon } from "@/shared/ui";
+import {getPhotoUrl} from "@/shared/libs";
+
+import * as Styles from './AdminProductCard.styles';
 
 interface AdminProductCardProps {
     product: IProduct;
@@ -26,7 +29,7 @@ export const AdminProductCard = ({
             <Styles.Wrapper>
                 <Styles.PhotoWrapper>
                     {product.photos && (
-                        <Styles.MainPhoto src={product.photos.at(0)}/>
+                        <Styles.MainPhoto src={getPhotoUrl(product.photos?.[0]?.link || '')}/>
                     )}
                 </Styles.PhotoWrapper>
                 <Styles.MainText>

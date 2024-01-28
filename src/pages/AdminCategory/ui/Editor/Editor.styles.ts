@@ -2,10 +2,10 @@ import {styled} from "styled-components";
 import {Color} from "@/shared/constants";
 
 export const EditorWindow = styled.div`
-  max-height: 200px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 8px;
   padding: 8px;
   border-radius: 16px;
@@ -13,12 +13,19 @@ export const EditorWindow = styled.div`
   justify-self: flex-end;
 `;
 
-export const Editor = styled.input`
+export const NameInput = styled.input`
   min-width: 300px;
   padding: 15px;
   border-radius: 16px;
   border: 1px solid ${Color.black};
   font-size: 24px;
+`;
+
+export const PhotoInputWrapper = styled.div`
+  width: 100%;
+  
+  display: flex;
+  justify-content: center;
 `;
 
 export const SaveButton = styled.button`

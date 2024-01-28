@@ -1,20 +1,21 @@
 import React from 'react';
 
-import * as Styles from './CategoryCard.styles';
-
 import {ICategory} from "@/entities/interfaces";
 import {Card} from "@/shared/components";
+import {getPhotoUrl} from "@/shared/libs";
+
+import * as Styles from './CategoryCard.styles';
 
 export const CategoryCard = (props: ICategory) => {
     const {
         id,
-        photo,
+        groupPhotoLink,
         name,
         subCategoryCount
     } = props;
 
     return (
-        <Card linkTo={name + '/sub-categories'} photoSrc={photo}>
+        <Card linkTo={id + '/sub-categories'} photoSrc={getPhotoUrl(groupPhotoLink)}>
             <Styles.CategoryInfoWrapper>
                 <Styles.Title>
                     {name}

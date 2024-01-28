@@ -4,11 +4,12 @@ import useFilePreview from '../../hooks/useFilePreview';
 
 const { Dragger } = Upload;
 
-export const DragAndDrop = ({ addFile, removeFile }) => {
+export const DragAndDrop = ({ addFile, removeFile, beforeUpload }) => {
     const [handlePreview, previewContent] = useFilePreview();
 
     const beforeUploadHandler = (file) => {
         addFile(file);
+        beforeUpload(file);
         return false;
     };
 
@@ -25,9 +26,6 @@ export const DragAndDrop = ({ addFile, removeFile }) => {
             >
                 <p className="ant-upload-drag-icon">
                     <PlusOutlined />
-                </p>
-                <p className="ant-upload-text">
-                    Click this area or drag files to upload
                 </p>
             </Dragger>
             {previewContent}
