@@ -1,6 +1,7 @@
 import React from 'react';
 
 import {MainLayout} from "@/shared/ui/Layouts";
+import { TextBlock } from "@/shared/components";
 import {contacts} from "@/app/shop/mock";
 
 import * as Styles from "@/pages/Payment/ui/PaymentPage.styles";
@@ -9,7 +10,7 @@ export const PaymentPage = () => {
   return (
     <MainLayout>
       <Styles.Wrapper>
-        <Styles.Content>
+        <TextBlock>
           <Styles.Text>
             Уважаемые покупатели, наша компания работает с ИП и Юридическими лицами.
           </Styles.Text>
@@ -36,7 +37,7 @@ export const PaymentPage = () => {
           <Styles.Text>
             Цены на сайте указаны без учета доставки по РФ.
           </Styles.Text>
-        </Styles.Content>
+        </TextBlock>
       </Styles.Wrapper>
     </MainLayout>
   );
