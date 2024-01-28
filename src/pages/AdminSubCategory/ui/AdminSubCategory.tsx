@@ -85,12 +85,15 @@ export const AdminSubCategory = observer(() => {
 
   useEffect(() => {
     getSubCategoryProducts(Number(params.subCategoryId))
-      .then(res => productsStore.set(res));
+      .then(res => {
+        productsStore.set(res)
+      });
   }, [isLoading])
 
+      // FIXME добавить названия
   return (
     <AdminLayout>
-      <AdminHeader title={'text/more'}/>
+      <AdminHeader title={``}/>
       <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
         <Plus/>
       </Styles.AddButton>
