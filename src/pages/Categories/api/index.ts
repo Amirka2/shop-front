@@ -11,6 +11,13 @@ export const getCategories = async () => {
         if (res && res.ok) {
             body = res.body;
             groups = body.groups;
+            // @ts-ignore
+            groups = body.groups.map(g => {
+                return {
+                    ...g,
+                    subCategoryCount: g.subgroupCount,
+                }
+            })
         }
     })
 

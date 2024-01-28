@@ -113,8 +113,8 @@ export interface IProductsToOrder {
 
 export interface ICategory {
     id: number;
-    groupPhotoLink: string;
     name: string;
+    groupPhotoLink: string;
     subCategoryCount?: number;
 }
 

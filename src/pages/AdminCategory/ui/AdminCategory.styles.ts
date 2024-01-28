@@ -31,16 +31,24 @@ export const Category = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px;
+  gap: 8px;
 `;
 
 export const Flex = styled.div`
   display: flex;
   gap: 8px;
+  align-items: center;
 `;
 
 export const Photo = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
 `;
 
 export const Title = styled.h2`
@@ -50,8 +58,6 @@ export const Title = styled.h2`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  
-  margin-bottom: 15px;
 `;
 
 export const AddCategoryWrapper = styled.div`
@@ -68,6 +74,8 @@ export const AddCategory = styled.button`
   padding: 20px;
   border-radius: 10px;
   font-weight: 700;
+  
+  margin-top: 35px;
 
   &:hover {
     transform: scale(105%);
@@ -76,6 +84,6 @@ export const AddCategory = styled.button`
 
 export const DeleteButton = styled(Button)`
   font-size: 18px;
-  
-  margin-left: 10px;
+  width: 40px;
+  height: 40px;
 `;

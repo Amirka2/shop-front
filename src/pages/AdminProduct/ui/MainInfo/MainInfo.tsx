@@ -49,18 +49,15 @@ export const MainInfo = observer(({setPhotos}: { setPhotos: Dispatch<React.SetSt
   return (
     <Styles.Wrapper>
       <Styles.Header>
-        <Styles.Button>
-          <Plus width={28} height={28}/>
-        </Styles.Button>
+        <Styles.Label>
+          Название:
+        </Styles.Label>
         <Styles.Input
           as="input"
           placeholder={'Название товара'}
           value={product?.name}
           onChange={handleProductNameChange}
         />
-        <Styles.EditIconButton>
-          <Edit/>
-        </Styles.EditIconButton>
       </Styles.Header>
       <Styles.Photos>
         <Styles.SavedPhotos>
@@ -76,15 +73,15 @@ export const MainInfo = observer(({setPhotos}: { setPhotos: Dispatch<React.SetSt
         <PhotoUpload setPhotosBlob={setPhotos}/>
       </Styles.Photos>
       <Styles.Footer>
+        <Styles.Label>
+          Цена:
+        </Styles.Label>
         <Styles.Input
           as="input"
           placeholder={'Цена товара'}
           value={product?.price}
           onChange={handleProductPriceChange}
         />
-        <Styles.EditIconButton>
-          <Edit/>
-        </Styles.EditIconButton>
       </Styles.Footer>
     </Styles.Wrapper>
   );
