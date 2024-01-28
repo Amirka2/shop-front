@@ -10,8 +10,9 @@ import {Slider} from "./Slider";
 import {ProductInfo} from './ProductInfo';
 
 import * as Styles from './ProductPage.styles';
+import {observer} from "mobx-react";
 
-export const ProductPage = () => {
+export const ProductPage = observer(() => {
   const {productId} = useParams();
   const [product, setProduct] = useState<IProduct | null>(null);
 
@@ -35,4 +36,4 @@ export const ProductPage = () => {
       </Styles.Wrapper>
     </MainLayout>
   ) : null;
-};
+});

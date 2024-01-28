@@ -13,7 +13,7 @@ export const ProductInfoCard = (props: IProduct) => {
         <PhotoSlider photos={props.photos.map(p => getPhotoUrl(p.link))} width={200} height={150}/>
       )}
       <Styles.ProductCardInfo>
-        <h3><Styles.NavLink to={String(props.id)}>{props.name}</Styles.NavLink></h3>
+        <h3><Styles.NavLink to={'/products/' + String(props.id)}>{props.name}</Styles.NavLink></h3>
         <span>В наличии: {props.inStock ? 'Да' : 'Нет'}</span>
         <span>Цена: {`${!props.isFixedPrice ? 'от' : ''} ${props.price} руб.`}</span>
       </Styles.ProductCardInfo>
