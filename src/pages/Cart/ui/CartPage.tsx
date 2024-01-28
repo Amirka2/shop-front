@@ -25,8 +25,9 @@ export const CartPage = observer(() => {
   }
   const handleSubmit = function () {
     if (name.length < 2
-      || phoneNumber.length < 10
-      || productsInCart.length < 1) {
+      || !(new RegExp(/^\+?[78]9\d{9}$/).test(phoneNumber))
+      || !(new RegExp(/^[A-Za-zА-Яа-яЁё\s'-]+$/).test(name))
+    ) {
       alert("Введите корректные данные, пожалуйста!");
     }
 
@@ -114,7 +115,12 @@ export const CartPage = observer(() => {
             placeholder={'Номер телефона'}
             value={phoneNumber}
           />
-          <Styles.SubmitButton onClick={handleSubmit}>Оформить</Styles.SubmitButton>
+          <Styles.SubmitButton
+            onClick={handleSubmit}
+            disabled={productsInCart.length < 1}
+          >
+            Оформить
+          </Styles.SubmitButton>
         </Styles.CartInfoMenu>
       </Styles.Flex>
     </MainLayout>

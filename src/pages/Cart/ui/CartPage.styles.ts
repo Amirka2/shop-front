@@ -129,6 +129,11 @@ export const SubmitButton = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  
+  &:disabled {
+    background: ${Color.darkGray};
+    cursor: inherit;
+  }
 `;
 
 export const Input = styled.input`
