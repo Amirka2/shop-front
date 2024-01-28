@@ -6,19 +6,21 @@ import {Color} from "@/shared/constants";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 400px;
-  padding: 24px 50px 0 50px;
-  display: none;
+  display: flex;
+  flex-direction: column;
   position: relative;
+  padding: 10px;
+  align-items: center;
   
-  ${mediaQueries.gt.Tablet} {
-    display: flex;
-    flex-direction: column;
+  ${mediaQueries.gt.Desktop} {
+    align-items: flex-end;
+    padding: 24px 50px 0 50px;
+    height: 400px;
   }
 `;
 
-export const MainWrapper = styled.footer`
-  width: 100vh;
+export const MainWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -29,11 +31,15 @@ export const MainWrapper = styled.footer`
   }
 `;
 
-export const Item = styled.div`
-  display: flex;
+export const TagLine = styled.div`
+  display: none;
   width: 590px;
   height: 144px;
   margin-left: auto;
+  
+  ${mediaQueries.gt.Tablet} {
+    display: flex;
+  }
 `;
 
 export const ItemText = styled.span`
@@ -42,25 +48,30 @@ export const ItemText = styled.span`
   font-size: 32px;
   font-weight: 400;
   line-height: normal;
+  font-style: italic;
+  
+  margin-bottom: 10px;
 `;
 
 export const CallOrder = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
-  margin-left: 50%;
+  
+  ${mediaQueries.gt.Desktop} {
+    margin-right: 12%;
+  }
 `;
 
 export const CallOrderText = styled(ItemText)`
   text-align: left;
   font-size: 20px;
-  width: 40%;
 `;
 
 export const PhoneWrapper = styled.div`
   display: flex;
   gap: 10px;
+  margin-top: 10px;
 `;
 
 export const PhoneInputWrapper = styled.div`
@@ -90,37 +101,47 @@ export const PhoneButton = styled.button`
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
+  
   &:hover{
     background-color: ${Color.gray};
   }
 `;
 
-export const SmallCircle = styled.div`
+const Circle = styled.div`
+  display: none;
   position: absolute;
   left: -7%;
+  background: linear-gradient(180deg, #BCBCBC 0%, rgba(188, 188, 188, 0.00) 100%);
+  mix-blend-mode: screen;
+
+  ${mediaQueries.gt.Desktop} {
+    display: inline-block;
+  }
+`;
+
+export const SmallCircle = styled(Circle)`
   margin-top: 100px;
   width: 477px;
   height: 477px;
   border-radius: 477px;
-  background: linear-gradient(180deg, #BCBCBC 0%, rgba(188, 188, 188, 0.00) 100%);
-  mix-blend-mode: screen;
 `;
 
-export const BigCircle = styled.div`
-  position: absolute; 
+export const BigCircle = styled(Circle)`
   margin-top: 30px;
-  left: -8%;
   width: 552px;
   height: 552px;
   border-radius: 552px;
-  background: linear-gradient(180deg, #BCBCBC 0%, rgba(188, 188, 188, 0.00) 100%);
-  mix-blend-mode: screen;
 `;
 
 export const Plane = styled.img`
+  display: none;
   position: absolute;
   margin-top: 2%;
   left: -20%;
   width: 70%;
   height: 510px;
+
+  ${mediaQueries.gt.Desktop} {
+    display: inline-block;
+  }
 `;
