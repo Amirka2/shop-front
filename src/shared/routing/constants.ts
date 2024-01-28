@@ -11,6 +11,7 @@ export const Paths = {
     shipping: '/shipping',
     payment: '/payment',
     cart: '/cart',
+    privacyPolicy: '/privacy-policy',
     notFound: '/not-found',
     admin: '/admin',
     adminAuth: '/admin/auth',
