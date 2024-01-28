@@ -142,5 +142,27 @@ export const Input = styled.input`
   height: 30px;
   border-radius: 20px;
   padding: 3px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+`;
+
+export const PrivacyRow = styled.div`
+  width: 100%;
+  height: 30px;
+  
+  margin-bottom: 10px;
+  
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+export const LabelText = styled.label`
+  font-size: 14px;
+  color: ${Color.darkGray};
+  
+`;
+
+export const LabelLink = styled(Link)`
+  font-size: 14px;
+  color: ${Color.blue};
 `;

@@ -1,37 +1,42 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import {observer} from "mobx-react";
 
 import {useStores} from "@/shared/hooks";
 import {ItemsGrid} from "@/shared/components";
-import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
+import {Paths} from "@/shared/routing";
+import {MainLayout} from "@/shared/ui/Layouts";
 import {IOrder, ProductCartCounter} from '@/entities';
 import {IProductsToOrder} from "@/entities/interfaces";
-import {MainLayout} from "@/shared/ui/Layouts";
+import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
 
 import {processOrder} from "../api";
 
 import * as Styles from './CartPage.styles';
 
 export const CartPage = observer(() => {
-  const stores = useStores();
+  const { cartStore } = useStores();
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [isPrivacyAgreed, setPrivacyAgree] = useState(false);
 
-  const productsInCart = Array.from(stores.cartStore.getProductsCounts.keys());
-  const productsCounts = Array.from(stores.cartStore.getProductsCounts.values());
+  const productsInCart = Array.from(cartStore.getProductsCounts.keys());
+  const productsCounts = Array.from(cartStore.getProductsCounts.values());
   let totalSum = 0;
   for (let i = 0; i < productsInCart.length; i++) {
     totalSum += productsInCart[i].price * productsCounts[i];
   }
+
+  const canSubmit = useMemo(() => isPrivacyAgreed
+      && (new RegExp(/^\+?[78]9\d{9}$/).test(phoneNumber))
+      && (new RegExp(/^[A-Za-zА-Яа-яЁё\s'-]+$/).test(name))
+    , [name, phoneNumber, isPrivacyAgreed]);
+
   const handleSubmit = function () {
-    if (name.length < 2
-      || !(new RegExp(/^\+?[78]9\d{9}$/).test(phoneNumber))
-      || !(new RegExp(/^[A-Za-zА-Яа-яЁё\s'-]+$/).test(name))
-    ) {
+    if (!canSubmit) {
       alert("Введите корректные данные, пожалуйста!");
     }
 
-    let mapOfProducts = stores.cartStore.getProductsCounts;
+    let mapOfProducts = cartStore.getProductsCounts;
     let products: IProductsToOrder[] = [];
     mapOfProducts.forEach((n, p) => {
       let productsToOrder = {
@@ -53,7 +58,7 @@ export const CartPage = observer(() => {
       .then(function (response) {
         if (response && response?.status === '200') {
           alert('Ура, вы успешно совершили заказ!');
-          stores.cartStore.deleteAllProducts();
+          cartStore.deleteAllProducts();
           setName('');
           setPhoneNumber('');
         }
@@ -94,7 +99,7 @@ export const CartPage = observer(() => {
               return (
                 <Styles.OrderFieldsListItem>
                   {p.name}
-                  <span>{p.price * stores.cartStore.getProductCount(p)} ₽</span>
+                  <span>{p.price * cartStore.getProductCount(p)} ₽</span>
                 </Styles.OrderFieldsListItem>
               );
             })}
@@ -115,9 +120,25 @@ export const CartPage = observer(() => {
             placeholder={'Номер телефона'}
             value={phoneNumber}
           />
+          <Styles.PrivacyRow>
+            <label htmlFor='privacyCheckbox'>
+              <Styles.LabelText>
+                Согласен с&nbsp;
+                <Styles.LabelLink to={Paths.privacyPolicy}>
+                  политикой конфиденциальности
+                </Styles.LabelLink>
+              </Styles.LabelText>
+            </label>
+            <input
+              name='privacyCheckbox'
+              type='checkbox'
+              onChange={() => setPrivacyAgree(prev => !prev)}
+              checked={isPrivacyAgreed}
+            />
+          </Styles.PrivacyRow>
           <Styles.SubmitButton
             onClick={handleSubmit}
-            disabled={productsInCart.length < 1}
+            disabled={!canSubmit}
           >
             Оформить
           </Styles.SubmitButton>
