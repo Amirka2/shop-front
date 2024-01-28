@@ -7,15 +7,25 @@ export const Wrapper = styled.div`
   
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
   gap: 4px;
 `;
 
 export const Header = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-end;
+`;
+
+export const Label = styled.span`
+  display: flex;
+  align-items: center;
+  
+  color: ${Color.blue};
+  //font-style: italic;
+  font-size: 28px;
+  
+  height: 50px;
 `;
 
 export const Button = styled.button`
@@ -59,7 +69,7 @@ export const Photos = styled.div`
 `;
 
 export const Footer = styled.div`
-  width: 360px;
+  width: 100%;
   
   display: flex;
   justify-content: space-between;
