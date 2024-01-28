@@ -5,3 +5,4 @@ export interface IconProps {
 
 export {Phone} from './Phone';
 export {Mail} from './Mail';
+export {CallOrderPhone} from './CallOrderPhone'

@@ -3,11 +3,16 @@ import {styled} from "styled-components";
 import {Color} from '@/shared/constants'
 import {mediaQueries} from "@/shared/constants/mediaQueries";
 
+export const FooterWrapper = styled.div`
+  width: 100%;
+`;
+
 export const Wrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  position: relative;
 
     ${mediaQueries.gt.Tablet} {
        flex-direction: row;

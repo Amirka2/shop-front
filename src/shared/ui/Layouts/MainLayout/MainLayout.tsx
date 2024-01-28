@@ -18,6 +18,5 @@ export const MainLayout = ({children, ...restProps}: PropsWithChildren) => {
       </Container>
       <Footer />
     </Styles.MainWrapper>
-
   );
 };
