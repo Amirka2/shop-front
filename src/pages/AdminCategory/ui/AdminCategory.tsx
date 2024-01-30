@@ -5,7 +5,7 @@ import {Dictionary} from 'lodash'
 import {useCookies} from "react-cookie";
 
 import {useStores} from "@/shared/hooks";
-import {Back, PageLoader} from "@/shared/ui";
+import {Back, Cross, Minus, PageLoader, Plus} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
 import {postFiles, getPhotoUrl} from "@/shared/libs";
 import {AdminLayout} from "@/shared/ui/Layouts";
@@ -122,7 +122,7 @@ export const AdminCategory = observer(() => {
       <Styles.ContentWrapper>
         <Styles.AddCategoryWrapper>
           <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
-            {isEditorOpen ? '-' : '+'}
+            {isEditorOpen ? <Minus /> : <Plus />}
           </Styles.AddCategory>
         </Styles.AddCategoryWrapper>
 
@@ -140,7 +140,7 @@ export const AdminCategory = observer(() => {
                       {category.name}
                     </Styles.Title>
                     <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                      X
+                      <Cross />
                     </Styles.DeleteButton>
                   </Styles.TitleWrapper>
                 </Styles.Flex>

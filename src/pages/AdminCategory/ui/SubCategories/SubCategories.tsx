@@ -11,6 +11,7 @@ import {getPhotoUrl, postFiles} from "@/shared/libs";
 import {createSubCategory, deleteSubCategory} from "../../api";
 
 import * as Styles from "./SubCategories.styles";
+import {Cross, Minus, Plus} from "@/shared/ui";
 
 interface SubCategoriesProps {
   categoryId: number;
@@ -73,11 +74,10 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
   };
   const reloadRef = useRef(null);
 
-
   return isLoading ? (<Spin/>) : (
     <Styles.Wrapper>
       <Styles.AddSubCategory onClick={() => setEditorOpen(prev => !prev)}>
-        {isEditorOpen ? '-' : '+'}
+        {isEditorOpen ? <Minus /> : <Plus />}
       </Styles.AddSubCategory>
       <Styles.SubCategories>
         <ul>
@@ -92,7 +92,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
                 </Styles.Title>
               </Styles.Flex>
               <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
-                X
+                <Cross />
               </Styles.DeleteButton>
             </Styles.SubCategory>
           ))}
