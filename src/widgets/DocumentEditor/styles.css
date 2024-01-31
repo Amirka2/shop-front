@@ -1,0 +1,10 @@
+/* deleting list style type */
+ul.public-DraftStyleDefault-ul {
+    list-style-type: none;
+    position: relative;
+}
+
+/* from admin panel */
+.public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth0 {
+    list-style-type: none;
+}

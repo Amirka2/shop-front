@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {observer} from "mobx-react";
 import {AtomicBlockUtils, convertFromRaw, convertToRaw, DraftEditorCommand, EditorState, RichUtils} from "draft-js";
 import "draft-js/dist/Draft.css";
+import './styles.css';
 
 import {useStores} from "@/shared/hooks";
 import {linkDecorator} from "@/shared/components";
