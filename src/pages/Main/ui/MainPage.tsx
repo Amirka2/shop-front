@@ -49,7 +49,9 @@ export const MainPage = observer((props: MainPageProps) => {
         }}>
           Наша продукция
         </h1>
-        <ItemsGrid>
+        <ItemsGrid style={{
+          justifyContent: "space-between"
+        }}>
           {itemsComponents}
         </ItemsGrid>
       </Styles.Wrapper>
