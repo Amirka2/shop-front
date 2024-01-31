@@ -1,7 +1,11 @@
 import React, {PropsWithChildren, useEffect} from 'react';
 import {createPortal} from "react-dom";
 
+import {Cross} from "@/shared/ui";
+import {Color} from "@/shared/constants";
+
 import * as Styles from "./Modal.styles"
+
 
 interface ModalProps {
     isModalOpen: boolean;
@@ -34,7 +38,7 @@ export const Modal = ({toggle, isModalOpen, children, onClose}: PropsWithChildre
                 <Styles.ModalOverlay onClick={toggle}>
                     <Styles.ModalBox onClick={stopPropagation}>
                         <Styles.CloseModalButton onClick={onClose}>
-                            X
+                            <Cross width='26px' height='26px' color={Color.black}/>
                         </Styles.CloseModalButton>
                         <Styles.ModalContent>
                             {children}
