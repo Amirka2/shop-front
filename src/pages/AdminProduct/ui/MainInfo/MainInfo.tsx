@@ -82,6 +82,9 @@ export const MainInfo = observer(({setPhotos}: { setPhotos: Dispatch<React.SetSt
           value={product?.price}
           onChange={handleProductPriceChange}
         />
+        <Styles.Label>
+          Руб.
+        </Styles.Label>
       </Styles.Footer>
     </Styles.Wrapper>
   );
