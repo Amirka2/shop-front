@@ -1,0 +1,1 @@
+export { AdminManufacturers } from './ui';

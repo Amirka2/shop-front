@@ -21,7 +21,8 @@ import {
   AdminCategory,
   AdminSubCategory,
   AdminProduct,
-  AdminAuth
+  AdminAuth,
+  AdminManufacturers,
 } from "@/pages";
 import AuthChecker from "@/shared/components/AuthChecker/AuthChecker";
 
@@ -65,6 +66,7 @@ export function App() {
         <Route path={Paths.adminCategory} element={<AuthChecker> <AdminCategory/> </AuthChecker>}/>
         <Route path={Paths.adminSubCategory} element={<AuthChecker> <AdminSubCategory/> </AuthChecker>}/>
         <Route path={Paths.adminProduct} element={<AuthChecker> <AdminProduct/> </AuthChecker>}/>
+        <Route path={Paths.adminManufacturers} element={<AuthChecker> <AdminManufacturers/> </AuthChecker>}/>
       </Routes>
     </BrowserRouter>
   );
