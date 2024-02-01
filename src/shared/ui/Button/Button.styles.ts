@@ -4,7 +4,8 @@ import { Color } from "@/shared/constants";
 import {Link} from "react-router-dom";
 
 export const Button = styled.button<{
-  size: "S" | "M"
+  size: "S" | "M";
+  fullWidth?: boolean;
 }>`
   cursor: pointer;
   
@@ -24,6 +25,11 @@ export const Button = styled.button<{
 
     border-radius: 16px;
   `}
+  
+  ${({fullWidth}) => fullWidth ? css`
+    width: 100%;
+  ` : null
+}
 `;
 
 export const LinkButton = styled(Link)<{
