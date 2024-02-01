@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react';
-import {useCookies} from "react-cookie";
 import {observer} from "mobx-react";
 import {Spin} from "antd";
 
 import {ISubCategory} from "@/entities";
 import {Editor} from "@/pages/AdminCategory/ui/Editor";
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {getPhotoUrl, postFiles} from "@/shared/libs";
+import {Cross, Minus, Plus} from "@/shared/ui";
 
 import {createSubCategory, deleteSubCategory} from "../../api";
 
@@ -26,8 +26,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
   const {setAdminSubCategoryName, isLoading} = subCategoriesStore;
   const adminSubCategory = subCategoriesStore.getAdminSubCategory();
 
-  const [cookies] = useCookies(['token']);
-  const {token} = cookies;
+  const [token] = useToken();
 
   const handleDeleteClick = (id: number) => {
     deleteSubCategory(token, id)
@@ -40,7 +39,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
 
   const handleSave = async () => {
     if (photos) {
-      const response = await postFiles(photos);
+      const response = await postFiles(token, photos);
 
       if (response?.[0].ok) {
         const photoName = response?.[0].body?.fileName;
@@ -73,11 +72,10 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
   };
   const reloadRef = useRef(null);
 
-
   return isLoading ? (<Spin/>) : (
     <Styles.Wrapper>
       <Styles.AddSubCategory onClick={() => setEditorOpen(prev => !prev)}>
-        {isEditorOpen ? '-' : '+'}
+        {isEditorOpen ? <Minus /> : <Plus />}
       </Styles.AddSubCategory>
       <Styles.SubCategories>
         <ul>
@@ -92,7 +90,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
                 </Styles.Title>
               </Styles.Flex>
               <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
-                X
+                <Cross />
               </Styles.DeleteButton>
             </Styles.SubCategory>
           ))}

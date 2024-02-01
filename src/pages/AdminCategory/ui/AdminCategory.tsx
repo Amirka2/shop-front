@@ -2,10 +2,9 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from "react-router";
 import {observer} from "mobx-react";
 import {Dictionary} from 'lodash'
-import {useCookies} from "react-cookie";
 
-import {useStores} from "@/shared/hooks";
-import {Back, PageLoader} from "@/shared/ui";
+import {useStores, useToken} from "@/shared/hooks";
+import {Back, Cross, Minus, PageLoader, Plus} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
 import {postFiles, getPhotoUrl} from "@/shared/libs";
 import {AdminLayout} from "@/shared/ui/Layouts";
@@ -27,8 +26,7 @@ export const AdminCategory = observer(() => {
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [photos, setPhotos] = useState<Blob[]>([]);
 
-  const [cookies] = useCookies(['token']);
-  const {token} = cookies;
+  const [token] = useToken();
 
   const {categoriesStore, subCategoriesStore} = useStores();
   const {categories, setLoading} = categoriesStore;
@@ -49,7 +47,7 @@ export const AdminCategory = observer(() => {
     setLoading(true);
 
     if (photos) {
-      const response = await postFiles(photos);
+      const response = await postFiles(token, photos);
 
       if (response?.[0].ok) {
         const photoName = response?.[0].body?.fileName;
@@ -122,7 +120,7 @@ export const AdminCategory = observer(() => {
       <Styles.ContentWrapper>
         <Styles.AddCategoryWrapper>
           <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
-            {isEditorOpen ? '-' : '+'}
+            {isEditorOpen ? <Minus /> : <Plus />}
           </Styles.AddCategory>
         </Styles.AddCategoryWrapper>
 
@@ -140,7 +138,7 @@ export const AdminCategory = observer(() => {
                       {category.name}
                     </Styles.Title>
                     <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                      X
+                      <Cross />
                     </Styles.DeleteButton>
                   </Styles.TitleWrapper>
                 </Styles.Flex>

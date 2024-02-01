@@ -25,7 +25,7 @@ export const Slider: React.FC<SliderProps> = ({images}) => {
   }, []);
 
   const renderThumbnails = () => {
-    const visibleThumbnails = 3;
+    const visibleThumbnails = images.length > 3 ? 3 : images.length;
     const totalThumbnails = images.length;
     const startIndex = thumbnailIndex - Math.floor(visibleThumbnails / 2);
 

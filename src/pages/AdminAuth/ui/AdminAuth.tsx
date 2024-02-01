@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router";
-import {useCookies} from "react-cookie";
+
+import {useToken} from "@/shared/hooks";
 
 import {auth} from "../api";
 
@@ -11,7 +12,7 @@ export const AdminAuth = () => {
   const [login, setLogin] = useState('');
   const [pass, setPass] = useState('');
 
-  const [cookies, setCookies] = useCookies(['token']);
+  const [, setToken] = useToken();
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogin(e.currentTarget.value);
@@ -27,7 +28,7 @@ export const AdminAuth = () => {
       .then(res => {
         try {
           if (res && res.ok){
-            setCookies('token', res.body.jwt, {
+            setToken(res.body.jwt, {
               secure: true,
               maxAge: 10800,
             })

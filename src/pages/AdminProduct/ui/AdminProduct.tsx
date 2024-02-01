@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {observer} from "mobx-react";
-import {useCookies} from "react-cookie";
 
 import {createProductFromNullable, postFiles} from "@/shared/libs";
 import {Button, PageLoader} from "@/shared/ui";
 import {AdminLayout} from "@/shared/ui/Layouts";
 import {AdminHeader} from "@/shared/components";
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {DocumentEditor} from "@/widgets";
 import {AdditionalInfo} from "@/pages/AdminProduct/ui/AdditionalInfo";
 
@@ -19,12 +18,10 @@ import * as Styles from './AdminProduct.styles';
 
 export const AdminProduct = observer(() => {
   const {
-    categoryId,
-    subCategoryId,
     productId
   } = useParams();
   const {adminProductStore, descriptionsStore} = useStores();
-  const [cookies] = useCookies(['token']);
+  const [token] = useToken();
   const [photos, setPhotos] = useState<Blob[]>([]);
 
   const {product, isLoading} = adminProductStore;
@@ -33,15 +30,13 @@ export const AdminProduct = observer(() => {
   const currentDescription = descriptionsStore.getActiveDescription();
   const productName = product?.name || '';
 
-  const {token} = cookies;
-
   const handleSaveProduct = async () => {
     setLoading(true);
 
     const backDescriptions = adminProductStore.product?.productDescriptions;
 
     if (photos && photos.length > 0) {
-      const response = await postFiles(photos);
+      const response = await postFiles(token, photos);
 
       response.forEach(fileResponse => {
         if (fileResponse.ok) {

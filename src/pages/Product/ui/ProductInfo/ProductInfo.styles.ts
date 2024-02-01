@@ -68,4 +68,5 @@ export const AddToCartButton = styled.button`
   font-weight: 400;
   line-height: normal;
   margin: 20px 0;
+  cursor: pointer;
 `;

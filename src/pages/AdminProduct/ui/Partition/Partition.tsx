@@ -1,16 +1,14 @@
 import React from 'react';
 import {observer} from "mobx-react";
-import {useCookies} from "react-cookie";
 
 import {Delete, Plus} from "@/shared/ui";
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {deleteDescription} from "@/pages/AdminProduct/api";
 
 import * as Styles from './Partition.styles';
 
 export const Partition = observer(() => {
-    const [cookies] = useCookies(['token']);
-    const { token } = cookies;
+    const [token] = useToken();
     const { adminProductStore, descriptionsStore } = useStores();
     const descriptions = descriptionsStore.descriptions;
     const backDescriptions = adminProductStore.product?.productDescriptions;

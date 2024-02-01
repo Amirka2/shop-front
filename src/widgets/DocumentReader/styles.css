@@ -10,3 +10,34 @@
     height: fit-content;
     min-height: 5rem;
 }
+
+/* deleting list style type */
+ul.public-DraftStyleDefault-ul {
+    list-style-type: none;
+    position: relative;
+}
+
+/* from product page */
+.public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth0 {
+    list-style-type: none;
+}
+
+.public-DraftStyleDefault-unorderedListItem {
+    list-style-type: none;
+}
+
+/* custom list style type */
+.public-DraftEditor-content li::before {
+    content: '';
+
+    position: absolute;
+    left: -1.5rem;
+    top: 0.5rem;
+
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 20%;
+    background-color: #225479;
+    margin-right: 5px;
+}

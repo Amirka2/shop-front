@@ -1,7 +1,7 @@
 import {TFileResponse} from "@/shared/interfaces/files";
 import {apiFetchFormData, HTTP_METHODS} from "@/shared/libs/apiFetch";
 
-const createFilePromise = (
+const createFilePromise = (token: string | undefined,
   formData: FormData
 ): Promise<{
   body: TFileResponse | null;
@@ -9,8 +9,14 @@ const createFilePromise = (
   ok: boolean;
 }> => {
   return new Promise((resolve) => {
+    const headers = {
+      'Authorization': `Bearer ${token}`
+    };
+
+    debugger;
     return apiFetchFormData('/constrspb/file', {
       method: HTTP_METHODS.POST,
+      headers: new Headers(headers),
       body: formData,
       errorHandler: (error) => {
         console.error(error)
@@ -28,7 +34,7 @@ const createFilePromise = (
   });
 };
 
-export const postFiles = async (
+export const postFiles = async (token: string | undefined,
   files: Blob[]
 ): Promise<{ body: TFileResponse | null; status: string; ok: boolean }[]> => {
   if (typeof files === 'undefined') return [];
@@ -40,5 +46,5 @@ export const postFiles = async (
     return formData;
   });
 
-  return await Promise.all(formDataFileArray.map((formData) => createFilePromise(formData)));
+  return await Promise.all(formDataFileArray.map((formData) => createFilePromise(token, formData)));
 };

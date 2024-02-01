@@ -40,7 +40,6 @@ export class AdminProduct {
   }
 
   public addProductField(fieldName: PRODUCT_KEYS, value: any) {
-    debugger
     const product = this.get();
     if (fieldName === PRODUCT_KEYS.PHOTOS) {
       console.log({...this.product})

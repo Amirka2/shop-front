@@ -1,11 +1,10 @@
 import React, {PropsWithChildren} from 'react';
 
 import {AdminAuth} from "@/pages";
-import {useCookies} from "react-cookie";
+import {useToken} from "@/shared/hooks";
 
 const AuthChecker = ({children, ...restProps}: PropsWithChildren) => {
-  const [cookies] = useCookies(['token']);
-  const { token } = cookies;
+  const [token] = useToken();
 
   return token ? (
     <div { ...restProps }>

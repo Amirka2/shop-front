@@ -71,7 +71,6 @@ export const AddCategory = styled.button`
   height: 50px;
   background-color: ${Color.blue};
   color: ${Color.white};
-  padding: 20px;
   border-radius: 10px;
   font-weight: 700;
   
@@ -86,4 +85,5 @@ export const DeleteButton = styled(Button)`
   font-size: 18px;
   width: 40px;
   height: 40px;
+  padding: 0;
 `;
