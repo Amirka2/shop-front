@@ -36,7 +36,7 @@ export const AdminProduct = observer(() => {
     const backDescriptions = adminProductStore.product?.productDescriptions;
 
     if (photos && photos.length > 0) {
-      const response = await postFiles(photos);
+      const response = await postFiles(token, photos);
 
       response.forEach(fileResponse => {
         if (fileResponse.ok) {

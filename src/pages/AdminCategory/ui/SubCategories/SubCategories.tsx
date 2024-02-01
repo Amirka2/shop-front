@@ -39,7 +39,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
 
   const handleSave = async () => {
     if (photos) {
-      const response = await postFiles(photos);
+      const response = await postFiles(token, photos);
 
       if (response?.[0].ok) {
         const photoName = response?.[0].body?.fileName;
