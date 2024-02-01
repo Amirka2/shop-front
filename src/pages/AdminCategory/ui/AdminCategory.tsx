@@ -2,9 +2,8 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from "react-router";
 import {observer} from "mobx-react";
 import {Dictionary} from 'lodash'
-import {useCookies} from "react-cookie";
 
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {Back, Cross, Minus, PageLoader, Plus} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
 import {postFiles, getPhotoUrl} from "@/shared/libs";
@@ -27,8 +26,7 @@ export const AdminCategory = observer(() => {
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [photos, setPhotos] = useState<Blob[]>([]);
 
-  const [cookies] = useCookies(['token']);
-  const {token} = cookies;
+  const [token] = useToken();
 
   const {categoriesStore, subCategoriesStore} = useStores();
   const {categories, setLoading} = categoriesStore;

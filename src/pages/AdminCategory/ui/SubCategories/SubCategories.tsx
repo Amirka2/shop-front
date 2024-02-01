@@ -1,17 +1,16 @@
 import React, {useRef, useState} from 'react';
-import {useCookies} from "react-cookie";
 import {observer} from "mobx-react";
 import {Spin} from "antd";
 
 import {ISubCategory} from "@/entities";
 import {Editor} from "@/pages/AdminCategory/ui/Editor";
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {getPhotoUrl, postFiles} from "@/shared/libs";
+import {Cross, Minus, Plus} from "@/shared/ui";
 
 import {createSubCategory, deleteSubCategory} from "../../api";
 
 import * as Styles from "./SubCategories.styles";
-import {Cross, Minus, Plus} from "@/shared/ui";
 
 interface SubCategoriesProps {
   categoryId: number;
@@ -27,8 +26,7 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
   const {setAdminSubCategoryName, isLoading} = subCategoriesStore;
   const adminSubCategory = subCategoriesStore.getAdminSubCategory();
 
-  const [cookies] = useCookies(['token']);
-  const {token} = cookies;
+  const [token] = useToken();
 
   const handleDeleteClick = (id: number) => {
     deleteSubCategory(token, id)

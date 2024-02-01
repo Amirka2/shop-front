@@ -46,3 +46,35 @@ export const deleteProduct = async (token: string | undefined, productId: number
     headers: new Headers(headers)
   }).then(res => res && res.ok)
 }
+
+export const getCategoryById = async (id: number) => {
+  const result = {
+    name: ''
+  };
+
+  await apiFetch('/constrspb/group/' + id, {
+    method: HTTP_METHODS.GET,
+  }).then(res => {
+    if (res && res.ok) {
+      result.name = res.body.name;
+    }
+  })
+
+  return result;
+}
+
+export const getSubCategoryById = async (id: number) => {
+  const result = {
+    name: ''
+  };
+
+  await apiFetch('/constrspb/group/subgroup/' + id, {
+    method: HTTP_METHODS.GET,
+  }).then(res => {
+    if (res && res.ok) {
+      result.name = res.body.name;
+    }
+  })
+
+  return result;
+}

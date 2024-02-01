@@ -8,3 +8,4 @@ export const Color = {
 } as const;
 
 export { BASE_URL } from './api';
+export { TOKEN } from './cookies';

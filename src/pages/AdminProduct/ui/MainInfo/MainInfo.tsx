@@ -1,9 +1,7 @@
 import React, {Dispatch} from 'react';
-import {useCookies} from "react-cookie";
 import {observer} from "mobx-react";
 
-import {Edit, Plus} from "@/shared/ui";
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {getPhotoUrl} from "@/shared/libs";
 import {PhotoUpload, SavedPhoto} from "@/shared/components";
 import {deletePhoto} from "@/pages/AdminProduct/api";
@@ -11,8 +9,7 @@ import {deletePhoto} from "@/pages/AdminProduct/api";
 import * as Styles from './MainInfo.styles';
 
 export const MainInfo = observer(({setPhotos}: { setPhotos: Dispatch<React.SetStateAction<Blob[]>> }) => {
-  const [cookies] = useCookies(['token']);
-  const {token} = cookies;
+  const [token] = useToken();
   const {adminProductStore} = useStores();
   const { isLoading, setLoading } = adminProductStore;
   const {product} = adminProductStore;
