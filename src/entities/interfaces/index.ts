@@ -84,6 +84,11 @@ export interface ICreateDescriptionData {
     text: string;
 }
 
+export interface IManufacturer {
+    id: number;
+    name: string;
+}
+
 export interface ISpecifications {
     type: string;
     manufacturer: string;
