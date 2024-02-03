@@ -1,23 +1,17 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {useNavigate} from "react-router";
 import {observer} from "mobx-react";
 import {Dictionary} from 'lodash'
 
 import {useStores, useToken} from "@/shared/hooks";
-import {Back, Cross, Minus, PageLoader, Plus} from "@/shared/ui";
+import {Cross, Minus, PageLoader, Plus} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
-import {postFiles, getPhotoUrl} from "@/shared/libs";
+import {getPhotoUrl, postFiles} from "@/shared/libs";
 import {AdminLayout} from "@/shared/ui/Layouts";
 
 import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
 
-import {
-  createCategory, deleteCategory,
-  getCategories,
-  getSubCategories,
-  groupSubCategories,
-} from '../api';
+import {createCategory, deleteCategory, getCategories, getSubCategories, groupSubCategories,} from '../api';
 
 import * as Styles from './AdminCategory.styles';
 
@@ -107,20 +101,14 @@ export const AdminCategory = observer(() => {
     setGroupedSubCategories(grouped);
   }, [subCategories]);
 
-  const navigate = useNavigate();
-
   return isLoading ? (
     <PageLoader/>
   ) : (
     <AdminLayout>
-      <Styles.BackButton onClick={() => navigate(-1)}>
-        <Back/>
-      </Styles.BackButton>
-
       <Styles.ContentWrapper>
         <Styles.AddCategoryWrapper>
           <Styles.AddCategory onClick={() => setEditorOpen(prev => !prev)}>
-            {isEditorOpen ? <Minus /> : <Plus />}
+            {isEditorOpen ? <Minus/> : <Plus/>}
           </Styles.AddCategory>
         </Styles.AddCategoryWrapper>
 
@@ -138,7 +126,7 @@ export const AdminCategory = observer(() => {
                       {category.name}
                     </Styles.Title>
                     <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                      <Cross />
+                      <Cross/>
                     </Styles.DeleteButton>
                   </Styles.TitleWrapper>
                 </Styles.Flex>
