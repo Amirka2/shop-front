@@ -61,12 +61,12 @@ export function App() {
         <Route path={Paths.shipping} element={<ShippingPage/>}/>
         <Route path={Paths.privacyPolicy} element={<PrivacyPolicy/>}/>
 
-        <Route path={Paths.adminAuth} element={<AuthChecker> <AdminAuth /></AuthChecker>} />
-        <Route path={Paths.admin} element={<AuthChecker> <AdminMain/> </AuthChecker>}/>
-        <Route path={Paths.adminCategory} element={<AuthChecker> <AdminCategory/> </AuthChecker>}/>
-        <Route path={Paths.adminSubCategory} element={<AuthChecker> <AdminSubCategory/> </AuthChecker>}/>
-        <Route path={Paths.adminProduct} element={<AuthChecker> <AdminProduct/> </AuthChecker>}/>
-        <Route path={Paths.adminManufacturers} element={<AuthChecker> <AdminManufacturers/> </AuthChecker>}/>
+        <Route path={Paths.adminAuth} element={<AdminAuth />} />
+        <Route path={Paths.admin} element={<AdminMain/>}/>
+        <Route path={Paths.adminCategory} element={<AdminCategory/>}/>
+        <Route path={Paths.adminSubCategory} element={<AdminSubCategory/>}/>
+        <Route path={Paths.adminProduct} element={<AdminProduct/>}/>
+        <Route path={Paths.adminManufacturers} element={<AdminManufacturers/>}/>
       </Routes>
     </BrowserRouter>
   );

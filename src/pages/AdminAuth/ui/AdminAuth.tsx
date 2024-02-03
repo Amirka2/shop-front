@@ -26,7 +26,7 @@ export const AdminAuth = () => {
     auth(login, pass)
       .then(res => {
         try {
-          if (res && res.ok){
+          if (res && res.ok) {
             setCookies('token', res.body.jwt, {
               secure: true,
               maxAge: 10800,
@@ -41,24 +41,24 @@ export const AdminAuth = () => {
 
   return (
     <Styles.AuthWrapper>
-        <Styles.Input
-          type='text'
-          placeholder='Введите логин'
-          onChange={handleLoginChange}
-          value={login}
-        />
-        <Styles.Input
-          type='password'
-          placeholder={'Введите пароль'}
-          onChange={handlePassChange}
-          value={pass}
-        />
-        <Styles.SubmitButton
-          onClick={handleSubmit}
-          type='submit'
-        >
-          Войти
-        </Styles.SubmitButton>
+      <Styles.Input
+        type='text'
+        placeholder='Введите логин'
+        onChange={handleLoginChange}
+        value={login}
+      />
+      <Styles.Input
+        type='password'
+        placeholder={'Введите пароль'}
+        onChange={handlePassChange}
+        value={pass}
+      />
+      <Styles.SubmitButton
+        onClick={handleSubmit}
+        type='submit'
+      >
+        Войти
+      </Styles.SubmitButton>
     </Styles.AuthWrapper>
   );
 };

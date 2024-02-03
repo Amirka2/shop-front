@@ -16,6 +16,6 @@ export { TextBlock } from './TextBlock';
 export * from './DocumentLink';
 export * from './DocumentMedia';
 export * from './Icons';
-
+export { AuthChecker } from './AuthChecker';
 
 export type {CategoriesProps} from './Categories';

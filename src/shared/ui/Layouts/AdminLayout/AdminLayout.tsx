@@ -1,7 +1,7 @@
 import React, {PropsWithChildren, useEffect} from 'react';
 import {useCookies} from "react-cookie";
 
-import {Container, MainWrapper} from "@/shared/components";
+import {AuthChecker, Container, MainWrapper} from "@/shared/components";
 import {Paths} from "@/shared/routing";
 import {LinkButton} from "@/shared/ui";
 
@@ -19,17 +19,19 @@ export const AdminLayout = ({children, ...restProps}: PropsWithChildren) => {
   }, []);
 
   return (
-    <MainWrapper {...restProps}>
-      <Container>
-        <Styles.Wrapper>
-          <LinkButton size='M' to={Paths.main} onClick={handleExitClick}>
-            Выйти
-          </LinkButton>
-          <Styles.ContentWrapper>
-            {children}
-          </Styles.ContentWrapper>
-        </Styles.Wrapper>
-      </Container>
-    </MainWrapper>
+    <AuthChecker>
+      <MainWrapper {...restProps}>
+        <Container>
+          <Styles.Wrapper>
+            <LinkButton size='M' to={Paths.main} onClick={handleExitClick}>
+              Выйти
+            </LinkButton>
+            <Styles.ContentWrapper>
+              {children}
+            </Styles.ContentWrapper>
+          </Styles.Wrapper>
+        </Container>
+      </MainWrapper>
+    </AuthChecker>
   );
 };
