@@ -1,6 +1,9 @@
 import React from 'react';
+
+import {Button } from "@/shared/ui"
+import {IManufacturer} from "@/entities";
+
 import * as Styles from "./Editor.styles";
-import {Button, Check } from "@/shared/ui"
 
 interface EditorProps{
     handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -8,14 +11,17 @@ interface EditorProps{
     handleDescriptionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
     handleSave: () => void;
     ref: any;
-
+    manufacturers: IManufacturer[];
+    handleManufacturerSelect: (id: number) => void;
 }
 export const Editor = ({
     handleNameChange,
     handlePriceChange,
     handleDescriptionChange,
     handleSave,
-    ref
+    ref,
+    manufacturers,
+  handleManufacturerSelect,
     }: EditorProps) => {
     return (
         <Styles.EditorWindow>
@@ -45,6 +51,25 @@ export const Editor = ({
                     placeholder="Введите описание"
                     onChange={handleDescriptionChange}
                 />
+            </Styles.Input>
+            <Styles.Input>
+                <Styles.Title>
+                    Производитель
+                </Styles.Title>
+                <Styles.Select
+                  onChange={(e) =>
+                    handleManufacturerSelect(Number(e.target.value))}
+                >
+                    {manufacturers.map((m, i) => (
+                      <option
+                        value={m.id}
+                        selected={i === 0}
+                        key={m.id}
+                      >
+                        {m.name}
+                      </option>
+                    ))}
+                </Styles.Select>
             </Styles.Input>
             <Styles.Input>
                 <Styles.Elements>

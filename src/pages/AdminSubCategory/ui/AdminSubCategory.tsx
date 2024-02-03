@@ -5,13 +5,13 @@ import {observer} from "mobx-react";
 import {
   createProduct,
   deleteProduct,
-  getCategoryById,
+  getCategoryById, getManufacturers,
   getSubCategoryById,
   getSubCategoryProducts
 } from "@/pages/AdminSubCategory/api";
 import {AdminHeader, AdminProductCard} from "@/shared/components";
-import {Plus} from "@/shared/ui";
-import {IProduct} from "@/entities";
+import {Minus, Plus} from "@/shared/ui";
+import {IManufacturer, IProduct} from "@/entities";
 import {useStores, useToken} from "@/shared/hooks";
 import {AdminLayout} from "@/shared/ui/Layouts";
 
@@ -41,12 +41,13 @@ export const AdminSubCategory = observer(() => {
   const [productName, setProductName] = useState('');
   const [productPrice, setProductPrice] = useState('');
   const [productShortDescription, setProductShortDescription] = useState('');
-  const [productPhoto, setProductPhoto] = useState([]);
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [title, setTitle] = useState<
     { category: string, subCategory: string }
   >({category: '', subCategory: ''});
+  const [manufacturers, setManufacturers] = useState<IManufacturer[]>([]);
+  const [productManufacturerId, setProductManufacturerId] = useState<number | null>(null);
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value)
@@ -60,8 +61,16 @@ export const AdminSubCategory = observer(() => {
     setProductShortDescription(e.target.value)
   }
 
+  const handleManufacturerSelect = (id: number) => {
+    setProductManufacturerId(id)
+  }
+
   const handleAddProduct = () => {
     setLoading(true);
+
+    if (!productManufacturerId) {
+      return null;
+    }
 
     const product = {
       subCategoryId: Number(params.subCategoryId),
@@ -69,8 +78,10 @@ export const AdminSubCategory = observer(() => {
       price: Number(productPrice),
       name: productName,
       shortDescription: productShortDescription,
-      photos: productPhoto,
+      photos: [],
       productDescriptions: [],
+      manufacturerId: productManufacturerId,
+      priority: 1,
     };
     createProduct(token, product)
       .then(() => setLoading(false));
@@ -107,6 +118,7 @@ export const AdminSubCategory = observer(() => {
             }
           })
         });
+
       getSubCategoryById(Number(params!.subCategoryId))
         .then(res => {
           setTitle(prev => {
@@ -117,6 +129,11 @@ export const AdminSubCategory = observer(() => {
             }
           })
         });
+
+      getManufacturers()
+        .then(res => {
+          setManufacturers(res);
+        })
   }, [])
 
       // FIXME добавить названия
@@ -124,7 +141,7 @@ export const AdminSubCategory = observer(() => {
     <AdminLayout>
       <AdminHeader title={`${title.category}/${title.subCategory}`}/>
       <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
-        <Plus/>
+        {isEditorOpen ? <Minus /> : <Plus/>}
       </Styles.AddButton>
       {isEditorOpen && (
         <Editor
@@ -132,6 +149,8 @@ export const AdminSubCategory = observer(() => {
           handlePriceChange={handleChangePrice}
           handleDescriptionChange={handleChangeDescription}
           handleSave={handleSave}
+          manufacturers={manufacturers}
+          handleManufacturerSelect={handleManufacturerSelect}
           ref={reloadRef}
         />
       )}

@@ -1,4 +1,4 @@
-import {IProduct} from "@/entities";
+import {IManufacturer, IProduct} from "@/entities";
 import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 
 export const getSubCategoryProducts = async (subCategoryId: number) => {
@@ -77,4 +77,22 @@ export const getSubCategoryById = async (id: number) => {
   })
 
   return result;
+}
+
+export const getManufacturers = async () => {
+  let manufacturers: IManufacturer[] = [];
+
+  await apiFetch('/constrspb/manufacturer/', {
+    method: HTTP_METHODS.GET,
+  }).then(res => {
+    if (res && res.ok) {
+      const body = res.body;
+
+      manufacturers = body.manufacturers;
+
+      return manufacturers
+    }
+  })
+
+  return manufacturers;
 }

@@ -39,6 +39,14 @@ export const Input = styled.div`
   //font-family: Ubuntu;
 `;
 
+export const Select = styled.select`
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid ${Color.blue};
+  font-size: 20px;
+`;
+
 export const Title = styled.h4`
   color: ${Color.blue};
   font-size: 20px;
