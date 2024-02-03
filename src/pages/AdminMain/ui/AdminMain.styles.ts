@@ -37,6 +37,6 @@ export const BigButton = styled(Button)`
   text-align: center;
   min-width: 45%;
   font-size: 48px;
-  padding: 50px 135px;
+  padding: 2rem 0;
   border-radius: 30px;
 `;

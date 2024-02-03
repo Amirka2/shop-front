@@ -9,6 +9,9 @@ export const AdminMain = () => {
   return (
     <AdminLayout>
       <Styles.SectionButtonsWrapper>
+        <Styles.BigButton to={Paths.adminManufacturers}>
+          Производители
+        </Styles.BigButton>
         <Styles.BigButton to={Paths.adminCategory}>
           Каталог товаров
         </Styles.BigButton>
