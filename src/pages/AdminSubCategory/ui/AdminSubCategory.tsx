@@ -1,13 +1,18 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useParams} from "react-router";
 import {observer} from "mobx-react";
-import {useCookies} from "react-cookie";
 
-import {createProduct, deleteProduct, getSubCategoryProducts} from "@/pages/AdminSubCategory/api";
+import {
+  createProduct,
+  deleteProduct,
+  getCategoryById,
+  getSubCategoryById,
+  getSubCategoryProducts
+} from "@/pages/AdminSubCategory/api";
 import {AdminHeader, AdminProductCard} from "@/shared/components";
 import {Plus} from "@/shared/ui";
 import {IProduct} from "@/entities";
-import {useStores} from "@/shared/hooks";
+import {useStores, useToken} from "@/shared/hooks";
 import {AdminLayout} from "@/shared/ui/Layouts";
 
 import {Editor} from './Editor';
@@ -23,10 +28,9 @@ export interface SubCategoryPageProps {
 export const AdminSubCategory = observer(() => {
   const params = useParams();
   const {productsStore} = useStores();
-  const [cookies] = useCookies(['token']);
+  const [token] = useToken();
 
   const {products} = productsStore;
-  const {token} = cookies;
 
   let subCategory: SubCategoryPageProps = {
     categoryName: 'Category',
@@ -40,6 +44,9 @@ export const AdminSubCategory = observer(() => {
   const [productPhoto, setProductPhoto] = useState([]);
   const [isEditorOpen, setEditorOpen] = useState(false);
   const [isLoading, setLoading] = useState(false);
+  const [title, setTitle] = useState<
+    { category: string, subCategory: string }
+  >({category: '', subCategory: ''});
 
   const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value)
@@ -90,10 +97,32 @@ export const AdminSubCategory = observer(() => {
       });
   }, [isLoading])
 
+  useEffect(() => {
+      getCategoryById(Number(params!.categoryId))
+        .then(res => {
+          setTitle(prev => {
+            return {
+              ...prev,
+              category: res.name
+            }
+          })
+        });
+      getSubCategoryById(Number(params!.subCategoryId))
+        .then(res => {
+          setTitle(prev => {
+            console.log(res)
+            return {
+              ...prev,
+              subCategory: res.name
+            }
+          })
+        });
+  }, [])
+
       // FIXME добавить названия
   return (
     <AdminLayout>
-      <AdminHeader title={``}/>
+      <AdminHeader title={`${title.category}/${title.subCategory}`}/>
       <Styles.AddButton onClick={() => setEditorOpen((prev) => !prev)}>
         <Plus/>
       </Styles.AddButton>

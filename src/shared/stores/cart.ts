@@ -1,33 +1,40 @@
 import { makeAutoObservable } from "mobx";
 import { IProduct } from "@/entities";
 
+type ProductWithCount = IProduct & {
+    count: number;
+}
 
 export class CartStore {
-    public cartProductsCounts: Map<IProduct, number> = new Map();
+    public cartProductsCounts: Map<number, ProductWithCount> = new Map();
 
     constructor() {
         makeAutoObservable(this);
     }
 
     public increaseProductsCount = (product: IProduct) => {
-        let prevCount = this.cartProductsCounts.get(product);
+        const id = product.id;
 
-        if (this.cartProductsCounts.has(product) && prevCount) {
-            this.cartProductsCounts.set(product, ++prevCount);
-        } else {
-            this.cartProductsCounts.set(product, 1);
+        if (!this.cartProductsCounts.has(id)) {
+            const countedProduct: ProductWithCount = {
+                ...product,
+                count: 1,
+            };
+            this.cartProductsCounts.set(id, countedProduct);
+        } else if (this.cartProductsCounts.has(id)) {
+            this.cartProductsCounts.get(id)!.count++;
         }
     }
 
     public decreaseProductsCount = (product: IProduct) => {
-        let prevCount = this.cartProductsCounts.get(product);
+        const id = product.id;
 
-        if (prevCount && prevCount < 2) {
+        if (this.cartProductsCounts.has(id) && this.cartProductsCounts.get(id)!.count === 1) {
             this.deleteProductFromCart(product);
         }
 
-        if (this.cartProductsCounts.has(product) && prevCount) {
-            this.cartProductsCounts.set(product, --prevCount);
+        if (this.cartProductsCounts.has(id) && this.cartProductsCounts.get(id)!.count > 1) {
+            this.cartProductsCounts.get(id)!.count--;
         }
     }
 
@@ -36,14 +43,14 @@ export class CartStore {
     }
 
     public deleteProductFromCart = (product: IProduct) => {
-        this.cartProductsCounts.delete(product);
+        this.cartProductsCounts.delete(product.id);
     };
 
-    get getProductsCounts() {
-        return this.cartProductsCounts;
+    get getProductsFromCart(): ProductWithCount[] {
+        return Array.from(this.cartProductsCounts.values());
     }
 
     public getProductCount(product: IProduct): number {
-        return this.cartProductsCounts.get(product) || 0;
+        return this.cartProductsCounts.get(product.id)?.count || 0;
     }
 }

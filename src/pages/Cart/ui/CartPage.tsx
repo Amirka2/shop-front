@@ -6,7 +6,6 @@ import {ItemsGrid} from "@/shared/components";
 import {Paths} from "@/shared/routing";
 import {MainLayout} from "@/shared/ui/Layouts";
 import {IOrder, ProductCartCounter} from '@/entities';
-import {IProductsToOrder} from "@/entities/interfaces";
 import {CartProductCard} from "@/widgets/CartProductCard/CartProductCard";
 
 import {processOrder} from "../api";
@@ -14,22 +13,24 @@ import {processOrder} from "../api";
 import * as Styles from './CartPage.styles';
 
 export const CartPage = observer(() => {
-  const { cartStore } = useStores();
+  const {cartStore} = useStores();
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isPrivacyAgreed, setPrivacyAgree] = useState(false);
 
-  const productsInCart = Array.from(cartStore.getProductsCounts.keys());
-  const productsCounts = Array.from(cartStore.getProductsCounts.values());
-  let totalSum = 0;
-  for (let i = 0; i < productsInCart.length; i++) {
-    totalSum += productsInCart[i].price * productsCounts[i];
-  }
+  const productsInCart = cartStore.getProductsFromCart;
+
+  let totalSum = productsInCart.reduce((acc, prev) => acc + prev.price * prev.count, 0)
+
+  const isEveryProductInStock = useMemo(() => {
+    return productsInCart.filter(p => !p.inStock).length === 0;
+  }, [productsInCart]);
 
   const canSubmit = useMemo(() => isPrivacyAgreed
       && productsInCart.length > 0
       && (new RegExp(/^\+?[78]9\d{9}$/).test(phoneNumber))
       && (new RegExp(/^[A-Za-zА-Яа-яЁё\s'-]+$/).test(name))
+      && isEveryProductInStock
       && false
     , [name, phoneNumber, isPrivacyAgreed, productsInCart]);
 
@@ -38,19 +39,8 @@ export const CartPage = observer(() => {
       alert("Введите корректные данные, пожалуйста!");
     }
 
-    let mapOfProducts = cartStore.getProductsCounts;
-    let products: IProductsToOrder[] = [];
-    mapOfProducts.forEach((n, p) => {
-      let productsToOrder = {
-        name: p.name,
-        price: p.price,
-        count: n,
-      }
-      products.push(productsToOrder);
-    })
-
     let orderInfo: IOrder = {
-      products: products,
+      products: productsInCart,
       name: name,
       phoneNumber: phoneNumber,
       mail: '',

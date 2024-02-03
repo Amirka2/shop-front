@@ -1,17 +1,16 @@
 import React, {PropsWithChildren, useEffect} from 'react';
-import {useCookies} from "react-cookie";
 
 import {AuthChecker, Container, MainWrapper} from "@/shared/components";
 import {Paths} from "@/shared/routing";
 import {LinkButton} from "@/shared/ui";
+import {useToken} from "@/shared/hooks";
 
 import * as Styles from './AdminLayout.styles';
 
 export const AdminLayout = ({children, ...restProps}: PropsWithChildren) => {
-  const [cookies, setCookies, removeCookies] = useCookies(['token']);
-
+  const [,,removeToken] = useToken();
   const handleExitClick = () => {
-    removeCookies('token');
+    removeToken();
   }
 
   useEffect(() => {

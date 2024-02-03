@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Styles from "./Editor.styles";
-import { Check } from "@/shared/ui"
+import {Button, Check } from "@/shared/ui"
 
 interface EditorProps{
     handleNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -48,12 +48,14 @@ export const Editor = ({
             </Styles.Input>
             <Styles.Input>
                 <Styles.Elements>
-                    <Styles.Title>
-                        Фото
-                    </Styles.Title>
-                    <Styles.CheckButton ref={ref}>
-                        <Check onClick={handleSave}/>
-                    </Styles.CheckButton>
+                    <Button
+                      size={'M'}
+                      fullWidth
+                      onClick={handleSave}
+                      ref={ref}
+                    >
+                        Добавить
+                    </Button>
                 </Styles.Elements>
             </Styles.Input>
         </Styles.EditorWindow>

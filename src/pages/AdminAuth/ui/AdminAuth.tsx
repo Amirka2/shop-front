@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {useNavigate} from "react-router";
-import {useCookies} from "react-cookie";
+
+import {useToken} from "@/shared/hooks";
 
 import {auth} from "../api";
 
@@ -11,7 +12,7 @@ export const AdminAuth = () => {
   const [login, setLogin] = useState('');
   const [pass, setPass] = useState('');
 
-  const [cookies, setCookies] = useCookies(['token']);
+  const [, setToken] = useToken();
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLogin(e.currentTarget.value);
@@ -26,8 +27,8 @@ export const AdminAuth = () => {
     auth(login, pass)
       .then(res => {
         try {
-          if (res && res.ok) {
-            setCookies('token', res.body.jwt, {
+          if (res && res.ok){
+            setToken(res.body.jwt, {
               secure: true,
               maxAge: 10800,
             })
@@ -41,24 +42,24 @@ export const AdminAuth = () => {
 
   return (
     <Styles.AuthWrapper>
-      <Styles.Input
-        type='text'
-        placeholder='Введите логин'
-        onChange={handleLoginChange}
-        value={login}
-      />
-      <Styles.Input
-        type='password'
-        placeholder={'Введите пароль'}
-        onChange={handlePassChange}
-        value={pass}
-      />
-      <Styles.SubmitButton
-        onClick={handleSubmit}
-        type='submit'
-      >
-        Войти
-      </Styles.SubmitButton>
+        <Styles.Input
+          type='text'
+          placeholder='Введите логин'
+          onChange={handleLoginChange}
+          value={login}
+        />
+        <Styles.Input
+          type='password'
+          placeholder={'Введите пароль'}
+          onChange={handlePassChange}
+          value={pass}
+        />
+        <Styles.SubmitButton
+          onClick={handleSubmit}
+          type='submit'
+        >
+          Войти
+        </Styles.SubmitButton>
     </Styles.AuthWrapper>
   );
 };

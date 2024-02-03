@@ -102,12 +102,10 @@ export interface IOrder {
     name: string;
     phoneNumber: string;
     mail?: string;
-    products: IProductsToOrder[];
+    products: ProductWithCount[];
 }
 
-export interface IProductsToOrder {
-    name: string;
-    price: number;
+export interface ProductWithCount extends IProduct {
     count: number;
 }
 

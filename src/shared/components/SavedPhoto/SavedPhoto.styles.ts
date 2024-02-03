@@ -18,8 +18,10 @@ export const Cross = styled.span`
   top: 1px;
   right: 0;
   
+  width: 25px;
+  height: 25px;
+  
   cursor: pointer;
-  padding: 10px;
   border-radius: 4px;
   
   background: ${Color.gray};

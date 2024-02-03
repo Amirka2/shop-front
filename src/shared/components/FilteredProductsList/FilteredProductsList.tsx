@@ -15,8 +15,8 @@ interface SearchProps {
 }
 
 export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProps) => {
-    const { productsStore } = useStores();
-    const { products } = productsStore;
+    const { searchStore } = useStores();
+    const { products } = searchStore;
     const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -29,14 +29,14 @@ export const FilteredProductsList = ({ searchInput, setSearchInput }: SearchProp
     useEffect(() => {
         const response = getProducts();
         response.then(result => {
-            productsStore.set(result);
+            searchStore.set(result);
             setFilteredProducts(result);
         })
     }, [])
 
     useEffect(() => {
         setFilteredProducts(
-          filteredProducts.filter((item) =>
+          products.filter((item) =>
                 item.name.toLowerCase().includes(searchInput.toLowerCase())
             )
         );

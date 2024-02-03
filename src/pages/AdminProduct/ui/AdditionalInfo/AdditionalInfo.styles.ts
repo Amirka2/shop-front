@@ -47,4 +47,6 @@ export const InStockWrapper = styled.div`
 export const InStock = styled.input`
   display: flex;
   align-items: center;
+  margin-top: 5px;
+  transform: scale(2);
 `;

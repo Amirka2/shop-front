@@ -66,4 +66,5 @@ export const DeleteButton = styled(Button)`
   font-size: 18px;
   height: 40px;
   width: 40px;
+  padding: 0;
 `;

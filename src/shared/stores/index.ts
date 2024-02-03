@@ -5,6 +5,7 @@ import { CategoriesStore } from "./categories";
 import { SubCategoriesStore } from "./subCategories";
 import { ProductsStore } from "./products";
 import { ProductDescriptions } from './productDescriptions';
+import {SearchStore} from "@/shared/stores/search";
 
 export const rootStoreContext = createContext({
     cartStore: new CartStore(),
@@ -13,4 +14,5 @@ export const rootStoreContext = createContext({
     subCategoriesStore: new SubCategoriesStore(),
     productsStore: new ProductsStore(),
     descriptionsStore: new ProductDescriptions(),
+    searchStore: new SearchStore(),
 });
