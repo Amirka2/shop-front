@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 import * as Styles from './AdditionalInfo.styles';
 import {useStores} from "@/shared/hooks";
 import {observer} from "mobx-react";
-import {PRODUCT_KEYS} from "@/entities";
+import {IManufacturer, PRODUCT_KEYS} from "@/entities";
+import {getManufacturers} from "@/pages/AdminSubCategory/api";
 
 export const AdditionalInfo = observer(() => {
   const { adminProductStore } = useStores();
   const { product } = adminProductStore;
+
+  const [manufacturers, setManufacturers] = useState<IManufacturer[]>([]);
 
   const handleToggleChange = () => {
       if (product && product.inStock) {
@@ -26,6 +29,19 @@ export const AdditionalInfo = observer(() => {
       adminProductStore.addProductField(PRODUCT_KEYS.SHORT_DESCRIPTION, value);
     }
   }
+
+  const handleManufacturerSelect = (id: number) => {
+      if (adminProductStore.product) {
+        adminProductStore.product.manufacturerId = id;
+      }
+  }
+
+  useEffect(() => {
+    getManufacturers()
+      .then(res => {
+        setManufacturers(res);
+      })
+  }, []);
 
   return (
     <Styles.Wrapper>
@@ -48,6 +64,25 @@ export const AdditionalInfo = observer(() => {
           checked={product?.inStock}
         />
       </Styles.InStockWrapper>
+      <Styles.Input>
+        <Styles.Title>
+          Производитель
+        </Styles.Title>
+        <Styles.Select
+          onChange={(e) =>
+            handleManufacturerSelect(Number(e.target.value))}
+        >
+          {manufacturers.map((m, i) => (
+            <option
+              value={m.id}
+              selected={adminProductStore.product?.manufacturerId === m.id}
+              key={m.id}
+            >
+              {m.name}
+            </option>
+          ))}
+        </Styles.Select>
+      </Styles.Input>
     </Styles.Wrapper>
   );
 });

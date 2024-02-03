@@ -8,6 +8,8 @@ export const getProductById = async (id: number) => {
     price: 11111,
     name: 'MOCK',
     inStock: false,
+    manufacturerId: 0,
+    priority: 1,
     shortDescription: 'MOCK description',
     productDescriptions: [],
     photos: [],

@@ -50,3 +50,27 @@ export const InStock = styled.input`
   margin-top: 5px;
   transform: scale(2);
 `;
+
+export const Input = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: space-between;
+`;
+
+export const Select = styled.select`
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid ${Color.blue};
+  font-size: 20px;
+`;
+
+export const Title = styled.h4`
+  color: ${Color.blue};
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;

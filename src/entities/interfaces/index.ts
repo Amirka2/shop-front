@@ -5,6 +5,8 @@ export interface IProduct {
     price: number;
     inStock: boolean;
     shortDescription: string;
+    manufacturerId: number;
+    priority: number;
     isFixedPrice?: boolean;
     nextArrivalDate?: string;
     productDescriptions: IDescriptionData[];
