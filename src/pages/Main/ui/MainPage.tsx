@@ -7,12 +7,11 @@ import {ProductCard, TopBar} from '@/widgets';
 
 import {useStores} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
-import {MainLayout} from "@/shared/ui/Layouts";
 import {Container, Footer, ItemsGrid, MainWrapper} from "@/shared/components";
-
-import * as Styles from "./MainPage.styles";
 import {productBackToFront} from "@/shared/libs";
 import {CallOrdering} from "@/shared/components/CallOrdering";
+
+import * as Styles from "./MainPage.styles";
 
 interface MainPageProps extends IContacts {
   itemsValue: number;
@@ -42,7 +41,9 @@ export const MainPage = observer((props: MainPageProps) => {
   }, [])
 
   return (
-    <MainWrapper>
+    <MainWrapper style={{
+      margin: '20px auto 0',
+    }}>
       <Container>
         <TopBar />
         <CallOrdering />
