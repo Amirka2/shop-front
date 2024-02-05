@@ -3,6 +3,7 @@ import {useParams} from "react-router";
 import {observer} from "mobx-react";
 
 import {
+  changePriority,
   createProduct,
   deleteProduct,
   getCategoryById, getManufacturers,
@@ -92,6 +93,13 @@ export const AdminSubCategory = observer(() => {
     setEditorOpen(false);
   }
 
+  const handlePriorityChange = (id: number, priority: number) => {
+    setLoading(true);
+
+    changePriority(token, id, priority)
+      .then(() => setLoading(false));
+  }
+
   const handleDeleteProduct = (id: number) => {
     setLoading(true);
 
@@ -161,7 +169,9 @@ export const AdminSubCategory = observer(() => {
             <AdminProductCard
               key={product.id}
               product={product}
-              handleDelete={handleDeleteProduct}/>
+              handleDelete={handleDeleteProduct}
+              changePriority={handlePriorityChange}
+            />
           ))}
       </Styles.ProductsWrapper>
     </AdminLayout>

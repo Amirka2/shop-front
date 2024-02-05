@@ -1,4 +1,6 @@
 import { styled } from 'styled-components';
+import { Link } from "react-router-dom";
+
 import { Color } from "@/shared/constants";
 
 export const Wrapper = styled.div`
@@ -13,6 +15,45 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+`;
+
+export const Label = styled.span`
+  color: ${Color.white};
+  text-align: center;
+  
+  font-size: 20px;
+`;
+
+export const PriorityBlock = styled.div`
+  display: flex; 
+  flex-direction: column;
+  gap: 4px;
+`;
+
+export const PriorityWrapper = styled.div`
+  display: flex;  
+  gap: 4px;
+`;
+
+export const Priority = styled.input`
+  width: 70px;
+  height: 30px;
+  background-color: ${Color.white};
+  border-radius: 10px;
+  
+  text-align: center;
+  
+  outline: none;
+  border: none;
+`;
+
+export const SavePriorityChange = styled.button`
+  background: transparent;
+  cursor: pointer;
+  
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const PhotoWrapper = styled.div`
@@ -30,10 +71,17 @@ export const MainPhoto = styled.img`
   background-repeat: no-repeat;
 `;
 
+export const StyledLink = styled(Link)`
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
 export const MainText = styled.h3`
   width: 250px;
   text-align: center;
   font-size: 20px;
+  color: ${Color.white};
 `;
 
 export const Description = styled.p`
@@ -70,4 +118,8 @@ export const DeleteIconWrapper = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;

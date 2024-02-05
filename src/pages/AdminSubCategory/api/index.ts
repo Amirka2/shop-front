@@ -96,3 +96,13 @@ export const getManufacturers = async () => {
 
   return manufacturers;
 }
+
+export const changePriority = async (token: string | undefined, id: number, priority: number) => {
+  const headers = {
+    'Authorization': `Bearer ${token}`
+  }
+  await apiFetch('/constrspb/group/subgroup/product/' + id + '/changePriority/' + priority, {
+    method: HTTP_METHODS.PUT,
+    headers: new Headers(headers),
+  }).then(res => res && res.ok)
+}

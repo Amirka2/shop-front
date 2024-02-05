@@ -1,23 +1,32 @@
-import React, {useEffect} from 'react';
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from 'react';
 
 import {IProduct} from "@/entities";
-import { Delete as DeleteIcon } from "@/shared/ui";
+import {Check, Delete as DeleteIcon} from "@/shared/ui";
 import {getPhotoUrl} from "@/shared/libs";
+import {Color} from "@/shared/constants";
 
 import * as Styles from './AdminProductCard.styles';
 
 interface AdminProductCardProps {
     product: IProduct;
     handleDelete: (id: number) => void;
+    changePriority: (id: number, priority: number) => void;
 }
 
 export const AdminProductCard = ({
     product,
-    handleDelete : handleDeleteClick
+    handleDelete : handleDeleteClick,
+    changePriority,
 }: AdminProductCardProps) => {
+    const [priority, setPriority] = useState(product.priority);
+
     const toggleStock = () => {
 
+    }
+
+    const handlePriorityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newPriority = e.currentTarget.value;
+        setPriority(Number(newPriority));
     }
 
     useEffect(() => {
@@ -25,16 +34,37 @@ export const AdminProductCard = ({
     }, [toggleStock, handleDeleteClick]);
 
     return (
-        <Link to={String(product.id)}>
+        <>
             <Styles.Wrapper>
+                <Styles.PriorityBlock>
+                    <Styles.Label>
+                        Порядок
+                    </Styles.Label>
+                    <Styles.PriorityWrapper>
+                        <Styles.Priority
+                          type="text"
+                          value={priority}
+                          onChange={handlePriorityChange}
+                        />
+                        <Styles.SavePriorityChange
+                          onClick={() => changePriority(product.id, priority)}
+                        >
+                            <Check color={Color.white} />
+                        </Styles.SavePriorityChange>
+                    </Styles.PriorityWrapper>
+                </Styles.PriorityBlock>
                 <Styles.PhotoWrapper>
                     {product.photos && (
                         <Styles.MainPhoto src={getPhotoUrl(product.photos?.[0]?.link || '')}/>
                     )}
                 </Styles.PhotoWrapper>
-                <Styles.MainText>
-                    {product.name}
-                </Styles.MainText>
+                <Styles.StyledLink
+                  to={String(product.id)}
+                >
+                    <Styles.MainText>
+                        {product.name}
+                    </Styles.MainText>
+                </Styles.StyledLink>
                 <Styles.MainText>
                     {`${product.price} Руб`}
                 </Styles.MainText>
@@ -56,6 +86,6 @@ export const AdminProductCard = ({
                     <DeleteIcon />
                 </Styles.DeleteIconWrapper>
             </Styles.Wrapper>
-        </Link>
+        </>
     );
 };
