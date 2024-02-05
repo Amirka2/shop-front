@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 import {Color} from '@/shared/constants';
+import {mediaQueries} from "@/shared/constants/mediaQueries";
 
 export const Wrapper = styled.div`
-  width: 100%;
+  width: 50%;
+  min-width: 350px;
   max-width: 500px; 
+  
+  ${mediaQueries.gt.Tablet} {
+    width: 100%;
+  }
 `;
 
 export const ProductName = styled.h4`
