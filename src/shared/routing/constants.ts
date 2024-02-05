@@ -5,6 +5,8 @@ export const Paths = {
     contacts: '/contacts',
     subCategories: '/sub-categories',
     subCategory: '/sub-categories/:subCategoryId',
+    manufacturers: '/manufacturers',
+    manufacturer: '/manufacturers/:manufacturerId',
     products: '/products',
     product: '/products/:productId',
     aboutUs: '/about-us',

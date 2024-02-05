@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import { observer } from "mobx-react";
 import { useParams } from "react-router";
 
@@ -12,18 +12,23 @@ import {productBackToFront} from "@/shared/libs";
 
 export const ProductsPage = observer(() => {
     const { productsStore } = useStores();
-    const { subCategoryId } = useParams();
+    const { subCategoryId, manufacturerId } = useParams();
 
     const { products } = productsStore;
     let itemsComponents = products.map(i => <ProductCard key={i.id} {...i}/>);
 
     useEffect(() => {
-        const response = getProductsInSubCategory(Number(subCategoryId))
+        const get = async () => await getProductsInSubCategory(Number(subCategoryId))
+
+        const response = get();
+
         response.then(result => {
             const frontProducts = result.map(p => {
                 return productBackToFront(p)
             });
-            productsStore.set(frontProducts);
+            const groupedProducts = frontProducts
+              .filter(p => p.manufacturerId === Number(manufacturerId))
+            productsStore.set(groupedProducts);
         })
     }, []);
 

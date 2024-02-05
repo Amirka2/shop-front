@@ -16,7 +16,7 @@ export const SubCategoryCard = (props: ISubCategory) => {
     } = props;
 
     return (
-        <Card linkTo={id + '/products'} photoSrc={getPhotoUrl(subgroupPhotoLink)}>
+        <Card linkTo={id + '/manufacturers'} photoSrc={getPhotoUrl(subgroupPhotoLink)}>
             <Styles.SubCategoryInfoWrapper>
                 <Styles.Title>
                     {name}

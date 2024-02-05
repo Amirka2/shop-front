@@ -10,6 +10,7 @@ export { ProductPage } from './Product';
 export { SubCategoriesPage } from './SubCategories';
 export { ProductsPage } from './Products';
 export { PrivacyPolicy } from './PrivacyPolicy';
+export { Manufacturers } from './Manufacturers';
 export { AdminAuth } from './AdminAuth';
 export { AdminMain } from './AdminMain';
 export { AdminCategory } from './AdminCategory';

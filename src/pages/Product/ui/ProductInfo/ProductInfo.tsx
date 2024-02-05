@@ -24,8 +24,7 @@ export const ProductInfo = (product: IProduct) => {
                 </div>
                 {!product.inStock && product.nextArrivalDate && (
                     <span>Примерная дата следующей поставки: {product.nextArrivalDate}</span>
-                )
-                }
+                )}
             </Styles.ProductAvailability>
             <Styles.ProductPrice>{product.price + ' ₽'}</Styles.ProductPrice>
             <Styles.AddToCartButton onClick={handleClick}>{text}</Styles.AddToCartButton>

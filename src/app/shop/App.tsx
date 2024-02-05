@@ -17,6 +17,7 @@ import {
   ProductsPage,
   ContactsPage,
   PrivacyPolicy,
+  Manufacturers,
   AdminMain,
   AdminCategory,
   AdminSubCategory,
@@ -24,7 +25,6 @@ import {
   AdminAuth,
   AdminManufacturers,
 } from "@/pages";
-import AuthChecker from "@/shared/components/AuthChecker/AuthChecker";
 
 export function App() {
   const mainPageProps = {
@@ -43,12 +43,13 @@ export function App() {
           path={Paths.category + Paths.subCategories}
           element={<SubCategoriesPage/>}
         />
+        <Route path={Paths.category + Paths.subCategory + Paths.manufacturers} element={<Manufacturers/>}/>
         <Route
-          path={Paths.category + Paths.subCategory + Paths.products}
+          path={Paths.category + Paths.subCategory + Paths.manufacturer + Paths.products}
           element={<ProductsPage/>}
         />
         <Route
-          path={Paths.category + Paths.subCategory + Paths.product}
+          path={Paths.category + Paths.subCategory + Paths.manufacturer + Paths.product}
           element={<ProductPage/>}
         />
         <Route
