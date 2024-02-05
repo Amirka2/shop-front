@@ -7,10 +7,12 @@ import {CallOrdering} from "@/shared/components/CallOrdering";
 
 import * as Styles from "./Footer.styles";
 
-export const Footer = () => {
+export const Footer = ({withoutPlane}: {withoutPlane?: boolean}) => {
   return (
     <Styles.FooterWrapper>
-      <CallOrdering/>
+      {!withoutPlane && (
+        <CallOrdering/>
+      )}
       <Styles.MainWrapper>
         <Styles.Wrapper>
           <FooterNav/>

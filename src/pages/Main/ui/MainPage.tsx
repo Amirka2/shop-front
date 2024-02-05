@@ -3,15 +3,16 @@ import {observer} from "mobx-react";
 
 import {getProducts} from "@/pages/Products/api";
 import {IContacts} from '@/entities';
-import {ProductCard} from '@/widgets';
+import {ProductCard, TopBar} from '@/widgets';
 
 import {useStores} from "@/shared/hooks";
 import {Color} from "@/shared/constants";
 import {MainLayout} from "@/shared/ui/Layouts";
-import {ItemsGrid} from "@/shared/components";
+import {Container, Footer, ItemsGrid, MainWrapper} from "@/shared/components";
 
 import * as Styles from "./MainPage.styles";
 import {productBackToFront} from "@/shared/libs";
+import {CallOrdering} from "@/shared/components/CallOrdering";
 
 interface MainPageProps extends IContacts {
   itemsValue: number;
@@ -41,20 +42,25 @@ export const MainPage = observer((props: MainPageProps) => {
   }, [])
 
   return (
-    <MainLayout>
-      <Styles.Wrapper>
-        <h1 style={{
-          marginBottom: '20px',
-          color: Color.blue
-        }}>
-          Наша продукция
-        </h1>
-        <ItemsGrid style={{
-          justifyContent: "space-between"
-        }}>
-          {itemsComponents}
-        </ItemsGrid>
-      </Styles.Wrapper>
-    </MainLayout>
+    <MainWrapper>
+      <Container>
+        <TopBar />
+        <CallOrdering />
+        <Styles.Wrapper>
+          <h1 style={{
+            marginBottom: '20px',
+            color: Color.blue
+          }}>
+            Наша продукция
+          </h1>
+          <ItemsGrid style={{
+            justifyContent: "space-between"
+          }}>
+            {itemsComponents}
+          </ItemsGrid>
+        </Styles.Wrapper>
+      </Container>
+      <Footer withoutPlane={true}/>
+    </MainWrapper>
   );
 });

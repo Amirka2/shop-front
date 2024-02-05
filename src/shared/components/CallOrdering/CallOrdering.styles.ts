@@ -25,6 +25,7 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   gap: 28px;
   background: linear-gradient(180deg, #225479 0%, #12446A 100%);
+  overflow: hidden;
   
   ${mediaQueries.gt.Tablet} {
     width: 100%;
@@ -137,8 +138,7 @@ export const Plane = styled.img`
   display: none;
   position: absolute;
   margin-top: 2%;
-  left: -20%;
-  width: 70%;
+  left: -220px;
   height: 510px;
 
   ${mediaQueries.gt.Desktop} {
