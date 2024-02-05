@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {Fragment, useState} from 'react';
 
 import {IDescriptionData, IProduct} from "@/entities";
 import {DocumentReader} from "@/widgets/DocumentReader";
@@ -20,10 +20,10 @@ export const ProductPageDescription = (product: IProduct) => {
                 {headerLinkElements}
             </Styles.DescriptionHeader>
             {product.productDescriptions && product.productDescriptions.map(partition => (
-                <>
+                <Fragment key={partition.id}>
                     <h3 id={String(partition.id)}>{partition.header}</h3>
                     <DocumentReader description={partition.text || ''}/>
-                </>
+                </Fragment>
             ))}
         </Styles.Wrapper>
     );

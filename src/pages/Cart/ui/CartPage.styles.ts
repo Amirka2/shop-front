@@ -5,10 +5,10 @@ import {Color} from "@/shared/constants";
 import {mediaQueries} from "@/shared/constants/mediaQueries";
 
 export const CaptionWrapper = styled.div<{
-    right?: boolean;
+    isRight?: boolean;
 }>`
   display: flex;
-  justify-content: ${props => props?.right ? 'flex-end' : 'flex-start'};
+  justify-content: ${({isRight}) => isRight ? 'flex-end' : 'flex-start'};
   margin: 0 0 40px 0;
   
   & h1 {

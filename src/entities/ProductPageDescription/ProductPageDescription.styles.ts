@@ -20,6 +20,8 @@ export const DescriptionHeader = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  
+  margin-bottom: 16px;
 `;
 
 export const DescriptionHeaderLink = styled.a`

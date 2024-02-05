@@ -27,7 +27,7 @@ export const MainPage = observer((props: MainPageProps) => {
 
   const itemsComponents = products
     .slice(0, itemsValue).map(i =>
-      <ProductCard {...i}/>
+      <ProductCard key={i.id} {...i}/>
     );
 
   useEffect(() => {

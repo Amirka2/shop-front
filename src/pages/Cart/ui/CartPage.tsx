@@ -74,7 +74,7 @@ export const CartPage = observer(() => {
 
   return (
     <MainLayout>
-      <Styles.CaptionWrapper right={true}>
+      <Styles.CaptionWrapper isRight>
         <Styles.Link to={'/'}>Вернуться к покупкам</Styles.Link>
       </Styles.CaptionWrapper>
       <Styles.CaptionWrapper>
