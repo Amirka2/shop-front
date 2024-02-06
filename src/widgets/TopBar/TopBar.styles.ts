@@ -15,7 +15,7 @@ export const Wrapper = styled.header`
   background-color: ${Color.blue};
   border-radius: 10px;
 
-  ${mediaQueries.gt.Tablet} {
+  ${mediaQueries.gt.TabletMax} {
     min-height: 150px;
     height: 150px;
     padding: 33px;
@@ -27,7 +27,23 @@ export const MobileWrapper = styled.div`
   align-items: center;
   gap: 8px;
 
-  ${mediaQueries.gt.Tablet} {
+  ${mediaQueries.gt.TabletMax} {
+    display: none;
+  }
+`;
+
+export const TabletMaxWrapper = styled.div`
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+
+  ${mediaQueries.gt.TabletMax} {
+    display: flex;
+  }
+  
+  ${mediaQueries.gt.Desktop} {
     display: none;
   }
 `;
@@ -35,7 +51,7 @@ export const MobileWrapper = styled.div`
 export const DesktopWrapper = styled.div`
   display: none;
 
-  ${mediaQueries.gt.Tablet} {
+  ${mediaQueries.gt.Desktop} {
     display: flex;
   }
 `;
@@ -47,12 +63,6 @@ export const LogoContactsWrapper = styled.div`
   gap: 50px;
 `;
 
-export const SearchWrapper = styled.div`
-  width: 470px;
-  margin: 0 10px;
-  display: flex;
-  justify-content: center;
-`;
 
 export const Title = styled.h6<{
     fontSize?: string;
@@ -62,11 +72,22 @@ export const Title = styled.h6<{
   font-size: ${({fontSize}) => fontSize};
 `;
 
+export const SearchWrapper = styled.div`
+  width: 200px;
+  margin: 0 10px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  ${mediaQueries.gt.Desktop} {
+    width: 470px;
+  }
+`;
+
 export const Input = styled.input`
-  position: absolute;
-  top: 72px;
+  position: static;
   resize: none;
-  width: 300px;
+  width: 200px;
   height: 48px;
   font-size: 16px;
   padding: 13px;
@@ -78,6 +99,8 @@ export const Input = styled.input`
   
   ${mediaQueries.gt.Desktop} {
     width: 470px;
+    position: absolute;
+    top: 52px;
   }
   
   &:focus (SearchModal){
@@ -85,10 +108,15 @@ export const Input = styled.input`
   }
   
   &+svg {
-    position: relative;
-    left: 430px;
-    top: 3px;
-    cursor: pointer;
+    display: none;
+
+    ${mediaQueries.gt.Desktop} {
+      display: block;
+      position: relative;
+      left: 430px;
+      top: 3px;
+      cursor: pointer;
+    }
   }
 `;
 
