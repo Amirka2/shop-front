@@ -16,7 +16,7 @@ export const Manufacturers = () => {
   const [photos, setPhotos] = useState<string[]>([]);
 
   useEffect(() => {
-    const response = getManufacturers(Number(subCategoryId))
+    getManufacturers(Number(subCategoryId))
       .then((result) => {
       if (result) {
 
@@ -32,8 +32,6 @@ export const Manufacturers = () => {
       }
     })
   }, [])
-
-  console.log(manufacturers)
 
   return (
     <MainLayout>
