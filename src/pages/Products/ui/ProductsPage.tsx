@@ -15,19 +15,20 @@ export const ProductsPage = observer(() => {
     const { subCategoryId, manufacturerId } = useParams();
 
     const { products } = productsStore;
-    let itemsComponents = products.map(i => <ProductCard key={i.id} {...i}/>);
+    let itemsComponents = products?.map(i => <ProductCard key={i.id} {...i}/>);
 
     useEffect(() => {
-        const get = async () => await getProductsInSubCategory(Number(subCategoryId))
+        const get = async () => await getProductsInSubCategory(Number(subCategoryId), Number(manufacturerId))
 
         const response = get();
 
         response.then(result => {
-            const frontProducts = result.map(p => {
+            const frontProducts = result?.map(p => {
                 return productBackToFront(p)
             });
             const groupedProducts = frontProducts
-              .filter(p => p.manufacturerId === Number(manufacturerId))
+              ?.filter(p => p.manufacturerId === Number(manufacturerId))
+
             productsStore.set(groupedProducts);
         })
     }, []);
@@ -35,7 +36,9 @@ export const ProductsPage = observer(() => {
     return (
         <MainLayout>
             <MainWrapper>
-                <ItemsGrid>
+                <ItemsGrid style={{
+                    justifyContent: 'center',
+                }}>
                     {itemsComponents}
                 </ItemsGrid>
             </MainWrapper>

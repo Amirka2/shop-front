@@ -6,7 +6,7 @@ import {MainLayout} from "@/shared/ui/Layouts";
 import {ManufacturerCard} from "@/entities/Cards";
 import {ItemsGrid, MainWrapper} from "@/shared/components";
 
-import {getManufacturers, getManufacturersPhotos, getProductsInSubCategory} from "../api";
+import {getManufacturers} from "../api";
 
 export const Manufacturers = () => {
   const params = useParams();
@@ -16,21 +16,24 @@ export const Manufacturers = () => {
   const [photos, setPhotos] = useState<string[]>([]);
 
   useEffect(() => {
-    const response = getManufacturers();
-    response.then(result => {
-      setManufacturers(result);
+    const response = getManufacturers(Number(subCategoryId))
+      .then((result) => {
+      if (result) {
+
+        const backManufacturers = result?.map(r => r.manufacturer);
+
+        setManufacturers(backManufacturers);
+
+        const p: string[] = [];
+        backManufacturers?.forEach((m, i) =>
+          p.push(result?.[i].products?.[0].photos?.[0].link));
+
+        setPhotos(p);
+      }
     })
   }, [])
 
-  useEffect(() => {
-      if (manufacturers) {
-        getProductsInSubCategory(Number(subCategoryId))
-          .then(res => {
-            setPhotos(getManufacturersPhotos(res));
-          })
-      }
-    }
-  ,[manufacturers])
+  console.log(manufacturers)
 
   return (
     <MainLayout>
@@ -42,7 +45,8 @@ export const Manufacturers = () => {
               key={m.id}
               id={m.id}
               name={m.name}
-              photoSrc={photos?.[i] || ''}/>
+              photoSrc={photos?.[i] || ''}
+            />
           )}
         </ItemsGrid>
       </MainWrapper>
