@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import { observer } from "mobx-react";
+import {Spin} from "antd";
 
-import {ItemsGrid, MainWrapper} from "@/shared/components";
+import {ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
 import { useStores } from "@/shared/hooks";
 import { SubCategoryCard } from "@/entities";
 import { MainLayout } from "@/shared/ui/Layouts";
@@ -14,12 +15,30 @@ export const SubCategoriesPage = observer(() => {
     const { subCategories } = subCategoriesStore;
     const { categoryId } = useParams();
 
-    useEffect(() => {
-        const response = getSubCategories(Number(categoryId) || 0);
-        response.then(result => subCategoriesStore.set(result))
+  const [isLoading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+
+    const response = getSubCategories(Number(categoryId) || 0);
+        response.then(result => {
+          subCategoriesStore.set(result);
+
+          setLoading(false);
+        });
     }, [])
 
     const itemsComponents = subCategories.map(s => <SubCategoryCard key={s.id} {...s}/>);
+
+  if (isLoading) {
+    return (
+      <MainLayout>
+        <PagePlaceHolder>
+          <Spin size="large" />
+        </PagePlaceHolder>
+      </MainLayout>
+    )
+  }
 
     return (
         <MainLayout>

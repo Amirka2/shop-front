@@ -12,9 +12,15 @@ export class ProductsStore {
 
   set(products: IProduct[]) {
     this.products = products;
+    this.isInitialized = true;
   }
 
   get() {
     return this.products;
+  }
+
+  public clear = () => {
+    this.products = [];
+    this.isInitialized = false;
   }
 }

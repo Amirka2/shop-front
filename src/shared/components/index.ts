@@ -17,5 +17,6 @@ export * from './DocumentLink';
 export * from './DocumentMedia';
 export * from './Icons';
 export { AuthChecker } from './AuthChecker';
+export { PagePlaceHolder } from './PagePlaceHolder';
 
 export type {CategoriesProps} from './Categories';
