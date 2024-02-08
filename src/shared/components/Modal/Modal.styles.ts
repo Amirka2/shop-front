@@ -21,7 +21,8 @@ export const ModalBox = styled.div`
   flex-direction: column;
   background-color: #e1e1e1;
   width: 55%;
-  height: 92%;
+  min-height: 200px;
+  max-height: 90%;
   border-radius: 20px;
 `
 
@@ -29,6 +30,8 @@ export const ModalContent = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  
+  padding: 16px;
 `
 
 export const CloseModalButton = styled.button`

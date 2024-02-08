@@ -9,14 +9,13 @@ import * as Styles from "./Modal.styles"
 
 interface ModalProps {
     isModalOpen: boolean;
-    toggle: () => void;
     onClose: () => void;
 }
 
 const search = document.createElement("div");
 search.id = 'search';
 
-export const Modal = ({toggle, isModalOpen, children, onClose}: PropsWithChildren<ModalProps>) => {
+export const Modal = ({isModalOpen, children, onClose}: PropsWithChildren<ModalProps>) => {
     const stopPropagation = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
     };
@@ -35,7 +34,7 @@ export const Modal = ({toggle, isModalOpen, children, onClose}: PropsWithChildre
     return (
         <>
             {isModalOpen && createPortal(
-                <Styles.ModalOverlay onClick={toggle}>
+                <Styles.ModalOverlay onClick={onClose}>
                     <Styles.ModalBox onClick={stopPropagation}>
                         <Styles.CloseModalButton onClick={onClose}>
                             <Cross width='26px' height='26px' color={Color.black}/>

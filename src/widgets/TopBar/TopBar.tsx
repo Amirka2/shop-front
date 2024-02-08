@@ -15,10 +15,6 @@ export const TopBar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchInput, setSearchInput] = useState('')
 
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
-
   const handleInputClick = () => {
     setIsModalOpen(true);
   };
@@ -114,7 +110,6 @@ export const TopBar = () => {
       </Styles.Wrapper>
       <Modal
         isModalOpen={isModalOpen}
-        toggle={toggleModal}
         onClose={() => setIsModalOpen(false)}
       >
         <FilteredProductsList

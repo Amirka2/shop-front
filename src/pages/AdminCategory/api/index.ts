@@ -3,15 +3,23 @@ import { groupBy } from 'lodash'
 import {ICategory, ISubCategory} from "@/entities";
 import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 
-interface CreateCategoryProps {
+export interface CreateCategoryProps {
     title: string;
     photo: string;
 }
 
-interface CreateSubCategoryProps {
+export interface ChangeCategoryProps extends CreateCategoryProps {
+    id: number;
+}
+
+export interface CreateSubCategoryProps {
     title: string;
     categoryId: number;
     photo: string;
+}
+
+export interface ChangeSubCategoryProps extends CreateSubCategoryProps {
+    id: number;
 }
 
 export const getCategories = async () => {
@@ -65,6 +73,20 @@ export const createCategory = async (token: string | undefined, { title, photo }
     }).then(res => res && res.ok)
 }
 
+export const changeCategory = async (token: string | undefined, { id, title, photo }: ChangeCategoryProps) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch('/constrspb/group/' + id, {
+        method: HTTP_METHODS.PUT,
+        body: {
+            name: title,
+            groupPhotoLink: photo,
+        },
+        headers: new Headers(headers)
+    }).then(res => res && res.ok)
+}
+
 export const createSubCategory = async (token: string | undefined, {title, categoryId, photo}: CreateSubCategoryProps) => {
     const headers = {
         'Authorization': `Bearer ${token}`
@@ -75,6 +97,21 @@ export const createSubCategory = async (token: string | undefined, {title, categ
             groupId: categoryId,
             name: title,
             groupPhotoLink: photo,
+        },
+        headers: new Headers(headers)
+    }).then(res => res && res.ok)
+}
+
+export const changeSubCategory = async (token: string | undefined, { id, categoryId, title, photo }: ChangeSubCategoryProps) => {
+    const headers = {
+        'Authorization': `Bearer ${token}`
+    }
+    await apiFetch('/constrspb/group/subgroup/' + id, {
+        method: HTTP_METHODS.PUT,
+        body: {
+            name: title,
+            subgroupPhotoLink: photo,
+            groupId: categoryId,
         },
         headers: new Headers(headers)
     }).then(res => res && res.ok)
