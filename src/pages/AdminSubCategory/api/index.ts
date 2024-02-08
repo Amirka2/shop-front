@@ -4,7 +4,7 @@ import {apiFetch, HTTP_METHODS} from "@/shared/libs";
 export const getSubCategoryProducts = async (subCategoryId: number) => {
   let products: IProduct[] = [];
 
-  await apiFetch(`/constrspb/group/subgroup/${subCategoryId}/products`, {
+  await apiFetch(`/constrspb/group/subgroup/${subCategoryId}/productsWithoutManufacturer`, {
     method: HTTP_METHODS.GET,
   }).then(res => {
     if (res && res.ok) {
