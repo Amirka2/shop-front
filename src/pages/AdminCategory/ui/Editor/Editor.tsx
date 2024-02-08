@@ -11,11 +11,11 @@ interface EditorProps {
     handleSave: () => void;
     handleKeyPress?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
     setPhotosBlob: Dispatch<React.SetStateAction<Blob[]>>;
-    isSubmitDisabled: boolean;
+    isSubmitDisabled?: boolean;
     ref: any;
 }
 
-export const Editor = ({nameInput, placeholder, handleNameInputChange, handleSave, handleKeyPress, setPhotosBlob, isSubmitDisabled, ref}: EditorProps) => {
+export const Editor = ({nameInput, placeholder, isSubmitDisabled = false, handleNameInputChange, handleSave, handleKeyPress, setPhotosBlob, ref}: EditorProps) => {
   return (
         <Styles.EditorWindow>
 
