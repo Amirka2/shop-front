@@ -30,9 +30,7 @@ export const CallOrdering = () => {
         <Styles.Plane src={planeImage}/>
         <Styles.TagLine>
           <Styles.ItemText>
-            Конструкция СПБ - ваш надежный
-            экспортёр товаров
-            из Европы
+            Конструкция СПБ - ваш надежный поставщик товаров из Европы
           </Styles.ItemText>
         </Styles.TagLine>
         <Styles.CallOrder>
