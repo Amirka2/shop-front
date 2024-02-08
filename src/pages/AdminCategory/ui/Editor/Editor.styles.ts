@@ -34,4 +34,9 @@ export const SaveButton = styled.button`
   padding: 15px;
   border-radius: 8px;
   font-size: 18px;
+  cursor: pointer;
+  
+  &:disabled {
+    background-color: ${Color.darkGray};
+  }
 `;
