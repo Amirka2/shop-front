@@ -129,25 +129,27 @@ const SubCategory = ({subCategory, categoryId, token, updateData}: any) => {
           </Styles.StyledLink>
         </Styles.Title>
       </Styles.Flex>
-      <div onClick={() => setModalOpen(true)}>
-        <Edit />
-      </div>
-      <Modal
-        isModalOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
-        toggle={() => setModalOpen(prev => !prev)}
-      >
-        <CategoryEditor
-          id={subCategory.id}
-          name={subCategory.name}
-          photoLink={subCategory.subgroupPhotoLink}
-          categoryId={subCategory.categoryId}
-          onSubmit={handleSubCategoryChangeSubmit}
-        />
-      </Modal>
-      <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
-        <Cross />
-      </Styles.DeleteButton>
+      <Styles.Flex>
+        <Styles.Flex onClick={() => setModalOpen(true)}>
+          <Edit />
+        </Styles.Flex>
+        <Modal
+          isModalOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          toggle={() => setModalOpen(prev => !prev)}
+        >
+          <CategoryEditor
+            id={subCategory.id}
+            name={subCategory.name}
+            photoLink={subCategory.subgroupPhotoLink}
+            categoryId={subCategory.categoryId}
+            onSubmit={handleSubCategoryChangeSubmit}
+          />
+        </Modal>
+        <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
+          <Cross />
+        </Styles.DeleteButton>
+      </Styles.Flex>
     </Styles.SubCategory>
   )
 }
