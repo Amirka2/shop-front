@@ -13,7 +13,6 @@ const createFilePromise = (token: string | undefined,
       'Authorization': `Bearer ${token}`
     };
 
-    debugger;
     return apiFetchFormData('/constrspb/file', {
       method: HTTP_METHODS.POST,
       headers: new Headers(headers),
