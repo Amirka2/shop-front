@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router";
 import {Spin} from "antd";
+import {LoadingOutlined} from "@ant-design/icons";
 
 import {IManufacturer} from "@/entities";
 import {MainLayout} from "@/shared/ui/Layouts";
@@ -42,7 +43,12 @@ export const Manufacturers = () => {
     return (
       <MainLayout>
         <PagePlaceHolder>
-          <Spin size="large" />
+          <Spin indicator={
+            <LoadingOutlined
+              style={{ fontSize: 120 }}
+              spin
+            />}
+          />
         </PagePlaceHolder>
       </MainLayout>
     )

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { observer } from "mobx-react";
 import { useParams } from "react-router";
 import {Spin} from "antd";
+import {LoadingOutlined} from "@ant-design/icons";
 
 import {ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
 import { useStores } from "@/shared/hooks";
@@ -45,7 +46,12 @@ export const ProductsPage = observer(() => {
         return (
           <MainLayout>
               <PagePlaceHolder>
-                  <Spin size="large" />
+                  <Spin indicator={
+                      <LoadingOutlined
+                        style={{ fontSize: 120 }}
+                        spin
+                      />}
+                  />
               </PagePlaceHolder>
           </MainLayout>
         )
