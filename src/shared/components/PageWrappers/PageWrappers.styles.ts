@@ -15,6 +15,4 @@ export const MainWrapper = styled.main`
     justify-content: space-between;
     align-items: flex-start;
   }
-  
-  margin: 0 0 20px 0;
 `;

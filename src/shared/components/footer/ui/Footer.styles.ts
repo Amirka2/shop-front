@@ -22,6 +22,7 @@ export const Wrapper = styled.div`
 export const MainWrapper = styled.footer`
   width: 100vw;
   padding: 50px 50px 0 50px;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
