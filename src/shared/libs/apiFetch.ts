@@ -16,6 +16,7 @@ export interface IApiFetch {
       method?: HTTP_METHODS;
       errorHandler?: (error: Error) => void;
       headers?: Headers;
+      token?: string;
     }
   ): Promise<void | { body: any; status: string; ok: boolean } | null>;
 }
@@ -82,21 +83,11 @@ export const apiFetch: IApiFetch = async (
     method: method,
   };
 
-  if (headers) {
-    headers.append('Access-Control-Allow-Origin', '*')
-    headers.append('Access-Control-Allow-Headers', 'Content-Type')
-    headers.append('Content-Type', 'application/json')
-  } else {
-    headers = new Headers({
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type',
-      'Content-Type': 'application/json',
-    });
-  }
+  const fullHeaders = getHeaders(headers);
 
   requestParamsOptions = {
     ...requestParamsOptions,
-    headers,
+    headers: fullHeaders,
   }
 
   let requestUrl = `${BASE_URL}/${url}`;
@@ -120,9 +111,9 @@ export const apiFetch: IApiFetch = async (
 
 export const apiFetchFormData: IApiFetch = async (
   url,
-  { body = {}, method = HTTP_METHODS.POST } = {}
+  { body = {}, method = HTTP_METHODS.POST, token } = {}
 ) => {
-  const requestParamsOptions: {
+  let requestParamsOptions: {
     headers: any;
     body: BodyInit | object | string | null;
     method: HTTP_METHODS;
@@ -130,18 +121,22 @@ export const apiFetchFormData: IApiFetch = async (
     headers: new Headers({
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Headers': 'Content-Type',
+      'Authorization': `Bearer ${token}`,
     }),
     body: null,
     method: method,
   };
 
+  requestParamsOptions = {
+    ...requestParamsOptions,
+    body,
+  }
+
   let requestUrl = `${BASE_URL}/${url}`;
 
-  if (body !== undefined) {
+  if (body) {
     if (method === HTTP_METHODS.GET) {
       requestUrl += `?${getURLSearchParamsByObject(body).toString()}`;
-    } else {
-      requestParamsOptions.body = body;
     }
   }
 
@@ -154,7 +149,6 @@ export const apiFetchFormData: IApiFetch = async (
       return console.error(error);
     });
 };
-
 // TODO проверить, как будто не нужно
 export async function fetchBlobFromBackend(name: string) {
   try {
@@ -168,4 +162,12 @@ export async function fetchBlobFromBackend(name: string) {
     console.error(error);
     throw error;
   }
+}
+
+const getHeaders = (headers: Headers = new Headers()) => {
+    headers.append('Access-Control-Allow-Origin', '*')
+    headers.append('Access-Control-Allow-Headers', 'Content-Type')
+    headers.append('Content-Type', 'application/json')
+
+  return headers;
 }

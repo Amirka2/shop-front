@@ -9,14 +9,11 @@ const createFilePromise = (token: string | undefined,
   ok: boolean;
 }> => {
   return new Promise((resolve) => {
-    const headers = {
-      'Authorization': `Bearer ${token}`
-    };
 
     return apiFetchFormData('/constrspb/file', {
       method: HTTP_METHODS.POST,
-      headers: new Headers(headers),
       body: formData,
+      token,
       errorHandler: (error) => {
         console.error(error)
 
