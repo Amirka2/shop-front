@@ -26,7 +26,7 @@ export const MainWrapper = styled.div`
   gap: 28px;
   background: linear-gradient(180deg, #225479 0%, #12446A 100%);
   overflow: hidden;
-  
+
   ${mediaQueries.gt.Tablet} {
     width: 100%;
   }
@@ -89,6 +89,11 @@ export const PhoneInputWrapper = styled.div`
   gap: 10px;
 `;
 
+export const Label = styled.span`
+  font-size: 14px;
+  color: ${Color.white};
+`;
+
 export const PhoneButton = styled.button`
   width: 50%;
   border: none;
@@ -99,12 +104,16 @@ export const PhoneButton = styled.button`
   cursor: pointer;
   background-color: ${Color.white};
   color: ${Color.blue};
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   line-height: normal;
   
-  &:hover{
-    background-color: ${Color.gray};
+  & :disabled {
+    color: ${Color.darkGray};
+  }
+  
+  ${mediaQueries.gt.Tablet} {
+    font-size: 18px;
   }
 `;
 
@@ -137,7 +146,7 @@ export const BigCircle = styled(Circle)`
 export const Plane = styled.img`
   display: none;
   position: absolute;
-  margin-top: 2%;
+  margin-bottom: 2%;
   left: -220px;
   height: 510px;
 
