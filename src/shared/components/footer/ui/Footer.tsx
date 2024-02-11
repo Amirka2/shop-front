@@ -4,6 +4,7 @@ import {FooterNav} from "./FooterNav";
 import {FooterInfo} from "../ui/FooterInfo";
 import {Contacts} from "@/entities";
 import {CallOrdering} from "@/shared/components/CallOrdering";
+import {Container} from "@/shared/ui";
 
 import * as Styles from "./Footer.styles";
 
@@ -11,7 +12,9 @@ export const Footer = ({withoutPlane}: {withoutPlane?: boolean}) => {
   return (
     <Styles.FooterWrapper>
       {!withoutPlane && (
-        <CallOrdering/>
+        <Container>
+          <CallOrdering/>
+        </Container>
       )}
       <Styles.MainWrapper>
         <Styles.Wrapper>

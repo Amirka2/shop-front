@@ -20,60 +20,58 @@ export const CallOrdering = () => {
   };
 
   const handlePhoneSend = () => {
-      console.log(`Отправка номера телефона: ${phone}`);
-      setPhone('');
+    console.log(`Отправка номера телефона: ${phone}`);
+    setPhone('');
   }
 
   return (
-    <Container>
-      <Styles.MainWrapper>
-        <Styles.Wrapper>
-          <Styles.BigCircle/>
-          <Styles.SmallCircle/>
-          <Styles.Plane src={planeImage}/>
-          <Styles.TagLine>
-            <Styles.ItemText>
-              Конструкция СПБ - ваш надежный поставщик товаров из Европы
-            </Styles.ItemText>
-          </Styles.TagLine>
-          <Styles.CallOrder>
-            <Styles.ItemText>
-              С лёту решим любой вопрос
-            </Styles.ItemText>
-            <Styles.CallOrderText>
-              Не нашли нужный товар?
-            </Styles.CallOrderText>
-            <Styles.CallOrderText>
-              Уточнить детали заказа?
-            </Styles.CallOrderText>
-            <Styles.PhoneWrapper>
-              <Styles.PhoneInputWrapper>
-                <CallOrderPhone/>
-                <PhoneMask
-                  value={phone}
-                  onChange={handlePhoneChange}
-                />
-              </Styles.PhoneInputWrapper>
-              <Styles.PhoneButton
-                disabled={!canSubmit}
-                onClick={handlePhoneSend}
-              >
-                Позвоните мне
-              </Styles.PhoneButton>
-            </Styles.PhoneWrapper>
-            <Styles.PhoneWrapper>
-              <Styles.Label>
-                Я согласен с обработкой личной информации
-              </Styles.Label>
-              <input
-                  type="checkbox"
-                 checked={isAgreed}
-                 onChange={() => setIsAgreed(prev => !prev)}
+    <Styles.MainWrapper>
+      <Styles.Wrapper>
+        <Styles.BigCircle/>
+        <Styles.SmallCircle/>
+        <Styles.Plane src={planeImage}/>
+        <Styles.TagLine>
+          <Styles.ItemText>
+            Конструкция СПБ - ваш надежный поставщик товаров из Европы
+          </Styles.ItemText>
+        </Styles.TagLine>
+        <Styles.CallOrder>
+          <Styles.ItemText>
+            С лёту решим любой вопрос
+          </Styles.ItemText>
+          <Styles.CallOrderText>
+            Не нашли нужный товар?
+          </Styles.CallOrderText>
+          <Styles.CallOrderText>
+            Уточнить детали заказа?
+          </Styles.CallOrderText>
+          <Styles.PhoneWrapper>
+            <Styles.PhoneInputWrapper>
+              <CallOrderPhone/>
+              <PhoneMask
+                value={phone}
+                onChange={handlePhoneChange}
               />
-            </Styles.PhoneWrapper>
-          </Styles.CallOrder>
-        </Styles.Wrapper>
-      </Styles.MainWrapper>
-    </Container>
+            </Styles.PhoneInputWrapper>
+            <Styles.PhoneButton
+              disabled={!canSubmit}
+              onClick={handlePhoneSend}
+            >
+              Позвоните мне
+            </Styles.PhoneButton>
+          </Styles.PhoneWrapper>
+          <Styles.PhoneWrapper>
+            <Styles.Label>
+              Я согласен с обработкой личной информации
+            </Styles.Label>
+            <input
+              type="checkbox"
+              checked={isAgreed}
+              onChange={() => setIsAgreed(prev => !prev)}
+            />
+          </Styles.PhoneWrapper>
+        </Styles.CallOrder>
+      </Styles.Wrapper>
+    </Styles.MainWrapper>
   );
 };
