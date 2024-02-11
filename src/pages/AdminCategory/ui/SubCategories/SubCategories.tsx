@@ -6,11 +6,13 @@ import {ISubCategory} from "@/entities";
 import {Editor} from "@/pages/AdminCategory/ui/Editor";
 import {useStores, useToken} from "@/shared/hooks";
 import {getPhotoUrl, postFiles} from "@/shared/libs";
-import {Cross, Minus, Plus} from "@/shared/ui";
+import {Cross, Edit, Minus, Plus} from "@/shared/ui";
 
-import {createSubCategory, deleteSubCategory} from "../../api";
+import {changeSubCategory, ChangeSubCategoryProps, createSubCategory, deleteSubCategory} from "../../api";
 
 import * as Styles from "./SubCategories.styles";
+import {Modal} from "@/shared/components/Modal";
+import {CategoryEditor} from "@/widgets";
 
 interface SubCategoriesProps {
   categoryId: number;
@@ -27,11 +29,6 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
   const adminSubCategory = subCategoriesStore.getAdminSubCategory();
 
   const [token] = useToken();
-
-  const handleDeleteClick = (id: number) => {
-    deleteSubCategory(token, id)
-      .then(() => updateData());
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAdminSubCategoryName(e.target.value);
@@ -80,19 +77,13 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
       <Styles.SubCategories>
         <ul>
           {subCategories.map(subCategory => (
-            <Styles.SubCategory key={subCategory.id}>
-              <Styles.Flex>
-                <Styles.Photo src={getPhotoUrl(subCategory.subgroupPhotoLink)}/>
-                <Styles.Title>
-                  <Styles.StyledLink to={`/admin/${categoryId}/${subCategory.id}`}>
-                    {subCategory.name}
-                  </Styles.StyledLink>
-                </Styles.Title>
-              </Styles.Flex>
-              <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
-                <Cross />
-              </Styles.DeleteButton>
-            </Styles.SubCategory>
+            <SubCategory
+              key={subCategory.id}
+              subCategory={subCategory}
+              categoryId={categoryId}
+              token={token}
+              updateData={updateData}
+            />
           ))}
         </ul>
       </Styles.SubCategories>
@@ -105,8 +96,58 @@ export const SubCategories = observer(({categoryId, subCategories, updateData}: 
           handleKeyPress={handleKeyPress}
           setPhotosBlob={setPhotos}
           ref={reloadRef}
+          isSubmitDisabled={photos.length === 0}
         />
       )}
     </Styles.Wrapper>
   );
 });
+
+const SubCategory = ({subCategory, categoryId, token, updateData}: any) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleSubCategoryChangeSubmit = (submitData: ChangeSubCategoryProps) => {
+    changeSubCategory(token, submitData)
+      .then(() => {
+        setModalOpen(false);
+        updateData();
+      })
+  }
+
+  const handleDeleteClick = (id: number) => {
+    deleteSubCategory(token, id)
+      .then(() => updateData());
+  }
+
+  return (
+    <Styles.SubCategory key={subCategory.id}>
+      <Styles.Flex>
+        <Styles.Photo src={getPhotoUrl(subCategory.subgroupPhotoLink)}/>
+        <Styles.Title>
+          <Styles.StyledLink to={`/admin/${categoryId}/${subCategory.id}`}>
+            {subCategory.name}
+          </Styles.StyledLink>
+        </Styles.Title>
+      </Styles.Flex>
+      <div onClick={() => setModalOpen(true)}>
+        <Edit />
+      </div>
+      <Modal
+        isModalOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        toggle={() => setModalOpen(prev => !prev)}
+      >
+        <CategoryEditor
+          id={subCategory.id}
+          name={subCategory.name}
+          photoLink={subCategory.subgroupPhotoLink}
+          categoryId={subCategory.categoryId}
+          onSubmit={handleSubCategoryChangeSubmit}
+        />
+      </Modal>
+      <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(subCategory.id)}>
+        <Cross />
+      </Styles.DeleteButton>
+    </Styles.SubCategory>
+  )
+}

@@ -3,15 +3,25 @@ import {observer} from "mobx-react";
 import {Dictionary} from 'lodash'
 
 import {useStores, useToken} from "@/shared/hooks";
-import {Cross, Minus, PageLoader, Plus} from "@/shared/ui";
+import {Cross, Edit, Minus, PageLoader, Plus} from "@/shared/ui";
 import {ISubCategory} from "@/entities";
 import {getPhotoUrl, postFiles} from "@/shared/libs";
 import {AdminLayout} from "@/shared/ui/Layouts";
+import {Modal} from "@/shared/components/Modal";
+import {CategoryEditor} from "@/widgets";
 
 import {SubCategories} from "./SubCategories";
 import {Editor} from "./Editor";
 
-import {createCategory, deleteCategory, getCategories, getSubCategories, groupSubCategories,} from '../api';
+import {
+  changeCategory,
+  ChangeCategoryProps,
+  createCategory,
+  deleteCategory,
+  getCategories,
+  getSubCategories,
+  groupSubCategories
+} from '../api';
 
 import * as Styles from './AdminCategory.styles';
 
@@ -27,11 +37,6 @@ export const AdminCategory = observer(() => {
   const adminCategory = categoriesStore.getAdminCategory();
   const {subCategories} = subCategoriesStore;
   const isLoading = categoriesStore.getIsLoading();
-
-  const handleDeleteClick = (id: number) => {
-    setLoading(true);
-    deleteCategory(token, id).then(() => setLoading(false));
-  }
 
   const handleCategoryNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     categoriesStore.setCategoryName(e.target.value);
@@ -114,30 +119,13 @@ export const AdminCategory = observer(() => {
 
         <Styles.Categories>
           {categories && categories.map(category => (
-              <Styles.Category>
-                <Styles.Flex>
-                  {/*<Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} onError={({ currentTarget }) => {*/}
-                  {/*  currentTarget.onerror = null; // prevents looping*/}
-                  {/*  currentTarget.src="photos/1.jpg";*/}
-                  {/*}}/>// FIXME */}
-                  <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)}/>
-                  <Styles.TitleWrapper>
-                    <Styles.Title>
-                      {category.name}
-                    </Styles.Title>
-                    <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
-                      <Cross/>
-                    </Styles.DeleteButton>
-                  </Styles.TitleWrapper>
-                </Styles.Flex>
-                {groupedSubCategories && (
-                  <SubCategories
-                    categoryId={category.id}
-                    subCategories={groupedSubCategories?.[category.id] || []}
-                    updateData={updateData}
-                  />
-                )}
-              </Styles.Category>
+              <Category
+                key={category.id}
+                category={category}
+                updateData={updateData}
+                token={token}
+                groupedSubCategories={groupedSubCategories}
+              />
             )
           )}
         </Styles.Categories>
@@ -151,9 +139,67 @@ export const AdminCategory = observer(() => {
             handleSave={handleSave}
             setPhotosBlob={setPhotos}
             ref={reloadRef}
+            isSubmitDisabled={photos.length === 0}
           />
         )}
       </Styles.ContentWrapper>
     </AdminLayout>
   );
 });
+
+const Category = ({category, groupedSubCategories, updateData, token}: any) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleCategoryChangeSubmit = (submitData: ChangeCategoryProps) => {
+    changeCategory(token, submitData)
+      .then(() => {
+        updateData();
+      })
+  }
+
+  const handleDeleteClick = (id: number) => {
+    deleteCategory(token, id).then(() => updateData());
+  }
+
+  return (
+    <Styles.Category>
+      <Styles.Flex>
+        {/*<Styles.Photo src={getPhotoUrl(category.groupPhotoLink)} onError={({ currentTarget }) => {*/}
+        {/*  currentTarget.onerror = null; // prevents looping*/}
+        {/*  currentTarget.src="photos/1.jpg";*/}
+        {/*}}/>// FIXME */}
+        <Styles.Photo src={getPhotoUrl(category.groupPhotoLink)}/>
+        <Styles.TitleWrapper>
+          <Styles.Title>
+            {category.name}
+          </Styles.Title>
+          <div onClick={() => setModalOpen(true)}>
+            <Edit />
+          </div>
+          <Modal
+            isModalOpen={isModalOpen}
+            onClose={() => setModalOpen(false)}
+            toggle={() => setModalOpen(prev => !prev)}
+          >
+            <CategoryEditor
+              id={category.id}
+              name={category.name}
+              photoLink={category.groupPhotoLink}
+              onSubmit={handleCategoryChangeSubmit}
+            />
+          </Modal>
+          <Styles.DeleteButton size="S" onClick={() => handleDeleteClick(category.id)}>
+            <Cross/>
+          </Styles.DeleteButton>
+        </Styles.TitleWrapper>
+      </Styles.Flex>
+      {groupedSubCategories && (
+        <SubCategories
+          categoryId={category.id}
+          subCategories={groupedSubCategories?.[category.id] || []}
+          updateData={updateData}
+        />
+      )}
+    </Styles.Category>
+  )
+}
