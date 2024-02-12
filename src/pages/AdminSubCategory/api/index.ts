@@ -56,7 +56,7 @@ export const getCategoryById = async (id: number) => {
     method: HTTP_METHODS.GET,
   }).then(res => {
     if (res && res.ok) {
-      result.name = res.body.name;
+      result.name = res.body.group.name;
     }
   })
 
@@ -72,7 +72,7 @@ export const getSubCategoryById = async (id: number) => {
     method: HTTP_METHODS.GET,
   }).then(res => {
     if (res && res.ok) {
-      result.name = res.body.name;
+      result.name = res.body.subgroup.name;
     }
   })
 
