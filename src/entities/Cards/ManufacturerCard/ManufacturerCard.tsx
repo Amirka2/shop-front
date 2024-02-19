@@ -6,11 +6,15 @@ import {getPhotoUrl} from "@/shared/libs";
 
 import * as Styles from "@/entities/Cards/SubCategoryCard/SubCategory.styles";
 
-export const ManufacturerCard = (props: IManufacturer & { photoSrc: string }) => {
+export const ManufacturerCard = (props: IManufacturer & {
+  photoSrc: string;
+  count: number;
+}) => {
   const {
     id,
     name,
-    photoSrc
+    photoSrc,
+    count,
   } = props;
 
   return (
@@ -19,6 +23,9 @@ export const ManufacturerCard = (props: IManufacturer & { photoSrc: string }) =>
         <Styles.Title>
           {name}
         </Styles.Title>
+        <Styles.Count>
+          {`Товаров: ${count}`}
+        </Styles.Count>
       </Styles.SubCategoryInfoWrapper>
     </Card>
   );

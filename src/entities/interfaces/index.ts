@@ -91,6 +91,12 @@ export interface IManufacturer {
     name: string;
 }
 
+export interface ManufacturerGroupModel {
+    manufacturer: IManufacturer;
+    products: IProduct[];
+    count: number;
+}
+
 export interface ISpecifications {
     type: string;
     manufacturer: string;

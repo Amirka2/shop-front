@@ -1,13 +1,5 @@
-import {groupBy} from "lodash";
-
 import {apiFetch, HTTP_METHODS} from "@/shared/libs";
-import {IManufacturer, IProduct} from "@/entities";
-
-interface ManufacturerGroupModel {
-  manufacturer: IManufacturer;
-  products: IProduct[];
-  count: number;
-}
+import {ManufacturerGroupModel} from "@/entities";
 
 export const getManufacturers = async (subCategoryId: number) => {
   let response: ManufacturerGroupModel[] = [];
