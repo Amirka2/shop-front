@@ -108,8 +108,9 @@ export const PhoneButton = styled.button`
   font-weight: 400;
   line-height: normal;
   
-  & :disabled {
+  &:disabled {
     color: ${Color.darkGray};
+    cursor: inherit;
   }
   
   ${mediaQueries.gt.Tablet} {

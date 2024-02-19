@@ -3,25 +3,29 @@ import React, {ChangeEvent, useMemo, useState} from 'react';
 import {PhoneMask} from "@/shared/components/CallOrdering/PhoneMask";
 import {CallOrderPhone} from '@/shared/components/Icons/CallOrderPhone';
 import planeImage from '@/shared/photos/plane.png';
-import {Container} from "@/shared/ui";
 
 import * as Styles from "../CallOrdering/CallOrdering.styles";
+import {requireCall} from "@/shared/components/CallOrdering/api";
 
 export const CallOrdering = () => {
   const [phone, setPhone] = useState<string>('');
   const [isAgreed, setIsAgreed] = useState(false);
 
   const canSubmit: boolean = useMemo(() => {
-    return isAgreed;
-  }, [isAgreed, phone.length]);
+    return isAgreed && !phone.includes('_');
+  }, [isAgreed, phone]);
 
   const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPhone(event.target.value);
   };
 
   const handlePhoneSend = () => {
-    console.log(`Отправка номера телефона: ${phone}`);
+    requireCall({
+      phoneNumber: phone,
+    });
+
     setPhone('');
+    setIsAgreed(false);
   }
 
   return (
