@@ -21,6 +21,7 @@ export const CartProductCard = ({product}: CartProductCardProps) => {
                     <Name>{product.name}</Name>
                 </Link>
                 <p>{product.shortDescription}</p>
+                <p>В наличии: {product.inStock ? 'Да' : 'Нет'}</p>
             </Info>
         </Wrapper>
     );

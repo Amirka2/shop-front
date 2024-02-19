@@ -114,11 +114,10 @@ export interface IContacts {
 export interface IOrder {
     name: string;
     phoneNumber: string;
-    mail?: string;
-    products: ProductWithCount[];
+    products: OrderProduct[];
 }
 
-export interface ProductWithCount extends IProduct {
+export type OrderProduct = Pick<IProduct, 'name' | 'price'> & {
     count: number;
 }
 
