@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import { useStores } from "@/shared/hooks";
 import {IProduct} from "@/entities";
 
@@ -7,6 +7,11 @@ import * as Styles from './ProductInfo.styles';
 export const ProductInfo = (product: IProduct) => {
     const stores = useStores();
     const [text, setText] = useState('В корзину')
+
+    const priceText = useMemo(() => {
+      return (`Цена: ` + (product.inStock ? `${product.price} ₽` : 'По запросу'))
+    }, [product]);
+
     function handleClick() {
         stores.cartStore.increaseProductsCount(product);
         setText('В корзине');
@@ -26,7 +31,7 @@ export const ProductInfo = (product: IProduct) => {
                     <span>Примерная дата следующей поставки: {product.nextArrivalDate}</span>
                 )}
             </Styles.ProductAvailability>
-            <Styles.ProductPrice>{product.price + ' ₽'}</Styles.ProductPrice>
+            <Styles.ProductPrice>{priceText}</Styles.ProductPrice>
             <Styles.AddToCartButton onClick={handleClick}>{text}</Styles.AddToCartButton>
             <Styles.ProductDescription>
                 {product.shortDescription}

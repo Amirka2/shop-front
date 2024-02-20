@@ -20,7 +20,13 @@ export const CartPage = observer(() => {
 
   const productsInCart = cartStore.getProductsFromCart;
 
-  let totalSum = productsInCart.reduce((acc, prev) => acc + prev.price * prev.count, 0)
+  let totalSum = productsInCart.reduce((acc, prev) => {
+    if (!prev.inStock) {
+      return acc;
+    }
+
+    return acc + prev.price * prev.count
+  }, 0)
 
   const isEveryProductInStock = useMemo(() => {
     return productsInCart.filter(p => !p.inStock).length === 0;
@@ -89,7 +95,7 @@ export const CartPage = observer(() => {
               return (
                 <Styles.OrderFieldsListItem>
                   {p.name}
-                  <span>{p.price * cartStore.getProductCount(p)} ₽</span>
+                  <span>{p.inStock ? `${p.price * cartStore.getProductCount(p)} ₽` : 'По запросу'} </span>
                 </Styles.OrderFieldsListItem>
               );
             })}

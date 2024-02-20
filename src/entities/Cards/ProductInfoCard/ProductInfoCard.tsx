@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 
 import type {IProduct} from "@/entities";
 import {PhotoSlider} from "@/shared/components";
@@ -7,6 +7,10 @@ import {getPhotoUrl} from "@/shared/libs";
 import * as Styles from "./ProductInfoCard.styles";
 
 export const ProductInfoCard = (props: IProduct) => {
+  const priceText = useMemo(() => {
+    return (`Цена: ` + (props.inStock ? `${props.price} ₽` : 'По запросу'))
+  }, [props]);
+
   return (
     <Styles.Wrapper>
       {props.photos && (
@@ -15,7 +19,7 @@ export const ProductInfoCard = (props: IProduct) => {
       <Styles.ProductCardInfo>
         <h3><Styles.NavLink to={'/products/' + String(props.id)}>{props.name}</Styles.NavLink></h3>
         <span>В наличии: {props.inStock ? 'Да' : 'Нет'}</span>
-        <span>Цена: {`${!props.isFixedPrice ? 'от' : ''} ${props.price} руб.`}</span>
+        <span>{priceText}</span>
       </Styles.ProductCardInfo>
     </Styles.Wrapper>
   );

@@ -30,7 +30,7 @@ export const ProductCartCounter = observer(({product}: ProductCounterProps) => {
 
     return (
         <InteractionPanel>
-            <SumInfo>{sum} ₽</SumInfo>
+            <SumInfo>{product.inStock ? `${sum}₽` : 'По запросу'}</SumInfo>
             <CounterWithButtons>
                 <Button onClick={handleMinus}>
                     <svg width="18" height="2" viewBox="0 0 18 2" fill="none" xmlns="http://www.w3.org/2000/svg">
