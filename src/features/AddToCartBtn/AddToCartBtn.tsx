@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {Button} from "./AddToCartBtn.styles";
+
 import {useStores} from "@/shared/hooks";
 import {IProduct} from "@/entities";
-import {observer} from "mobx-react";
+
+import * as Styles from "./AddToCartBtn.styles";
 
 interface AddToCartBtnProps extends IProduct {
 }
@@ -16,12 +17,12 @@ export const AddToCartBtn = (props: AddToCartBtnProps) => {
     }
 
     return (
-        <Button
+        <Styles.Button
           onClick={handleClick}
           disabled={!props.inStock}
         >
             <span>{text}</span>
             <span>+</span>
-        </Button>
+        </Styles.Button>
     );
 };
