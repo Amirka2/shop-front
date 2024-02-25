@@ -16,7 +16,10 @@ export const AddToCartBtn = (props: AddToCartBtnProps) => {
     }
 
     return (
-        <Button onClick={handleClick}>
+        <Button
+          onClick={handleClick}
+          disabled={!props.inStock}
+        >
             <span>{text}</span>
             <span>+</span>
         </Button>
