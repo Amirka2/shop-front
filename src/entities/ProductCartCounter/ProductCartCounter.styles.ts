@@ -15,6 +15,7 @@ export const SumInfo = styled.span`
   font-weight: 300;
   line-height: normal;
   margin-bottom: 20px;
+  white-space: pre;
 `;
 
 export const CounterWithButtons = styled.div`
