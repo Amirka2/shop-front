@@ -75,4 +75,9 @@ export const AddToCartButton = styled.button`
   line-height: normal;
   margin: 20px 0;
   cursor: pointer;
+
+    &:disabled {
+        background-color: ${Color.darkGray};
+        cursor: inherit;
+    }
 `;

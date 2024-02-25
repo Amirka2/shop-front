@@ -32,7 +32,12 @@ export const ProductInfo = (product: IProduct) => {
                 )}
             </Styles.ProductAvailability>
             <Styles.ProductPrice>{priceText}</Styles.ProductPrice>
-            <Styles.AddToCartButton onClick={handleClick}>{text}</Styles.AddToCartButton>
+            <Styles.AddToCartButton
+              onClick={handleClick}
+              disabled={!product.inStock}
+            >
+              {text}
+            </Styles.AddToCartButton>
             <Styles.ProductDescription>
                 {product.shortDescription}
             </Styles.ProductDescription>
