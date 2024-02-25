@@ -19,6 +19,8 @@ export const ProductCardInfo = styled.div`
   flex-direction: column;
   justify-content: space-between;
   margin-top: 25px;
+  max-height: 90px;
+    
   & span {
     padding: 2px 0;
   }
@@ -28,9 +30,10 @@ export const ProductCardInfo = styled.div`
 `;
 
 export const NavLink = styled(Link)`
-  color: ${Color.black};
-  
-  &:hover {
-    color: ${Color.blue};
-  }
+    color: ${Color.black};
+    max-height: 45px;
+
+    &:hover {
+        color: ${Color.blue};
+    }
 `;
