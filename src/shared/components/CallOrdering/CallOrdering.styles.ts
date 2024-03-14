@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import {Link} from "react-router-dom";
 
 import {mediaQueries} from '@/shared/constants/mediaQueries';
 
@@ -105,6 +106,11 @@ export const PhoneInputWrapper = styled.div`
 export const Label = styled.span`
     font-size: 14px;
     color: ${Color.white};
+`;
+
+export const StyledLink = styled(Link)`
+    color: ${Color.white};
+    text-decoration: underline;
 `;
 
 export const PhoneButton = styled.button`

@@ -66,7 +66,7 @@ export const CallOrdering = () => {
           </Styles.PhoneWrapper>
           <Styles.PhoneWrapper>
             <Styles.Label>
-              Я согласен с обработкой личной информации
+              Я согласен с <Styles.StyledLink to="/privacy-policy">обработкой личной информации</Styles.StyledLink>
             </Styles.Label>
             <input
               type="checkbox"
