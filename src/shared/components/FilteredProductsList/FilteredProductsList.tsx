@@ -9,6 +9,8 @@ import {Button} from "@/shared/ui";
 import {ProductCard} from "@/widgets";
 import {IProduct} from "@/entities";
 
+import {productBackToFront} from "@/shared/libs";
+
 import * as Styles from "./FilteredProductsList.styles";
 
 interface SearchProps {
@@ -34,8 +36,9 @@ export const FilteredProductsList = ({searchInput, setSearchInput}: SearchProps)
 
     const response = getProducts();
     response.then(result => {
-      searchStore.set(result);
-      setFilteredProducts(result);
+      const res = result.map(product => productBackToFront(product));
+      searchStore.set(res);
+      setFilteredProducts(res);
       setLoading(false);
     })
   }, [])
