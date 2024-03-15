@@ -37,7 +37,6 @@ export const CartPage = observer(() => {
       && (new RegExp(/^\+?[78]9\d{9}$/).test(phoneNumber))
       && (new RegExp(/^[A-Za-zА-Яа-яЁё\s'-]+$/).test(name))
       && isEveryProductInStock
-      && false
     , [name, phoneNumber, isPrivacyAgreed, productsInCart]);
 
   const handleSubmit = function () {
