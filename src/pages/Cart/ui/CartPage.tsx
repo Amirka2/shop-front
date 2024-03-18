@@ -18,7 +18,7 @@ export const CartPage = observer(() => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [isPrivacyAgreed, setPrivacyAgree] = useState(false);
 
-  const productsInCart = cartStore.getProductsFromCart;
+  const productsInCart = cartStore.productsFromCart;
 
   let totalSum = productsInCart.reduce((acc, prev) => {
     if (!prev.inStock) {
@@ -52,8 +52,8 @@ export const CartPage = observer(() => {
 
     processOrder(orderInfo)
       .then(function (response) {
-        if (response && response?.status === '200') {
-          alert('Ура, вы успешно совершили заказ!');
+        if (response && +response?.status === 200) {
+          alert('Вы успешно совершили заказ!');
           cartStore.deleteAllProducts();
           setName('');
           setPhoneNumber('');

@@ -46,7 +46,7 @@ export class CartStore {
         this.cartProductsCounts.delete(product.id);
     };
 
-    get getProductsFromCart(): ProductWithCount[] {
+    get productsFromCart(): ProductWithCount[] {
         return Array.from(this.cartProductsCounts.values());
     }
 
