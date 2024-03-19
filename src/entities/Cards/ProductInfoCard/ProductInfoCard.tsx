@@ -2,14 +2,12 @@ import React, {useMemo} from 'react';
 
 import type {IProduct} from "@/entities";
 import {PhotoSlider} from "@/shared/components";
-import {getPhotoUrl} from "@/shared/libs";
+import {getPhotoUrl, getProductPrice} from "@/shared/libs";
 
 import * as Styles from "./ProductInfoCard.styles";
 
 export const ProductInfoCard = (props: IProduct) => {
-  const priceText = useMemo(() => {
-    return (`Цена: ` + (props.inStock ? `${props.price} ₽` : 'По запросу'))
-  }, [props]);
+  const priceText = getProductPrice(props.inStock, props.price);
 
   const title = useMemo(() => {
     const name = props.name, length = 30;
@@ -28,7 +26,7 @@ export const ProductInfoCard = (props: IProduct) => {
       <Styles.ProductCardInfo>
         <h3><Styles.NavLink to={'/products/' + String(props.id)}>{title}</Styles.NavLink></h3>
         <span>В наличии: {props.inStock ? 'Да' : 'Нет'}</span>
-        <span>{priceText}</span>
+        <span>Цена: {priceText}</span>
       </Styles.ProductCardInfo>
     </Styles.Wrapper>
   );

@@ -62,3 +62,19 @@ export const productFrontToBack = (
 
   return newProduct
 }
+
+export const getProductPrice = (inStock: boolean, price: number): string => {
+  let text = '';
+  
+  if (!inStock) {
+    if (price <= 0) {
+      text += 'По запросу'
+    } else {
+      text += `От ${price}`
+    }
+  } else {
+    text += price;
+  }
+
+  return text;
+}
