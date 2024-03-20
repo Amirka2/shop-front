@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {observer} from "mobx-react";
 
 import {getProducts} from "@/pages/Products/api";
-import {IContacts} from '@/entities';
 import {ProductCard, TopBar} from '@/widgets';
 
 import {useStores} from "@/shared/hooks";
@@ -13,20 +12,12 @@ import {CallOrdering} from "@/shared/components/CallOrdering";
 
 import * as Styles from "./MainPage.styles";
 
-interface MainPageProps extends IContacts {
-  itemsValue: number;
-}
-
-export const MainPage = observer((props: MainPageProps) => {
-  const {
-    itemsValue,
-  } = props;
-
+export const MainPage = observer(() => {
   const {productsStore} = useStores();
   const {products} = productsStore;
 
   const itemsComponents = products
-    .slice(0, itemsValue).map(i =>
+    .map(i =>
       <ProductCard key={i.id} {...i}/>
     );
 

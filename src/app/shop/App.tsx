@@ -1,42 +1,35 @@
 import React from 'react';
-import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
-import { categories, contacts } from './mock';
-
-import { Paths } from "@/shared/routing";
+import {Paths} from "@/shared/routing";
 import {
-  NotFoundPage,
-  MainPage,
-  ShippingPage,
-  PaymentPage,
-  CategoriesPage,
   AboutUsPage,
-  ProductPage,
-  CartPage,
-  SubCategoriesPage,
-  ProductsPage,
-  ContactsPage,
-  PrivacyPolicy,
-  Manufacturers,
-  AdminMain,
-  AdminCategory,
-  AdminSubCategory,
-  AdminProduct,
   AdminAuth,
+  AdminCategory,
+  AdminMain,
   AdminManufacturers,
+  AdminProduct,
+  AdminSubCategory,
+  CartPage,
+  CategoriesPage,
+  ContactsPage,
+  MainPage,
+  Manufacturers,
+  NotFoundPage,
+  PaymentPage,
+  PrivacyPolicy,
+  ProductPage,
+  ProductsPage,
+  ShippingPage,
+  SubCategoriesPage,
 } from "@/pages";
 
 export function App() {
-  const mainPageProps = {
-    itemsValue: 12,
-    categories,
-    ...contacts,
-  }
   return (
     <BrowserRouter>
       <Routes>
         <Route path='*' element={<NotFoundPage/>}/>
-        <Route path={Paths.main} element={<MainPage {...mainPageProps} />}/>
+        <Route path={Paths.main} element={<MainPage />}/>
         <Route path={Paths.aboutUs} element={<AboutUsPage/>}/>
         <Route path={Paths.categories} element={<CategoriesPage/>}/>
         <Route
