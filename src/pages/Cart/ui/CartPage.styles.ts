@@ -142,7 +142,14 @@ export const Input = styled.input`
   height: 30px;
   border-radius: 20px;
   padding: 3px;
-  margin-bottom: 10px;
+  margin-top: 10px;
+`;
+
+export const ErrorText = styled.span`
+  width: 100%;
+
+  font-size: 12px;
+  color: ${Color.red};
 `;
 
 export const PrivacyRow = styled.div`
@@ -159,7 +166,6 @@ export const PrivacyRow = styled.div`
 export const LabelText = styled.label`
   font-size: 14px;
   color: ${Color.darkGray};
-  
 `;
 
 export const LabelLink = styled(Link)`
