@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-import {IProduct} from "@/entities";
-
 import {useStores} from "@/shared/hooks";
 import {getProductPrice} from "@/shared/libs";
+import {IProduct} from "@/entities";
+import { handleYMClick } from '@/entities/Metrics';
 
 import * as Styles from './ProductInfo.styles';
 
@@ -16,6 +16,7 @@ export const ProductInfo = (product: IProduct) => {
     function handleClick() {
         stores.cartStore.increaseProductsCount(product);
         setText('В корзине');
+        handleYMClick("basket");
     }
 
     return (

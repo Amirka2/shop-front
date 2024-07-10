@@ -23,6 +23,7 @@ import {
   ShippingPage,
   SubCategoriesPage,
 } from "@/pages";
+import { Metrics } from '@/entities/Metrics';
 
 export function App() {
   return (
@@ -62,6 +63,7 @@ export function App() {
         <Route path={Paths.adminProduct} element={<AdminProduct/>}/>
         <Route path={Paths.adminManufacturers} element={<AdminManufacturers/>}/>
       </Routes>
+      <Metrics />
     </BrowserRouter>
   );
 }

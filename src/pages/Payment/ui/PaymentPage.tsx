@@ -5,6 +5,7 @@ import { TextBlock } from "@/shared/components";
 import {contacts} from "@/app/shop/mock";
 
 import * as Styles from "@/pages/Payment/ui/PaymentPage.styles";
+import { handleYMClick } from '@/entities/Metrics';
 
 export const PaymentPage = () => {
   return (
@@ -22,7 +23,7 @@ export const PaymentPage = () => {
           </Styles.BoldText>
           <Styles.Text>
             {'Напишите нам по '}
-            <Styles.Link href={contacts.whatsAppLink}>
+            <Styles.Link href={contacts.whatsAppLink} onClick={() => handleYMClick("whatsapp")}>
               Whatsapp
             </Styles.Link>
             {' или '}

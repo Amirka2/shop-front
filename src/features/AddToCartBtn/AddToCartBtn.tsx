@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import {useStores} from "@/shared/hooks";
+import { handleYMClick } from '@/entities/Metrics';
 import {IProduct} from "@/entities";
 
 import * as Styles from "./AddToCartBtn.styles";
@@ -14,6 +15,7 @@ export const AddToCartBtn = (props: AddToCartBtnProps) => {
     function handleClick() {
         stores.cartStore.increaseProductsCount({...props});
         setText('Добавлено');
+        handleYMClick("basket");
     }
 
     return (
