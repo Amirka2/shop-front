@@ -11,6 +11,7 @@ import { CartProductCard } from "@/widgets/CartProductCard/CartProductCard";
 import { processOrder } from "../api";
 
 import * as Styles from "./CartPage.styles";
+import { handleYMClick } from "@/entities/Metrics";
 
 export const CartPage = observer(() => {
   const { cartStore } = useStores();
@@ -73,6 +74,7 @@ export const CartPage = observer(() => {
           cartStore.deleteAllProducts();
           setName("");
           setPhoneNumber("");
+          handleYMClick('order');
         }
       })
       .catch(function (error) {

@@ -1,7 +1,7 @@
 import ym from "react-yandex-metrika";
 
 export const handleYMClick = (
-  type: "whatsapp" | "phone" | "basket" | "call_back"
+  type: "whatsapp" | "phone" | "basket" | "call_back" | "order"
 ) => {
   switch (type) {
     case "whatsapp":
@@ -18,6 +18,10 @@ export const handleYMClick = (
 
     case "call_back":
       ym("reachGoal", "call_back");
+      break;
+
+      case "order":
+      ym("reachGoal", "order");
       break;
 
     default:
