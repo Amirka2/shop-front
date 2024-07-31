@@ -3,10 +3,11 @@ import {useParams} from "react-router";
 import {Spin} from "antd";
 import {LoadingOutlined} from "@ant-design/icons";
 
-import {ManufacturerGroupModel} from "@/entities";
+import {CeoData, ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import { CeoPagesData } from '@/shared/constants';
 import {MainLayout} from "@/shared/ui/Layouts";
+import {ManufacturerGroupModel} from "@/entities";
 import {ManufacturerCard} from "@/entities/Cards";
-import {ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
 
 import {getManufacturers} from "../api";
 
@@ -41,6 +42,7 @@ export const Manufacturers = () => {
   if (isLoading) {
     return (
       <MainLayout>
+        <CeoData {...CeoPagesData.manufacturers} />
         <PagePlaceHolder>
           <Spin indicator={
             <LoadingOutlined
@@ -55,6 +57,7 @@ export const Manufacturers = () => {
 
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.manufacturers} />
       <MainWrapper>
         <h1>Производители</h1>
         <ItemsGrid>

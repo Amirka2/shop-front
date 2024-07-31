@@ -2,16 +2,17 @@ import React, { useMemo, useState } from "react";
 import { observer } from "mobx-react";
 
 import { useStores } from "@/shared/hooks";
-import { ItemsGrid } from "@/shared/components";
+import { CeoData, ItemsGrid } from "@/shared/components";
 import { Paths } from "@/shared/routing";
 import { MainLayout } from "@/shared/ui/Layouts";
+import { CeoPagesData } from "@/shared/constants";
 import { IOrder, ProductCartCounter } from "@/entities";
+import { handleYMClick } from "@/entities/Metrics";
 import { CartProductCard } from "@/widgets/CartProductCard/CartProductCard";
 
 import { processOrder } from "../api";
 
 import * as Styles from "./CartPage.styles";
-import { handleYMClick } from "@/entities/Metrics";
 
 export const CartPage = observer(() => {
   const { cartStore } = useStores();
@@ -96,6 +97,7 @@ export const CartPage = observer(() => {
 
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.cart} />
       <Styles.CaptionWrapper isRight>
         <Styles.Link to={"/"}>Вернуться к покупкам</Styles.Link>
       </Styles.CaptionWrapper>

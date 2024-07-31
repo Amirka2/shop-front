@@ -4,11 +4,12 @@ import { useParams } from "react-router";
 import {Spin} from "antd";
 import {LoadingOutlined} from "@ant-design/icons";
 
-import {ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import {CeoData, ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import { CeoPagesData } from '@/shared/constants';
 import { useStores } from "@/shared/hooks";
-import { ProductCard } from "@/widgets";
 import { MainLayout } from "@/shared/ui/Layouts";
 import {productBackToFront} from "@/shared/libs";
+import { ProductCard } from "@/widgets";
 
 import {getProductsInSubCategory} from "../api";
 
@@ -45,6 +46,7 @@ export const ProductsPage = observer(() => {
     if (isLoading) {
         return (
           <MainLayout>
+            <CeoData {...CeoPagesData.products} />
               <PagePlaceHolder>
                   <Spin indicator={
                       <LoadingOutlined
@@ -59,6 +61,7 @@ export const ProductsPage = observer(() => {
 
     return (
         <MainLayout>
+            <CeoData {...CeoPagesData.products} />
             <MainWrapper>
                 <ItemsGrid style={{
                     justifyContent: 'center',

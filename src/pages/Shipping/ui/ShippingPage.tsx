@@ -1,6 +1,8 @@
 import React from 'react';
 import {Map, Placemark, YMaps} from "@pbe/react-yandex-maps";
 
+import { CeoData } from '@/shared/components';
+import { CeoPagesData } from '@/shared/constants';
 import {MainLayout} from "@/shared/ui/Layouts";
 
 import * as Styles from "@/pages/Shipping/ui/ShippingPage.styles";
@@ -8,6 +10,7 @@ import * as Styles from "@/pages/Shipping/ui/ShippingPage.styles";
 export const ShippingPage = () => {
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.shipping} />
       <Styles.Content>
         <Styles.Text>
           Уважаемые покупатели, оплаченные заказы Вы можете забрать

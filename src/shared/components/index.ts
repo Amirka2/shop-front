@@ -18,5 +18,6 @@ export * from './DocumentMedia';
 export * from './Icons';
 export { AuthChecker } from './AuthChecker';
 export { PagePlaceHolder } from './PagePlaceHolder';
+export * from './CeoData';
 
 export type {CategoriesProps} from './Categories';

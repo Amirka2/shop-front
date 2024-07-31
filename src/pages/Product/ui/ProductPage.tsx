@@ -4,7 +4,7 @@ import {observer} from "mobx-react";
 import {Spin} from "antd";
 import {LoadingOutlined} from "@ant-design/icons";
 
-import {PagePlaceHolder} from "@/shared/components";
+import {CeoData, PagePlaceHolder} from "@/shared/components";
 import {IProduct, ProductPageDescription} from "@/entities";
 import {MainLayout} from "@/shared/ui/Layouts";
 import {getPhotoUrl} from "@/shared/libs";
@@ -33,6 +33,7 @@ export const ProductPage = observer(() => {
   if (isLoading) {
     return (
       <MainLayout>
+        <CeoData title="Загрузка" />
         <PagePlaceHolder>
           <Spin indicator={
             <LoadingOutlined
@@ -47,6 +48,7 @@ export const ProductPage = observer(() => {
 
   return product ? (
     <MainLayout>
+      <CeoData title={product.name} description={`${product.name}. ${product.shortDescription}`} />
       <Styles.Wrapper>
         <Styles.Flex>
           {product.photos && (

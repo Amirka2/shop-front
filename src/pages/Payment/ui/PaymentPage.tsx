@@ -1,15 +1,17 @@
 import React from 'react';
 
 import {MainLayout} from "@/shared/ui/Layouts";
-import { TextBlock } from "@/shared/components";
+import { CeoData, TextBlock } from "@/shared/components";
+import { CeoPagesData } from '@/shared/constants';
+import { handleYMClick } from '@/entities/Metrics';
 import {contacts} from "@/app/shop/mock";
 
 import * as Styles from "@/pages/Payment/ui/PaymentPage.styles";
-import { handleYMClick } from '@/entities/Metrics';
 
 export const PaymentPage = () => {
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.payment} />
       <Styles.Wrapper>
         <TextBlock>
           <Styles.Text>

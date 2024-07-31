@@ -1,7 +1,8 @@
-import React from "react";
 import { YMaps, Map, Placemark } from "@pbe/react-yandex-maps";
 
 import { MainLayout } from "@/shared/ui/Layouts";
+import { CeoPagesData } from "@/shared/constants";
+import { CeoData } from "@/shared/components";
 import { handleYMClick } from "@/entities/Metrics";
 import { contacts } from "@/app/shop/mock";
 
@@ -10,6 +11,7 @@ import * as Styles from "./ContactsPage.styles";
 export const ContactsPage = () => {
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.contacts} />
       <Styles.WrapperAddress>
         <Styles.ContentAddress>
           <YMaps>
