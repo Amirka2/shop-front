@@ -4,7 +4,8 @@ import { observer } from "mobx-react";
 import {Spin} from "antd";
 import {LoadingOutlined} from "@ant-design/icons";
 
-import {ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import {CeoData, ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import { CeoPagesData } from '@/shared/constants';
 import { useStores } from "@/shared/hooks";
 import { SubCategoryCard } from "@/entities";
 import { MainLayout } from "@/shared/ui/Layouts";
@@ -34,6 +35,7 @@ export const SubCategoriesPage = observer(() => {
   if (isLoading) {
     return (
       <MainLayout>
+        <CeoData {...CeoPagesData.subCategories} />
         <PagePlaceHolder>
           <Spin indicator={
             <LoadingOutlined
@@ -48,6 +50,7 @@ export const SubCategoriesPage = observer(() => {
 
     return (
         <MainLayout>
+          <CeoData {...CeoPagesData.subCategories} />
           <MainWrapper>
             <h1>Подкатегории</h1>
             <ItemsGrid>

@@ -5,8 +5,8 @@ import {getProducts} from "@/pages/Products/api";
 import {ProductCard, TopBar} from '@/widgets';
 
 import {useStores} from "@/shared/hooks";
-import {Color} from "@/shared/constants";
-import {Container, Footer, ItemsGrid, MainWrapper} from "@/shared/components";
+import {Color, CeoPagesData} from "@/shared/constants";
+import {CeoData, Container, Footer, ItemsGrid, MainWrapper} from "@/shared/components";
 import {productBackToFront} from "@/shared/libs";
 import {CallOrdering} from "@/shared/components/CallOrdering";
 
@@ -29,12 +29,13 @@ export const MainPage = observer(() => {
       });
       productsStore.set(frontProducts);
     })
-  }, [])
+  }, []);
 
   return (
     <MainWrapper style={{
       margin: '20px auto 0',
     }}>
+      <CeoData {...CeoPagesData.main}/>
       <Container>
         <TopBar />
         <CallOrdering />

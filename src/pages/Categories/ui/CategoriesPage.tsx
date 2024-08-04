@@ -3,10 +3,11 @@ import { observer } from "mobx-react";
 import {Spin} from "antd";
 import {LoadingOutlined} from "@ant-design/icons";
 
-import {ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import {CeoData, ItemsGrid, MainWrapper, PagePlaceHolder} from "@/shared/components";
+import { CeoPagesData } from '@/shared/constants';
 import { useStores } from "@/shared/hooks";
-import { CategoryCard } from "@/entities";
 import { MainLayout } from "@/shared/ui/Layouts";
+import { CategoryCard } from "@/entities";
 
 import { getCategories } from '../api'
 
@@ -45,6 +46,7 @@ export const CategoriesPage = observer(() => {
 
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.categories} />
       <MainWrapper>
         <h1>Категории</h1>
         <ItemsGrid>

@@ -1,11 +1,13 @@
 import React from 'react';
 
 import {MainLayout} from "@/shared/ui/Layouts";
-import {TextBlock} from "@/shared/components";
+import {CeoData, TextBlock} from "@/shared/components";
+import { CeoPagesData } from '@/shared/constants';
 
 export const PrivacyPolicy = () => {
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.privacyPolicy} />
       <TextBlock style={{
         fontSize: '14px',
         whiteSpace: "pre-line"

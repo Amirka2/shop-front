@@ -1,12 +1,13 @@
-import React from 'react';
-
 import {MainLayout} from "@/shared/ui/Layouts";
+import { CeoData } from '@/shared/components';
+import { CeoPagesData } from '@/shared/constants';
 
 import * as Styles from './AboutUsPage.styles';
 
 export const AboutUsPage = () => {
   return (
     <MainLayout>
+      <CeoData {...CeoPagesData.about}/>
       <Styles.Wrapper>
         <Styles.Content>
           <Styles.Text>Наша компания была основана в 2021 году, мы занимается поставками товаров из Европы. Наша цель
